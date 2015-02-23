@@ -5,7 +5,7 @@
 
 # init zprezto:zprofile
 zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile
-[[ -s "$zprezto_file" ]] && source "$zprezto_file"
+source_file "$zprezto_file"
 
 path=(
   $HOME/bin
@@ -21,9 +21,9 @@ for dir in $rc_dirs; do
 done
 
 # for more details: `man zshoptions`
-# don't share history across shells
-# equiv: setopt no_share_history
-#unsetopt SHARE_HISTORY
+#unsetopt SHARE_HISTORY      # don't share history across shells
+                             # equiv: setopt no_share_history
+
 #setopt AUTO_CD              # Auto changes to a directory without typing cd.
 #setopt AUTO_PUSHD           # Push the old directory onto the stack on cd.
 #setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
@@ -34,6 +34,7 @@ done
 #setopt MULTIOS              # Write to multiple descriptors.
 #setopt EXTENDED_GLOB        # Use extended globbing syntax.
 setopt CLOBBER              # Unset then Use >! and >>! to bypass.
+
 
 # Key bindings
 bindkey \^U backward-kill-line

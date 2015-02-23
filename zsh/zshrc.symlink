@@ -5,7 +5,7 @@
 
 # init zprezto:zshrc
 zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc
-[[ -s "$zprezto_file" ]] && source "$zprezto_file"
+source_file "$zprezto_file"
 
 
 # set up common and local aliases
