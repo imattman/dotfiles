@@ -1,0 +1,15 @@
+# mattman  .dotfiles/zsh/zshrc.symlink
+
+# set up rc_dirs
+[[ -s ${ZDOTDIR:-$HOME}/.dotfiles/zsh/rcconfig.zsh ]] && source ${ZDOTDIR:-$HOME}/.dotfiles/zsh/rcconfig.zsh
+
+# init zprezto:zshrc
+zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc
+[[ -s "$zprezto_file" ]] && source "$zprezto_file"
+
+
+# set up common and local aliases
+for dir in $rc_dirs; do
+  source_file "$dir/aliases.zsh"
+done
+

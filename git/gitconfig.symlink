@@ -1,0 +1,37 @@
+[user]
+  name = Matt Phillips
+  email = matt.phillips@gmail.com
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+[core]
+  excludesfile = /Users/mattman/.gitignore_global
+[alias]
+  st = status -s -b
+  stat = status
+  di = diff
+  co = checkout
+  ci = commit
+  br = branch -a
+  last = log -1 HEAD
+  lol = log --oneline --graph --decorate
+  tree = log --oneline --graph --decorate
+  unstage = reset HEAD --
+  fixup = commit --amend -C HEAD
+  timeline = log --graph --branches --pretty=oneline --decorate
+  untracked-files = ls-files -o --exclude-standard
+  ignored-files = ls-files --others -i --exclude-standard
+  modified-files = ls-files -m
+  svn-stat = !git --no-pager diff --name-status remotes/git-svn
+  svn-diff = diff remotes/git-svn
+  cob = checkout -b
+  cof = checkout -- 
+#  up = !git fetch origin && git rebase origin/master
+  dc = diff --cached
+[push]
+  default = simple
+[branch]
+#  autosetuprebase = always

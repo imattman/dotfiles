@@ -1,0 +1,83 @@
+#
+# A simple theme that displays:
+#   - Python virtual environment.
+#   - Git branch.
+#   - Git state.
+#   - Last command exit state (chevron/X).
+#
+# Authors:
+#   Matt Phillips <matt.phillips@gmail.com>
+#   Nadav Shatz <nadavshatz@gmail.com>
+
+# Load dependencies.
+pmodload 'helper'
+
+function prompt_mattman_pwd {
+  local pwd="${PWD/#$HOME/~}"
+
+  _prompt_mattman_pwd=$pwd
+#  if [[ "$pwd" == (#m)[/~] ]]; then
+#    _prompt_mattman_pwd="$MATCH"
+#    unset MATCH
+#  else
+#    _prompt_mattman_pwd="${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}"
+#  fi
+}
+
+function prompt_mattman_precmd {
+  unsetopt XTRACE KSH_ARRAYS
+
+  # format pwd
+  prompt_mattman_pwd
+
+  # Get Git repository information.
+  if (( $+functions[git-info] )); then
+    git-info
+  fi
+
+  # Get Python environment information.
+  if (( $+functions[python-info] )); then
+    python-info
+  fi
+
+  # Get Ruby version information.
+  if (( $+functions[ruby-info] )); then
+    ruby-info
+  fi
+}
+
+function prompt_mattman_setup {
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(percent subst)
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_mattman_precmd
+
+  # Set editor-info parameters.
+  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{red}❯%F{yellow}❯%F{green}❯%f%b'
+
+  # Set python-info parameters.
+  zstyle ':prezto:module:python:info:virtualenv' format '%F{yellow}[%v]%f '
+
+  # Set ruby-info parameters.
+  zstyle ':prezto:module:ruby:info:version' format '%F{yellow}[%v]%f '
+
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format '%F{blue}%b%f'
+  zstyle ':prezto:module:git:info:dirty' format '%%B%F{red} ±%f%%b'
+  zstyle ':prezto:module:git:info:keys' format 'prompt' '(%b%D)'
+
+  # Define prompts  ツ
+#  PROMPT='╭ ─ ${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}${_prompt_mattman_pwd}%f
+#╰ ─ %(?:${editor_info[keymap]}:%F{red}✖%f) '
+  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}${_prompt_mattman_pwd}%f
+%(?:${editor_info[keymap]}:%F{red}✖%f) '
+
+  RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{green}V%f%b"} $python_info[virtualenv]${git_info:+${(e)git_info[prompt]}}'
+  #RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{green}V%f%b"} $python_info[virtualenv]$ruby_info[version]${git_info:+${(e)git_info[prompt]}}'
+  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_mattman_setup "$@"
