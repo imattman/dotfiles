@@ -40,6 +40,8 @@ function execute_init() {
   osx/set-defaults.sh
   fonts/install.sh
   osx-terminal/install.sh
+  xcode/install.sh
+  homebrew/install.sh
 }
 
 cd "${base_dir}"
