@@ -10,11 +10,11 @@ git clone --recursive https://github.com/imattman/dotfiles.git ~/.dotfiles
 
 # run install script to configure symlinks and reference prezto
 cd .dotfiles
+./install.sh
 ```
 
 ## Note
-Prezto is a dependency.  
-Skip prezto instructions for copying config files to $HOME this is handled differently by using symlinked wrapper files
+Prezto is a dependency.  Skip prezto instructions for copying config files to $HOME. This is handled differently by using symlinked wrapper files.
 
 ## Credit
 Much of this builds on or copies prior works including:
