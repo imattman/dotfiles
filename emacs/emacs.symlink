@@ -1,0 +1,361 @@
+;; Emacs start up file
+;;
+
+;---------------------------------------------------------------
+;                  Setup & Environment
+;---------------------------------------------------------------
+(setq load-path 
+      (append
+       (list nil
+	     (expand-file-name "~/emacs"))
+       load-path))
+
+;;
+;; colors -- uncomment this on windows, unix uses .Xdefaults
+;;
+(set-background-color "black")
+;(set-foreground-color "lightgray")
+(set-foreground-color "white")
+(set-cursor-color "white")
+(set-frame-height (selected-frame) 45)
+(set-frame-width (selected-frame) 85)
+;(set-default-font "-*-Lucida Console-normal-r-*-*-14-*-*-*-c-*-*-iso8859-1")
+
+; scroll only one line when continuing at end of buffer
+(setq scroll-step 1)
+(delete-selection-mode t)
+; Force emacs to append an end-of-line to the end of a file that
+; does not already end in one.
+(setq require-final-newline t)
+
+;; use pc-style shift-arrow selection
+;(pc-selection-mode)
+
+;; mac-specific stuff
+(setq data-directory (expand-file-name "etc" installation-directory)) 
+;(setq mac-command-key-is-meta nil)
+
+(require 'font-lock)
+(global-font-lock-mode t)
+
+(load "ruby-mode")
+;(load-file "ruby-mode.el")
+
+(global-set-key "\C-xl" 'goto-line)
+(global-set-key [f2] 'query-replace)
+(global-set-key [f3] 'query-replace-regexp)
+(global-set-key [f4] 'repeat-complex-command)
+;(global-set-key [f5] 'nada)
+(global-set-key [f6] 'indent-region)
+;(global-set-key [f7] 'nada)
+;(global-set-key [f8] 'nada)
+(global-set-key [f9] 'shell-command-on-region)
+(global-set-key [f10] 'revert-buffer)
+(global-set-key [f11] 'font-lock-fontify-buffer)
+;(global-set-key [f12] 'comment-out)
+
+;(global-set-key "\C-?" 'delete-char)
+
+
+;;(global-set-key "\C-x r-i" 'string-rectangle)
+;;(global-set-key "\C-xr" 'query-replace)
+;;(global-set-key "\C-xs" 'query-replace-regexp)
+
+;; remap keys that cause problems
+(global-unset-key "\e\e")
+(global-unset-key "\C-x\C-u")
+
+;; default
+;(setq default-major-mode 'perl-mode)
+(setq default-major-mode 'text-mode)
+
+(add-hook 'ruby-mode-hook
+   '(lambda() 
+        (font-lock-mode)
+        (local-set-key "\ep" 'indent-all)     ;;; Esc-p pretty-prints file
+    )
+)
+
+;(add-hook 'ruby-mode-hook 'turn-on-font-lock)
+(add-hook 'perl-mode-hook 'turn-on-font-lock)
+(add-hook 'java-mode-hook 'turn-on-font-lock)
+(add-hook 'c-mode-hook 'turn-on-font-lock)
+(add-hook 'cc-mode-hook 'turn-on-font-lock)
+(add-hook 'shell-script-mode-hook 'turn-on-font-lock)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-font-lock)
+(add-hook 'html-mode-hook 'turn-on-font-lock)
+(add-hook 'sql-mode-hook 'turn-on-font-lock)
+(add-hook 'xml-mode-hook 'turn-on-font-lock)
+(add-hook 'sgml-mode-hook 'turn-on-font-lock)
+
+;; associate file endings
+(add-to-list 'auto-mode-alist '("\\.pl$" . perl-mode))
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.cgi$" . perl-mode))
+(add-to-list 'auto-mode-alist '("\\.tmpl$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.sh$" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.ddl$" . sql-mode))
+(add-to-list 'auto-mode-alist '("\\.sql$" . sql-mode))
+
+
+
+;; No beeping
+(setq visible-bell t)
+
+;; show column number
+(column-number-mode 1)
+
+;; show paren matching
+(show-paren-mode 1)
+
+;; Make minibuffer larger if there is more to see
+(resize-minibuffer-mode 1)
+
+;; iswitchb  -- easier buffer switching
+;(iswitchb-default-keybindings)
+(global-set-key "\C-x\C-b" 'buffer-menu)
+
+;; C-c q toggles auto-fill, also known as word wrap
+(global-set-key "\C-cq" 'auto-fill-mode)
+
+;; convert tabs to spaces
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+;; mark regions
+;(setq-default transient-mark-mode t)
+;(setq-default transient-mark-mode nil)
+
+;; rarely use this, but enable it just in case
+(put 'narrow-to-region 'disabled nil)
+
+;; Insertion of Dates
+(defun insert-date-string ()
+  "Insert a nicely formatted date string."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d")))
+;; C-c i calls insert-date-string
+(global-set-key (kbd "C-c i") 'insert-date-string)
+
+
+;; Alternate Perl editing mode
+;
+;(autoload 'perl-mode "cperl-mode" "alternate mode for editing Perl programs" t)
+;(setq cperl-hairy t)
+;(setq cperl-indent-level 4)
+;(setq auto-mode-alist
+;      (append '(("\\.\\([pP][Llm]\\|al\\)$" . perl-mode))  auto-mode-alist ))
+
+
+
+
+
+;---------------------------------------------------------------
+;                  Autosaving & Backup
+;---------------------------------------------------------------
+
+;; uncomment for NO backup files (~)
+;;(setq make-backup-files nil) 
+
+
+;; max number of keystrokes before autosave
+(setq auto-save-interval 1000)
+
+;; time to wait before autosave
+(setq auto-save-timeout 30)
+
+;; clean up autosave files (#filename#)
+(setq delete-auto-save-files t) 
+
+;;(setq auto-save-directory "/var/tmp/mattman-autosave")
+;(setq auto-save-directory (expand-file-name "~/.autosave"))
+;(setq auto-save-directory-fallback (expand-file-name "~/.autosave"))
+
+
+;; I hate all the '~' files and working '#' autosaves that emacs creates in
+;; working directories;  backups are a good idea... just put them in a central place
+;; in my home directory
+
+;; put all autosave files in ~/.autosave
+(defun auto-save-file-name (file)
+  (concat (expand-file-name "~/.autosave/") "#" (file-name-nondirectory file) "#")) 
+
+
+
+;; versioned backups
+;;
+;; use numbers with versions
+(setq version-control nil)
+;; number of versions to keep around
+(setq kept-new-versions 2)
+(setq kept-old-versions 2)
+;; don't ask about removing old versions
+(setq trim-versions-without-asking t)
+
+
+;; regular backups
+(defun make-backup-file-name (file)
+  (concat (expand-file-name "~/.autosave/") (file-name-nondirectory file) "~"))
+
+;; needed helper used by make-backup-file-name
+(defun backup-file-name-p (filename)
+  "Return t if FILENAME can be yielded by make-backup-file-name.
+FILENAME should lack slashes.
+This is a separate function so your .emacs file or site-init.el can redefine it."
+  (string-match "~$" filename))
+
+
+
+;---------------------------------------------------------------
+;                       Functions and Macros
+;---------------------------------------------------------------
+
+; saving macros 
+;   ESC-x  name-last-kbd-macro RETURN  <name>
+;
+; Insert Macro into .emacs file
+;   ESC-x insert-kbd-macro RETURN <name>
+;
+
+
+(defalias 'scroll-ahead 'scroll-up)
+(defalias 'scroll-behind 'scroll-down)
+
+(defun scroll-n-lines-ahead (&optional n)
+  "Scroll ahead one line."
+  (interactive "P")
+  (scroll-ahead (prefix-numeric-value n)))
+
+(defun scroll-n-lines-behind (&optional n)
+  "Scroll behind one line."
+  (interactive "P")
+  (scroll-behind (prefix-numeric-value n)))
+
+(global-set-key "\C-q" 'scroll-n-lines-behind)
+(global-set-key "\C-z" 'scroll-n-lines-ahead)
+
+
+(defun point-to-top ()
+  "Put point on top line of window."
+  (interactive)
+  (move-to-window-line 0))
+
+(defun point-to-bottom ()
+  "Put point on bottom line of window."
+  (interactive)
+  (move-to-window-line -1))
+
+(global-set-key "\M-," 'point-to-top)
+(global-set-key "\M-." 'point-to-bottom)
+
+(defun line-to-top ()
+  "Move current line to top of window."
+  (interactive)
+  (recenter 0))
+
+(global-set-key "\M-!" 'line-to-top)
+
+; Function to run Tidy HTML parser on region 
+; NOTE: this requires external Tidy program
+;(global-set-key "\C-xt" 'tidy-region)
+(setq shell-command-default-error-buffer "tidy-errors") ; define an error buffer
+(defun tidy-region ()
+  "Run Tidy HTML parser on current region."
+  (interactive)
+  (let ((start (mark))
+        (end (point))
+        (command "tidy"))
+	(shell-command-on-region start end command t t  shell-command-default-error-buffer)))
+
+; Kill other window and and enlarge current buffer
+;(global-set-key [f8] 'kill-buffer-other-window) 
+(defun kill-buffer-other-window (arg)
+  "Kill the buffer in the other window, and make the current buffer full size. If no other window, kills current buffer."
+  (interactive "p")
+  (let ((buf (save-window-excursion
+               (other-window arg)
+               (current-buffer))
+             )
+        )
+    (delete-windows-on buf)
+    (kill-buffer buf)
+    )
+  )
+
+
+
+(defun count-words-buffer ()
+  (interactive)
+  (let ((count 0))
+    (goto-char (point-min))
+    (while (< (point) (point-max))
+      (forward-word 1)
+      (setq count (1+ count)))
+    (message "buffer contains %d words." count)))
+
+;(defun lookat-file ()
+;"Edit file with name delimited by colon at beginning of current line."
+;  (interactive)
+;  (save-excursion
+;    (save-match-data
+;      (beginning-of-line)
+;      (search-forward-regexp "^\\(.*\\):")
+;      (find-file (match-string 1)))))
+;
+;(define-key global-map "^F" 'lookat-file)
+
+
+
+;(defvar auto-save-dir "/some local directory which others can't read/")
+;(if (and
+;     (string-match "your.machine.name" (system-name))
+;     (file-directory-p auto-save-dir))
+;     (defun make-auto-save-file-name ()
+;        (concat auto-save-dir "#" (buffer-name) "#")))
+
+
+
+;; -- a fancy function that's not working 
+;;
+;; change "modified" when saving files
+(defun timestamp-modified () 
+            "Put the current time and user in this buffer's *modified line"
+	(catch 'no-modified-found
+            (save-excursion
+                ; find old modified region
+                (beginning-of-buffer)
+                ; do a quick search for modified in first 20 lines of file
+                (next-line 20)
+                (cond ((not (search-backward " *modified " nil t))
+		       (throw 'no-modified-found t))
+		)
+                (beginning-of-buffer)
+                ; now the full fledged search
+                (re-search-forward " +\\*modified +\".*\" +\\*by +\".*\"")
+
+                ; update the user's name
+                (backward-char)
+                (set-mark (point))
+                (search-backward "\"")
+                (forward-char)
+                (delete-region (mark) (point))
+                (insert-string "Matt Phillips")
+
+                ; update time stamp
+                (re-search-backward "\" +\\*by ")
+                (set-mark (point))
+                (search-backward "\"")
+                (forward-char)
+                (delete-region (mark) (point))
+                (insert-string (current-time-string))
+            )
+	)
+)
+
+(defun save-buffer-timestamped ()
+    (interactive)
+    (timestamp-modified)
+    (save-buffer)
+)
+
+;;(global-set-key "\C-x\C-s" 'save-buffer-timestamped)
