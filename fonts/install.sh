@@ -18,7 +18,7 @@ else
 fi
 
 # Copy all fonts to user fonts directory
-eval $find_command | xargs -0 -I % echo cp "%" "$font_dir"
+eval $find_command | xargs -0 -I % cp "%" "$font_dir"
 
 # Reset font cache on Linux
 if [[ -n `which fc-cache` ]]; then

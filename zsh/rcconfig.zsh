@@ -13,7 +13,8 @@ rc_dirs=($zshdots_dir $localrc_dir)
 
 
 function source_file() {
-  #echo "sourcing file $1"
+  #echo -n "sourcing file $1 " ; if [[ -s "$1" ]] ; then echo "YES"; else echo "NO"; fi
+
   if [[ -s "$1" ]] ; then
     source "$1"
   fi

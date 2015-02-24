@@ -3,7 +3,7 @@
 # set up rc_dirs
 [[ -s ${ZDOTDIR:-$HOME}/.dotfiles/zsh/rcconfig.zsh ]] && source ${ZDOTDIR:-$HOME}/.dotfiles/zsh/rcconfig.zsh
 
-# init zprezto:zprofile
+# init zprezto:zshenv
 zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshenv
 source_file "$zprezto_file"
 
