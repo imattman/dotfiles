@@ -67,5 +67,5 @@ done
 
 
 # run dotbot by default if no args specified 
-[[ -n $opt_set ]] || echo run_dotbot
+[[ -n $opt_set ]] || run_dotbot
 
