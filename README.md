@@ -6,6 +6,9 @@
 chsh -s $(which zsh)
 
 # recursive clone to get submodules
+#
+# alternative: 
+#   git clone --recursive git@github.com:imattman/dotfiles.git ~/.dotfiles
 git clone --recursive https://github.com/imattman/dotfiles.git ~/.dotfiles
 
 # run install script to configure symlinks and reference prezto
