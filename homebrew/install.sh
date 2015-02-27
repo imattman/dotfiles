@@ -20,6 +20,7 @@ brew install \
   bison \
   cowsay \
   figlet \
+  elixir \
   fortune \
   gradle \
   jq \
