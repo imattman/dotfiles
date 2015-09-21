@@ -27,8 +27,9 @@ brew install \
   lorem \
   macvim \
   maven \
-  node \
+  nvm \
   openssl \
+  rbenv \
   tmux \
   tree \
   watch \
