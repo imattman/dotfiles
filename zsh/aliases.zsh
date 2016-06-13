@@ -8,14 +8,13 @@ alias la="ls -a"
 alias lla="ls -la"
 alias llh="ls -lah"
 alias lo="exit"
-alias sc="source"
-#alias pgrep="ps -efw | grep $@"
-alias pgrep="ps -auxw | grep"
 
-#### DOS habits ####
-alias cls="clear"
-alias dir="ls -l"
-alias md="mkdir"
+# rollback some prezto behaviors
+unalias rm
+
+#alias pgrep="ps -efw | grep $@"
+alias pgrep="ps auxw | grep"
+
 
 ###########################################################
 # aliases to simple scripts and directory changes
@@ -26,5 +25,19 @@ alias rm\#="rm \#*"
 ###########################################################
 #alias emacs2="open /Applications/Emacs.app"
 #alias tm="open /Applications/TextMate.app"
+
+# Docker stuff
+alias dm='docker-machine'
+alias dock='docker'
+alias dcomp='docker-compose'
+alias dmenv='eval $(docker-machine env)'
+
+# GoLang
+alias goenv='go env'
+alias gorun='go run'
+alias gobuild='go build'
+
+# Exercism
+alias exer='exercism'
 
 
