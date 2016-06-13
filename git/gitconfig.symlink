@@ -12,26 +12,26 @@
 [alias]
   st = status -s -b
   stat = status
-  di = diff
+  dif = diff
+  diffc = diff --cached
   co = checkout
   ci = commit
   br = branch -a
   last = log -1 HEAD
   lol = log --oneline --graph --decorate
-  tree = log --oneline --graph --decorate
-  unstage = reset HEAD --
+  tree = log --graph --branches --pretty=oneline --decorate
+  log-commit = log --format=%B -n 1
+  rollback-all = !git checkout -- $(git ls-files -m)
+  unstage-all = !git reset HEAD $(git ls-files -m)
   fixup = commit --amend -C HEAD
-  timeline = log --graph --branches --pretty=oneline --decorate
   untracked-files = ls-files -o --exclude-standard
   ignored-files = ls-files --others -i --exclude-standard
   modified-files = ls-files -m
   svn-stat = !git --no-pager diff --name-status remotes/git-svn
   svn-diff = diff remotes/git-svn
-  cob = checkout -b
-  cof = checkout -- 
 #  up = !git fetch origin && git rebase origin/master
-  dc = diff --cached
 [push]
   default = simple
 [branch]
 #  autosetuprebase = always
+
