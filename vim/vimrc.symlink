@@ -27,7 +27,7 @@ endif
 set background=dark
 
 set guifont=Monaco:h13
-set guifont=Inconsolata:h16
+set guifont=Inconsolata:h18
 
 
 " Allows you to re-use the same window and switch from an unsaved buffer without 
@@ -172,4 +172,21 @@ highlight SpecialKey guifg=#4a4a59
 if has("autocmd")
   autocmd BufNewFile,BufRead *.md setfiletype markdown
 endif
+
+
+" Damian Conway's method to open help in a new tab
+augroup HelpInTabs
+"  autocmd!
+  autocmd BufEnter *.txt call HelpInNewTab()
+augroup END
+
+" only apply to help files
+function! HelpInNewTab()
+  if &buftype == 'help'
+    "Convert the help menu to a tab...
+    "Note the 'T' must be capital
+    execute "normal \<C-W>T"
+  endif
+endfunction
+
 
