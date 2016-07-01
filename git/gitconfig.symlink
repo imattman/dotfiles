@@ -1,6 +1,6 @@
 [user]
   name = Matt Phillips
-  email = matt.phillips@gmail.com
+  email = mattman@mattcave.com
 [color]
   status = auto
   diff = auto
@@ -8,7 +8,7 @@
   interactive = auto
   ui = auto
 [core]
-  excludesfile = /Users/mattman/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [alias]
   st = status -s -b
   stat = status
