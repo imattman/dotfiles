@@ -7,6 +7,7 @@
     ~/.gitconfig : git/gitconfig.symlink
     ~/.vim : vim/
     ~/.vimrc : vim/vimrc.symlink
+    ~/.config : config/
     ~/.emacs : emacs/emacs.symlink
     ~/.aliases.zsh :
       path : zsh/aliases.zsh
