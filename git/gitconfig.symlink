@@ -10,9 +10,11 @@
 [core]
   excludesfile = ~/.gitignore_global
 [alias]
+  s = status -s -b
   st = status -s -b
   stat = status
   dif = diff
+  staged = diff --cached
   diffc = diff --cached
   co = checkout
   ci = commit
