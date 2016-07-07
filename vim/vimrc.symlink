@@ -147,16 +147,28 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
+"------------------------------------------------------------
+" Window splits
+"
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
+
+" easier navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "------------------------------------------------------------
 " Indentation options {{{1
 "
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-" set tabstop=2
+"   set shiftwidth=2
+"   set softtabstop=2
+"   set expandtab
+set tabstop=4
 
 
 "------------------------------------------------------------
@@ -178,6 +190,9 @@ map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
+"
+"" Clean search (highlight)
+nnoremap <silent> <leader><space> :noh<cr>
 
 "imap <Tab> <C-n>
 imap <S-Tab> <C-p>
@@ -216,20 +231,41 @@ if has("autocmd")
 endif
 
 
-" Damian Conway's method to open help in a new tab
-augroup HelpInTabs
-"  autocmd!
-  autocmd BufEnter *.txt call HelpInNewTab()
-augroup END
+"" " Damian Conway's method to open help in a new tab
+"" augroup HelpInTabs
+"" "  autocmd!
+""   autocmd BufEnter *.txt call HelpInNewTab()
+"" augroup END
+"" 
+"" " only apply to help files
+"" function! HelpInNewTab()
+""   if &buftype == 'help'
+""     "Convert the help menu to a tab...
+""     "Note the 'T' must be capital
+""     execute "normal \<C-W>T"
+""   endif
+"" endfunction
 
-" only apply to help files
-function! HelpInNewTab()
-  if &buftype == 'help'
-    "Convert the help menu to a tab...
-    "Note the 'T' must be capital
-    execute "normal \<C-W>T"
-  endif
-endfunction
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#statusline()}
+
+"let g:airline_theme = 'powerlineish'
+let g:airline_enable_branch = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
 
 "------------------------------------------------------------
 "" NERDTree configuration
@@ -243,6 +279,8 @@ let g:NERDTreeWinSize = 20
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 noremap <F3> :NERDTreeToggle<CR>
+noremap <Leader>nt :NERDTreeToggle<CR>
+"noremap <C-k><C-b> :NERDTreeToggle<CR>   " matches Sublime
 
 "*****************************************************************************
 "" Mappings
