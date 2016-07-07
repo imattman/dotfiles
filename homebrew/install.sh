@@ -3,6 +3,9 @@
 # Install Homebrew and some packages
 #
 
+pkg_file='brew-formulae-list.txt'
+pkg_file=$(dirname $0)/$pkg_file
+
 # Check for Homebrew
 if [[ ! "$(which brew)" ]] ; then
   echo "Installing Homebrew..."
@@ -15,24 +18,10 @@ fi
 
 
 # some packages I like installed
-# TODO: move this list to a separate file?
-brew install \
-  bison \
-  cowsay \
-  figlet \
-  elixir \
-  fortune \
-  gradle \
-  jq \
-  lorem \
-  macvim \
-  maven \
-  nvm \
-  openssl \
-  rbenv \
-  tmux \
-  tree \
-  watch \
-
+echo Installing packages from $pkg_file
+cat $pkg_file | \
+while read pkg; do
+  brew install $pkg
+done
 
 exit 0
