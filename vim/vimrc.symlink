@@ -17,8 +17,9 @@ syntax on
 
 " color scheme
 if has("gui_running")
+  colorscheme molokai
+  "colorscheme sunburst
   "colorscheme solarized
-  colorscheme sunburst
   "colorscheme slate
 else
   colorscheme slate
@@ -26,7 +27,7 @@ endif
 
 set background=dark
 
-set guifont=Monaco:h13
+set guifont=Monaco:h14
 set guifont=Inconsolata:h18
 
 
