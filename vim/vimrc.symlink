@@ -24,6 +24,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'fatih/vim-go'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'majutsushi/tagbar'
+"Plugin 'Shougo/neosnippet.vim'
+
 
 
 " **********
@@ -165,10 +169,10 @@ nnoremap <C-H> <C-W><C-H>
 "
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-"   set shiftwidth=2
-"   set softtabstop=2
-"   set expandtab
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+"set tabstop=4
 
 
 "------------------------------------------------------------
