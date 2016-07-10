@@ -20,11 +20,12 @@ go
 gradle
 heroku
 heroku-toolbelt
+httpie
 jpeg
 jq
 leiningen
 lorem
-macvim
+macvim --with-cscope --with-lua --HEAD
 maven
 mercurial
 multirust
