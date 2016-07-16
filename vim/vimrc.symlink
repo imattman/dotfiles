@@ -3,6 +3,14 @@
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
 
+" Vundle Installation:
+"
+" cd ~/.vim/bundle && \
+"   git clone https://github.com/VundleVim/Vundle.vim.git
+"
+" launch vim, run cmd "BundleInstall"
+"
+"
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
