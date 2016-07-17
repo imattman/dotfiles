@@ -1,4 +1,7 @@
 # pulled in as separate repos (not submodules)
 prezto/
 dotbot/
+
 vim/bundle/
+config/
+
