@@ -3,7 +3,7 @@
 # Install Homebrew and some packages
 #
 
-pkg_file='brew-formulae-list.txt'
+pkg_file='homebrew-formulae-list.txt'
 pkg_file=$(dirname $0)/$pkg_file
 
 # Check for Homebrew
