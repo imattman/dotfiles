@@ -1,0 +1,39 @@
+# std tools
+golang.org/x/tools/cmd/...
+
+# build tools & utilities
+github.com/alecthomas/gometalinter
+github.com/fatih/motion
+github.com/godoctor/godoctor
+github.com/golang/lint/golint
+github.com/josharian/impl
+github.com/jstemmer/gotags
+github.com/kisielk/errcheck
+github.com/klauspost/asmfmt/cmd/asmfmt
+github.com/lukehoban/go-outline
+github.com/newhook/go-symbols
+github.com/nsf/gocode
+github.com/rogpeppe/godef
+github.com/tools/godep
+github.com/tpng/gopkgs
+github.com/zmb3/gogetdoc
+
+# common libs
+github.com/campoy/jsonenums
+#github.com/containous/traefik
+github.com/cortesi/devd/cmd/devd
+github.com/cortesi/modd/cmd/modd
+github.com/gin-gonic/gin
+github.com/goadesign/goa/...
+github.com/gorilla/context
+github.com/gorilla/csrf
+github.com/gorilla/handlers
+github.com/gorilla/mux
+github.com/gorilla/pat
+github.com/gorilla/websocket
+github.com/lib/pq
+github.com/mholt/caddy
+github.com/monochromegane/the_platinum_searcher
+github.com/pkg/errors
+github.com/rakyll/boom
+
