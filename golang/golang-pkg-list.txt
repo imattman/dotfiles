@@ -1,7 +1,11 @@
+#
 # std tools
+#
 golang.org/x/tools/cmd/...
 
+#
 # build tools & utilities
+#
 github.com/alecthomas/gometalinter
 github.com/fatih/motion
 github.com/godoctor/godoctor
@@ -18,9 +22,15 @@ github.com/tools/godep
 github.com/tpng/gopkgs
 github.com/zmb3/gogetdoc
 
+#
 # common libs
+#
+
+# hugo will fetch cobra & viper as deps
+github.com/spf13/hugo
+
+github.com/braintree/manners
 github.com/campoy/jsonenums
-#github.com/containous/traefik
 github.com/cortesi/devd/cmd/devd
 github.com/cortesi/modd/cmd/modd
 github.com/gin-gonic/gin
@@ -37,3 +47,5 @@ github.com/monochromegane/the_platinum_searcher
 github.com/pkg/errors
 github.com/rakyll/boom
 
+# other
+#github.com/containous/traefik
