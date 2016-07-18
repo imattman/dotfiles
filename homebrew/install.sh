@@ -19,7 +19,8 @@ fi
 
 # some packages I like installed
 echo Installing packages from $pkg_file
-cat $pkg_file | \
+
+cat $pkg_file | grep -v '#' | egrep -v '^\s*$' | \
 while read pkg; do
   brew install $pkg
 done
