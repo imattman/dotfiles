@@ -2,6 +2,7 @@
 prezto/
 dotbot/
 
+emacs.d/
 vim/bundle/
 config/
 
