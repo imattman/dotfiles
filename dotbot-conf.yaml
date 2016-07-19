@@ -8,7 +8,7 @@
     ~/.vim : vim/
     ~/.vimrc : vim/vimrc.symlink
     ~/.config : config/
-    ~/.emacs : emacs/emacs.symlink
+    ~/.emacs.d : emacs.d/
     ~/.aliases.zsh :
       path : zsh/aliases.zsh
       force : false
