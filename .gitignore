@@ -2,7 +2,7 @@
 prezto/
 dotbot/
 
-emacs.d/
+emacs.d/elpa/
 vim/bundle/
 config/
 
