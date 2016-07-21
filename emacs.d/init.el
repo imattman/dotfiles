@@ -20,4 +20,4 @@
 ;(setq use-package-verbose t)
 
 ;;; Load the config from org-mode literate description
-;(org-babel-load-file (concat user-emacs-directory "config.org"))
+(org-babel-load-file (concat user-emacs-directory "config.org"))
