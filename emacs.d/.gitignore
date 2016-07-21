@@ -1,0 +1,5 @@
+# emacs stuff that shouldn't be tracked
+elpa/
+backups/
+auto-save-list/
+
