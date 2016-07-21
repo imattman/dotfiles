@@ -13,6 +13,10 @@ for dir in $rc_dirs; do
   source_file "$dir/aliases.zsh"
 done
 
+# I don't like all of prezto's settings
+unalias rm
+
+
 # for more details: `man zshoptions`
 unsetopt SHARE_HISTORY      # don't share history across shells
                              # equiv: setopt no_share_history

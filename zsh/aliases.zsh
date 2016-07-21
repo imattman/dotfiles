@@ -9,12 +9,6 @@ alias lla="ls -la"
 alias llh="ls -lah"
 alias lo="exit"
 
-# rollback some prezto behaviors
-unalias rm
-
-#alias pgrep="ps -efw | grep $@"
-alias pgrep="ps auxw | grep"
-
 
 ###########################################################
 # aliases to simple scripts and directory changes
