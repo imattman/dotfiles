@@ -1,7 +1,9 @@
 # emacs stuff that shouldn't be tracked
+config.el
+
 elpa/
 backups/
 auto-save-list/
+project-explorer-cache/
 
-config.el
-
+ac-comphist.dat
