@@ -3,3 +3,5 @@ elpa/
 backups/
 auto-save-list/
 
+config.el
+
