@@ -4,8 +4,8 @@
 ;(load-theme 'material t)
 (load-theme 'wombat t)
 
-(setq inhibit-startup-message t)  ;; hide start up screen
-(setq initial-scratch-message "") ;; no need for clarification
+(setq inhibit-startup-message t)  ;; disable start up screen
+(setq initial-scratch-message "") ;; hide scratch buffer help
 
 (global-linum-mode t)             ;; enable line numbers
 
