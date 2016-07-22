@@ -1,3 +1,25 @@
+# editors
+emacs  --with-cocoa --with-gnutls --with-imagemagick --with-librsvg
+# run:  brew linkapps emacs
+macvim --with-cscope --with-lua --HEAD
+neovim/neovim/neovim
+
+# development languages
+elixir
+elm
+erlang
+go
+node
+python
+python3
+scala
+
+# build tools
+gradle
+leiningen
+maven
+
+# other tools
 ack
 ag
 autoconf
@@ -7,39 +29,26 @@ bison
 brew-cask
 cmake
 cowsay
-elixir
-elm
-emacs --with-cocoa
-erlang
 exercism
 figlet
 fortune
 gdbm
 gnupg
-go
-gradle
 heroku
 heroku-toolbelt
 httpie
 jpeg
 jq
-leiningen
 lorem
-macvim --with-cscope --with-lua --HEAD
-maven
 mercurial
 multirust
-neovim/neovim/neovim
 ngrok
-node
 oniguruma
 openssl
 pkg-config
-python
-python3
 readline
-scala
 sqlite
 tmux
 tree
 watch
+
