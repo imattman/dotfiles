@@ -8,6 +8,9 @@
 (setq initial-scratch-message "") ;; hide scratch buffer help
 
 (global-linum-mode t)             ;; enable line numbers
+(menu-bar-mode -1)                ;;
+(tool-bar-mode -1)                ;; 
+(toggle-scroll-bar -1)            ;; 
 
 ;; note the visual warning causes problems on OS X
 (setq ring-bell-function 'ignore) ;; disable audio/visual warning
