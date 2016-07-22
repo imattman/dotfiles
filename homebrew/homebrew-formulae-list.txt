@@ -45,6 +45,7 @@ multirust
 ngrok
 oniguruma
 openssl
+pandoc
 pkg-config
 readline
 sqlite
