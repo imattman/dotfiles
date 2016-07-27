@@ -1,7 +1,7 @@
 # mattman  .dotfiles/zsh/zshenv.sh
 
 if [ -f ~/.zsh.functions ] ; then
-  ~/.zsh.functions
+  source ~/.zsh.functions
 else
   function source_file() {
     #echo -n "sourcing file $1 " ; if [[ -s "$1" ]] ; then echo "YES"; else echo "NO"; fi

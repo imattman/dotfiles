@@ -6,9 +6,9 @@ all:
 	[ -f ~/.zshenv ]          || ln -s $(PWD)/zsh/zshenv.sh ~/.zshenv
 	[ -f ~/.zsh.functions ]   || ln -s $(PWD)/shell/functions.sh ~/.zsh.functions
 	[ -f ~/.zsh.aliases ]     || ln -s $(PWD)/shell/aliases.sh ~/.zsh.aliases
+	[ -d ~/.zprezto ]         || ln -s $(PWD)/prezto ~/.zprezto
+	[ -f ~/.zpreztorc ]       || ln -s $(PWD)/zsh/zpreztorc.sh ~/.zpreztorc
 	[ -f ~/.zsh.local ]       || cp $(PWD)/shell/local.sh ~/.zsh.local
-	[ -d ~/.zprezto ]         || ln -s $(PWD)/prezto
-	[ -f ~/.zpreztorc ]       || ln -s $(PWD)/zsh/zpreztorc.sh
 
 	# bash
 	[ -f ~/.bash_profile ]    || ln -s $(PWD)/shell/bash_profile.sh ~/.bash_profile
@@ -27,13 +27,21 @@ all:
 
 clean:
 	# -L tests symbolic links
-	[ -L ~/.bash_profile ] && unlink ~/.bash_profile
-	[ -L ~/.bash.functions ] && unlink ~/.bash.functions
-	[ -L ~/.bashrc ] && unlink ~/.bashrc
-	[ -L ~/.bash.aliases ] && unlink ~/.bash.aliases
-	[ -L ~/.bash.prompt ] && unlink ~/.bash.prompt
+	[ -L ~/.bash_profile ]    && unlink ~/.bash_profile
+	[ -L ~/.bash.functions ]  && unlink ~/.bash.functions
+	[ -L ~/.bashrc ]          && unlink ~/.bashrc
+	[ -L ~/.bash.aliases ]    && unlink ~/.bash.aliases
+	[ -L ~/.bash.prompt ]     && unlink ~/.bash.prompt
+	[ -f ~/.bash.local ]      && echo "leaving ~/.bash.local in place"
 
-	[ -f ~/.bash.local ] && echo "leaving ~/.bash.local in place"
+	[ -L ~/.zprofile ]        && unlink ~/.zprofile
+	[ -L ~/.zshrc ]           && unlink ~/.zshrc
+	[ -L ~/.zshenv ]          && unlink ~/.zshenv
+	[ -L ~/.zsh.functions ]   && unlink ~/.zsh.functions
+	[ -L ~/.zsh.aliases ]     && unlink ~/.zsh.aliases
+	[ -L ~/.zprezto ]         && unlink ~/.zprezto
+	[ -L ~/.zpreztorc ]       && unlink ~/.zpreztorc
+	[ -f ~/.zsh.local ] && echo "leaving ~/.zsh.local in place"
 
 	[ -L ~/.emacs.d ] && unlink ~/.emacs.d
 
