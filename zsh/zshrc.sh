@@ -1,24 +1,19 @@
-# mattman  .dotfiles/zsh/zshrc.symlink
-
-# set up rc_dirs
-[[ -s ${ZDOTDIR:-$HOME}/.dotfiles/zsh/rcconfig.zsh ]] && source ${ZDOTDIR:-$HOME}/.dotfiles/zsh/rcconfig.zsh
+# mattman  .dotfiles/zsh/zshrc.sh
 
 # init zprezto:zshrc
 zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc
 source_file "$zprezto_file"
 
 
-# set up common and local aliases
-for dir in $rc_dirs; do
-  source_file "$dir/aliases.zsh"
-done
 
 # I don't like all of prezto's settings
 unalias rm
 
+[ -f ~/.zsh.aliases ] && source ~/.zsh.aliases
+
 
 # for more details: `man zshoptions`
-unsetopt SHARE_HISTORY      # don't share history across shells
+unsetopt SHARE_HISTORY       # don't share history across shells
                              # equiv: setopt no_share_history
 
 #setopt AUTO_CD              # Auto changes to a directory without typing cd.
@@ -37,4 +32,5 @@ setopt CLOBBER              # Unset then Use >! and >>! to bypass.
 bindkey \^u backward-kill-line
 
 
+[ -f ~/.zsh.local ] && source ~/.zsh.local
 

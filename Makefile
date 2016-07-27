@@ -1,6 +1,14 @@
 # Keep it simple for now...
 all:
 	# zsh
+	[ -f ~/.zprofile ]        || ln -s $(PWD)/zsh/zprofile.sh ~/.zprofile
+	[ -f ~/.zshrc ]           || ln -s $(PWD)/zsh/zshrc.sh ~/.zshrc
+	[ -f ~/.zshenv ]          || ln -s $(PWD)/zsh/zshenv.sh ~/.zshenv
+	[ -f ~/.zsh.functions ]   || ln -s $(PWD)/shell/functions.sh ~/.zsh.functions
+	[ -f ~/.zsh.aliases ]     || ln -s $(PWD)/shell/aliases.sh ~/.zsh.aliases
+	[ -f ~/.zsh.local ]       || cp $(PWD)/shell/local.sh ~/.zsh.local
+	[ -d ~/.zprezto ]         || ln -s $(PWD)/prezto
+	[ -f ~/.zpreztorc ]       || ln -s $(PWD)/zsh/zpreztorc.sh
 
 	# bash
 	[ -f ~/.bash_profile ]    || ln -s $(PWD)/shell/bash_profile.sh ~/.bash_profile
