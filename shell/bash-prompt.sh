@@ -77,8 +77,8 @@ function __pimp_prompt {
     local BGW="\[\033[47m\]" # background white
 
     #[{# in prompt}:{# in history}] Hour:Minutes [user@host] location
-#    local BASE_FORMAT="$EMK[\#:\!]$NONE $G\A$NONE $EMB[\u@\H]$NONE $W\w$NONE"
-    local BASE_FORMAT="$G\A$NONE $EMB[\u@\h]$NONE $W\w$NONE"
+#    local BASE_FORMAT="$EMK[\#:\!]$NONE $G\A$NONE $EMB[\u@\h]$NONE $W\w$NONE"
+    local BASE_FORMAT="$G\A$NONE $EMB[\u]$NONE $W\w$NONE"
       PS1="[$B\u$G@$W\h $R Home $NONE]\n\$ "
 
     #now we define the status dynamically
@@ -90,7 +90,7 @@ function __pimp_prompt {
         local STATUS="$R$(__git_ps1 "(%s$Y$(__git_diff)$R)")"
     fi
     #Set PS1 with our format
-    export PS1="$BASE_FORMAT $STATUS\n$G$symb "
+    export PS1="$BASE_FORMAT $STATUS\n$NONE$symb "
 }
 
 __pimp_prompt
