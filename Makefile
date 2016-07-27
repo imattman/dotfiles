@@ -16,13 +16,13 @@ all:
 	[ -f ~/.bashrc ]          || ln -s $(PWD)/shell/bashrc.sh ~/.bashrc
 	[ -f ~/.bash.aliases ]    || ln -s $(PWD)/shell/aliases.sh ~/.bash.aliases
 	[ -f ~/.bash.prompt ]     || ln -s $(PWD)/shell/bash-prompt.sh ~/.bash.prompt
-	[ -f ~/.bash.local ]      || cp $(PWD)/shell/bash-local.sh ~/.bash.local
+	[ -f ~/.bash.local ]      || cp $(PWD)/shell/local.sh ~/.bash.local
 
 	# emacs 
 	[ -d ~/.emacs.d ]         || ln -s $(PWD)/emacs.d ~/.emacs.d
 	
 	# vim
-	[ -f ~/.vimrc ]           || ln -s $(PWD)/vim/vimrc.symlink ~/.vimrc
+	[ -f ~/.vimrc ]           || ln -s $(PWD)/vim/vimrc ~/.vimrc
 	[ -d ~/.vim ]             || ln -s $(PWD)/vim ~/.vim
 
 clean:
