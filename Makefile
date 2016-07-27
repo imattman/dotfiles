@@ -1,13 +1,13 @@
 # Keep it simple for now...
 all:
 	# zsh
-	[ -f ~/.zprofile ]        || ln -s $(PWD)/zsh/zprofile.sh ~/.zprofile
-	[ -f ~/.zshrc ]           || ln -s $(PWD)/zsh/zshrc.sh ~/.zshrc
-	[ -f ~/.zshenv ]          || ln -s $(PWD)/zsh/zshenv.sh ~/.zshenv
+	[ -f ~/.zprofile ]        || ln -s $(PWD)/shell/zprofile.sh ~/.zprofile
+	[ -f ~/.zshrc ]           || ln -s $(PWD)/shell/zshrc.sh ~/.zshrc
+	[ -f ~/.zshenv ]          || ln -s $(PWD)/shell/zshenv.sh ~/.zshenv
 	[ -f ~/.zsh.functions ]   || ln -s $(PWD)/shell/functions.sh ~/.zsh.functions
 	[ -f ~/.zsh.aliases ]     || ln -s $(PWD)/shell/aliases.sh ~/.zsh.aliases
+	[ -f ~/.zpreztorc ]       || ln -s $(PWD)/shell/zpreztorc.sh ~/.zpreztorc
 	[ -d ~/.zprezto ]         || ln -s $(PWD)/prezto ~/.zprezto
-	[ -f ~/.zpreztorc ]       || ln -s $(PWD)/zsh/zpreztorc.sh ~/.zpreztorc
 	[ -f ~/.zsh.local ]       || cp $(PWD)/shell/local.sh ~/.zsh.local
 
 	# bash
@@ -41,11 +41,11 @@ clean:
 	[ -L ~/.zsh.aliases ]     && unlink ~/.zsh.aliases
 	[ -L ~/.zprezto ]         && unlink ~/.zprezto
 	[ -L ~/.zpreztorc ]       && unlink ~/.zpreztorc
-	[ -f ~/.zsh.local ] && echo "leaving ~/.zsh.local in place"
+	[ -f ~/.zsh.local ]       && echo "leaving ~/.zsh.local in place"
 
-	[ -L ~/.emacs.d ] && unlink ~/.emacs.d
+	[ -L ~/.emacs.d ]         && unlink ~/.emacs.d
 
-	[ -L ~/.vimrc ] && unlink ~/.vimrc 
-	[ -L ~/.vim ] && unlink ~/.vim 
+	[ -L ~/.vimrc ]           && unlink ~/.vimrc 
+	[ -L ~/.vim ]             && unlink ~/.vim 
 
 .PHONY: all
