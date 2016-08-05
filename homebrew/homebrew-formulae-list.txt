@@ -2,6 +2,7 @@
 emacs  --with-cocoa --with-gnutls --with-imagemagick --with-librsvg
 # run:  brew linkapps emacs
 macvim --with-cscope --with-lua --HEAD
+vim
 neovim/neovim/neovim
 
 # development languages
