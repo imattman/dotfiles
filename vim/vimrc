@@ -1,6 +1,8 @@
 set nocompatible                " Enables us Vim specific features
 
-source ~/.vim/startup/plugins.vim
-source ~/.vim/startup/colors-ui.vim
-source ~/.vim/startup/settings.vim
+source ~/.vim/vimrc-plugins.vim
+source ~/.vim/vimrc-colors.vim
+source ~/.vim/vimrc-settings.vim
+
+source ~/.vim/vimrc-golang.vim
 
