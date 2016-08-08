@@ -1,0 +1,15 @@
+" Alternate vimrc without plugins
+" Use: 
+"   
+"    vim -u ~/.vim/vimrc-min
+"
+
+set nocompatible                " Enables us Vim specific features
+
+" skip plugins and color scheme setup
+"source ~/.vim/vimrc-plugins.vim
+"source ~/.vim/vimrc-colors.vim
+
+source ~/.vim/vimrc-settings.vim
+
+

@@ -9,6 +9,10 @@ alias lla='ls -la'
 alias llh='ls -lah'
 alias lo='exit'
 
+# vim
+alias vim-min='vim -u ~/.vim/vimrc-min'
+alias mvim-min='mvim -u ~/.vim/vimrc-min'
+
 # still need this emacs clean up?
 alias rm~="rm *~"
 alias rm\#="rm \#*"
