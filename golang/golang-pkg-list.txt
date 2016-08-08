@@ -7,6 +7,7 @@ golang.org/x/tools/cmd/...
 # build tools & utilities
 #
 github.com/alecthomas/gometalinter
+github.com/clipperhouse/gen
 github.com/fatih/motion
 github.com/godoctor/godoctor
 github.com/golang/lint/golint
