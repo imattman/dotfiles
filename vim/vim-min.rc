@@ -1,6 +1,14 @@
+" Alternate vimrc without plugins
+" Use: 
+"   
+"    vim -u ~/.vim/vim-min.rc
+"
+
 set nocompatible                " Enables us Vim specific features
 
-source ~/.vim/startup/plugins.vim
+" Skip plugins
+"source ~/.vim/startup/plugins.vim
+
 source ~/.vim/startup/colors-ui.vim
 source ~/.vim/startup/settings.vim
 
