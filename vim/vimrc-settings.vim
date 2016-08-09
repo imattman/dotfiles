@@ -87,8 +87,6 @@ imap jj <ESC>                   " map 'jj' as easy alternate to ESC from insert 
 let mapleader = ","
 noremap \ ,
 
-noremap <Leader>n nzz
-noremap <Leader>N Nzz
 
 " next search
 nnoremap <C-L> :nohl<CR><C-L>   " Map redraw screen to also turn off highlighting
@@ -126,8 +124,8 @@ nnoremap N Nzz
 set notimeout ttimeout ttimeoutlen=200
 
 " Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
+noremap <leader>h :<C-u>split<CR>
+noremap <leader>v :<C-u>vsplit<CR>
 
 " easier navigation
 "nnoremap <C-J> <C-W><C-J>
