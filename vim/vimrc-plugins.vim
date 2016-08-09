@@ -7,25 +7,30 @@
 
 
 call plug#begin()
+" Color schemes
+Plug 'tomasr/molokai'
+Plug 'shawncplus/skittles_berry'
+Plug 'herrbischoff/cobalt2.vim'
+Plug 'joshdick/onedark.vim'
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neocomplete.vim'
 "Plug 'Shougo/neosnippet.vim'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tomasr/molokai'
-Plug 'fatih/vim-go'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
-Plug 'shawncplus/skittles_berry'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
+
 " filetype plugins
+Plug 'fatih/vim-go'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
