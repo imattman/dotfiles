@@ -13,15 +13,15 @@ Plug 'shawncplus/skittles_berry'
 Plug 'herrbischoff/cobalt2.vim'
 Plug 'joshdick/onedark.vim'
 
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'bling/vim-airline'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/neocomplete.vim'
 "Plug 'Shougo/neosnippet.vim'
 Plug 'SirVer/ultisnips'
-Plug 'bling/vim-airline'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -30,7 +30,9 @@ Plug 'tpope/vim-surround'
 
 
 " filetype plugins
+Plug 'tpope/vim-markdown'
 Plug 'fatih/vim-go'
+Plug 'elixir-lang/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
