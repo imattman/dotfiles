@@ -16,7 +16,7 @@ set backspace=indent,eol,start  " Makes backspace key more powerful.
 
 set number                      " Display numbers in left column
 set ruler                       " Display cursor position in status line
-set cursorline                    " Do not highlight cursor (speeds up highlighting)
+set cursorline                  " Highlight cursor
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 
 set visualbell                  " Use visual bell instead of audio
@@ -26,7 +26,7 @@ set lazyredraw                  " Wait to redraw
 
 set noshowmode                  " We show the mode with airline or lightline
 set showcmd                     " Show me what I'm typing
-set wildmenu			" better commandline completion
+set wildmenu                    " better commandline completion
 set laststatus=2                " Always display the status line
 set cmdheight=2                 " Set the command window height to 2 lines
 set mouse=a                     " Enable use of the mouse for all modes
@@ -76,12 +76,12 @@ endif
 "endif
 
 
-
 """"""""""""""""""""""
 "      Mappings      "
 """"""""""""""""""""""
-
 nnoremap Y y$                   " Act like D and C
+
+imap jj <ESC>                   " map 'jj' as easy alternate to ESC from insert mode
 
 " Set leader shortcut to a comma ','. By default it's the backslash
 let mapleader = ","
@@ -96,8 +96,9 @@ nnoremap <C-L> :nohl<CR><C-L>   " Map redraw screen to also turn off highlightin
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
+
 "imap <Tab> <C-n>
-imap <S-Tab> <C-p>
+"imap <S-Tab> <C-p>
 
 " Jump to next error with Ctrl-n and previous error with Ctrl-p. Close the
 " quickfix window with <leader>a
@@ -119,9 +120,6 @@ nnoremap N Nzz
 "nnoremap N Nzzzv
 
 
-" Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
-
 " ------------------------------------------------------
 
 " Quickly time out on keycodes, but never time out on mappings
@@ -142,7 +140,11 @@ set pastetoggle=<F11>
 
 
 if has("autocmd")
+  " Enter automatically into the files directory
+  autocmd BufEnter * silent! lcd %:p:h
+
   autocmd BufNewFile,BufRead *.md setfiletype markdown
+
 endif
 
 
