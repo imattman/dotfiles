@@ -58,25 +58,26 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 20
+let g:NERDTreeWinSize = 30
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 noremap <F3> :NERDTreeToggle<CR>
-noremap <Leader>nt :NERDTreeToggle<CR>
+noremap <leader>nt :NERDTreeToggle<CR>
+noremap <leader>kb :NERDTreeToggle<CR>
 "noremap <C-k><C-b> :NERDTreeToggle<CR>   " matches Sublime
 
 
 
 "------------------------------------------------------------
 "" Git
-noremap <Leader>ga :!git add .<CR>
-"noremap <Leader>gc :!git commit -m '<C-R>="'"<CR>
-"noremap <Leader>gsh :!git push<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-"noremap <Leader>gr :Gremove<CR>
+noremap <leader>ga :!git add .<CR>
+"noremap <leader>gc :!git commit -m '<C-R>="'"<CR>
+"noremap <leader>gsh :!git push<CR>
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gb :Gblame<CR>
+noremap <leader>gd :Gvdiff<CR>
+"noremap <leader>gr :Gremove<CR>
 
 
