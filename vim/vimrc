@@ -1,8 +1,12 @@
-set nocompatible                " Enables us Vim specific features
+set nocompatible                            " Enable the future!
 
-source ~/.vim/vimrc-plugins.vim
-source ~/.vim/vimrc-colors.vim
-source ~/.vim/vimrc-settings.vim
+source ~/.vim/vimrc-plugins.vim             " init plugins first thing
+source ~/.vim/vimrc-colors.vim              " colorscheme and font settings
+source ~/.vim/vimrc-settings.vim            " general vim customization
 
-source ~/.vim/vimrc-golang.vim
+source ~/.vim/vimrc-plugin-settings.vim     " additional plugin config after settings
+                                            " ensuring things like <leader> are set
+
+" language configs
+source ~/.vim/vimrc-golang.vim              " Go config
 

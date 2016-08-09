@@ -11,7 +11,7 @@ set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
 set autoindent                  " Enabile Autoindent
-set smartindent
+set smartindent                 "
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 
 set number                      " Display numbers in left column
