@@ -25,6 +25,9 @@ all:
 	[ -f ~/.vimrc ]           || ln -s $(PWD)/vim/vimrc ~/.vimrc
 	[ -d ~/.vim ]             || ln -s $(PWD)/vim ~/.vim
 
+	# git
+	[ -f ~/.gitconfig ]           || ln -s $(PWD)/git/gitconfig.symlink ~/.gitconfig
+
 clean:
 	# -L tests symbolic links
 	[ -L ~/.bash_profile ]    && unlink ~/.bash_profile
@@ -47,5 +50,7 @@ clean:
 
 	[ -L ~/.vimrc ]           && unlink ~/.vimrc 
 	[ -L ~/.vim ]             && unlink ~/.vim 
+
+	[ -L ~/.gitconfig ]       && unlink ~/.gitconfig
 
 .PHONY: all
