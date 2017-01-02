@@ -6,9 +6,13 @@ golang.org/x/tools/cmd/...
 #
 # build tools & utilities
 #
+
+github.com/Masterminds/squirrel
 github.com/alecthomas/gometalinter
+github.com/alfredxing/calc
 github.com/clipperhouse/gen
 github.com/fatih/motion
+github.com/fogleman/primitive
 github.com/godoctor/godoctor
 github.com/golang/lint/golint
 github.com/josharian/impl
@@ -20,6 +24,8 @@ github.com/motemen/gore
 github.com/newhook/go-symbols
 github.com/nsf/gocode
 github.com/rogpeppe/godef
+github.com/simeji/jid/cmd/jid
+github.com/stretchr/testify
 github.com/tools/godep
 github.com/tpng/gopkgs
 github.com/zmb3/gogetdoc
@@ -30,6 +36,9 @@ github.com/zmb3/gogetdoc
 
 # hugo will fetch cobra & viper as deps
 github.com/spf13/hugo
+
+# buffalo pulls in several web libraries
+github.com/gobuffalo/buffalo/buffalo
 
 github.com/braintree/manners
 github.com/campoy/jsonenums
@@ -51,3 +60,4 @@ github.com/rakyll/boom
 
 # other
 #github.com/containous/traefik
+
