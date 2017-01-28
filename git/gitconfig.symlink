@@ -20,7 +20,8 @@
   ci = commit
   br = branch -a
   last = log -1 HEAD
-  logs = log --pretty=format:'%h %ad%x09%an%x09%s' --date=short
+  #logs = log --pretty=format:'%h %ad%x09%an%x09%s' --date=short
+  logs = log --pretty=format:'%h %ad %an%d %s' --date=short
   logsc = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
   lol = log --oneline --graph --decorate
   tree = log --graph --branches --pretty=oneline --decorate
