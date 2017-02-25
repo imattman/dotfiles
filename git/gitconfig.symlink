@@ -11,7 +11,8 @@
   excludesfile = ~/.gitignore_global
 [alias]
   s = status -s -b
-  st = status -s -b
+  st = status --short --branch
+  shorty = status --short --branch
   stat = status
   dif = diff
   staged = diff --cached
@@ -19,16 +20,21 @@
   co = checkout
   ci = commit
   br = branch -a
+  stsh = stash --keep-index
+  staash = stash --include-untracked
+  staaash = stash --all
   last = log -1 HEAD
   #logs = log --pretty=format:'%h %ad%x09%an%x09%s' --date=short
   logs = log --pretty=format:'%h %ad %an%d %s' --date=short
   logsc = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
   lol = log --oneline --graph --decorate
   tree = log --graph --branches --pretty=oneline --decorate
+  grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
   log-commit = log --format=%B -n 1
   rollback-all = !git checkout -- $(git ls-files -m)
   unstage-all = !git reset HEAD $(git ls-files -m)
   fixup = commit --amend -C HEAD
+  commend = commit --amend --no-edit
   untracked-files = ls-files -o --exclude-standard
   ignored-files = ls-files --others -i --exclude-standard
   modified-files = ls-files -m
