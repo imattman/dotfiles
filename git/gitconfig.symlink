@@ -41,7 +41,7 @@
   delete-merged = !git branch -D $(git branch --merged | grep -v '^*')
   svn-stat = !git --no-pager diff --name-status remotes/git-svn
   svn-diff = diff remotes/git-svn
-#  up = !git fetch origin && git rebase origin/master
+  up = pull --rebase --autostash
 [push]
   default = simple
 [branch]
