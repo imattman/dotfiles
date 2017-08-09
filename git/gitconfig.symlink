@@ -35,6 +35,8 @@
   unstage-all = !git reset HEAD $(git ls-files -m)
   fixup = commit --amend -C HEAD
   commend = commit --amend --no-edit
+  # a hack to reset commit date to now
+  reset-date-now = commit --amend --reset-author
   untracked-files = ls-files -o --exclude-standard
   ignored-files = ls-files --others -i --exclude-standard
   modified-files = ls-files -m
