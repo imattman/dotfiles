@@ -32,14 +32,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("b825687675ea2644d1c017f246077cdd725d4326a1c11d84871308573d019f67"
-     "82b67c7e21c3b12be7b569af7c84ec0fb2d62105629a173e2479e1053cff94bd"
-     "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f"
-     "e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c"
-     "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4"
-     default))))
+    ("b825687675ea2644d1c017f246077cdd725d4326a1c11d84871308573d019f67" "82b67c7e21c3b12be7b569af7c84ec0fb2d62105629a173e2479e1053cff94bd" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" default)))
+ '(package-selected-packages
+   (quote
+    (writeroom-mode window-number use-package smooth-scroll purple-haze-theme project-explorer monokai-theme molokai-theme material-theme markdown-mode json-mode idea-darkula-theme helm-go-package go-snippets go-scratch go-projectile go-impl go-autocomplete evil-leader buffer-move))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
