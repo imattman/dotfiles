@@ -12,9 +12,9 @@ path=(
 export EDITOR=vim
 export VISUAL=vim
 
-export GOPATH=$HOME/workspace/gocode
+export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$GOPATH/bin
 
 
-export CDPATH=workspace:$GOPATH/src/github.com/imattman
+export CDPATH=workspace:$GOPATH/src/github.com/imattman:$GOPATH/src/gitlab.com/imattman
 

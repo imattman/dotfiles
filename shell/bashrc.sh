@@ -15,7 +15,7 @@ EDITOR=vim
 #
 
 # GoLang
-export GOPATH=$HOME/workspace/gocode
+export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$GOPATH/bin
 
 
@@ -23,6 +23,9 @@ export PATH=$PATH:$GOPATH/bin
 # Shell refinements
 #
 [ -f ~/.bash.aliases ] && source ~/.bash.aliases
+
+export CDPATH=workspace:$GOPATH/src/github.com/imattman:$GOPATH/src/gitlab.com/imattman
+
 
 
 if [ -f ~/.bash.prompt ] ; then 
