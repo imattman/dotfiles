@@ -25,4 +25,10 @@ while read pkg; do
   brew install $pkg
 done
 
+
+# install 3rd party apps via casks
+brew tap caskroom/versions
+# brew cask search java
+# brew cask install java8
+
 exit 0
