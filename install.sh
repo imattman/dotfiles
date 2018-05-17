@@ -38,6 +38,7 @@ function run_dotbot() {
 
 function execute_init() {
   osx/set-defaults.sh
+  osx/apps-to-install.sh
   fonts/install.sh
   osx-terminal/install.sh
   xcode/install.sh
