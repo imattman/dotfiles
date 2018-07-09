@@ -42,7 +42,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-set list                        " Show tabs and new lines
+"set list                        " Show tabs and new lines
 set showmatch                   " Show matching brackets by flickering
 "set nowrap
 
