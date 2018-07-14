@@ -3,11 +3,10 @@
 # Basic check for xcode installation 
 #
 
-if [[ ! "$(xcode-select -p)" ]] ; then
+xcode_path=$(xcode-select -p)
+
+if [[ -z "$xcode_path" ]] ; then
   echo "XCode needs to be installed"
-  exit 1
-else
-  echo "Verifying installation of command line tools..."
   xcode-select --install
 fi
 

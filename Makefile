@@ -26,7 +26,10 @@ all:
 	[ -d ~/.vim ]             || ln -s $(PWD)/vim ~/.vim
 
 	# git
-	[ -f ~/.gitconfig ]           || ln -s $(PWD)/git/gitconfig.symlink ~/.gitconfig
+	[ -f ~/.gitconfig ]       || ln -s $(PWD)/git/gitconfig.symlink ~/.gitconfig
+
+  # bin scripts
+	[ -d ~/bin ]              && stow -v -t ~/bin bin
 
 clean:
 	# -L tests symbolic links
@@ -52,5 +55,7 @@ clean:
 	[ -L ~/.vim ]             && unlink ~/.vim 
 
 	[ -L ~/.gitconfig ]       && unlink ~/.gitconfig
+
+	[ -d ~/bin ]              && stow -v -D -t ~/bin bin
 
 .PHONY: all

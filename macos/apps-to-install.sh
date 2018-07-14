@@ -14,7 +14,6 @@ https://code.visualstudio.com/
 https://www.sublimetext.com/
 
 https://www.alfredapp.com/
-https://manytricks.com/moom/
 
 https://1password.com/downloads/
 https://www.omnigroup.com/omnifocus

@@ -1,0 +1,29 @@
+# editors
+emacs  --with-cocoa  --with-librsvg
+# run:  brew linkapps emacs
+
+macvim
+#macvim --with-cscope --with-lua --HEAD
+
+# development languages
+elixir
+erlang
+node
+python
+
+
+
+# other tools
+ack
+ag
+awscli
+bison
+cowsay
+exercism
+figlet
+fortune
+gdbm
+gnupg
+jpeg
+pandoc
+

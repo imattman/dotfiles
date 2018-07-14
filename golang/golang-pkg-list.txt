@@ -24,7 +24,6 @@ github.com/motemen/gore
 github.com/newhook/go-symbols
 github.com/nsf/gocode
 github.com/rogpeppe/godef
-github.com/simeji/jid/cmd/jid
 github.com/stretchr/testify
 github.com/tools/godep
 github.com/tpng/gopkgs
@@ -33,6 +32,12 @@ github.com/zmb3/gogetdoc
 #
 # common libs
 #
+github.com/jinzhu/gorm
+github.com/jmoiron/sqlx
+# postgres
+github.com/lib/pq
+github.com/spf13/afero
+gopkg.in/russross/blackfriday.v2
 
 # hugo will fetch cobra & viper as deps
 github.com/spf13/hugo
@@ -45,6 +50,7 @@ github.com/campoy/jsonenums
 github.com/cortesi/devd/cmd/devd
 github.com/cortesi/modd/cmd/modd
 github.com/gin-gonic/gin
+github.com/go-chi/chi
 github.com/goadesign/goa/...
 github.com/gorilla/context
 github.com/gorilla/csrf
@@ -52,12 +58,16 @@ github.com/gorilla/handlers
 github.com/gorilla/mux
 github.com/gorilla/pat
 github.com/gorilla/websocket
-github.com/lib/pq
 github.com/mholt/caddy
 github.com/monochromegane/the_platinum_searcher
+github.com/oxequa/realize
+github.com/Pallinder/go-randomdata
 github.com/pkg/errors
 github.com/rakyll/boom
 
 # other
 #github.com/containous/traefik
+github.com/gchaincl/httplab
+github.com/simeji/jid/cmd/jid
+github.com/tomnomnom/gron
 

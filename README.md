@@ -1,15 +1,12 @@
-# mattman dotfiles
+# Matt's dotfiles
 
 ## Install
 ```sh
-# configure Zsh as default shell
+# configure zsh as default shell
 chsh -s $(which zsh)
 
-# recursive clone to get submodules
-#
-# alternative: 
-#   git clone --recursive git@github.com:imattman/dotfiles.git ~/.dotfiles
-git clone --recursive https://github.com/imattman/dotfiles.git ~/.dotfiles
+# clone this git repo
+git clone git@github.com:imattman/dotfiles.git ~/.dotfiles
 
 # run install script to configure symlinks and reference prezto
 cd .dotfiles
@@ -22,7 +19,6 @@ Prezto is a dependency.  Skip prezto instructions for copying config files to $H
 ## Credit
 Much of this builds on or copies prior works including:
 - [Prezto](https://github.com/sorin-ionescu/prezto) for Zsh
-- [Dotbot](https://github.com/anishathalye/dotbot) bootstrap tool
 - Zach Holman's [dotfiles](https://github.com/holman/dotfiles)
 - [Solarized](http://ethanschoonover.com/solarized) color scheme by Ethan Schoonover
 - [Sunburst](https://github.com/sickill/vim-sunburst) color scheme adaptation by Marcin Kulik
