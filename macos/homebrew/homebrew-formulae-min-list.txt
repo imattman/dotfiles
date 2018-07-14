@@ -1,0 +1,27 @@
+# editors
+vim
+
+# development languages
+go
+perl
+python3
+
+
+# other tools
+autoconf
+automake
+#brew-cask
+cmake
+httpie
+jq
+lorem
+mercurial
+openssl
+pkg-config
+readline
+sqlite
+stow
+tmux
+tree
+watch
+

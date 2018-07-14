@@ -1,62 +1,76 @@
 #!/usr/bin/env bash
-
-set -e
-
-dotbot_dir="dotbot"
-prezto_dir="prezto"
-config="dotbot-conf.yaml"
+set -e 
 
 base_dir="$(cd $(dirname $0) && pwd)"
 
+prezto_dir="${base_dir}/prezto"
+prezto_repo="git@github.com:imattman/prezto.git"
+prezto_upstream="https://github.com/sorin-ionescu/prezto"
+
+is_macos=$(uname -s | grep -i 'darwin')
+macos_dir="${base_dir}/macos"
+
 function usage() {
+  this_script=$(basename $0)
+
   cat<<EOU
-  Usage: $0 [OPTIONS]
+  Usage: $this_script [OPTIONS]
   
   A basic installer my dotfiles.
   
   OPTIONS:
      -h:  Show this message
-     -f:  Fetch git submodules
-     -l:  Execute dotbot setup script to generate symlinks
+     -g:  Fetch additional git modules (prezto, mac defaults)
+     -l:  Execute Makefile setup script to generate symlinks
      -x:  Execute non-idempotent scripts that should be run only once
           with initial install
 EOU
 }
 
-function fetch_submodules() {
-  echo "Updating dotbot..."
-  git submodule update --init --recursive "${dotbot_dir}"
-
-  echo "Updating prezto..."
-  git submodule update --init --recursive "${prezto_dir}"
+function create_dirs() {
+  [[ -d $HOME/bin ]] || mkdir -p $HOME/bin
+  [[ -d $HOME/workspace ]] || mkdir -p $HOME/workspace
 }
 
-function run_dotbot() {
-  echo "Executing dotbot..."
-  "${base_dir}/dotbot/bin/dotbot" -d "${base_dir}" -c "${config}" "${@}"
+function setup_prezto() {
+  if [[ ! -e "$prezto_dir" ]] ; then
+    echo "Updating prezto..."
+    git clone --recursive "$prezto_repo" && \
+      cd "$prezto_dir" && \
+      git remote add upstream "$prezto_upstream" && \
+      git checkout -t origin/mattman_prompt && \
+      git status
+  else
+    echo "Prezto directory already exists: ${prezto_dir}"
+  fi
 }
 
-function execute_init() {
-  osx/set-defaults.sh
-  osx/apps-to-install.sh
+function setup_submodules() {
+  setup_prezto
+}
+
+
+function setup_once() {
   fonts/install.sh
-  osx-terminal/install.sh
-  xcode/install.sh
-  homebrew/install.sh
+
+  if [[ -n "$is_macos" ]] ; then
+    ${macos_dir}/run-once.sh
+    ${macos_dir}/apps-to-install.sh
+  fi
 }
 
 cd "${base_dir}"
 
-while getopts hflx OPTION
+while getopts hglx OPTION
 do
   case $OPTION in
-    l)  run_dotbot
+    g)  setup_submodules
         opt_set="true"
         ;;
-    u)  fetch_submodules
+    l)  create_dirs && make
         opt_set="true"
         ;;
-    x)  execute_init 
+    x)  setup_once
         opt_set="true"
         ;;
     h)  usage 
@@ -69,6 +83,11 @@ do
 done
 
 
-# run dotbot by default if no args specified 
-[[ -n $opt_set ]] || run_dotbot
+# run make by default if no args specified 
+if [[ -z $opt_set ]] ; then
+  create_dirs
+  setup_submodules
+  setup_once
+  make
+fi
 

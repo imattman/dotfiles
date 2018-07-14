@@ -6,3 +6,5 @@ dotbot/
 vim/bundle/
 config/
 
+.DS_Store
+
