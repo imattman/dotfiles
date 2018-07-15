@@ -3,6 +3,9 @@ vim
 
 # development languages
 go
+# go dependency tool
+dep
+
 perl
 python3
 
