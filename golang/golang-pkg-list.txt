@@ -45,7 +45,8 @@ github.com/spf13/hugo
 # buffalo pulls in several web libraries
 github.com/gobuffalo/buffalo/buffalo
 
-github.com/braintree/manners
+github.com/Pallinder/go-randomdata
+#github.com/braintree/manners
 github.com/campoy/jsonenums
 github.com/cortesi/devd/cmd/devd
 github.com/cortesi/modd/cmd/modd
@@ -61,9 +62,8 @@ github.com/gorilla/websocket
 github.com/mholt/caddy
 github.com/monochromegane/the_platinum_searcher
 github.com/oxequa/realize
-github.com/Pallinder/go-randomdata
 github.com/pkg/errors
-github.com/rakyll/boom
+github.com/rakyll/hey
 
 # other
 #github.com/containous/traefik
