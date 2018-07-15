@@ -32,7 +32,10 @@ fi
 
 if [[ -z "$1" ]] ; then
   # no arguments means install everything
-  pkgs="$base_dir/$pkg_files"
+  pkgs=""
+  for pkg in $pkg_files; do
+    pkgs="$pkgs $base_dir/$pkg"
+  done
 else
   pkgs="$@"
 fi	
