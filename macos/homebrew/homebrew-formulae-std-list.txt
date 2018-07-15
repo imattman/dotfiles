@@ -19,7 +19,7 @@ ag
 awscli
 bison
 cowsay
-exercism
+direnv
 figlet
 fortune
 gdbm
