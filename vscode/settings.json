@@ -1,0 +1,59 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "window.zoomLevel": 0,
+  //  demos
+//  "window.zoomLevel": 2,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Tomorrow Night",
+
+  "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontWeight": "normal",
+  "editor.fontSize": 16,
+
+  // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
+  "editor.lineHeight": 0,
+  
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.lineHeight": 1,
+
+  //
+  // Vim settings
+  //
+  "vim.leader": ",",
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.easymotion": false,
+  "vim.sneak": false,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.insertModeKeyBindings": [
+      {
+          "before": ["j","j"],
+          "after": ["<Esc>"]
+      }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+      {
+          "before": ["<leader>","d"],
+          "after": ["d", "d"]
+      },
+      {
+          "before":["<leader>", "l"],
+          "commands": [
+              ":nohl"
+          ]
+      }
+  ],
+ 
+  //
+  // Go settings
+  //
+  // Specify GOPATH here to override the one that is set as environment variable. The inferred GOPATH from workspace root overrides this, if go.inferGopath is set to true.
+  // "go.gopath": "/Users/mattman/workspace/go",
+
+  // Specifies the GOROOT to use when no environment variable is set.
+  // "go.goroot": "/usr/local/Cellar/go/1.10.3/libexec",
+
+  // Pick 'godoc' or 'gogetdoc' to get documentation. 
+  "go.docsTool": "godoc",
+}
