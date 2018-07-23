@@ -9,6 +9,10 @@ alias lla='ls -la'
 alias llh='ls -lah'
 alias lo='exit'
 
+alias timestamp="date '+%Y%m%d-%H%M%S'"
+alias tsshort="date '+%Y%m%d%H%M%S'"
+alias now="date '+%Y-%m-%d_%H:%M:%S'"
+
 # vim
 alias vim-min='vim -u ~/.vim/vimrc-min'
 alias mvim-min='mvim -u ~/.vim/vimrc-min'

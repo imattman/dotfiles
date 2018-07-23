@@ -5,11 +5,10 @@ zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc
 source_file "$zprezto_file"
 
 
-
 # I don't like all of prezto's settings
 unalias rm
 
-[ -f ~/.zsh.aliases ] && source ~/.zsh.aliases
+[[ -f ~/.zsh.aliases ]] && source ~/.zsh.aliases
 
 
 # for more details: `man zshoptions`
@@ -32,5 +31,5 @@ setopt CLOBBER              # Unset then Use >! and >>! to bypass.
 bindkey \^u backward-kill-line
 
 
-[ -f ~/.zsh.local ] && source ~/.zsh.local
+[[ -f ~/.zsh.local ]] && source ~/.zsh.local
 

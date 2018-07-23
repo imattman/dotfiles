@@ -1,6 +1,6 @@
 # mattman  ~/.dotfiles/shell/bash_profile.sh
 
-if [ -f ~/.bash.functions ] ; then
+if [[ -f ~/.bash.functions ]] ; then
   source ~/.bash.functions
 else
   function source_file() {

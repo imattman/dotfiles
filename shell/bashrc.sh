@@ -22,19 +22,19 @@ export PATH=$PATH:$GOPATH/bin
 #
 # Shell refinements
 #
-[ -f ~/.bash.aliases ] && source ~/.bash.aliases
+[[ -f ~/.bash.aliases ]] && source ~/.bash.aliases
 
 export CDPATH=workspace:$GOPATH/src/github.com/imattman:$GOPATH/src/gitlab.com/imattman
 
 
 
-if [ -f ~/.bash.prompt ] ; then 
+if [[ -f ~/.bash.prompt ]] ; then 
   source ~/.bash.prompt
 else
   #cd wrapper function
   function cd {
-    builtin cd $@ #call builtin
-    __set_prompt #execute function
+    builtin cd $@  # call builtin
+    __set_prompt   # execute function
   }
 
   function __set_prompt {
