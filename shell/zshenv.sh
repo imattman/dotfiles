@@ -1,6 +1,6 @@
 # mattman  .dotfiles/zsh/zshenv.sh
 
-if [ -f ~/.zsh.functions ] ; then
+if [[ -f ~/.zsh.functions ]] ; then
   source ~/.zsh.functions
 else
   function source_file() {
