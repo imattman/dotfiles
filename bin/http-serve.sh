@@ -12,7 +12,7 @@ function start_go_server() {
   echo "  go run $full_src [docroot]"
   echo
 
-  cat << END_GO_SERVER > "$full_src"
+  cat > "$full_src" << END_GO_SERVER
 // A basic Go HTTP file server with some additional logic for logging requests
 package main
 
