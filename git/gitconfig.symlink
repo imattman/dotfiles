@@ -31,6 +31,7 @@
   tree = log --graph --branches --pretty=oneline --decorate
   grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
   log-commit = log --format=%B -n 1
+  history = log --follow
   rollback-all = !git checkout -- $(git ls-files -m)
   unstage-all = !git reset HEAD $(git ls-files -m)
   fixup = commit --amend -C HEAD
