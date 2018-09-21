@@ -68,6 +68,7 @@ github.com/rakyll/hey
 # other
 #github.com/containous/traefik
 github.com/gchaincl/httplab
+github.com/junegunn/fzf
 github.com/simeji/jid/cmd/jid
 github.com/tomnomnom/gron
 
