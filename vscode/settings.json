@@ -3,16 +3,21 @@
   "window.zoomLevel": 0,
   //  demos
 //  "window.zoomLevel": 2,
+  "workbench.colorTheme": "Super One Dark",
+//   "workbench.colorTheme": "Tomorrow Night Bright",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Tomorrow Night",
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "normal",
-  "editor.fontSize": 16,
+  "editor.fontSize": 18,
+  "editor.cursorStyle": "line",
 
   // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
   "editor.lineHeight": 0,
   
+  "editor.tabSize": 4,
+  "editor.detectIndentation": true,
+
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.lineHeight": 1,
 
@@ -49,11 +54,80 @@
   // Go settings
   //
   // Specify GOPATH here to override the one that is set as environment variable. The inferred GOPATH from workspace root overrides this, if go.inferGopath is set to true.
-  // "go.gopath": "/Users/mattman/workspace/go",
+  "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
-  // "go.goroot": "/usr/local/Cellar/go/1.10.3/libexec",
+  "go.goroot": "/usr/local/Cellar/go/1.11.4/libexec",
 
   // Pick 'godoc' or 'gogetdoc' to get documentation. 
   "go.docsTool": "godoc",
+
+  "[go]" : {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+  },
+
+  // Python settings
+  "python.pythonPath": "/usr/local/bin/python3",
+
+  "[python]" : {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.autoSurround": "languageDefined",
+  },
+  "[markdown]" : {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "boundary",
+    "editor.autoSurround": "languageDefined",
+  },
+
+  // Code Runner extension
+  "code-runner.clearPreviousOutput": false,
+  "code-runner.runInTerminal": true,
+
+  "code-runner.executorMap": {
+      "javascript": "node",
+      "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+      "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+      "php": "php",
+      "python": "python3",
+      "perl": "perl",
+      "perl6": "perl6",
+      "ruby": "ruby",
+      "go": "go run",
+      "lua": "lua",
+      "groovy": "groovy",
+      "powershell": "powershell -ExecutionPolicy ByPass -File",
+      "bat": "cmd /c",
+      "shellscript": "bash",
+      "fsharp": "fsi",
+      "csharp": "scriptcs",
+      "vbscript": "cscript //Nologo",
+      "typescript": "ts-node",
+      "coffeescript": "coffee",
+      "scala": "scala",
+      "swift": "swift",
+      "julia": "julia",
+      "crystal": "crystal",
+      "ocaml": "ocaml",
+      "r": "Rscript",
+      "applescript": "osascript",
+      "clojure": "lein exec",
+      "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+      "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+      "racket": "racket",
+      "ahk": "autohotkey",
+      "autoit": "autoit3",
+      "dart": "dart",
+      "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+      "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+      "haskell": "runhaskell",
+      "nim": "nim compile --verbosity:0 --hints:off --run"
+  },
 }
