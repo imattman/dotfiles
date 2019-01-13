@@ -4,7 +4,8 @@ set -e
 base_dir="$(cd $(dirname $0) && pwd)"
 
 prezto_dir="${base_dir}/prezto"
-prezto_repo="git@github.com:imattman/prezto.git"
+#prezto_repo="git@github.com:imattman/prezto.git"
+prezto_repo="https://github.com/imattman/prezto.git"
 prezto_upstream="https://github.com/sorin-ionescu/prezto"
 
 is_macos=$(uname -s | grep -i 'darwin')
