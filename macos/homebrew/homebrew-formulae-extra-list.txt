@@ -3,14 +3,9 @@
 # development languages
 
 # build tools
-gradle
-leiningen
+#gradle
 
 
 # other tools
-awscli
-exercism
-heroku
-heroku-toolbelt
-multirust
+#awscli
 
