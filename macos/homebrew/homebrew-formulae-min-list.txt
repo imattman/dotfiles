@@ -1,10 +1,9 @@
 # editors
-vim
+# this conflicts with Macvim
+#vim
 
 # development languages
 go
-# go dependency tool
-dep
 
 perl
 python3

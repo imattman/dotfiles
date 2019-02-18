@@ -13,7 +13,10 @@ fi
 
 
 echo "Running one-time config..."
-${base_dir}/set-defaults.sh
+
+echo "Skip setting defaults.  See ${base_dir}/set-defaults.sh"
+#${base_dir}/set-defaults.sh
+
 ${base_dir}/terminal/install.sh
 ${base_dir}/xcode/install.sh
 ${base_dir}/homebrew/install.sh
