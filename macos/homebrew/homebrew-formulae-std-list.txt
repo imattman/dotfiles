@@ -1,5 +1,6 @@
 # editors
-emacs  --with-cocoa  --with-librsvg
+emacs
+#emacs  --with-cocoa  --with-librsvg
 # run:  brew linkapps emacs
 
 macvim

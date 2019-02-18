@@ -4,8 +4,14 @@ set -e
 base_dir="$(cd $(dirname $0) && pwd)"
 
 prezto_dir="${base_dir}/prezto"
-#prezto_repo="git@github.com:imattman/prezto.git"
-prezto_repo="https://github.com/imattman/prezto.git"
+# determine git transport from user info in SSH public key
+if [[ -n $(grep 'mattman' $HOME/.ssh/id_rsa.pub ) ]] ; then
+  echo "Found 'mattman' in ssh credentials; assuming access to GitHub."
+  prezto_repo="git@github.com:imattman/prezto.git"
+else
+  echo "Did not find 'mattman' in ssh credentials."
+  prezto_repo="https://github.com/imattman/prezto.git"
+fi
 prezto_upstream="https://github.com/sorin-ionescu/prezto"
 
 is_macos=$(uname -s | grep -i 'darwin')
@@ -52,7 +58,7 @@ function setup_submodules() {
 
 
 function setup_once() {
-  fonts/install.sh
+  ${base_dir}/fonts/install.sh
 
   if [[ -n "$is_macos" ]] ; then
     ${macos_dir}/run-once.sh
@@ -89,6 +95,11 @@ if [[ -z $opt_set ]] ; then
   create_dirs
   setup_submodules
   setup_once
-  make
+
+  if [[ -n "$(which stow)" ]] ; then
+    cd "$base_dir" && make
+  else
+    echo "'stow' must be installed before running 'make'"
+  fi
 fi
 

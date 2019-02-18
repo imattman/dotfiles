@@ -13,6 +13,7 @@ export EDITOR=vim
 export VISUAL=vim
 
 export GOPATH=$HOME/workspace/go
+which go 2>&1 > /dev/null && export GOROOT=$(goenv GOROOT)
 export PATH=$PATH:$GOPATH/bin
 
 
