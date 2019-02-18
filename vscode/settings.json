@@ -1,10 +1,10 @@
 // Place your settings in this file to overwrite the default settings
 {
-  "window.zoomLevel": 0,
   //  demos
-//  "window.zoomLevel": 2,
+  // "window.zoomLevel": 2,
+  "window.zoomLevel": 0,
   "workbench.colorTheme": "Super One Dark",
-//   "workbench.colorTheme": "Tomorrow Night Bright",
+  // "workbench.colorTheme": "Tomorrow Night Bright",
   "workbench.iconTheme": "material-icon-theme",
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
@@ -57,7 +57,7 @@
   "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
-  "go.goroot": "/usr/local/Cellar/go/1.11.4/libexec",
+  "go.goroot": "/usr/local/Cellar/go/1.11.5/libexec",
 
   // Pick 'godoc' or 'gogetdoc' to get documentation. 
   "go.docsTool": "godoc",
@@ -87,7 +87,7 @@
 
   // Code Runner extension
   "code-runner.clearPreviousOutput": false,
-  "code-runner.runInTerminal": true,
+  "code-runner.runInTerminal": false,
 
   "code-runner.executorMap": {
       "javascript": "node",
