@@ -9,12 +9,20 @@
 #
 #   Configure repo to use specific user:
 #
-#     git config user.name  "John Doe"
-#     git config user.emmail  "john.doe@example.com"
+#       git config user.name  "John Doe"
+#       git config user.emmail  "john.doe@example.com"
 #
-#   double check .git/config:
+#   Double check .git/config:
 #                   [remote]
 #                       url = git@mystuff.github.com:...
+#
+#
+#   Register all keys under ~/.ssh
+#
+#       ssh-add -K $(ls ~/.ssh/id_*rsa* | grep -v '.pub$')
+#       
+#       # list current
+#       ssh-add -l
 #
 Host mystuff.github.com
   HostName github.com
