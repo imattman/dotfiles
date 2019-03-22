@@ -1,0 +1,27 @@
+# SSH config
+# copy this to ~/.ssh
+
+
+# To use multiple SSH keys with git:
+#   configure different a separate 'Host' value for each key
+#
+#   e.g. Clone from mystuff.github.com to use this ssh key
+#
+#   Also double check .git/config:
+#                         [remote] 
+#                            url = git@mystuff.github.com:...
+#
+Host mystuff.github.com
+  HostName github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_me
+  IdentitiesOnly yes
+
+Host *
+  AddKeysToAgent yes
+  # MacOS config option for Sierra and later
+  IgnoreUnknown UseKeychain
+  UseKeychain yes
+
+#  IdentityFile ~/.ssh/id_rsa
+
