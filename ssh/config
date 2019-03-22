@@ -7,9 +7,14 @@
 #
 #   e.g. Clone from mystuff.github.com to use this ssh key
 #
-#   Also double check .git/config:
-#                         [remote] 
-#                            url = git@mystuff.github.com:...
+#   Configure repo to use specific user:
+#
+#     git config user.name  "John Doe"
+#     git config user.emmail  "john.doe@example.com"
+#
+#   double check .git/config:
+#                   [remote]
+#                       url = git@mystuff.github.com:...
 #
 Host mystuff.github.com
   HostName github.com
