@@ -36,6 +36,7 @@ zstyle ':prezto:load' pmodule \
   'homebrew' \
   'osx' \
   'node' \
+  'python' \
   'ruby' \
   'rails' \
   'git' \
