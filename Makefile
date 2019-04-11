@@ -26,6 +26,9 @@ all:
 	[ -f ~/.gitconfig ]         || ln -s $(PWD)/git/gitconfig ~/.gitconfig
 	[ -f ~/.gitignore_global ]  || cp $(PWD)/git/gitignore ~/.gitignore_global
 
+	# tmux
+	[ -d ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
+
   # bin scripts
 	[ -d ~/bin ]                && stow -v -t ~/bin bin
 
@@ -52,6 +55,8 @@ clean:
 
 	[ -L ~/.gitconfig ]         && unlink ~/.gitconfig
 	[ -f ~/.gitignore_global ]  && echo "leaving ~/.gitignore_global in place"
+
+	[ -L ~/.tmux.conf ]         && unlink ~/.tmux.conf
 
 	[ -d ~/bin ]                && stow -v -D -t ~/bin bin
 
