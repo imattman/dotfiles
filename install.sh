@@ -2,20 +2,20 @@
 set -e 
 
 base_dir="$(cd $(dirname $0) && pwd)"
-
-prezto_dir="${base_dir}/prezto"
-# determine git transport from user info in SSH public key
-if [[ -n $(grep 'mattman' $HOME/.ssh/id_rsa.pub ) ]] ; then
-  echo "Found 'mattman' in ssh credentials; assuming access to GitHub."
-  prezto_repo="git@github.com:imattman/prezto.git"
-else
-  echo "Did not find 'mattman' in ssh credentials."
-  prezto_repo="https://github.com/imattman/prezto.git"
-fi
-prezto_upstream="https://github.com/sorin-ionescu/prezto"
-
 is_macos=$(uname -s | grep -i 'darwin')
 macos_dir="${base_dir}/macos"
+
+workspace_dir="${WORKSPACE:-${HOME}/workspace}"
+
+prezto_repo='https://github.com/sorin-ionescu/prezto'
+prezto_dir="${HOME}/.zprezto"
+prezto_prompt_src="${base_dir}/shell/prompt_mattman_setup.prezto"
+prezto_prompt_dest="${prezto_dir}/modules/prompt/functions/prompt_mattman_setup"
+
+font_repo='https://github.com/powerline/fonts'
+font_dir="${workspace_dir}/fonts"
+
+
 
 function usage() {
   this_script=$(basename $0)
@@ -27,33 +27,44 @@ function usage() {
   
   OPTIONS:
      -h:  Show this message
-     -g:  Fetch additional git modules (prezto, mac defaults)
-     -l:  Execute Makefile setup script to generate symlinks
-     -x:  Execute non-idempotent scripts that should be run only once
+     -f:  Set up additional fonts
+     -z:  Set up Prezto for zsh
+     -h:  Fetch additional git modules (prezto, mac defaults)
+     -h:  Execute Makefile setup script to generate symlinks
+     -h:  Execute non-idempotent scripts that should be run only once
           with initial install
 EOU
 }
 
 function create_dirs() {
   [[ -d $HOME/bin ]] || mkdir -p $HOME/bin
-  [[ -d $HOME/workspace ]] || mkdir -p $HOME/workspace
+  [[ -d $workspace_dir ]] || mkdir -p $workspace_dir
+}
+
+function setup_fonts() {
+  if [[ ! -d $font_dir ]] ; then
+    echo "Downloading fonts..."
+    git clone "$font_repo" "$font_dir" && \
+      cd "$font_dir" && \
+      echo "Installing fonts..." && \
+      ./install.sh
+  else
+    echo "Fonts directory already exists: ${font_dir}"
+  fi
 }
 
 function setup_prezto() {
   if [[ ! -e "$prezto_dir" ]] ; then
-    echo "Updating prezto..."
-    git clone --recursive "$prezto_repo" && \
-      cd "$prezto_dir" && \
-      git remote add upstream "$prezto_upstream" && \
-      git checkout -t origin/mattman_prompt && \
-      git status
+    echo "Prezto dir: ${prezto_dir}"
+    git clone --recursive "$prezto_repo" "$prezto_dir"
   else
     echo "Prezto directory already exists: ${prezto_dir}"
   fi
-}
 
-function setup_submodules() {
-  setup_prezto
+  if [[ ! -e "$prezto_prompt_dest" ]] ; then
+    echo "Linking mattman prompt..."
+    ln -s "$prezto_prompt_src" "$prezto_prompt_dest"
+  fi
 }
 
 
@@ -66,18 +77,22 @@ function setup_once() {
   fi
 }
 
+
 cd "${base_dir}"
 
-while getopts hglx OPTION
+while getopts fhlxz OPTION
 do
   case $OPTION in
-    g)  setup_submodules
+    f)  setup_fonts
         opt_set="true"
         ;;
     l)  create_dirs && make
         opt_set="true"
         ;;
     x)  setup_once
+        opt_set="true"
+        ;;
+    z)  setup_prezto
         opt_set="true"
         ;;
     h)  usage 
@@ -93,7 +108,6 @@ done
 # run make by default if no args specified 
 if [[ -z $opt_set ]] ; then
   create_dirs
-  setup_submodules
   setup_once
 
   if [[ -n "$(which stow)" ]] ; then
