@@ -18,7 +18,10 @@ alias mvim-min='mvim -u ~/.vim/vimrc-min'
 alias rm~="rm *~"
 alias rm\#="rm \#*"
 
-# docker stuff
+# homebrew
+alias brewup="brew update && brew doctor && brew upgrade && brew cleanup && brew doctor"
+
+# docker
 alias dm='docker-machine'
 alias dock='docker'
 alias dcomp='docker-compose'
