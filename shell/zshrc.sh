@@ -30,5 +30,6 @@ unalias cp
 unalias mv
 
 [[ -f ~/.zsh.aliases ]] && source ~/.zsh.aliases
+[[ -f ~/.zsh.functions ]] && source ~/.zsh.functions
 [[ -f ~/.zsh.local ]] && source ~/.zsh.local
 

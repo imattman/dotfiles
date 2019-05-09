@@ -27,9 +27,14 @@ alias dock='docker'
 alias dcomp='docker-compose'
 alias dmenv='eval $(docker-machine env)'
 
+# python
+alias activate='activate_virtualenv'
+alias venv='activate_virtualenv'
+
 # golang
 alias goenv='go env'
 alias gorun='go run'
 alias gobuild='go build'
+
 
 

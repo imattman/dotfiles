@@ -5,6 +5,7 @@ all:
 	[ -f ~/.zprofile ]          || ln -s $(PWD)/shell/zprofile.sh ~/.zprofile
 	[ -f ~/.zshrc ]             || ln -s $(PWD)/shell/zshrc.sh ~/.zshrc
 	[ -f ~/.zsh.aliases ]       || ln -s $(PWD)/shell/aliases.sh ~/.zsh.aliases
+	[ -f ~/.zsh.functions ]     || ln -s $(PWD)/shell/functions.sh ~/.zsh.functions
 	[ -f ~/.zpreztorc ]         || ln -s $(PWD)/shell/zpreztorc.sh ~/.zpreztorc
 	[ -f ~/.zsh.local ]         || cp $(PWD)/shell/local.sh ~/.zsh.local
 
@@ -12,6 +13,7 @@ all:
 	[ -f ~/.bash_profile ]      || ln -s $(PWD)/shell/bash_profile.sh ~/.bash_profile
 	[ -f ~/.bashrc ]            || ln -s $(PWD)/shell/bashrc.sh ~/.bashrc
 	[ -f ~/.bash.aliases ]      || ln -s $(PWD)/shell/aliases.sh ~/.bash.aliases
+	[ -f ~/.bash.functions ]    || ln -s $(PWD)/shell/functions.sh ~/.bash.functions
 	[ -f ~/.bash.prompt ]       || ln -s $(PWD)/shell/bash-prompt.sh ~/.bash.prompt
 	[ -f ~/.bash.local ]        || cp $(PWD)/shell/local.sh ~/.bash.local
 
@@ -27,7 +29,7 @@ all:
 	[ -f ~/.gitignore_global ]  || cp $(PWD)/git/gitignore ~/.gitignore_global
 
 	# tmux
-	[ -d ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
+	[ -f ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
 
   # bin scripts
 	[ -d ~/bin ]                && stow -v -t ~/bin bin
@@ -38,6 +40,7 @@ clean:
 	[ -L ~/.zshrc ]             && unlink ~/.zshrc
 	[ -L ~/.zshenv ]            && unlink ~/.zshenv
 	[ -L ~/.zsh.aliases ]       && unlink ~/.zsh.aliases
+	[ -L ~/.zsh.functions ]     && unlink ~/.zsh.functions
 	[ -L ~/.zprezto ]           && unlink ~/.zprezto
 	[ -L ~/.zpreztorc ]         && unlink ~/.zpreztorc
 	[ -f ~/.zsh.local ]         && echo "leaving ~/.zsh.local in place"
@@ -45,6 +48,7 @@ clean:
 	[ -L ~/.bash_profile ]      && unlink ~/.bash_profile
 	[ -L ~/.bashrc ]            && unlink ~/.bashrc
 	[ -L ~/.bash.aliases ]      && unlink ~/.bash.aliases
+	[ -L ~/.bash.functions ]    && unlink ~/.bash.functions
 	[ -L ~/.bash.prompt ]       && unlink ~/.bash.prompt
 	[ -f ~/.bash.local ]        && echo "leaving ~/.bash.local in place"
 
