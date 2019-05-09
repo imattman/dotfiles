@@ -9,6 +9,8 @@
   ui = auto
 [core]
   excludesfile = ~/.gitignore_global
+  # autocrlf values: true -> always convert, false -> never convert, input -> convert on commit
+  autocrlf = input
 [alias]
   stat = status
   s = status -s -b
