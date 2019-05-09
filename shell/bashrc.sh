@@ -23,6 +23,7 @@ export PATH=$PATH:$GOPATH/bin
 # Shell refinements
 #
 [[ -f ~/.bash.aliases ]] && source ~/.bash.aliases
+[[ -f ~/.bash.functions ]] && source ~/.bash.functions
 
 export CDPATH=workspace:$GOPATH/src/github.com/imattman:$GOPATH/src/gitlab.com/imattman
 
