@@ -28,6 +28,7 @@ alias dcomp='docker-compose'
 alias dmenv='eval $(docker-machine env)'
 
 # python
+alias venv='python3 -m venv venv && source venv/bin/activate && pip3 install --upgrade pip'
 alias activate='activate_virtualenv'
 alias av='activate_virtualenv'
 
