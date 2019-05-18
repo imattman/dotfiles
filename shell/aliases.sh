@@ -29,7 +29,7 @@ alias dmenv='eval $(docker-machine env)'
 
 # python
 alias activate='activate_virtualenv'
-alias venv='activate_virtualenv'
+alias av='activate_virtualenv'
 
 # golang
 alias goenv='go env'
