@@ -3,23 +3,54 @@
   //  demos
   // "window.zoomLevel": 2,
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Super One Dark",
-  // "workbench.colorTheme": "Tomorrow Night Bright",
+
+  // "workbench.colorTheme": "Material Theme Ocean High Contrast",
+  // "workbench.colorTheme": "Super One Dark",
+  // "workbench.colorTheme": "Night Owl",
+  // "workbench.colorTheme": "Dracula At Night",
+  "workbench.colorTheme": "Tomorrow Night Bright",
+
   "workbench.iconTheme": "material-icon-theme",
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "normal",
   "editor.fontSize": 18,
-  "editor.cursorStyle": "line",
-
   // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
   "editor.lineHeight": 0,
-  
-  "editor.tabSize": 4,
-  "editor.detectIndentation": true,
 
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.lineHeight": 1,
+
+  "editor.cursorStyle": "line",
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": false,
+
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  // default to JSON view for configuration
+  "workbench.settings.editor": "json",
+  // CMD-P open a file actually opens it
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  // tabs are enough to indicate which files are open
+  "explorer.openEditors.visible": 0,
+  // show file path breadcrumbs
+  "breadcrumbs.enabled": true,
+
+  "editor.minimap.renderCharacters": false,
+  // "editor.minimap.maxColumn": 200,
+  // "editor.minimap.showSlider": "always",
+
+  // don't phone home to the corporate mothership
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "workbench.statusBar.feedback.visible": false,
 
   //
   // Vim settings
@@ -49,7 +80,7 @@
           ]
       }
   ],
- 
+
   //
   // Go settings
   //
@@ -57,9 +88,9 @@
   "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
-  "go.goroot": "/usr/local/Cellar/go/1.11.5/libexec",
+  "go.goroot": "/usr/local/Cellar/go/1.12.5/libexec",
 
-  // Pick 'godoc' or 'gogetdoc' to get documentation. 
+  // Pick 'godoc' or 'gogetdoc' to get documentation.
   "go.docsTool": "godoc",
 
   "[go]" : {
@@ -73,7 +104,7 @@
   "[python]" : {
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.renderWhitespace": "boundary",
     "editor.autoSurround": "languageDefined",
   },
@@ -83,6 +114,7 @@
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "boundary",
     "editor.autoSurround": "languageDefined",
+    "files.trimTrailingWhitespace": false,
   },
 
   // Code Runner extension
