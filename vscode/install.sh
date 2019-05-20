@@ -2,6 +2,11 @@
 
 set -e
 
+if [[ -n "$DEBUG" ]]; then
+  set -x
+fi
+
+
 base_dir="$(cd $(dirname $0) && pwd)"
 src_file="settings.json"
 
@@ -14,6 +19,9 @@ if [[ ! -d "$dest" ]] ; then
   exit 1
 fi
 
-echo "copying $src_file to $dest"
-cp "${base_dir}/${src_file}" "$dest"
+#echo "copying $src_file to $dest"
+#cp "${base_dir}/${src_file}" "$dest"
+
+echo "linking $src_file to $dest"
+ln -s "${base_dir}/${src_file}" "$dest"
 
