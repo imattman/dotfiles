@@ -1,4 +1,12 @@
 # global git ignore
 
+# Mac cruft
 .DS_Store
+
+# Python stuff
+venv/
+env/
+
+.env
+
 
