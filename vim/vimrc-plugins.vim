@@ -37,7 +37,7 @@ Plug 'tpope/vim-markdown'
 Plug 'fatih/vim-go'
 Plug 'elixir-lang/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
-Plug 'elzr/vim-json', {'for' : 'json'}
+"Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 Plug 'corylanou/vim-present', {'for' : 'present'}
