@@ -48,6 +48,9 @@
   svn-diff = diff remotes/git-svn
   fixup = commit --amend -C HEAD
   up = pull --rebase --autostash
+[fetch]
+  # clobber branches that are no longer on the remote
+  prune = true
 [push]
   default = simple
 [branch]
