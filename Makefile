@@ -26,7 +26,7 @@ all:
 
 	# git
 	[ -f ~/.gitconfig ]         || ln -s $(PWD)/git/gitconfig ~/.gitconfig
-	[ -f ~/.gitignore_global ]  || cp $(PWD)/git/gitignore ~/.gitignore_global
+	[ -f ~/.gitignore_global ]  || ln -s $(PWD)/git/gitignore ~/.gitignore_global
 
 	# tmux
 	[ -f ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
@@ -58,7 +58,7 @@ clean:
 	[ -L ~/.vim ]               && unlink ~/.vim 
 
 	[ -L ~/.gitconfig ]         && unlink ~/.gitconfig
-	[ -f ~/.gitignore_global ]  && echo "leaving ~/.gitignore_global in place"
+	[ -L ~/.gitignore_global ]  && unlink ~/.gitignore_global
 
 	[ -L ~/.tmux.conf ]         && unlink ~/.tmux.conf
 
