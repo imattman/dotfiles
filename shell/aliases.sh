@@ -7,7 +7,7 @@ alias lla='ls -la'
 alias llh='ls -lah'
 
 alias timestamp="date '+%Y%m%d-%H%M%S'"
-alias tsshort="date '+%Y%m%d%H%M%S'"
+alias today="date '+%Y-%m-%d'"
 alias now="date '+%Y-%m-%d_%H:%M:%S'"
 
 # vim
