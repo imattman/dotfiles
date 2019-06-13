@@ -49,7 +49,7 @@
   // show file path breadcrumbs upper area of editor
   "breadcrumbs.enabled": true,
 
-  "editor.showFoldingControls": "always",
+  // "editor.showFoldingControls": "always",
   // "workbench.colorCustomizations": {
   //   "editorGutter.background": "#abcdef",
   // },
