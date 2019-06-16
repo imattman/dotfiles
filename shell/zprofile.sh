@@ -22,7 +22,7 @@ path=(
 
 cdpath=(
   $WORKSPACE
-  $WORKSPACE/pdx-python-pirates
+  $WORKSPACE/websites
   $GOPATH/src/github.com/imattman
   $GOPATH/src/gitlab.com/imattman
 )
