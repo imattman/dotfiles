@@ -18,6 +18,9 @@ EDITOR=vim
 export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$GOPATH/bin
 
+# Elixir
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 
 #
 # Shell refinements

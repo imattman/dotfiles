@@ -13,6 +13,9 @@ export WORKSPACE=$HOME/workspace
 export GOPATH="$WORKSPACE/go"
 which go 2>&1 > /dev/null && export GOROOT=$(go env GOROOT)
 
+# enable history in iEx
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 
 path=(
   $HOME/bin
