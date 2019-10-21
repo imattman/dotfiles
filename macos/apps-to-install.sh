@@ -17,6 +17,9 @@ https://www.alfredapp.com/
 
 https://1password.com/downloads/
 https://www.omnigroup.com/omnifocus
+
+https://brew.sh
+https://sdkman.io/
 "
 
 while read -r url; do
