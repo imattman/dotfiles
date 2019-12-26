@@ -53,6 +53,9 @@ function prompt_mattman_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_mattman_precmd
 
+  # Tell prezto we can manage this prompt
+  zstyle ':prezto:module:prompt' managed 'yes'
+
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{red}❯%F{yellow}❯%F{green}❯%f%b'
@@ -61,7 +64,7 @@ function prompt_mattman_setup {
   zstyle ':prezto:module:python:info:virtualenv' format '%F{yellow}[%v]%f '
 
   # Set ruby-info parameters.
-  zstyle ':prezto:module:ruby:info:version' format '%F{yellow}[%v]%f '
+#  zstyle ':prezto:module:ruby:info:version' format '%F{yellow}[%v]%f '
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
