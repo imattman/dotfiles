@@ -2,6 +2,7 @@
 
 # development languages
 
+# java tools now managed by sdkman https://sdkman.io/
 # build tools
 #gradle
 

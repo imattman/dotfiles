@@ -12,7 +12,6 @@ python3
 # other tools
 autoconf
 automake
-#brew-cask
 cmake
 httpie
 jq

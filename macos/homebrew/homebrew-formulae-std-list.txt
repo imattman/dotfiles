@@ -10,7 +10,8 @@ macvim
 elixir
 erlang
 node
-python
+# python2 dead Jan 2020... RIP!
+#python
 
 
 
