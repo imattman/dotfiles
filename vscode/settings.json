@@ -15,11 +15,11 @@
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "normal",
   "editor.fontSize": 18,
-  // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
+  // Use 0 to compute the lineHeight from the fontSize.
   "editor.lineHeight": 0,
 
-  "terminal.integrated.fontSize": 16,
-  "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.lineHeight": 0,
 
   "editor.cursorStyle": "line",
   "editor.smoothScrolling": true,
@@ -39,6 +39,8 @@
 
   // default to JSON view for configuration
   "workbench.settings.editor": "json",
+  "workbench.settings.useSplitJSON": true,
+  // "workbench.settings.openDefaultSettings": false,
 
   // opening a file via command pallete actually opens it
   "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -54,6 +56,7 @@
   //   "editorGutter.background": "#abcdef",
   // },
 
+  "editor.minimap.enabled": true,
   "editor.minimap.renderCharacters": false,
   // "editor.minimap.maxColumn": 200,
   // "editor.minimap.showSlider": "always",
@@ -136,8 +139,12 @@
   },
 
   // Code Runner extension
+  "code-runner.saveFileBeforeRun": true,
   "code-runner.clearPreviousOutput": false,
   "code-runner.runInTerminal": false,
+
+  // show exit code and execution time
+  "code-runner.showExecutionMessage": true,
 
   "code-runner.executorMap": {
       "javascript": "node",
