@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+import json
+import sys
+
+# parse json string to data then reserialize, removing formatting
+data = json.load(sys.stdin)
+indent = None # set to number to add indentation and newlines
+unescaped = json.dumps(data, sort_keys=True, indent=indent)
+
+# one more pass through serializer to make value safe as JSON string value
+print(json.dumps(unescaped))
+
