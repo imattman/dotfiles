@@ -140,7 +140,7 @@
 
   // Code Runner extension
   "code-runner.saveFileBeforeRun": true,
-  "code-runner.clearPreviousOutput": false,
+  "code-runner.clearPreviousOutput": true,
   "code-runner.runInTerminal": false,
 
   // show exit code and execution time
