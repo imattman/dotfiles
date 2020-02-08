@@ -1,4 +1,4 @@
-#
+# update
 # Sets Prezto options.
 #
 # Authors:
@@ -35,12 +35,12 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'homebrew' \
   'osx' \
-  'node' \
-  'python' \
-  'ruby' \
-  'rails' \
   'git' \
   'prompt'
+#  'node' \
+#  'python' \
+#  'ruby' \
+#  'rails' \
 #  'syntax-highlighting' \
 #  'history-substring-search' \
 
