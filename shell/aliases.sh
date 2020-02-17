@@ -38,5 +38,9 @@ alias goenv='go env'
 alias gorun='go run'
 alias gobuild='go build'
 
+# json 
+alias jpp='json-pp'
+alias jppc='json-ppclip'
+
 
 
