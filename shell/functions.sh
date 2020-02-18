@@ -7,6 +7,10 @@ simple-httpd() {
   python3 -m http.server "$@"
 }
 
+numfmt() {
+  echo "$*" | python3 -c "print('\n'.join('{:,}'.format(int(n)) for n in input().strip().split()))"
+}
+
 
 # usage: pause 'Press [Enter] key to continue...'
 pause(){
