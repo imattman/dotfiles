@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
-set -e 
+
+# fail early
+set -euo pipefail
+#IFS=$'\n\t'
+
+${DEBUG:=}
+if [[ -n "$DEBUG" ]]; then
+  set -x
+fi
 
 base_dir="$(cd $(dirname $0) && pwd)"
 is_macos=$(uname -s | grep -i 'darwin')
@@ -17,31 +25,31 @@ font_dir="${workspace_dir}/fonts"
 
 
 
-function usage() {
+usage() {
   this_script=$(basename $0)
 
   cat<<EOU
   Usage: $this_script [OPTIONS]
   
-  A basic installer my dotfiles.
+  A basic installer for my dotfiles.
   
   OPTIONS:
      -h:  Show this message
      -f:  Set up additional fonts
      -z:  Set up Prezto for zsh
-     -h:  Fetch additional git modules (prezto, mac defaults)
-     -h:  Execute Makefile setup script to generate symlinks
-     -h:  Execute non-idempotent scripts that should be run only once
+     -:  Fetch additional git modules (prezto, mac defaults)
+     -:  Execute Makefile setup script to generate symlinks
+     -:  Execute non-idempotent scripts that should be run only once
           with initial install
 EOU
 }
 
-function create_dirs() {
+create_dirs() {
   [[ -d $HOME/bin ]] || mkdir -p $HOME/bin
   [[ -d $workspace_dir ]] || mkdir -p $workspace_dir
 }
 
-function setup_fonts() {
+setup_fonts() {
   if [[ ! -d $font_dir ]] ; then
     echo "Downloading fonts..."
     git clone "$font_repo" "$font_dir" && \
@@ -53,7 +61,7 @@ function setup_fonts() {
   fi
 }
 
-function setup_prezto() {
+setup_prezto() {
   if [[ ! -e "$prezto_dir" ]] ; then
     echo "Prezto dir: ${prezto_dir}"
     git clone --recursive "$prezto_repo" "$prezto_dir"
@@ -68,7 +76,7 @@ function setup_prezto() {
 }
 
 
-function setup_once() {
+setup_once() {
   ${base_dir}/fonts/install.sh
 
   if [[ -n "$is_macos" ]] ; then

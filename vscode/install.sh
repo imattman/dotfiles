@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-set -e
+# fail early
+set -euo pipefail
+#IFS=$'\n\t'
 
+${DEBUG:=}
 if [[ -n "$DEBUG" ]]; then
   set -x
 fi
-
 
 base_dir="$(cd $(dirname $0) && pwd)"
 src_file="settings.json"

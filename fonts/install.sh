@@ -3,8 +3,12 @@
 # Based on powerline fonts install script
 # [powerline/fonts](https://github.com/powerline/fonts/)
 
+# fail early
+set -euo pipefail
+#IFS=$'\n\t'
+
 # Set source and target directories
-src_fonts_dir=$( cd "$( dirname "$0" )" && pwd )
+src_fonts_dir=$(cd "$(dirname "$0")" && pwd)
 
 find_command="find \"$src_fonts_dir\" \( -name '*.[o,t]tf' -or -name '*.pcf.gz' \) -type f -print0"
 
