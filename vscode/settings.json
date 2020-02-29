@@ -1,14 +1,16 @@
 // Place your settings in this file to overwrite the default settings
 {
   //  demos
-  // "window.zoomLevel": 2,
+  // "window.zoomLevel": 1,
+  // "workbench.colorTheme": "Visual Studio Light",
+
   "window.zoomLevel": 0,
+  "workbench.colorTheme": "Tomorrow Night Bright",
 
   // "workbench.colorTheme": "Material Theme Ocean High Contrast",
   // "workbench.colorTheme": "Super One Dark",
   // "workbench.colorTheme": "Night Owl",
   // "workbench.colorTheme": "Dracula At Night",
-  "workbench.colorTheme": "Tomorrow Night Bright",
 
   "workbench.iconTheme": "material-icon-theme",
 
