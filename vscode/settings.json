@@ -7,10 +7,12 @@
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Tomorrow Night Bright",
 
-  // "workbench.colorTheme": "Material Theme Ocean High Contrast",
   // "workbench.colorTheme": "Super One Dark",
   // "workbench.colorTheme": "Night Owl",
   // "workbench.colorTheme": "Dracula At Night",
+  // "workbench.colorTheme": "Material Theme Ocean High Contrast",
+  // "workbench.colorTheme": "Cobalt2",
+  // "workbench.colorTheme": "Tomorrow Night Bright",
 
   "workbench.iconTheme": "material-icon-theme",
 
