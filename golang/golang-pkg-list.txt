@@ -2,6 +2,10 @@
 # std tools
 #
 golang.org/x/tools/cmd/...
+golang.org/x/lint/golint
+#golang.org/x/crypto/...
+#golang.org/x/image/...
+
 
 #
 # build tools & utilities
@@ -14,7 +18,6 @@ github.com/clipperhouse/gen
 github.com/fatih/motion
 github.com/fogleman/primitive
 github.com/godoctor/godoctor
-github.com/golang/lint/golint
 github.com/josharian/impl
 github.com/jstemmer/gotags
 github.com/kisielk/errcheck
@@ -43,7 +46,11 @@ gopkg.in/russross/blackfriday.v2
 github.com/spf13/hugo
 
 # buffalo pulls in several web libraries
-github.com/gobuffalo/buffalo/buffalo
+# easier to install buffalo via brew or other package manager
+#github.com/gobuffalo/buffalo/buffalo
+
+# GOA complains about $GOPATH
+#goa.design/goa/v3/...@v3
 
 github.com/Pallinder/go-randomdata
 #github.com/braintree/manners
@@ -52,7 +59,6 @@ github.com/cortesi/devd/cmd/devd
 github.com/cortesi/modd/cmd/modd
 github.com/gin-gonic/gin
 github.com/go-chi/chi
-github.com/goadesign/goa/...
 github.com/gorilla/context
 github.com/gorilla/csrf
 github.com/gorilla/handlers

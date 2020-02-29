@@ -3,17 +3,29 @@
 # Install Homebrew and some packages
 #
 
+# fail early
+set -euo pipefail
+#IFS=$'\n\t'
+
+${DEBUG:=}
+if [[ -n "$DEBUG" ]]; then
+  set -x
+fi
+
 base_dir="$(cd $(dirname $0) && pwd)"
 pkg_files='homebrew-formulae-min-list.txt 
            homebrew-formulae-std-list.txt
            homebrew-formulae-extra-list.txt'
+install_pkg="${1:-}"
 
-function install_pkgs {
-  pkg_file="$1"
 
+install_pkgs() {
+  local pkg_file="$1"
+
+  echo
   echo "Installing packages from file $pkg_file"
-  cat $pkg_file | grep -v '#' | egrep -v '^\s*$' | \
-    while read pkg; do
+  sed -e 's/\s*#.*//' -e '/^$/d' < "$pkg_file" | \
+  while read pkg; do
     brew install $pkg
   done
 }
@@ -30,14 +42,14 @@ else
 fi
 
 
-if [[ -z "$1" ]] ; then
+if [[ -z "$install_pkg" ]] ; then
   # no arguments means install everything
   pkgs=""
   for pkg in $pkg_files; do
     pkgs="$pkgs $base_dir/$pkg"
   done
 else
-  pkgs="$@"
+  pkgs="$*"
 fi	
   
 for pkg_file in $pkgs; do
@@ -59,3 +71,4 @@ brew tap caskroom/versions
 #   brew cask install java8
 
 exit 0
+
