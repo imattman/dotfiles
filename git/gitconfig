@@ -31,7 +31,12 @@
   lol = log --oneline --graph --decorate
   tree = log --graph --branches --pretty=oneline --decorate
   grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
-  log-commit = log --format=%B -n 1
+  # commit message
+  log-commit-msg = log --format=%B -n 1
+  # commit message + file details
+  log-commit-details = log --stat -n 1
+  # show just files changed in revision
+  log-commit-files-only = diff-tree --no-commit-id --name-only -r 
   history = log --follow
   syncupstream = !git pull upstream master && git push origin master
   submodule-update = !git submodule update --init --recursive
