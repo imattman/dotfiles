@@ -21,6 +21,9 @@ alias rm\#="rm \#*"
 # homebrew
 alias brewup="brew update && brew doctor && brew upgrade && brew cleanup && brew doctor"
 
+# tmux
+alias tmux-help="open 'http://tmuxcheatsheet.com/'"
+
 # docker
 alias dm='docker-machine'
 alias dock='docker'

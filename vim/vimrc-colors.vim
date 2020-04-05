@@ -31,3 +31,4 @@ highlight SpecialKey guifg=#4a4a59
 "set guicursor+=i:ver100-iCursor
 "set guicursor+=n-v-c:blinkon0
 "set guicursor+=i:blinkwait10
+

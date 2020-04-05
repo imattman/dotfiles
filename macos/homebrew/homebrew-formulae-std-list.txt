@@ -1,31 +1,48 @@
 # editors
+macvim
+#macvim --with-cscope --with-lua --HEAD
+
 emacs
 #emacs  --with-cocoa  --with-librsvg
 # run:  brew linkapps emacs
 
-macvim
-#macvim --with-cscope --with-lua --HEAD
 
 # development languages
-elixir
-erlang
-node
+go
+#elixir
+#erlang
+#node
+perl
 # python2 dead Jan 2020... RIP!
 #python
+python3
 
+
+# user contributed documentation to supplement man pages
+# look into golang client: https://github.com/isacikgoz/tldr
+tldr
+
+# replacements for common tools
+ag
+bat
+exa
+fd
+fzf
+ripgrep
 
 
 # other tools
-ack
-ag
-awscli
 bison
 cowsay
 direnv
+exiftool
 figlet
 fortune
 gdbm
 gnupg
+httpie
 jpeg
+jq
+lorem
 pandoc
 
