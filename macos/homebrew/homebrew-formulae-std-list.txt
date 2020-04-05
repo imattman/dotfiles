@@ -44,5 +44,6 @@ httpie
 jpeg
 jq
 lorem
+ossp-uuid
 pandoc
 
