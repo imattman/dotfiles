@@ -10,5 +10,9 @@
 # other tools
 #awscli
 
+# allow terminal sharing. see: https://tmate.io/
+tmate
+
+
 
 
