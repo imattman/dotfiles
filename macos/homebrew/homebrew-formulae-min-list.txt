@@ -2,20 +2,11 @@
 # this conflicts with Macvim
 #vim
 
-# development languages
-go
-
-perl
-python3
-
 
 # other tools
 autoconf
 automake
 cmake
-httpie
-jq
-lorem
 mercurial
 openssl
 pkg-config

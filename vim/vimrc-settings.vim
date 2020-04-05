@@ -24,7 +24,7 @@ set noerrorbells                " No beeps
 set t_vb=                       " Reset terminal code for visualbell for no flash
 set lazyredraw                  " Wait to redraw
 
-set noshowmode                  " We show the mode with airline or lightline
+set noshowmode                  " Mode info handled by airline or lightline
 set showcmd                     " Show me what I'm typing
 set wildmenu                    " better commandline completion
 set laststatus=2                " Always display the status line
