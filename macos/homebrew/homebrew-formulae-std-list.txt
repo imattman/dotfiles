@@ -18,6 +18,9 @@ perl
 #python
 python3
 
+# dev tools
+protobuf
+
 
 # user contributed documentation to supplement man pages
 # look into golang client: https://github.com/isacikgoz/tldr
