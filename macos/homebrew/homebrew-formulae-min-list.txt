@@ -2,6 +2,12 @@
 # this conflicts with Macvim
 #vim
 
+# mac ships with an *old* version of bash
+bash
+bash-completion
+
+#zsh
+zsh-completions
 
 # other tools
 autoconf

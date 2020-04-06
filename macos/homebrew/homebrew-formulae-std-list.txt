@@ -1,6 +1,7 @@
 # editors
 macvim
 #macvim --with-cscope --with-lua --HEAD
+neovim
 
 emacs
 #emacs  --with-cocoa  --with-librsvg
