@@ -13,6 +13,8 @@ EDITOR=vim
 #
 # Development
 #
+export WORKSPACE="$HOME/workspace"
+export SCRIPTS="$HOME/bin"
 
 # GoLang
 export GOPATH=$HOME/workspace/go
