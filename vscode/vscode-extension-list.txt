@@ -1,0 +1,13 @@
+bungcip.better-toml
+dbaeumer.vscode-eslint
+dracula-theme.theme-dracula
+emmanuelbeziat.vscode-great-icons
+formulahendry.code-runner
+ms-python.python
+ms-vscode.Go
+ms-vscode.Theme-TomorrowKit
+PKief.material-icon-theme
+seansassenrath.vscode-theme-superonedark
+Shan.code-settings-sync
+vscodevim.vim
+zhuangtongfa.material-theme
