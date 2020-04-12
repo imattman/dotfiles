@@ -1,0 +1,79 @@
+#  #
+#  # std tools
+#  #
+#  golang.org/x/tools/cmd/...
+#  golang.org/x/lint/golint
+#  #golang.org/x/crypto/...
+#  #golang.org/x/image/...
+#  
+#  
+#  #
+#  # build tools & utilities
+#  #
+#  
+#  github.com/Masterminds/squirrel
+#  github.com/alecthomas/gometalinter
+#  github.com/alfredxing/calc
+#  github.com/clipperhouse/gen
+#  github.com/fatih/motion
+#  github.com/fogleman/primitive
+#  github.com/godoctor/godoctor
+#  github.com/josharian/impl
+#  github.com/jstemmer/gotags
+#  github.com/kisielk/errcheck
+#  github.com/klauspost/asmfmt/cmd/asmfmt
+#  github.com/lukehoban/go-outline
+#  github.com/motemen/gore
+#  github.com/newhook/go-symbols
+#  github.com/nsf/gocode
+#  github.com/rogpeppe/godef
+#  github.com/stretchr/testify
+#  github.com/tools/godep
+#  github.com/tpng/gopkgs
+#  github.com/zmb3/gogetdoc
+#  
+#  #
+#  # common libs
+#  #
+#  github.com/jinzhu/gorm
+#  github.com/jmoiron/sqlx
+#  # postgres
+#  github.com/lib/pq
+#  github.com/spf13/afero
+#  gopkg.in/russross/blackfriday.v2
+#  
+github.com/gohugoio/hugo
+  
+# it can be easier to install buffalo via brew or other package manager
+github.com/gobuffalo/buffalo/buffalo
+  
+goa.design/goa/v3/...@v3
+
+#  github.com/Pallinder/go-randomdata
+#  #github.com/braintree/manners
+#  github.com/campoy/jsonenums
+#  github.com/cortesi/devd/cmd/devd
+
+github.com/cortesi/modd/cmd/modd
+
+#  github.com/gin-gonic/gin
+#  github.com/go-chi/chi
+#  github.com/gorilla/context
+#  github.com/gorilla/csrf
+#  github.com/gorilla/handlers
+#  github.com/gorilla/mux
+#  github.com/gorilla/pat
+#  github.com/gorilla/websocket
+#  github.com/mholt/caddy
+#  github.com/monochromegane/the_platinum_searcher
+#  github.com/oxequa/realize
+#  github.com/pkg/errors
+#  github.com/rakyll/hey
+#  
+#  # other
+#  #github.com/containous/traefik
+#  github.com/gchaincl/httplab
+#  github.com/junegunn/fzf
+#  github.com/simeji/jid/cmd/jid
+#  github.com/tomnomnom/gron
+

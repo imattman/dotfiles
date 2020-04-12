@@ -35,28 +35,26 @@ github.com/zmb3/gogetdoc
 #
 # common libs
 #
+github.com/pkg/errors
+
 github.com/jinzhu/gorm
 github.com/jmoiron/sqlx
 # postgres
 github.com/lib/pq
+
 github.com/spf13/afero
+github.com/spf13/cobra
+github.com/spf13/viper
+github.com/spf13/pflag
 gopkg.in/russross/blackfriday.v2
 
-# hugo will fetch cobra & viper as deps
-github.com/spf13/hugo
 
-# buffalo pulls in several web libraries
-# easier to install buffalo via brew or other package manager
-#github.com/gobuffalo/buffalo/buffalo
-
-# GOA complains about $GOPATH
-#goa.design/goa/v3/...@v3
+github.com/caddyserver/caddy
 
 github.com/Pallinder/go-randomdata
 #github.com/braintree/manners
 github.com/campoy/jsonenums
 github.com/cortesi/devd/cmd/devd
-github.com/cortesi/modd/cmd/modd
 github.com/gin-gonic/gin
 github.com/go-chi/chi
 github.com/gorilla/context
@@ -65,10 +63,8 @@ github.com/gorilla/handlers
 github.com/gorilla/mux
 github.com/gorilla/pat
 github.com/gorilla/websocket
-github.com/mholt/caddy
 github.com/monochromegane/the_platinum_searcher
 github.com/oxequa/realize
-github.com/pkg/errors
 github.com/rakyll/hey
 
 # other
