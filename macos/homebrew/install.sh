@@ -7,7 +7,7 @@
 set -euo pipefail
 #IFS=$'\n\t'
 
-${DEBUG:=}
+DEBUG=${DEBUG:-}
 if [[ -n "$DEBUG" ]]; then
   set -x
 fi
@@ -26,7 +26,12 @@ install_pkgs() {
   echo "Installing packages from file $pkg_file"
   sed -e 's/\s*#.*//' -e '/^$/d' < "$pkg_file" | \
   while read pkg; do
-    brew install $pkg
+    if [[ ! $(brew list | grep $pkg) ]] ; then
+      echo "Installing: $pkg"
+      brew install $pkg
+    else
+      echo "# $pkg already installed"
+    fi
   done
 }
 

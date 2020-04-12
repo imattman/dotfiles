@@ -32,9 +32,10 @@ alias dmenv='eval $(docker-machine env)'
 
 # python
 alias venv='python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip && rehash'
-alias pyvenv=venv
-alias activate='activate_virtualenv'
-alias av='activate_virtualenv'
+alias venv-site='python3 -m venv venv --system-site-packages && source venv/bin/activate && python3 -m pip install --upgrade pip && rehash'
+alias py_venv=venv
+alias py_venv_site=venv-site
+alias activate='py_activate_virtualenv'
 
 # golang
 alias goenv='go env'

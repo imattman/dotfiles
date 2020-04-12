@@ -3,7 +3,7 @@
 IS_MACOS=$(uname -s | grep -i 'darwin')
 
 
-simple-httpd() {
+simple_httpd() {
   python3 -m http.server "$@"
 }
 
@@ -19,13 +19,13 @@ pause(){
 
 
 # pretty-print json
-json-pp() {
+json_pp() {
   jq '.' "$@"
 }
 
 
 # pretty-print json in clipboard and copy back
-json-ppclip() {
+json_ppclip() {
   if [[ -n "$IS_MACOS" ]]; then
     pbpaste | jq '.' | pbcopy
   else
@@ -36,30 +36,30 @@ json-ppclip() {
 
 
 # escape json for string usage
-json-stringify() {
+json_stringify() {
   jq 'tojson' "$@"
 }
 
 
 # unescape json from string
-json-destringify() {
+json_destringify() {
   jq 'fromjson' "$@"
 }
 
 
 # escape chars unsafe for URLs
-url-encode() {
+url_encode() {
   jq '@uri' "$@"
 }
 
 
 # escape HTML entities
-html-encode() {
+html_encode() {
   jq '@html' "$@"
 }
 
 
-new-bash-script() {
+new_bash_script() {
   local name
   name="${1:-main.sh}"
 
@@ -74,7 +74,7 @@ new-bash-script() {
 }
 
 
-new-python-script() {
+new_python_script() {
   local name
   name="${1:-main.py}"
 
@@ -90,7 +90,7 @@ new-python-script() {
 
 
 # convenience function for finding and activating python virtual environment
-activate_virtualenv() {
+py_activate_virtualenv() {
   # use 'venv' as default directory
   local venv=${1:-venv}
 
