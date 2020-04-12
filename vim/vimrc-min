@@ -4,12 +4,12 @@
 "    vim -u ~/.vim/vimrc-min
 "
 
-set nocompatible                " Enables us Vim specific features
+set nocompatible                            " Forget legacy vi
 
-" skip plugins and color scheme setup
-"source ~/.vim/vimrc-plugins.vim
-"source ~/.vim/vimrc-colors.vim
+" don't load plugins or language settings
+"source ~/.vim/vimrc-plugins.vim             " init plugins first thing
 
-source ~/.vim/vimrc-settings.vim
+source ~/.vim/vimrc-settings.vim            " general vim customization
 
+"source ~/.vim/vimrc-golang.vim              " Go config
 

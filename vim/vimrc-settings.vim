@@ -1,3 +1,69 @@
+" vimrc-settings.vim
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+
+
+"
+" color scheme
+"
+
+set t_Co=256
+let g:gruvbox_contrast_dark = 'hard'          " hard | medium | soft
+let g:gruvbox_contrast_light = 'hard'         " hard | medium | soft
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+if has("gui_running")
+  set background=dark                         " dark | light
+
+  colorscheme jellybeans
+"  colorscheme hybrid
+"  colorscheme gruvbox
+"  colorscheme dracula
+"  colorscheme cobalt2
+"  colorscheme molokai
+"  colorscheme skittles_berry
+"  colorscheme solarized
+"  colorscheme sunburst
+  let g:airline_theme = 'jellybeans'
+"  let g:airline_theme = 'dracula'
+"  let g:airline_theme = 'gruvbox'
+"  let g:airline_theme = 'hybrid'
+"  let g:airline_theme = 'tomorrow'
+else
+  set background=dark
+  colorscheme gruvbox
+"  colorscheme slate
+endif
+
+
+"set guifont=Monaco:h16
+"set guifont=Menlo:h16
+set guifont=Inconsolata:h18
+
+
+" Invisible character colors 
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
+"highlight Cursor guifg=white guibg=black
+"highlight iCursor guifg=white guibg=steelblue
+"set guicursor=n-v-c:block-Cursor
+"set guicursor+=i:ver100-iCursor
+"set guicursor+=n-v-c:blinkon0
+"set guicursor+=i:blinkwait10
+
 """"""""""""""""""""""
 "      Settings      "
 """"""""""""""""""""""
@@ -87,16 +153,12 @@ imap jj <ESC>                   " map 'jj' as easy alternate to ESC from insert 
 let mapleader = ","
 noremap \ ,
 
-
 " next search
 nnoremap <C-L> :nohl<CR><C-L>   " Map redraw screen to also turn off highlighting
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
-
-"imap <Tab> <C-n>
-"imap <S-Tab> <C-p>
 
 " Jump to next error with Ctrl-n and previous error with Ctrl-p. Close the
 " quickfix window with <leader>a
@@ -144,5 +206,49 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.md setfiletype markdown
 
 endif
+
+
+"
+" Plug in configuration loaded after main settings
+"
+
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#statusline()}
+
+" airline theme set above with colorscheme
+let g:airline_enable_branch = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
+" "------------------------------------------------------------
+" "" NERDTree configuration
+" let g:NERDTreeChDirMode=2
+" let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+" let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+" let g:NERDTreeShowBookmarks=1
+" let g:nerdtree_tabs_focus_on_files=1
+" let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+" let g:NERDTreeWinSize = 30
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+
+"nnoremap <silent> <F2> :NERDTreeFind<CR>
+"noremap <F3> :NERDTreeToggle<CR>
+"noremap <leader>nt :NERDTreeToggle<CR>
+"noremap <leader>kb :NERDTreeToggle<CR>
+
+
+"------------------------------------------------------------
+"" Git
+noremap <leader>ga :!git add .<CR>
+"noremap <leader>gc :!git commit -m '<C-R>="'"<CR>
+"noremap <leader>gsh :!git push<CR>
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gb :Gblame<CR>
+noremap <leader>gd :Gvdiff<CR>
+"noremap <leader>gr :Gremove<CR>
+
+
 
 
