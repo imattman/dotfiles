@@ -20,6 +20,11 @@ python3
 
 # dev tools
 protobuf
+shellcheck
+
+# task management
+task
+jrnl
 
 
 # user contributed documentation to supplement man pages
