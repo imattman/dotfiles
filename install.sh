@@ -2,10 +2,8 @@
 
 # fail early
 set -eou pipefail
-#set -u  # fail if unset variables are referenced
 
-DEBUG=${DEBUG:-''}
-if [[ -n "$DEBUG" ]]; then
+if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 

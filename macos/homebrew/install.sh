@@ -4,13 +4,12 @@
 #
 
 # fail early
-set -euo pipefail
-#IFS=$'\n\t'
+set -eou pipefail
 
-DEBUG=${DEBUG:-}
-if [[ -n "$DEBUG" ]]; then
+if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
+
 
 base_dir="$(cd $(dirname $0) && pwd)"
 pkg_files='homebrew-formulae-min-list.txt 
