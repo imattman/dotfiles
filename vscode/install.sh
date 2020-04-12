@@ -4,7 +4,7 @@
 set -euo pipefail
 #IFS=$'\n\t'
 
-${DEBUG:=}
+DEBUG=${DEBUG:-''}
 if [[ -n "$DEBUG" ]]; then
   set -x
 fi
