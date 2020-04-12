@@ -7,7 +7,7 @@ xcode_path=$(xcode-select -p)
 
 if [[ -z "$xcode_path" ]] ; then
   echo "XCode needs to be installed"
-  xcode-select --install
+  sudo xcode-select --install
 fi
 
 exit 0
