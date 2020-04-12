@@ -1,11 +1,7 @@
-set nocompatible                            " Enable the future!
+set nocompatible                            " Forget legacy vi
 
 source ~/.vim/vimrc-plugins.vim             " init plugins first thing
-source ~/.vim/vimrc-colors.vim              " colorscheme and font settings
 source ~/.vim/vimrc-settings.vim            " general vim customization
-
-source ~/.vim/vimrc-plugin-settings.vim     " additional plugin config after settings
-                                            " ensuring things like <leader> are set
 
 " language configs
 source ~/.vim/vimrc-golang.vim              " Go config
