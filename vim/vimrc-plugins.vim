@@ -5,6 +5,11 @@
 "
 "   Start VIM and run :PlugInstall
 "
+"   Maintenance and updates:
+"
+"     PlugUpgrade
+"     PlugUpdate
+"     PlugClean  (remove unused / incorrect plugins)
 "
 "   See vimrc-plugin-settings.vim for additional config
 
