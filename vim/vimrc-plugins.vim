@@ -55,6 +55,9 @@ Plug 'tpope/vim-vinegar'
 " filetype plugins
 "
 Plug 'tpope/vim-markdown'
+" formatting markdown tables
+Plug 'junegunn/vim-easy-align'
+
 Plug 'fatih/vim-go'
 Plug 'elixir-lang/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
