@@ -1,0 +1,51 @@
+{
+	// Place your snippets for markdown here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+
+	"Code Fence": {
+		"prefix": ["cf", "cfence"],
+		"body": [
+			"```${1|bash,elixir,go,html,java,javascript,markdown,python,shell,rust|}",
+			"${2:code}",
+			"```",
+			""
+		],
+		"description": "Code Fence"
+	},
+	"Link": {
+		"prefix": "link",
+		"body": [
+			"[${1:link text}](${2:https://})"
+		],
+		"description": "Link"
+	},
+	"Link Ref": {
+		"prefix": "linkref",
+		"body": [
+			"[${1:link text}][${2:ref}]",
+			"[${2}]: ${3:https://}",
+			""
+		],
+		"description": "Link Ref"
+	},
+	"Img": {
+		"prefix": "img",
+		"body": [
+			"![${1:alt text}](${2:./imgs/file} ${3:\"Title Text\"})",
+			""
+		],
+		"description": "Img"
+	},
+	"Img Ref": {
+		"prefix": "imgref",
+		"body": [
+			"![${1:alt text}][${2:img_ref}]",
+			"",
+			"[$2]: ${3:./imgs/file} ${4:\"Title Text\"}",
+			""
+		],
+		"description": "Img Ref"
+	}
+}
