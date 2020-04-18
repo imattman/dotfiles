@@ -140,6 +140,11 @@
     "editor.renderWhitespace": "boundary",
     "editor.autoSurround": "languageDefined",
     "files.trimTrailingWhitespace": false,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    },
   },
 
   // Code Runner extension
