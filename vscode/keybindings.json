@@ -2,7 +2,8 @@
 [
   {
     "key": "cmd+/",
-    "command": "macros.commentDown"
+    "command": "macros.commentDown",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "key": "ctrl+space",
