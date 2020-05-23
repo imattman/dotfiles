@@ -8,13 +8,14 @@ Equinusocio.vsc-community-material-theme
 Equinusocio.vsc-material-theme
 equinusocio.vsc-material-theme-icons
 formulahendry.code-runner
+geddski.macros
 ms-python.python
 ms-vscode.Go
 ms-vscode.Theme-TomorrowKit
 PKief.material-icon-theme
 sdras.night-owl
 seansassenrath.vscode-theme-superonedark
-Shan.code-settings-sync
+vscode-icons-team.vscode-icons
 vscodevim.vim
 wesbos.theme-cobalt2
 zhuangtongfa.material-theme

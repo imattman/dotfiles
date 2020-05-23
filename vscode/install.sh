@@ -13,14 +13,40 @@ THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
 
 SRC_CONFIG="settings.json"
+SRC_KEYBINDINGS="keybindings.json"
 SRC_SNIPPETS="snippets"
 
 DEST_DIR="$HOME/Library/Application Support/Code/User"
 DEST_CONFIG="${DEST_DIR}/${SRC_CONFIG}"
+DEST_KEYBINDINGS="${DEST_DIR}/${SRC_KEYBINDINGS}"
 DEST_SNIPPETS="${DEST_DIR}/${SRC_SNIPPETS}"
+
 SRC_CONFIG="${BASE_DIR}/${SRC_CONFIG}"
+SRC_KEYBINDINGS="${BASE_DIR}/${SRC_KEYBINDINGS}"
 SRC_SNIPPETS="${BASE_DIR}/${SRC_SNIPPETS}"
 
+setup() {
+  local src="$1"
+  local dest="$2"
+  local backup="${2}.bak"
+  local dest_base=$(basename "$dest")
+
+  #echo "src:  $src"
+  #echo "dest: $dest"
+  #echo "dest_base: $dest_base"
+
+  if [[ -L "$dest" ]]; then
+    echo "symlink already exists: $dest"
+  else
+    if [[ -e "$dest" ]]; then
+      echo "moving old $dest_base to $backup"
+      mv "$dest" "$backup"
+    fi
+
+    echo "linking $src to $dest"
+    ln -s "$src" "$dest"
+  fi
+}
 
 if [[ ! -d "$DEST_DIR" ]] ; then
   echo "Directory not found: $DEST_DIR"
@@ -30,31 +56,7 @@ if [[ ! -d "$DEST_DIR" ]] ; then
 fi
 
 
-if [[ -L "$DEST_CONFIG" ]]; then
-  echo "Symlink already exists: $DEST_CONFIG"
-else
-  if [[ -f "$DEST_CONFIG" ]]; then
-    dest_backup="${DEST_CONFIG}.bak"
-    echo "moving old config to $dest_backup"
-    mv "$DEST_CONFIG" "$dest_backup"
-  fi
-
-  echo "linking $SRC_CONFIG to $DEST"
-  ln -s "${SRC_CONFIG}" "$DEST_CONFIG"
-fi
-
-
-if [[ -L "$DEST_SNIPPETS" ]]; then
-    echo "Symlink already exists: $DEST_SNIPPETS"
-else
-  if [[ -d "$DEST_SNIPPETS" ]]; then
-    dest_backup="${DEST_SNIPPETS}.bak"
-    echo "moving old snippets to $dest_backup"
-    mv "$DEST_SNIPPETS" "$dest_backup"
-  fi
-
-  echo "linking $SRC_SNIPPETS to $DEST_SNIPPETS"
-  ln -s "$SRC_SNIPPETS" "$DEST_SNIPPETS"
-fi
-
+setup "$SRC_CONFIG" "$DEST_CONFIG"
+setup "$SRC_KEYBINDINGS" "$DEST_KEYBINDINGS"
+setup "$SRC_SNIPPETS" "$DEST_SNIPPETS"
 
