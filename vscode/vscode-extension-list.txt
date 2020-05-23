@@ -1,4 +1,5 @@
 akamud.vscode-theme-onedark
+arcticicestudio.nord-visual-studio-code
 bceskavich.theme-dracula-at-night
 bungcip.better-toml
 dbaeumer.vscode-eslint
@@ -9,6 +10,7 @@ Equinusocio.vsc-material-theme
 equinusocio.vsc-material-theme-icons
 formulahendry.code-runner
 geddski.macros
+jdinhlife.gruvbox
 ms-python.python
 ms-vscode.Go
 ms-vscode.Theme-TomorrowKit

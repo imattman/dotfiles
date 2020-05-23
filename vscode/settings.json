@@ -5,16 +5,19 @@
   // "workbench.colorTheme": "Visual Studio Light",
 
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Tomorrow Night Bright",
+  // no colorTheme defaults to "Dark+"
 
+  // "workbench.colorTheme": "Tomorrow Night Bright",
+  // "workbench.colorTheme": "Nord",
   // "workbench.colorTheme": "Super One Dark",
   // "workbench.colorTheme": "Night Owl",
   // "workbench.colorTheme": "Dracula At Night",
+  // "workbench.colorTheme": "Community Material Theme High Contrast",
   // "workbench.colorTheme": "Material Theme Ocean High Contrast",
   // "workbench.colorTheme": "Cobalt2",
-  // "workbench.colorTheme": "Tomorrow Night Bright",
 
   "workbench.iconTheme": "vscode-icons",
+  // "workbench.iconTheme": "material-icon-theme",
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "normal",
@@ -33,7 +36,7 @@
   "editor.detectIndentation": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "selection",
 
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -110,7 +113,7 @@
         "editor.action.commentLine",
         "cursorDown"
     ]
-  }
+  },
 
   //
   // Go settings
