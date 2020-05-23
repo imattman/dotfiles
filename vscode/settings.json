@@ -14,7 +14,7 @@
   // "workbench.colorTheme": "Cobalt2",
   // "workbench.colorTheme": "Tomorrow Night Bright",
 
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vscode-icons",
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "normal",
@@ -71,7 +71,6 @@
 
   // bottom status bar
   "workbench.statusBar.visible": true,
-  "workbench.statusBar.feedback.visible": false,
   // "workbench.colorCustomizations": {
   //   "statusBar.background": "#555555",
   // },
@@ -105,6 +104,14 @@
       }
   ],
 
+  "macros": {
+    // comment line and move down, IntelliJ style
+    "commentDown": [
+        "editor.action.commentLine",
+        "cursorDown"
+    ]
+  }
+
   //
   // Go settings
   //
@@ -112,7 +119,7 @@
   "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
-  "go.goroot": "/usr/local/Cellar/go/1.14.2_1/libexec",
+  "go.goroot": "/usr/local/Cellar/go/1.14.3/libexec",
 
   "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
