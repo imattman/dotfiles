@@ -8,8 +8,11 @@ source "$zprezto_file"
 export EDITOR=vim
 export VISUAL=vim
 
-export WORKSPACE="$HOME/workspace"
 export SCRIPTS="$HOME/bin"
+export WORKSPACE="$HOME/workspace"
+export NOTES="$HOME/Notes"
+export DOCUMENTS="$HOME/Documents"
+export DROPBOX="$HOME/Dropbox"
 
 export GOPATH="$WORKSPACE/go"
 which go 2>&1 > /dev/null && export GOROOT=$(go env GOROOT)

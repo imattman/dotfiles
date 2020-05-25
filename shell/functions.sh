@@ -2,6 +2,53 @@
 
 IS_MACOS=$(uname -s | grep -i 'darwin')
 
+cd_fzf() {
+  local root="${1:-$PWD}"
+  if [[ "$root" == '.' ]]; then
+    root="$PWD"
+  fi
+
+  #local parent=$(dirname "$root")
+  #local base=$(basename "$root")
+  local dir=''
+  cd "$root" && \
+    dir=$(cd "$root" && fd -t d -E "*/pkg/mod/*" . | fzf)
+
+  [[ -n "$dir" ]] && cd "$root/$dir"
+}
+
+edit_fzf() {
+  local editor="${1:-$EDITOR}"
+  local root="${2:-$PWD}"
+  if [[ "$root" == '.' ]]; then
+    root="$PWD"
+  fi
+
+  local file=$(cd "$root" && fd -t f -E "*/pkg/mod/*" . | fzf)
+
+  if [[ -n "$file" ]] ; then
+    #echo "$editor $root/$file" 
+    [[ -e "$root/$file" ]] && $editor "$root/$file"
+  fi
+}
+
+
+cd_workspace() {
+  cd_fzf "$WORKSPACE"
+}
+
+cd_notes() {
+  cd_fzf "$NOTES"
+}
+
+cd_documents() {
+  cd_fzf "$DOCUMENTS"
+}
+
+cd_dropbox() {
+  cd_fzf "$DROPBOX"
+}
+
 
 simple_httpd() {
   python3 -m http.server "$@"
