@@ -6,13 +6,19 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias llh='ls -lah'
 
+# cd helpers that use fzf
+alias cdf='cd_fzf'
+alias cdw='cd_workspace'
+alias cdwk='cd_workspace'
+alias cdn='cd_notes'
+alias cddrop='cd_dropbox'
+
+alias vimf='edit_fzf vim'
+alias mvimf='edit_fzf mvim'
+
 alias timestamp="date '+%Y%m%d-%H%M%S'"
 alias today="date '+%Y-%m-%d'"
 alias now="date '+%Y-%m-%d_%H:%M:%S'"
-
-# vim
-alias vim-min='vim -u ~/.vim/vimrc-min'
-alias mvim-min='mvim -u ~/.vim/vimrc-min'
 
 # still need this emacs clean up?
 alias rm~="rm *~"
