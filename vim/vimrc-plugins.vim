@@ -31,12 +31,13 @@ Plug 'w0ng/vim-hybrid'
 " Snippet engine and snippet content
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
+" File find and content search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'janko/vim-test'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
@@ -45,6 +46,8 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 
 "Plug 'ctrlpvim/ctrlp.vim'
@@ -67,4 +70,7 @@ Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 Plug 'corylanou/vim-present', {'for' : 'present'}
 
 call plug#end()
+
+
+
 
