@@ -11,7 +11,6 @@
 "     PlugUpdate
 "     PlugClean  (remove unused / incorrect plugins)
 "
-"   See vimrc-plugin-settings.vim for additional config
 
 call plug#begin()
 " Color schemes

@@ -165,6 +165,11 @@ set pastetoggle=<F11>
 nnoremap <C-p> :Files<Cr>
 
 
+" set to true to find project root from cwd
+"if executable('rg')
+"  let g:rg_derive_root='true'
+"endif
+
 
 
 " "------------------------------------------------------------
@@ -178,6 +183,8 @@ let g:airline_enable_branch = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
 
 
 " "------------------------------------------------------------
