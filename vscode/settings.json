@@ -21,7 +21,7 @@
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "normal",
-  "editor.fontSize": 18,
+  "editor.fontSize": 16,
   // Use 0 to compute the lineHeight from the fontSize.
   "editor.lineHeight": 0,
 
@@ -37,6 +37,9 @@
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.renderWhitespace": "selection",
+
+  "editor.parameterHints.cycle": true,
+  "editor.suggest.showTypeParameters": true,
 
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -126,6 +129,7 @@
 
   "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
+  "go.useCodeSnippetsOnFunctionSuggest": true,
 
   // Pick 'godoc' or 'gogetdoc' to get documentation.
   "go.docsTool": "godoc",
