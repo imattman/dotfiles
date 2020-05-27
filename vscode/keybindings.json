@@ -5,8 +5,8 @@
     "command": "macros.commentDown",
     "when": "editorTextFocus && !editorReadonly"
   },
-  {
-    "key": "ctrl+space",
-    "command": "editor.action.triggerParameterHints"
-  },
+//  {
+//    "key": "ctrl+shift+space",
+//    "command": "editor.action.triggerParameterHints"
+//  },
 ]
