@@ -4,15 +4,15 @@ IS_MACOS=$(uname -s | grep -i 'darwin')
 
 cd_fzf() {
   local root="${1:-$PWD}"
+  local depth="${2:-99}"
+
   if [[ "$root" == '.' ]]; then
     root="$PWD"
   fi
 
   #local parent=$(dirname "$root")
   #local base=$(basename "$root")
-  local dir=''
-  cd "$root" && \
-    dir=$(cd "$root" && fd -t d -E "*/pkg/mod/*" . | fzf)
+  local dir=$(cd "$root" && fd -t d -d $depth -E "*/pkg/mod/*" . | fzf)
 
   [[ -n "$dir" ]] && cd "$root/$dir"
 }
@@ -34,19 +34,19 @@ edit_fzf() {
 
 
 cd_workspace() {
-  cd_fzf "$WORKSPACE"
+  cd_fzf "$WORKSPACE" "$@"
 }
 
 cd_notes() {
-  cd_fzf "$NOTES"
+  cd_fzf "$NOTES" "$@"
 }
 
 cd_documents() {
-  cd_fzf "$DOCUMENTS"
+  cd_fzf "$DOCUMENTS" "$@"
 }
 
 cd_dropbox() {
-  cd_fzf "$DROPBOX"
+  cd_fzf "$DROPBOX" "$@"
 }
 
 
