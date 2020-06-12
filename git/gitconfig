@@ -59,11 +59,12 @@
   prune = true
 [push]
   default = simple
+[pull]
+  # perform merge
+	rebase = false
 [branch]
 #  autosetuprebase = always
 
 [credential]
   helper = osxkeychain
-
-
 
