@@ -24,7 +24,7 @@
   staash = stash --include-untracked
   staaash = stash --all
   common-ancestor = merge-base
-  oldest-ancestor = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+  oldest-ancestor = "!zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -"
   last = log -1 HEAD
   logs = log --pretty=format:'%h%x09%ad%x09%an%x09%s' --date=short
   logsc = log --pretty=format:'%C(yellow)%h%x09%Cred%ad%x09%Cblue%an%Cgreen%d%x09%Creset%s' --date=short
@@ -38,19 +38,21 @@
   # show just files changed in revision
   log-commit-files-only = diff-tree --no-commit-id --name-only -r 
   history = log --follow
-  syncupstream = !git pull upstream master && git push origin master
-  submodule-update = !git submodule update --init --recursive
-  rollback-all = !git checkout -- $(git ls-files -m)
-  unstage-all = !git reset HEAD $(git ls-files -m)
+  # list most commonly changed files in repo
+  code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
+  syncupstream = "!git pull upstream master && git push origin master"
+  submodule-update = "!git submodule update --init --recursive"
+  rollback-all = "!git checkout -- $(git ls-files -m)"
+  unstage-all = "!git reset HEAD $(git ls-files -m)"
   commend = commit --amend --no-edit
   # a hack to reset commit date to now
   set-last-commit-now = commit --amend --date="$(date -R)"
   untracked-files = ls-files -o --exclude-standard
   ignored-files = ls-files --others -i --exclude-standard
   modified-files = ls-files -m
-  delete-merged = !git branch -D $(git branch --merged | grep -v '^*')
+  delete-merged = "!git branch -D $(git branch --merged | grep -v '^*')"
   # SVN habits
-  svn-stat = !git --no-pager diff --name-status remotes/git-svn
+  svn-stat = "!git --no-pager diff --name-status remotes/git-svn"
   svn-diff = diff remotes/git-svn
   fixup = commit --amend -C HEAD
   up = pull --rebase --autostash
