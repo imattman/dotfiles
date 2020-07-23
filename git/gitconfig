@@ -19,12 +19,14 @@
   dif = diff
   diffc = diff --cached
   co = checkout
+  co-date = "!f() { d=${1:-2020-01-01}; git checkout $(git rev-list -1 --before=$d HEAD); }; f"
   br = branch -a
   stsh = stash --keep-index
   staash = stash --include-untracked
   staaash = stash --all
   common-ancestor = merge-base
   oldest-ancestor = "!zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -"
+  first-commit = "rev-list --max-parents=0 HEAD"
   last = log -1 HEAD
   logs = log --pretty=format:'%h%x09%ad%x09%an%x09%s' --date=short
   logsc = log --pretty=format:'%C(yellow)%h%x09%Cred%ad%x09%Cblue%an%Cgreen%d%x09%Creset%s' --date=short
