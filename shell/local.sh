@@ -3,4 +3,7 @@
 # This file serves as home for local configuration not appropriate
 # or applicable for general source control
 
+export FOO_API_TOKEN="xxxxxxx"
+
+#export PATH="$PATH"
 
