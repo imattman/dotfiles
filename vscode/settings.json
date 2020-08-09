@@ -139,6 +139,10 @@
     "editor.insertSpaces": false,
   },
 
+  // Python settings
+  //"python.defaultInterpreterPath": "/usr/local/bin/python3",
+  "python.formatting.provider": "autopep8", // black
+
   "[python]" : {
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
