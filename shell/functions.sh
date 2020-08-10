@@ -146,9 +146,18 @@ py_activate_virtualenv() {
   elif [ -f ../../$venv/bin/activate ]; then . ../../$venv/bin/activate;
   elif [ -f ../../../$venv/bin/activate ]; then . ../../../$venv/bin/activate;
   fi
+
+  [[ -n "$ZSH_NAME" ]] && rehash
 }
 
 
+look_busy() {
+  if [[ -n "$(command -v genact)" ]] ; then
+    genact
+  else
+    echo "install 'genact'"
+  fi
+}
 
 
 

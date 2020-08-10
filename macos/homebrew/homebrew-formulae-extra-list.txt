@@ -13,6 +13,8 @@
 # allow terminal sharing. see: https://tmate.io/
 tmate
 
+# nonsense activity simulator
+genact
 
 
 
