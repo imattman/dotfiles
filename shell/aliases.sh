@@ -20,6 +20,8 @@ alias timestamp="date '+%Y%m%d-%H%M%S'"
 alias today="date '+%Y-%m-%d'"
 alias now="date '+%Y-%m-%d_%H:%M:%S'"
 
+alias busy='look_busy'
+
 # still need this emacs clean up?
 alias rm~="rm *~"
 alias rm\#="rm \#*"
