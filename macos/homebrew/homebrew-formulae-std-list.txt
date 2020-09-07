@@ -43,11 +43,13 @@ ripgrep
 # other tools
 bison
 cowsay
+diff-so-fancy
 direnv
 exiftool
 figlet
 fortune
 gdbm
+glow
 gnupg
 httpie
 jpeg
@@ -55,4 +57,5 @@ jq
 lorem
 ossp-uuid
 pandoc
+yq
 
