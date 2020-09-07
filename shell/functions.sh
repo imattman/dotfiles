@@ -2,6 +2,12 @@
 
 IS_MACOS=$(uname -s | grep -i 'darwin')
 
+if [[ $IS_MACOS ]]; then
+  XCLIP='pbcopy'
+else
+  XCLIP='xclip'
+fi
+
 cd_fzf() {
   local root="${1:-$PWD}"
   local depth="${2:-99}"
@@ -159,5 +165,32 @@ look_busy() {
   fi
 }
 
+
+
+alias gitlog-no-graph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
+_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+#_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % '"
+
+# git_co_preview - checkout git commit with previews
+git_co_preview() {
+  local commit
+  commit=$( gitlog-no-graph |
+    fzf --no-sort --reverse --tiebreak=index --no-multi \
+        --ansi --preview="$_viewGitLogLine" ) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}
+
+# git_preview - git commit browser with previews
+git_preview() {
+    gitlog-no-graph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine" \
+            --exit-0 \
+                --header "enter to view, ctrl-y to copy hash, esc to cancel" \
+                --bind "enter:execute:$_viewGitLogLine   | less -R" \
+                --bind "ctrl-y:execute:$_gitLogLineToHash | $XCLIP" \
+                --bind "esc:cancel"
+}
 
 
