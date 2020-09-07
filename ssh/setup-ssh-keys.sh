@@ -21,7 +21,7 @@ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "${ssh_email}"
 
 # copy over ssh config
 [[ -f ~/.ssh/config ]] && mv ~/.ssh/config ~/.ssh/config.prev
-cp "$base_dir"/config ~/.ssh/config
+cp "${base_dir}/config" ~/.ssh/config
 
 # add private key to agent
 #eval "$(ssh-agent -s)"
