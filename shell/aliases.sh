@@ -1,33 +1,31 @@
 # mattman  ~/.dotfiles/shell/aliases.sh
+#
+
 
 alias ls='ls -F'
-alias l='ls -l'
-alias ll='ls -l'
-alias lla='ls -la'
-alias llh='ls -lah'
+alias ll='ls -l -h'
+alias l='ll'
+alias lla='ll -a'
 
 # cd helpers that use fzf
+alias fcd='cd_fzf'
 alias cdf='cd_fzf'
 alias cdw='cd_workspace'
-alias cdwk='cd_workspace'
 alias cdn='cd_notes'
-alias cddrop='cd_dropbox'
 
 alias vimf='edit_fzf vim'
 alias mvimf='edit_fzf mvim'
 
-alias timestamp="date '+%Y%m%d-%H%M%S'"
 alias today="date '+%Y-%m-%d'"
-alias now="date '+%Y-%m-%d_%H:%M:%S'"
+alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
+alias tstamp='now'
+alias tstamp-num="date '+%Y%m%d.%H%M%S'"
 
 alias busy='look_busy'
 
-# still need this emacs clean up?
-alias rm~="rm *~"
-alias rm\#="rm \#*"
 
 # homebrew
-alias brewup="brew update && brew doctor && brew upgrade && brew cleanup && brew doctor"
+alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
 
 # tmux
 alias tmux-help="open 'http://tmuxcheatsheet.com/'"
