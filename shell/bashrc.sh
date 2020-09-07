@@ -27,10 +27,12 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 #
 # Shell refinements
 #
-[[ -f ~/.bash.aliases ]] && source ~/.bash.aliases
-[[ -f ~/.bash.functions ]] && source ~/.bash.functions
+[[ -f ~/.functions.sh ]] && source ~/.functions.sh
+[[ -f ~/.aliases.sh ]] && source ~/.aliases.sh
 
-export CDPATH=workspace:$GOPATH/src/github.com/imattman:$GOPATH/src/gitlab.com/imattman
+if [[ -z "$CDPATH" ]]; then
+  export CDPATH=workspace:$GOPATH/src/github.com/imattman:$GOPATH/src/gitlab.com/imattman
+fi
 
 
 

@@ -7,16 +7,14 @@ all:
 	[ -f ~/.zshenv ]            || ln -s $(PWD)/shell/zshenv.sh ~/.zshenv
 	[ -f ~/.zprofile ]          || ln -s $(PWD)/shell/zprofile.sh ~/.zprofile
 	[ -f ~/.zshrc ]             || ln -s $(PWD)/shell/zshrc.sh ~/.zshrc
-	[ -f ~/.zsh.aliases ]       || ln -s $(PWD)/shell/aliases.sh ~/.zsh.aliases
-	[ -f ~/.zsh.functions ]     || ln -s $(PWD)/shell/functions.sh ~/.zsh.functions
+	[ -f ~/.aliases.sh ]        || ln -s $(PWD)/shell/aliases.sh ~/.aliases.sh
+	[ -f ~/.functions.sh ]      || ln -s $(PWD)/shell/functions.sh ~/.functions.sh
 	[ -f ~/.zpreztorc ]         || ln -s $(PWD)/shell/zpreztorc.sh ~/.zpreztorc
 	[ -f ~/.zsh.local ]         || cp $(PWD)/shell/local.sh ~/.zsh.local
 
 	# bash
 	[ -f ~/.bash_profile ]      || ln -s $(PWD)/shell/bash_profile.sh ~/.bash_profile
 	[ -f ~/.bashrc ]            || ln -s $(PWD)/shell/bashrc.sh ~/.bashrc
-	[ -f ~/.bash.aliases ]      || ln -s $(PWD)/shell/aliases.sh ~/.bash.aliases
-	[ -f ~/.bash.functions ]    || ln -s $(PWD)/shell/functions.sh ~/.bash.functions
 	[ -f ~/.bash.prompt ]       || ln -s $(PWD)/shell/bash-prompt.sh ~/.bash.prompt
 	[ -f ~/.bash.local ]        || cp $(PWD)/shell/local.sh ~/.bash.local
 
@@ -44,16 +42,14 @@ clean:
 	[ -L ~/.zprofile ]          && unlink ~/.zprofile
 	[ -L ~/.zshrc ]             && unlink ~/.zshrc
 	[ -L ~/.zshenv ]            && unlink ~/.zshenv
-	[ -L ~/.zsh.aliases ]       && unlink ~/.zsh.aliases
-	[ -L ~/.zsh.functions ]     && unlink ~/.zsh.functions
+	[ -L ~/.aliases.sh ]        && unlink ~/.aliases.sh
+	[ -L ~/.functions.sh ]      && unlink ~/.functions.sh
 	[ -L ~/.zprezto ]           && unlink ~/.zprezto
 	[ -L ~/.zpreztorc ]         && unlink ~/.zpreztorc
 	[ -f ~/.zsh.local ]         && echo "leaving ~/.zsh.local in place"
 
 	[ -L ~/.bash_profile ]      && unlink ~/.bash_profile
 	[ -L ~/.bashrc ]            && unlink ~/.bashrc
-	[ -L ~/.bash.aliases ]      && unlink ~/.bash.aliases
-	[ -L ~/.bash.functions ]    && unlink ~/.bash.functions
 	[ -L ~/.bash.prompt ]       && unlink ~/.bash.prompt
 	[ -f ~/.bash.local ]        && echo "leaving ~/.bash.local in place"
 

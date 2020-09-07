@@ -29,7 +29,7 @@ unalias rm
 unalias cp
 unalias mv
 
-[[ -f ~/.zsh.aliases ]] && source ~/.zsh.aliases
-[[ -f ~/.zsh.functions ]] && source ~/.zsh.functions
+[[ -f ~/.aliases.sh ]] && source ~/.aliases.sh
+[[ -f ~/.functions.sh ]] && source ~/.functions.sh
 [[ -f ~/.zsh.local ]] && source ~/.zsh.local
 
