@@ -11,6 +11,7 @@
   excludesfile = ~/.gitignore_global
   # autocrlf values: true -> always convert, false -> never convert, input -> convert on commit
   autocrlf = input
+  editor = vim
 [alias]
   stat = status
   s = status -s -b
