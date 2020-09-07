@@ -15,7 +15,9 @@ if [[ -z "$ssh_email" ]]; then
 fi
 
 # generate new key pair
-ssh-keygen -t rsa -b 4096 -C "${ssh_email}"
+# use newer alternative to RSA
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "${ssh_email}"
+#ssh-keygen -t rsa -b 4096 -C "${ssh_email}"
 
 # copy over ssh config
 [[ -f ~/.ssh/config ]] && mv ~/.ssh/config ~/.ssh/config.prev
@@ -23,5 +25,5 @@ cp "$base_dir"/config ~/.ssh/config
 
 # add private key to agent
 #eval "$(ssh-agent -s)"
-ssh-add -K $(ls ~/.ssh/id_*rsa* | grep -v '.pub$')
+ssh-add -K $(ls ~/.ssh/id_* | grep -v '.pub$')
 

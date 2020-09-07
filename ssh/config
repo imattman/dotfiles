@@ -13,13 +13,13 @@
 #       git config user.emmail  "john.doe@example.com"
 #
 #   Double check .git/config:
-#                   [remote]
-#                       url = git@mystuff.github.com:...
+#       [remote]
+#         url = git@mystuff.github.com:...
 #
 #
 #   Register all keys under ~/.ssh
 #
-#       ssh-add -K $(ls ~/.ssh/id_*rsa* | grep -v '.pub$')
+#       ssh-add -K $(ls ~/.ssh/id_* | grep -v '.pub$')
 #       
 #       # list current
 #       ssh-add -l
@@ -27,7 +27,7 @@
 Host mystuff.github.com
   HostName github.com
   PreferredAuthentications publickey
-  IdentityFile ~/.ssh/id_rsa_me
+  IdentityFile ~/.ssh/id_ed25519_john
   IdentitiesOnly yes
 
 Host *
@@ -35,6 +35,5 @@ Host *
   # MacOS config option for Sierra and later
   IgnoreUnknown UseKeychain
   UseKeychain yes
-
-#  IdentityFile ~/.ssh/id_rsa
+#  IdentityFile ~/.ssh/id_ed25519
 
