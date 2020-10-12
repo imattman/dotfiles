@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # fail early
-set -eou pipefail
+set -ou pipefail
 
 if [[ -n "${DEBUG:=}" ]]; then
   set -x
@@ -13,6 +13,9 @@ BASE_DIR=$(cd "$THIS_DIR" && pwd)
 
 IS_MACOS=$(uname -s | grep -i 'darwin')
 MACOS_DIR="${BASE_DIR}/macos"
+
+IS_LINUX=$(uname -s | grep -i 'linux')
+LINUX_DIR="${BASE_DIR}/linux"
 
 WORKSPACE_DIR="${WORKSPACE:-${HOME}/workspace}"
 SCRIPTS_DIR="${SCRIPTS:-${HOME}/bin}"
