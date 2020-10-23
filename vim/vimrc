@@ -9,9 +9,19 @@ source ~/.vim/vimrc-colors.vim              " configure colors
 """"""""""""""""""""""
 "      Settings      "
 """"""""""""""""""""""
-"set guifont=Monaco:h16
-"set guifont=Menlo:h16
-set guifont=Inconsolata:h18
+if has('unix')
+  if has('macunix')
+    "set guifont=Monaco:h16
+    "set guifont=Menlo:h16
+    set guifont=Inconsolata:h18
+  else
+    "set guifont=Inconsolata\ 18
+    "set guifont=Hack\ NF\ 16
+    set guifont=FiraCode\ NF\ 16
+  endif
+elseif has('win32')
+  set guifont=Inconsolata:h18
+endif
 
 
 filetype off                    " Reset filetype detection first ...
