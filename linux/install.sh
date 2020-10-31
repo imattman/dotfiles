@@ -51,6 +51,7 @@ install_pkgs() {
     gnome-sushi \
     zsh \
     fish \
+    xclip \
     stow \
     tree \
     fzf \
@@ -59,6 +60,10 @@ install_pkgs() {
     neovim \
     neovim-qt \
     feh \
+    imv \
+    sxiv \
+    nnn \
+    vifm \
     htop \
     golang-go \
   
