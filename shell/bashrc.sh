@@ -35,42 +35,15 @@ if [[ -z "$CDPATH" ]]; then
 fi
 
 
+# system info with bling
+[[ -n "$(command -v neofetch)" ]] && neofetch
 
-if [[ -f ~/.bash.prompt ]] ; then 
-  source ~/.bash.prompt
+# delegate to starship for bash prompt config
+#   https://github.com/starship/starship
+if [[ -n "$(command -v starship)" ]]; then
+  eval "$(starship init bash)"
+  eval "$(starship completions bash)"
 else
-  #cd wrapper function
-  function cd {
-    builtin cd $@  # call builtin
-    __set_prompt   # execute function
-  }
-
-  function __set_prompt {
-    #saving pwd as a var
-    local pwd=$(pwd)
-    #  local gover=$(go version | cut -d' ' -f 3)
-
-    #setting colors as local vars
-    local B="\[\033[0;34m\]"
-    local G="\[\033[0;32m\]"
-    local Y="\[\033[0;33m\]"
-    local W="\[\033[0;37m\]"
-    local R="\[\033[0;31m\]"
-    local NONE="\[\033[0m\]"
-
-    if [[ "$pwd/" == "$HOME/" ]] ; then
-      PS1="[$B\u$G@$W\h $R Home $NONE]\n\$ "
-      #  elif [[ -n $GOPATH && "$pwd/" =~ "$GOPATH/" ]] ; then
-      #      PS1="[$B\u$G@$W\h $Y\w $R($gover$(__git_ps1 "|%s")) $NONE]\n\$ "
-    else
-      #      PS1="[$B\u$G@$W\h $Y\w $R($(__git_ps1 "$s"))$NONE] \n\$ "
-      PS1="[$B\u$G@$W\h $Y\w $R $NONE] \n\$ "
-    fi
-    export PS1
-  }
-
-  __set_prompt
+  echo "Unable to configure prompt; starship not found."
 fi
-
-
 
