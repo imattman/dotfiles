@@ -123,6 +123,9 @@ nnoremap Y y$                   " Act like D and C
 
 imap jj <ESC>                   " map 'jj' as easy alternate to ESC from insert mode
 
+" Use <F11> to toggle between 'paste' and 'nopaste'
+set pastetoggle=<F11>
+
 
 " next search
 nnoremap <C-L> :nohl<CR><C-L>   " Map redraw screen to also turn off highlighting
@@ -157,6 +160,15 @@ inoremap <S-Tab> <C-V><Tab>
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
+" Easy move of visual selection
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" blow away selected line w/out clobbering default register
+" then paste in what is currently in default register
+vnoremap <leader>p "_dP
+
+
 " Split
 noremap <leader>h :<C-u>split<CR>
 noremap <leader>v :<C-u>vsplit<CR>
@@ -167,8 +179,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+nnoremap <Leader>+ :vertical resize +5<CR>
+nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <Leader>rp :resize 100<CR>
+
+
 
 
 " fzf mappings
