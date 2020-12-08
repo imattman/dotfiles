@@ -51,7 +51,7 @@ install_pkgs() {
     gnome-sushi \
     zsh \
     fish \
-    xclip \
+    xsel \
     stow \
     tree \
     fzf \
