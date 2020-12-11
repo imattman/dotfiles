@@ -47,8 +47,6 @@ install_pkgs() {
     grub2-common \
     grub-customizer \
     ansible \
-    gnome-tweaks \
-    gnome-sushi \
     zsh \
     fish \
     xsel \
