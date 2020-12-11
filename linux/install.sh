@@ -64,6 +64,7 @@ install_pkgs() {
     vifm \
     htop \
     golang-go \
+    sm
   
   #  alacritty \
 }
