@@ -38,7 +38,7 @@ alias dmenv='eval $(docker-machine env)'
 
 # python
 alias venv='python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip && rehash'
-alias venv-site='python3 -m venv venv --system-site-packages && source venv/bin/activate && python3 -m pip install --upgrade pip && rehash'
+alias venv-site='python3 -m venv venv --system-site-packages && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheels && rehash'
 alias py_venv=venv
 alias py_venv_site=venv-site
 alias activate='py_activate_virtualenv'
