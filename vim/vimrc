@@ -130,8 +130,8 @@ set pastetoggle=<F11>
 " next search
 nnoremap <C-L> :nohl<CR><C-L>   " Map redraw screen to also turn off highlighting
 
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+" Shortcut to rapidly toggle `set list` and deselect search highlighting
+nmap <leader>l :nohl<CR>:set list!<CR>
 
 
 " Jump to next error with Ctrl-n and previous error with Ctrl-p. Close the
