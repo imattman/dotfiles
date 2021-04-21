@@ -12,7 +12,7 @@
 #       git config user.name  "John Doe"
 #       git config user.emmail  "john.doe@example.com"
 #
-#   Double check .git/config:
+#   Verify in .git/config:
 #       [remote]
 #         url = git@mystuff.github.com:...
 #
@@ -26,14 +26,22 @@
 #
 Host mystuff.github.com
   HostName github.com
-  PreferredAuthentications publickey
-  IdentityFile ~/.ssh/id_ed25519_john
+  User git
+  #IgnoreUnknown AddKeysToAgent,UseKeychain
+  #AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519_somebody
+  UseKeychain yes
+  UserKnownHostsFile ~/.ssh/known_hosts_github
   IdentitiesOnly yes
+  #PreferredAuthentications publickey
 
 Host *
-  AddKeysToAgent yes
+  ForwardAgent yes
   # MacOS config option for Sierra and later
-  IgnoreUnknown UseKeychain
+  # note: spaces not allowed betweeen ','
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
   UseKeychain yes
-#  IdentityFile ~/.ssh/id_ed25519
+  IdentityFile ~/.ssh/id_ed25519
+
 
