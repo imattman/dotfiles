@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # fail early
 set -ou pipefail
@@ -10,6 +10,7 @@ fi
 THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
+
 
 IS_MACOS=$(uname -s | grep -i 'darwin')
 MACOS_DIR="${BASE_DIR}/macos"
@@ -25,11 +26,8 @@ PREZTO_DIR="${HOME}/.zprezto"
 PREZTO_PROMPT_SRC="${BASE_DIR}/shell/prompt_mattman_setup.prezto"
 PREZTO_PROMPT_DEST="${PREZTO_DIR}/modules/prompt/functions/prompt_mattman_setup"
 
-FONT_REPO='https://github.com/powerline/fonts'
-FONT_DIR="${WORKSPACE_DIR}/fonts"
 
 export CMD_PREFIX=''  # set to 'echo' when dry-run
-
 
 usage() {
   cat<<EOU
@@ -63,17 +61,6 @@ create_dirs() {
   fi
 }
 
-setup_fonts() {
-  if [[ ! -d "$FONT_DIR" ]] ; then
-    echo "Downloading fonts..."
-    $CMD_PREFIX git clone "$FONT_REPO" "$FONT_DIR" && \
-      ($CMD_PREFIX cd "$FONT_DIR" && \
-      echo "Installing fonts..." && \
-      $CMD_PREFIX ./install.sh)
-  else
-    echo "Fonts directory already exists: ${FONT_DIR}"
-  fi
-}
 
 setup_prezto() {
   if [[ ! -e "$PREZTO_DIR" ]] ; then

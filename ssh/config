@@ -28,7 +28,7 @@ Host mystuff.github.com
   HostName github.com
   User git
   #IgnoreUnknown AddKeysToAgent,UseKeychain
-  #AddKeysToAgent yes
+  AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ed25519_somebody
   UseKeychain yes
   UserKnownHostsFile ~/.ssh/known_hosts_github
@@ -39,7 +39,7 @@ Host *
   ForwardAgent yes
   # MacOS config option for Sierra and later
   # note: spaces not allowed betweeen ','
-  IgnoreUnknown AddKeysToAgent,UseKeychain
+  #IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
