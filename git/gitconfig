@@ -49,7 +49,7 @@
   unstage-all = "!git reset HEAD $(git ls-files -m)"
   commend = commit --amend --no-edit
   # a hack to reset commit date to now
-  set-last-commit-now = commit --amend --date="$(date -R)"
+  set-last-commit-now = "!git commit --amend --no-edit --date=\"$(date -R)\""
   untracked-files = ls-files -o --exclude-standard
   ignored-files = ls-files --others -i --exclude-standard
   modified-files = ls-files -m
