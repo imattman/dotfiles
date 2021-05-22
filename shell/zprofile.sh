@@ -15,7 +15,10 @@ export DOCUMENTS="$HOME/Documents"
 export DROPBOX="$HOME/Dropbox"
 
 export GOPATH="$WORKSPACE/go"
-which go 2>&1 > /dev/null && export GOROOT=$(go env GOROOT)
+if [[ -n "$(command -v go)" ]]; then
+  export GOROOT=$(go env GOROOT)
+  #export GOBIN="$HOME/bin"
+fi
 
 # enable history in iEx
 export ERL_AFLAGS="-kernel shell_history enabled"
