@@ -40,10 +40,10 @@ function prompt_mattman_precmd {
     python-info
   fi
 
-  # Get Ruby version information.
-  if (( $+functions[ruby-info] )); then
-    ruby-info
-  fi
+#  # Get Ruby version information.
+#  if (( $+functions[ruby-info] )); then
+#    ruby-info
+#  fi
 }
 
 function prompt_mattman_setup {
@@ -73,9 +73,8 @@ function prompt_mattman_setup {
   zstyle ':prezto:module:git:info:keys' format 'prompt' '(%b%D)'
 
   # Define prompts
-  PROMPT='
-${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}${_prompt_mattman_pwd}%f
-%(?:${editor_info[keymap]}:%F{red}✖%f) '
+  PROMPT='${SSH_TTY:+"%F{red}%n%f@%F{yellow}%m%f "}%F{cyan}${_prompt_mattman_pwd}%f
+%(?:${editor_info[keymap]}:%F{red}✘%f) '
 
   RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{green}V%f%b"} $python_info[virtualenv]${git_info:+${(e)git_info[prompt]}}'
   #RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{green}V%f%b"} $python_info[virtualenv]$ruby_info[version]${git_info:+${(e)git_info[prompt]}}'

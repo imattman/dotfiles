@@ -1,10 +1,10 @@
 // Place your key bindings in this file to override the defaults
 [
-  {
-    "key": "cmd+/",
-    "command": "macros.commentDown",
-    "when": "editorTextFocus && !editorReadonly"
-  },
+//  {
+//    "key": "cmd+/",
+//    "command": "macros.commentDown",
+//    "when": "editorTextFocus && !editorReadonly"
+//  },
 //  {
 //    "key": "ctrl+shift+space",
 //    "command": "editor.action.triggerParameterHints"
