@@ -125,7 +125,7 @@
   "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
-  "go.goroot": "/usr/local/Cellar/go/1.16.3/libexec",
+  "go.goroot": "/usr/local/Cellar/go/1.16.4/libexec",
 
   "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
