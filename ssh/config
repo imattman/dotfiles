@@ -24,24 +24,24 @@
 #       # list current
 #       ssh-add -l
 #
-Host mystuff.github.com
-  HostName github.com
-  User git
-  #IgnoreUnknown AddKeysToAgent,UseKeychain
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_ed25519_somebody
-  UseKeychain yes
-  UserKnownHostsFile ~/.ssh/known_hosts_github
-  IdentitiesOnly yes
-  #PreferredAuthentications publickey
+
+# Host mystuff.github.com
+#   IgnoreUnknown UseKeychain,AddKeysToAgent
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/id_ed25519_somebody
+#   UseKeychain yes
+#   AddKeysToAgent yes
+#   UserKnownHostsFile ~/.ssh/known_hosts_github
+#   IdentitiesOnly yes
+#   #PreferredAuthentications publickey
 
 Host *
-  ForwardAgent yes
-  # MacOS config option for Sierra and later
   # note: spaces not allowed betweeen ','
-  #IgnoreUnknown AddKeysToAgent,UseKeychain
-  AddKeysToAgent yes
+  IgnoreUnknown UseKeychain,AddKeysToAgent
   UseKeychain yes
+  AddKeysToAgent yes
+  ForwardAgent yes
   IdentityFile ~/.ssh/id_ed25519
 
 
