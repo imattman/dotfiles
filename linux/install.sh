@@ -62,6 +62,8 @@ install_pkgs() {
     nnn \
     vifm \
     htop \
+    python3 \
+    python3-pip \
     golang-go \
     sm
   
