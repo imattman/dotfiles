@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
@@ -26,8 +26,7 @@ update_dist() {
     echo "Upgrading all dist packages..."
 
     sudo apt update && \
-    sudo apt full-upgrade -yy
-  # sudo apt dist-upgrade -yy
+    sudo apt full-upgrade -y
 }
 
 
@@ -42,7 +41,7 @@ install_pkgs() {
   echo "Installing packages..."
 
   sudo apt update && \
-    sudo apt install -yy \
+    sudo apt install -y \
     os-prober \
     grub2-common \
     grub-customizer \

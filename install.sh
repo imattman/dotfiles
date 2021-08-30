@@ -11,15 +11,11 @@ THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
 
-
-IS_MACOS=$(uname -s | grep -i 'darwin')
-MACOS_DIR="${BASE_DIR}/macos"
-
-IS_LINUX=$(uname -s | grep -i 'linux')
-LINUX_DIR="${BASE_DIR}/linux"
+PLATFORM="$(uname -s | tr A-Z a-z)"
 
 WORKSPACE_DIR="${WORKSPACE:-${HOME}/workspace}"
 SCRIPTS_DIR="${SCRIPTS:-${HOME}/bin}"
+XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}"
 
 PREZTO_REPO='https://github.com/sorin-ionescu/prezto'
 PREZTO_DIR="${HOME}/.zprezto"
@@ -32,11 +28,12 @@ export CMD_PREFIX=''  # set to 'echo' when dry-run
 usage() {
   cat<<EOU
   Usage: $THIS_SCRIPT [OPTIONS]
-  
+
   A basic installer for my dotfiles.
-  
+
   OPTIONS:
      -h:  Show this message
+     -o:  Perform OS-specific set up
      -d:  Set up additional directories and symlinks (see Makefile)
      -p:  Set up Prezto for zsh
      -f:  Set up additional fonts
@@ -47,7 +44,28 @@ usage() {
 EOU
 }
 
+
+setup_os() {
+  case "$PLATFORM" in
+    darwin)
+      $CMD_PREFIX $THIS_DIR/darwin/install.sh
+      ;;
+    linux)
+      $CMD_PREFIX $THIS_DIR/linux/install.sh
+      ;;
+    *)
+      echo "Unrecognized platform: '$PLATFORM'"
+      exit 1
+  esac
+}
+
 create_dirs() {
+  if [[ ! -d "$XDG_CONFIG_DIR" ]] ; then
+    $CMD_PREFIX mkdir -p "$XDG_CONFIG_DIR"
+  else
+    echo "$XDG_CONFIG_DIR already exists"
+  fi
+
   if [[ ! -d "$SCRIPTS_DIR" ]] ; then
     $CMD_PREFIX mkdir -p "$SCRIPTS_DIR"
   else
@@ -60,7 +78,6 @@ create_dirs() {
     echo "$WORKSPACE_DIR already exists"
   fi
 }
-
 
 setup_prezto() {
   if [[ ! -e "$PREZTO_DIR" ]] ; then
@@ -76,26 +93,23 @@ setup_prezto() {
   fi
 }
 
-
-setup_once() {
-  #"${BASE_DIR}"/fonts/install.sh
-
-  if [[ -n "$IS_MACOS" ]] ; then
-   $CMD_PREFIX "${MACOS_DIR}"/run-once.sh
-   $CMD_PREFIX "${MACOS_DIR}"/apps-to-install.sh
-  fi
+setup_fonts() {
+  $CMD_PREFIX $PLATFORM/install-fonts.sh
 }
 
 
+do_setup_os=''
 do_create_dirs=''
 do_setup_fonts=''
 do_setup_prezto=''
-do_setup_once=''
 opt_set=''
 
-while getopts 'hnafdpx' OPTION
+while getopts 'hnaofdpx' OPTION
 do
   case $OPTION in
+    o)  do_setup_os=1
+        opt_set=1
+        ;;
     f)  do_setup_fonts=1
         opt_set=1
         ;;
@@ -113,13 +127,13 @@ do
     a)  do_create_dirs=1
         do_setup_fonts=1
         do_setup_prezto=1
-        do_setup_once=1
+        do_setup_os=1
         opt_set=1
         ;;
-    h)  usage 
+    h)  usage
         exit 1
         ;;
-    ?)  usage 
+    ?)  usage
         exit 1
         ;;
   esac
@@ -129,17 +143,19 @@ shift $((OPTIND - 1))
 
 # use defults if no options specified
 if [[ -z "$opt_set" ]]; then
-  # default options include everything but setup_once
   do_create_dirs=1
+  do_setup_os=1
   do_setup_fonts=1
   do_setup_prezto=1
-
-  do_setup_once=''
 fi
 
 
 echo "Working from $BASE_DIR"
 cd "$BASE_DIR"
+
+if [[ -n "$do_setup_os" ]]; then
+  setup_os
+fi
 
 if [[ -n "$do_create_dirs" ]]; then
   create_dirs
@@ -159,8 +175,5 @@ if [[ -n "$do_setup_fonts" ]]; then
   setup_fonts
 fi
 
-if [[ -n "$do_setup_once" ]]; then
-  setup_once
-fi
 
 

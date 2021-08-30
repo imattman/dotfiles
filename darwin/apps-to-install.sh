@@ -1,30 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-set -e
+# fail early
+set -eou pipefail
 
-# OSX
-OPEN='open'
 
 APP_URLS="
+https://brew.sh
 https://www.google.com/chrome/
-https://www.dropbox.com/
 
 https://www.iterm2.com/
 https://code.visualstudio.com/
 https://www.sublimetext.com/
 
 https://www.alfredapp.com/
-
 https://1password.com/downloads/
-https://www.omnigroup.com/omnifocus
-
-https://brew.sh
-https://sdkman.io/
 "
 
 while read -r url; do
   if [[ -n "$url" ]]; then
-    $OPEN "$url"
+    open "$url"
   fi
 done <<< "$APP_URLS"
 
