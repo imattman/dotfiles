@@ -4,6 +4,8 @@ THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
 
+WIFI_POWER_CONF='/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf'
+
 
 echo "Installing TLP..."
 sudo apt install -y  tlp
@@ -30,4 +32,16 @@ else
 fi
 
 sudo auto-cpufreq --install
+
+
+# see: https://unix.stackexchange.com/questions/269661/how-to-turn-off-wireless-power-management-permanently
+echo "Updating $WIFI_POWER_CONF ..."
+echo
+echo "  [connection]"
+echo "  wifi.powersave = 2"
+
+sudo perl -i -pe 's/(wifi.powersave\s*=)\s*\d+/\1 2/' $WIFI_POWER_CONF
+
+echo
+echo "reboot required."
 
