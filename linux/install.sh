@@ -16,17 +16,32 @@ usage() {
 
   OPTIONS:
      -h:  Show this message
-     -i:  Perform intial upgrade of dist packages and reboot
+     -i:  Perform intial upgrade of all packages and reboot
+     -g:  Install GUI packages (image viewers, etc.)
 
 EOU
 }
 
 
-update_dist() {
-    echo "Upgrading all dist packages..."
+update_full() {
+    echo "Upgrading all packages..."
 
     sudo apt update && \
     sudo apt full-upgrade -y
+}
+
+
+install_gui_pkgs() {
+  echo "Installing GUI packages..."
+
+  sudo apt install -y \
+    xsel \
+    ulauncher \
+    neovim-qt \
+    feh \
+    imv \
+    sxiv \
+    sm
 }
 
 
@@ -37,7 +52,6 @@ install_pkgs() {
   # see: https://github.com/golang/go/wiki/Ubuntu
   sudo add-apt-repository ppa:longsleep/golang-backports
   
-  
   echo "Installing packages..."
 
   sudo apt update && \
@@ -45,28 +59,22 @@ install_pkgs() {
     os-prober \
     grub2-common \
     grub-customizer \
+    make \
     ansible \
     zsh \
     fish \
     python3 \
     python3-pip \
-    xsel \
     stow \
     tree \
-    ulauncher \
     fzf \
     ripgrep \
     htop \
     vim-nox \
     neovim \
-    neovim-qt \
-    feh \
-    imv \
-    sxiv \
     nnn \
     vifm \
-    golang-go \
-    sm
+    golang-go
   
   #  alacritty \
 }
@@ -74,7 +82,7 @@ install_pkgs() {
 
 case "$1" in
   -i|init*) 
-    update_dist
+    update_full
     echo 
     echo "Rebooting..."
     sudo reboot
@@ -82,6 +90,9 @@ case "$1" in
   -h)
     usage
     exit 1
+    ;;
+  -g)
+    install_gui_pkgs
     ;;
   *)
     install_pkgs
