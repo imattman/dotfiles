@@ -48,12 +48,16 @@ install_pkgs() {
     ansible \
     zsh \
     fish \
+    python3 \
+    python3-pip \
     xsel \
     stow \
     tree \
+    ulauncher \
     fzf \
     ripgrep \
-    vim \
+    htop \
+    vim-nox \
     neovim \
     neovim-qt \
     feh \
@@ -61,9 +65,6 @@ install_pkgs() {
     sxiv \
     nnn \
     vifm \
-    htop \
-    python3 \
-    python3-pip \
     golang-go \
     sm
   
