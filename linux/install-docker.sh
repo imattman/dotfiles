@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
