@@ -16,6 +16,8 @@ PLATFORM="$(uname -s | tr A-Z a-z)"
 WORKSPACE_DIR="${WORKSPACE:-${HOME}/workspace}"
 SCRIPTS_DIR="${SCRIPTS:-${HOME}/bin}"
 XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}"
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+XDG_LOCAL_BIN="${XDG_LOCAL_BIN:-$HOME/.local/bin}"
 
 PREZTO_REPO='https://github.com/sorin-ionescu/prezto'
 PREZTO_DIR="${HOME}/.zprezto"
@@ -60,23 +62,14 @@ setup_os() {
 }
 
 create_dirs() {
-  if [[ ! -d "$XDG_CONFIG_DIR" ]] ; then
-    $CMD_PREFIX mkdir -p "$XDG_CONFIG_DIR"
-  else
-    echo "$XDG_CONFIG_DIR already exists"
-  fi
-
-  if [[ ! -d "$SCRIPTS_DIR" ]] ; then
-    $CMD_PREFIX mkdir -p "$SCRIPTS_DIR"
-  else
-    echo "$SCRIPTS_DIR already exists"
-  fi
-
-  if [[ ! -d "$WORKSPACE_DIR" ]] ; then
-    $CMD_PREFIX mkdir -p "$WORKSPACE_DIR"
-  else
-    echo "$WORKSPACE_DIR already exists"
-  fi
+  for dir in "$XDG_CONFIG_DIR" "$XDG_DATA_HOME" "$XDG_LOCAL_BIN" \
+    "$SCRIPTS_DIR" "$WORKSPACE_DIR" ; do
+    if [[ ! -d "$dir" ]] ; then
+      $CMD_PREFIX mkdir -p "$dir"
+    else
+      echo "$dir already exists"
+    fi
+  done
 }
 
 setup_prezto() {
