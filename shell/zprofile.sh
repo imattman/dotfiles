@@ -14,10 +14,10 @@ export NOTES="$HOME/Notes"
 export DOCUMENTS="$HOME/Documents"
 export DROPBOX="$HOME/Dropbox"
 
-export GOPATH="$WORKSPACE/go"
+export GOPATH="$XDG_DATA_HOME/go"
 if [[ -n "$(command -v go)" ]]; then
   export GOROOT=$(go env GOROOT)
-  #export GOBIN="$HOME/bin"
+  #export GOBIN="$XDG_LOCAL_BIN"
 fi
 
 # enable history in iEx
@@ -26,6 +26,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 path=(
   $HOME/bin
+  $XDG_LOCAL_BIN
   $path
   $GOPATH/bin
 )
