@@ -11,7 +11,8 @@ sudo apt install -y \
   dconf-editor \
   gnome-tweaks \
   gnome-sushi \
-  gnome-user-share 
+  gnome-user-share \
+  uuid-runtime
 
 
 
