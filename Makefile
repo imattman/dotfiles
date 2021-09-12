@@ -1,7 +1,7 @@
 # Keep it simple for now...
 all:
 	# XDG_CONFIG_HOME
-	[ -d ~/.config ]            || ln -s $(PWD)/config ~/.config
+	[ -d ~/.config ]            && stow -v -t ~/.config config
 
 	# zsh
 	[ -f ~/.zshenv ]            || ln -s $(PWD)/shell/zshenv.sh ~/.zshenv
@@ -37,7 +37,7 @@ all:
 
 clean:
 	# -L tests symbolic links
-	[ -L ~/.config ]            && unlink ~/.config
+	[ -d ~/.config ]            && stow -v -D -t ~/.config config
 
 	[ -L ~/.zprofile ]          && unlink ~/.zprofile
 	[ -L ~/.zshrc ]             && unlink ~/.zshrc

@@ -4,7 +4,7 @@ prezto*/
 dotbot/
 
 vim/bundle/
-config/
+#config/
 
 .DS_Store
 
