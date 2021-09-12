@@ -1,16 +1,20 @@
 #!/bin/bash
 
+set -eou pipefail
+
 THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
-CLONE_DIR="${1:-$WORKSPACE}"
-
-cd "$CLONE_DIR"
-git clone https://github.com/Mayccoll/Gogh.git gogh-terminal-themes
-cd gogh-terminal-themes/themes
+WORKSPACE="${1:-$WORKSPACE}"
+CLONE_DIR="gogh-terminal-themes"
 
 
-if [[ $(lsb_release -as | grep -i ubuntu) ]]; then
+cd "$WORKSPACE"
+git clone https://github.com/Mayccoll/Gogh.git "$CLONE_DIR"
+cd "${CLONE_DIR}/themes"
+
+
+if [[ $(grep -i ubuntu /etc/os-release) ]]; then
   echo "Detected Ubuntu based system.  Set the following before running install scripts:"
   echo
   echo "  export TERMINAL=gnome-terminal"
@@ -18,6 +22,9 @@ if [[ $(lsb_release -as | grep -i ubuntu) ]]; then
 fi
 
 echo "Run desired install scripts:"
+
+echo
+echo "  cd $WORKSPACE/$CLONE_DIR/themes"
 echo
 echo "  ./dracula.sh"
 echo "  ./tomorrow-night-bright.sh"
