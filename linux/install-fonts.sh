@@ -8,6 +8,9 @@ BASE_DIR=$(cd "$THIS_DIR" && pwd)
 sudo apt install -y \
   fonts-firacode \
   fonts-hack \
-  fonts-inconsolata
+  fonts-inconsolata \
+  fonts-crosextra-carlito \
+  fonts-crosextra-caladea \
+  ttf-mscorefonts-installer
 
 
