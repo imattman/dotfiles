@@ -18,6 +18,7 @@ fi
 CASKS=""
 
 PACKAGES="
+tmux
 git
 stow
 golang

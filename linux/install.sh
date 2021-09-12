@@ -59,6 +59,7 @@ install_pkgs() {
     os-prober \
     grub2-common \
     grub-customizer \
+    tmux \
     make \
     ansible \
     zsh \
