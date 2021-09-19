@@ -12,7 +12,8 @@ export SCRIPTS="$HOME/bin"
 export WORKSPACE="$HOME/workspace"
 export NOTES="$HOME/Notes"
 export DOCUMENTS="$HOME/Documents"
-export DROPBOX="$HOME/Dropbox"
+export PCLOUD="$HOME/pCloud Drive"
+
 
 export GOPATH="$XDG_DATA_HOME/go"
 if [[ -n "$(command -v go)" ]]; then
@@ -27,6 +28,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 path=(
   $HOME/bin
   $XDG_LOCAL_BIN
+  /opt/homebrew/bin
   $path
   $GOPATH/bin
 )

@@ -84,7 +84,7 @@
   //
   // Vim settings
   //
-  "vim.leader": ",",
+  "vim.leader": " ",
   "vim.incsearch": true,
   "vim.hlsearch": true,
   "vim.easymotion": false,
@@ -125,7 +125,8 @@
   "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
-  "go.goroot": "/usr/local/Cellar/go/1.17.1/libexec",
+  //"go.goroot": "/usr/local/Cellar/go/1.17.1/libexec",
+  "go.inferGopath": true,
 
   "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
