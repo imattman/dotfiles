@@ -23,8 +23,7 @@ install_pkgs() {
 
   echo
   echo "Installing packages from file $pkg_file"
-  sed -e 's/\s*#.*//' -e '/^$/d' < "$pkg_file" | \
-  while read pkg; do
+  for pkg in $(sed -e 's/\s*#.*//' -e '/^$/d' < "$pkg_file"); do
     if [[ ! $(brew list | grep $pkg) ]] ; then
       echo "Installing: $pkg"
       brew install $pkg
@@ -38,8 +37,7 @@ install_pkgs() {
 # Check for Homebrew
 if [[ ! "$(which brew)" ]] ; then
   echo "Installing Homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew doctor
 else
   echo "Homebrew already installed"
