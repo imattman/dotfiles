@@ -1,0 +1,10 @@
+# python dev tools
+autopep8
+#black
+pylint
+
+# markdown viewer
+mdv3
+# markdown presentation
+lookatme
+
