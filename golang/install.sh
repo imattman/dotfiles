@@ -41,9 +41,9 @@ install_from_file() {
   fi
 
   sed -e 's/\s*#.*//' -e '/^$/d' < "$pkg_file" | \
-  while read pkg; do
-    echo $CMD_PREFIX go get -v -u $pkg
-    $CMD_PREFIX go get -v -u $pkg
+  while read -r pkg; do
+    echo $CMD_PREFIX go install -v -u $pkg
+    $CMD_PREFIX go install -v -u $pkg
     echo
   done
 }
