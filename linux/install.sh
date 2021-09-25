@@ -17,6 +17,7 @@ usage() {
   OPTIONS:
      -h:  Show this message
      -i:  Perform intial upgrade of all packages and reboot
+     -p:  Add apt PPAs
      -g:  Install GUI packages (image viewers, etc.)
 
 EOU
@@ -30,6 +31,26 @@ update_full() {
     sudo apt full-upgrade -y
 }
 
+
+add_ppas() {
+  echo "Adding PPAs..."
+
+  local PPAS="
+  # current python
+  ppa:deadsnakes/ppa
+
+  # current golang
+  # see: https://github.com/golang/go/wiki/Ubuntu
+  ppa:longsleep/golang-backports
+  "
+
+
+  echo "$PPAS" | sed -e 's/\s*#.*//' -e '/^\s*$/d' | \
+  while read -r ppa; do
+    sudo add-apt-repository -y "$ppa"
+  done
+  
+}
 
 install_gui_pkgs() {
   echo "Installing GUI packages..."
@@ -46,12 +67,6 @@ install_gui_pkgs() {
 
 
 install_pkgs() {
-  echo "Adding PPAs..."
-
-  # use PPA to get current version of Go
-  # see: https://github.com/golang/go/wiki/Ubuntu
-  sudo add-apt-repository ppa:longsleep/golang-backports
-  
   echo "Installing packages..."
 
   sudo apt update && \
@@ -92,6 +107,9 @@ case "$1" in
   -h)
     usage
     exit 1
+    ;;
+  -p)
+    add_ppas
     ;;
   -g)
     install_gui_pkgs
