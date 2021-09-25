@@ -3,17 +3,20 @@
   //  demos
   // "window.zoomLevel": 1,
   // "workbench.colorTheme": "Visual Studio Light",
+  // "workbench.colorTheme": "Visual Studio Light",
 
-  "window.zoomLevel": 0,
+  // "window.zoomLevel": 0,
   // no colorTheme defaults to "Dark+"
 
-  "workbench.colorTheme": "Tomorrow Night Bright",
+  // "workbench.colorTheme": "Darcula Theme from IntelliJ",
+  // "workbench.colorTheme": "Darcula Theme from IntelliJ",
+  // "workbench.colorTheme": "One Monokai",
+  // "workbench.colorTheme": "Solarized Dark+",
+  // "workbench.colorTheme": "One Dark Pro",
+  // "workbench.colorTheme": "Tomorrow Night Bright",
   // "workbench.colorTheme": "Nord",
-  // "workbench.colorTheme": "Super One Dark",
   // "workbench.colorTheme": "Night Owl",
   // "workbench.colorTheme": "Dracula At Night",
-  // "workbench.colorTheme": "Community Material Theme High Contrast",
-  // "workbench.colorTheme": "Material Theme Ocean High Contrast",
   // "workbench.colorTheme": "Cobalt2",
 
   "workbench.iconTheme": "vscode-icons",
@@ -49,7 +52,7 @@
 
   // default to JSON view for configuration
   "workbench.settings.editor": "json",
-  "workbench.settings.useSplitJSON": true,
+  "workbench.settings.useSplitJSON": false,
   // "workbench.settings.openDefaultSettings": false,
 
   // opening a file via command pallete actually opens it
@@ -122,7 +125,7 @@
   // Go settings
   //
   // Specify GOPATH here to override the one that is set as environment variable. The inferred GOPATH from workspace root overrides this, if go.inferGopath is set to true.
-  "go.gopath": "/Users/mattman/workspace/go",
+  // "go.gopath": "/Users/mattman/workspace/go",
 
   // Specifies the GOROOT to use when no environment variable is set.
   //"go.goroot": "/usr/local/Cellar/go/1.17.1/libexec",
