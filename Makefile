@@ -32,8 +32,8 @@ all:
 	# tmux
 	[ -f ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
 
-  # bin scripts
-	[ -d ~/bin ]                && stow -v -t ~/bin bin
+  # scripts
+	[ -d ~/.local/bin ]         && stow -v -t ~/.local/bin scripts
 
 clean:
 	# -L tests symbolic links
@@ -63,6 +63,6 @@ clean:
 
 	[ -L ~/.tmux.conf ]         && unlink ~/.tmux.conf
 
-	[ -d ~/bin ]                && stow -v -D -t ~/bin bin
+	[ -d ~/.local/bin ]         && stow -v -D -t ~/.local/bin scripts
 
 .PHONY: all
