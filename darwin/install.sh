@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # fail early
 set -eou pipefail
@@ -18,6 +18,7 @@ fi
 CASKS=""
 
 PACKAGES="
+coreutils
 tmux
 git
 stow
