@@ -16,9 +16,9 @@ if has('unix')
     "set guifont=Inconsolata:h18
     set guifont=InconsolataNerdFontCompleteM-Regular:h18
   else
-    "set guifont=Inconsolata\ 18
+    set guifont=Inconsolata\ 18
     "set guifont=Hack\ NF\ 16
-    set guifont=FiraCode\ NF\ 16
+    "set guifont=FiraCode\ NF\ 16
   endif
 elseif has('win32')
   set guifont=Inconsolata:h18
