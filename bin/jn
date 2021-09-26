@@ -1,0 +1,79 @@
+#!/usr/bin/bash
+
+# fail early
+set -euo pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+JOURNAL_DIR="${NOTES:-$HOME/Notes}/journal/daily"
+DATE_CMD=date
+
+precheck() {
+  if [[ $(uname -s | grep -i darwin) ]]; then
+    DATE_CMD=gdate
+
+    if [[ ! $(command -v gdate) ]]; then
+      echo "'gdate' not found. Install gnu coreutils"
+      echo "  brew install coreutils"
+      exit 1
+    fi
+  fi
+
+  if [[ ! -d "$JOURNAL_DIR" ]]; then
+    echo "Journal directory not found: $JOURNAL_DIR"
+    exit 1
+  fi
+
+  return 0
+}
+
+
+isodate() {
+  local day="$1"
+  local args=''
+
+#  case $day in
+#    today|yesterday)
+#      args="-d $day"
+#      ;;
+#  esac
+
+  $DATE_CMD -d $day +%Y-%m-%d
+}
+
+header() {
+  local day="$1"
+  local weekday="$(date -d $day +%A)"
+  printf "# $day $weekday\n\n\n"
+}
+
+prepare() {
+  local isodate=$(isodate $1)
+  local fname="${isodate}.md"
+  local jnfile="$JOURNAL_DIR/$fname"
+
+  if [[ ! -f "$jnfile" ]]; then
+    header $isodate >> "$jnfile"
+  else
+    touch "$jnfile"
+  fi
+
+  echo -n "$jnfile"
+}
+
+
+precheck
+days="${@:-today}"
+files=""
+
+for day in $days; do
+  jnfile=$(prepare $day)
+  files="${files} $jnfile"
+  echo "$jnfile"
+done
+
+$EDITOR $files
+
+
