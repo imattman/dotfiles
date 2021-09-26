@@ -3112,6 +3112,8 @@
 	<true/>
 	<key>OpenNoWindowsAtStartup</key>
 	<false/>
+	<key>PromptOnQuit</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>StretchTabsToFillBar</key>
