@@ -9,6 +9,9 @@ bash-completion
 #zsh
 zsh-completions
 
+# gnu utils
+coreutils
+
 # other tools
 autoconf
 automake
