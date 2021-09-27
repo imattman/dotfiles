@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-pushd $(pwd)
-cd ~/.Trash
+[[ ! -d ~/.Trash ]] && exit 0
+
+pushd ~/.Trash
 
 # turn off the user immutable flag & remove
 [[ -n $(ls) ]] && \
@@ -9,3 +10,4 @@ cd ~/.Trash
   echo rm -rf *
 
 popd
+
