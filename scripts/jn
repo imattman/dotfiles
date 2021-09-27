@@ -37,7 +37,7 @@ usage() {
   OPTIONS:
      -h:  Show this message
      -l:  List prepared journal files without opening editor
-     -n:  Peform dry run without preparing files
+     -n:  Dry run; skip file preparation
 
 EOU
 }
@@ -101,7 +101,6 @@ do
     l)  do_edit=''
         ;;
     n)  do_prepare=''
-        do_edit=''
         ;;
     h|?)
         usage
