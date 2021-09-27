@@ -8,7 +8,39 @@ if [[ -n "${DEBUG:=}" ]]; then
 fi
 
 JOURNAL_DIR="${NOTES:-$HOME/Notes}/journal/daily"
-DATE_CMD=date
+DATE_CMD="date"
+EDITOR_OPTS="+3"
+
+usage() {
+  local THIS_SCRIPT="$(basename $0)"
+
+  cat<<EOU
+  Usage: $THIS_SCRIPT [OPTIONS] <date-1> [<date-2>...]
+
+  A utility for creating and editing personal journal files.
+
+  Dates can be supplied in formats recoginzed by the gnu 'date'
+  command.  Defaults to 'today' if no date argument is supplied.
+
+  Examples:
+
+    # open a journal entry for today
+    $THIS_SCRIPT
+
+    # open journal entries for several days
+    $THIS_SCRIPT 2020-09-01 yesterday today
+
+    # list journal file for 5 days ago
+    $THIS_SCRIPT -l "5 days ago"
+
+
+  OPTIONS:
+     -h:  Show this message
+     -l:  List prepared journal files without opening editor
+     -n:  Peform dry run without preparing files
+
+EOU
+}
 
 precheck() {
   if [[ $(uname -s | grep -i darwin) ]]; then
@@ -31,31 +63,27 @@ precheck() {
 
 
 isodate() {
-  local day="$1"
-  local args=''
+  $DATE_CMD -d "$1" +%Y-%m-%d
+}
 
-#  case $day in
-#    today|yesterday)
-#      args="-d $day"
-#      ;;
-#  esac
-
-  $DATE_CMD -d $day +%Y-%m-%d
+jnfile() {
+  echo -n "$JOURNAL_DIR/${1}.md"
 }
 
 header() {
   local day="$1"
-  local weekday="$(date -d $day +%A)"
-  printf "# $day $weekday\n\n\n"
+  local weekday
+
+  weekday="$($DATE_CMD -d "$day" +%A)"
+  printf "# %s %s\n\n\n" "$day" "$weekday"
 }
 
 prepare() {
-  local isodate=$(isodate $1)
-  local fname="${isodate}.md"
-  local jnfile="$JOURNAL_DIR/$fname"
+  local jnfile="$1"
+  local isodate="$2"
 
   if [[ ! -f "$jnfile" ]]; then
-    header $isodate >> "$jnfile"
+    header "$isodate" >> "$jnfile"
   else
     touch "$jnfile"
   fi
@@ -64,16 +92,51 @@ prepare() {
 }
 
 
-precheck
-days="${@:-today}"
-files=""
+do_prepare=true
+do_edit=true
 
-for day in $days; do
-  jnfile=$(prepare $day)
-  files="${files} $jnfile"
-  echo "$jnfile"
+while getopts 'hln' OPTION
+do
+  case $OPTION in
+    l)  do_edit=''
+        ;;
+    n)  do_prepare=''
+        do_edit=''
+        ;;
+    h|?)
+        usage
+        exit 1
+        ;;
+  esac
 done
 
-$EDITOR $files
+shift $((OPTIND - 1))
+
+
+precheck
+days=("$@")
+files=""
+
+# default to 'today'
+if [[ ${#days[@]} -eq 0 ]]; then
+  days=('today')
+fi
+
+
+for day in "${days[@]}"; do
+  isodate=$(isodate "$day")
+  jnfile=$(jnfile "$isodate")
+  if [[ -n $do_prepare ]]; then
+    prepare "$jnfile" "$isodate"
+  else
+    echo "$jnfile"
+  fi
+
+  files="${files} $jnfile"
+done
+
+if [[ -n $do_edit ]]; then
+  $EDITOR $EDITOR_OPTS $files
+fi
 
 
