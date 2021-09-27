@@ -16,7 +16,12 @@ SRC_CONFIG="settings.json"
 SRC_KEYBINDINGS="keybindings.json"
 SRC_SNIPPETS="snippets"
 
-DEST_DIR="$HOME/Library/Application Support/Code/User"
+if [[ $(uname -s | grep -i darwin) ]]; then
+  CONFIG_BASE="$HOME/Library/Application Support"
+else
+  CONFIG_BASE="${XDG_CONFIG_HOME:-$HOME/.config}"
+fi
+DEST_DIR="${CONFIG_BASE}/Code/User"
 DEST_CONFIG="${DEST_DIR}/${SRC_CONFIG}"
 DEST_KEYBINDINGS="${DEST_DIR}/${SRC_KEYBINDINGS}"
 DEST_SNIPPETS="${DEST_DIR}/${SRC_SNIPPETS}"
