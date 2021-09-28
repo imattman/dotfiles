@@ -19,9 +19,10 @@ CASKS=""
 
 PACKAGES="
 coreutils
-tmux
 git
+jq
 stow
+tmux
 golang
 python3
 macvim
