@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl -s "https://golang.org/dl/?mode=json" \
+| jq -r '.[0].files[0].version'
+
