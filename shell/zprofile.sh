@@ -24,6 +24,12 @@ if [[ "$PLATFORM" == "darwin" ]]; then
       /opt/homebrew/sbin
       $path
     )
+
+    fpath=(
+      /opt/homebrew/share/zsh/site-functions
+      /opt/homebrew/share/zsh-completions
+      $fpath
+    )
   fi
 
   # python user bin directory is nonstandard on MacOS

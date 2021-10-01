@@ -19,17 +19,18 @@ CASKS=""
 
 PACKAGES="
 coreutils
+zsh-completions
 git
 jq
 stow
 tmux
+asdf
 golang
 python3
 macvim
 neovim
 tree
 watch
-zsh-completions
 "
 
 for cask in $CASKS; do
