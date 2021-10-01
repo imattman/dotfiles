@@ -44,6 +44,9 @@ set ruler                       " Display cursor position in status line
 set cursorline                  " Highlight cursor
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 
+set textwidth=80
+set colorcolumn=+1              " Show text wrap column
+
 set visualbell                  " Use visual bell instead of audio
 set noerrorbells                " No beeps
 set t_vb=                       " Reset terminal code for visualbell for no flash
@@ -107,7 +110,7 @@ if has("autocmd")
   " Enter automatically into the files directory
   autocmd BufEnter * silent! lcd %:p:h
 
-  autocmd BufNewFile,BufRead *.md setfiletype markdown
+  autocmd BufNewFile,BufRead *.md setfiletype markdown tw=80
 
 endif
 
@@ -128,7 +131,7 @@ set pastetoggle=<F11>
 
 
 " next search
-nnoremap <C-L> :nohl<CR><C-L>   " Map redraw screen to also turn off highlighting
+nnoremap <C-l> :nohl<CR><C-l>   " Map redraw screen to also turn off highlighting
 
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
 nnoremap <leader>l :nohl<CR>:set list!<CR>
@@ -152,6 +155,9 @@ nnoremap n nzz
 "nnoremap n nzzzv
 nnoremap N Nzz
 "nnoremap N Nzzzv
+
+" Switch between the last two files
+nnoremap <Leader><Leader> <C-^>
 
 
 " Use shift-Tab to bypass expandtab
