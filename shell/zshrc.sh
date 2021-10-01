@@ -6,7 +6,7 @@ source "$zprezto_file"
 
 
 # for more details: `man zshoptions`
-unsetopt SHARE_HISTORY       # don't share history across shells
+#unsetopt SHARE_HISTORY       # don't share history across shells
                              # equiv: setopt no_share_history
 
 #setopt AUTO_CD              # Auto changes to a directory without typing cd.
@@ -29,7 +29,17 @@ unalias rm
 unalias cp
 unalias mv
 
+# asdf config and completions
+if [[ -d ~/.asdf ]]; then
+  source ~/.asdf/asdf.sh
+
+  fpath=($HOME/.asdf/completions $fpath)
+fi
+
+
 [[ -f ~/.aliases.sh ]] && source ~/.aliases.sh
 [[ -f ~/.functions.sh ]] && source ~/.functions.sh
 [[ -f ~/.zsh.local ]] && source ~/.zsh.local
+
+autoload -Uz compinit && compinit
 

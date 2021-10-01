@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+# Repo URLs
+#GIT_URL='https://github.com/asdf-vm/asdf.git'
+#API_URL='https://api.github.com/repos/asdf-vm/asdf'
+TAGS_URL='https://api.github.com/repos/asdf-vm/asdf/tags'
+
+curl -s "$TAGS_URL" \
+  | jq -r '.[0].name'
+
