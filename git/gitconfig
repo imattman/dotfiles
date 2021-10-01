@@ -54,6 +54,7 @@
   ignored-files = ls-files --others -i --exclude-standard
   modified-files = ls-files -m
   delete-merged = "!git branch -D $(git branch --merged | grep -v '^*')"
+  gc-now = "gc --prune='0 days'"
   # SVN habits
   svn-stat = "!git --no-pager diff --name-status remotes/git-svn"
   svn-diff = diff remotes/git-svn
