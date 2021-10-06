@@ -1,8 +1,9 @@
+#!/bin/bash
 # mattman .dotfiles/shell/functions.sh
 
-IS_MACOS=$(uname -s | grep -i 'darwin')
+PLATFORM="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
-if [[ $IS_MACOS ]]; then
+if [[ $PLATFORM == 'darwin' ]]; then
   XCLIP='pbcopy'
 else
   XCLIP='xclip'
@@ -191,6 +192,22 @@ git_preview() {
                 --bind "enter:execute:$_viewGitLogLine   | less -R" \
                 --bind "ctrl-y:execute:$_gitLogLineToHash | $XCLIP" \
                 --bind "esc:cancel"
+}
+
+
+# fishies!
+ascii_fish() {
+  if [[ $(command -v asciiquarium) ]]; then
+    asciiquarium
+    return
+  fi
+
+  if [[ $(command -v docker) ]]; then
+    docker run -it --rm --name fishies danielkraic/asciiquarium
+    return
+  fi
+
+  echo "asciiquarium not found"
 }
 
 
