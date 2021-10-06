@@ -37,7 +37,8 @@ alias dcomp='docker-compose'
 alias dmenv='eval $(docker-machine env)'
 
 # some fun with docker
-alias fishies='docker run -it --rm --name fishies danielkraic/asciiquarium'
+#alias fishies='docker run -it --rm --name fishies danielkraic/asciiquarium'
+alias fishies=ascii_fish
 
 # python
 alias venv='python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheel && rehash'
