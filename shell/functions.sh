@@ -203,7 +203,8 @@ ascii_fish() {
   fi
 
   if [[ $(command -v docker) ]]; then
-    docker run -it --rm --name fishies danielkraic/asciiquarium
+    name="fishies-$(date +%s)"
+    docker run -it --rm --name "$name" danielkraic/asciiquarium
     return
   fi
 
