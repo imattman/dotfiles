@@ -124,7 +124,7 @@ let mapleader = " "             " default leader key is \
 "noremap \ ,
 
 nnoremap Y y$                   " Act like D and C
-imap jj <ESC>                   " map 'jj' as easy alternate to ESC from insert mode
+inoremap jk <ESC>               " map 'jk' as easy alternate to ESC from insert mode
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>

@@ -37,6 +37,7 @@ Plug 'jremmen/vim-ripgrep'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'janko/vim-test'
+Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
