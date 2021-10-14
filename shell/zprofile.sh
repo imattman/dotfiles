@@ -42,7 +42,7 @@ if [[ "$PLATFORM" == "darwin" ]]; then
 #  fi
 fi
 
-export GOPATH="$XDG_DATA_HOME/go"
+export GOPATH="$WORKSPACE/go"
 if [[ $(command -v go) ]]; then
   export GOROOT=$(go env GOROOT)
   #export GOBIN="$XDG_LOCAL_BIN"
