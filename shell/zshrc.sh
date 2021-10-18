@@ -1,8 +1,7 @@
 # mattman  .dotfiles/zsh/zshrc.sh
 
 # init zprezto:zshrc
-zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc
-source "$zprezto_file"
+source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc"
 
 
 # for more details: `man zshoptions`
