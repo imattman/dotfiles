@@ -14,11 +14,11 @@ export DOCUMENTS="$HOME/Documents"
 export PCLOUD="$HOME/pCloud Drive"
 
 tmpl_candidate_dirs=(
-  $HOME/Templates
   $WORKSPACE/templates
   $XDG_CONFIG_HOME/templates
   $XDG_DATA_HOME/templates
   $WORKSPACE/Templates
+  $HOME/Templates
 )
 
 for t in "$tmpl_candidate_dirs[@]"; do
