@@ -1,8 +1,7 @@
 # mattman  .dotfiles/zsh/zprofile.sh
 
 # init zprezto:zprofile
-zprezto_file=${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile
-source "$zprezto_file"
+source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile"
 
 export EDITOR=vim
 export VISUAL=vim
@@ -13,6 +12,22 @@ export WORKSPACE="$HOME/workspace"
 export NOTES="$HOME/Notes"
 export DOCUMENTS="$HOME/Documents"
 export PCLOUD="$HOME/pCloud Drive"
+
+tmpl_candidate_dirs=(
+  $HOME/Templates
+  $WORKSPACE/templates
+  $XDG_CONFIG_HOME/templates
+  $XDG_DATA_HOME/templates
+  $WORKSPACE/Templates
+)
+
+for t in "$tmpl_candidate_dirs[@]"; do
+  if [[ -d "$t" ]]; then
+    export TEMPLATES="$t"
+    break
+  fi
+done
+[[ -z "$TEMPLATES" ]] && "echo \$TEMPLATES not set"
 
 
 # MacOS
