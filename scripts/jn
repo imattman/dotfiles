@@ -8,8 +8,11 @@ if [[ -n "${DEBUG:=}" ]]; then
 fi
 
 JOURNAL_DIR="${NOTES:-$HOME/Notes}/journal/daily"
+TEMPLATES_DIR="${TEMPLATES}/journal"
+TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
+
 DATE_CMD="date"
-EDITOR_OPTS="+3"
+EDITOR_OPTS="+4"
 
 usage() {
   local THIS_SCRIPT="$(basename $0)"
@@ -58,25 +61,48 @@ precheck() {
     exit 1
   fi
 
+  if [[ ! $(command -v envsubst) ]]; then
+    echo "'envsubst' command not found"
+    echo 1
+  fi
+
+  if [[ ! -d "$TEMPLATES_DIR" ]]; then
+    echo "Templates directory not found; check \$TEMPLATES"
+    exit 1
+  fi
+
   return 0
 }
-
 
 isodate() {
   $DATE_CMD -d "$1" +%Y-%m-%d
 }
 
+setup_vars() {
+  local isodate="$1"
+
+  export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
+  export WEEKDAY=$($DATE_CMD -d "$day" +%A)
+}
+
+
 jnfile() {
   echo -n "$JOURNAL_DIR/${1}.md"
 }
 
+
 header() {
   local day="$1"
-  local weekday
+  setup_vars "$day"
 
-  weekday="$($DATE_CMD -d "$day" +%A)"
-  printf "# %s %s\n\n\n" "$day" "$weekday"
+  if [[ -f "$TEMPLATE_FILE" ]]; then
+    envsubst < "$TEMPLATE_FILE"
+  else
+    printf -- '---\ndate: "%s"\nweekday: "%s"\nweight: \n---\n\n' \
+      "$DATE" "$WEEKDAY"
+  fi
 }
+
 
 prepare() {
   local jnfile="$1"
