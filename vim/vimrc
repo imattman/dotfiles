@@ -1,9 +1,14 @@
 " Mattman's vimrc
 "
-set nocompatible                            " Forget legacy vi
+set nocompatible                      " Forget legacy vi
 
-source ~/.vim/vimrc-plugins.vim             " load plugins, including colors first 
-source ~/.vim/vimrc-colors.vim              " configure colors
+if has("autocmd")
+  " remove all autocommands (safe for re-sourcing)
+  autocmd!
+endif
+
+source ~/.vim/vimrc-plugins.vim       " load plugins, including colors first 
+source ~/.vim/vimrc-colors.vim        " configure colors
 
 
 """"""""""""""""""""""
@@ -44,8 +49,12 @@ set ruler                       " Display cursor position in status line
 set cursorline                  " Highlight cursor
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 
-set textwidth=80
-set colorcolumn=+1              " Show text wrap column
+"set textwidth=80                " abbrev 'tw'
+"set textwidth=0
+set formatoptions=cq            " abbrev 'fo', append 't' to wrap at textwidth
+set wrap linebreak
+"set colorcolumn=+1              " Show text wrap column
+"set colorcolumn=80              " Show text wrap column
 
 set visualbell                  " Use visual bell instead of audio
 set noerrorbells                " No beeps
@@ -114,7 +123,9 @@ if has("autocmd")
   " Enter automatically into the files directory
   autocmd BufEnter * silent! lcd %:p:h
 
-  autocmd BufNewFile,BufRead *.md setfiletype markdown setlocal spell tw=80
+  autocmd BufNewFile,BufRead *.md setfiletype markdown
+  autocmd FileType markdown setlocal spell spelllang=en_us
+  autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
 endif
 
