@@ -90,6 +90,10 @@ set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set pumheight=10                " Completion window max size
 
+"set spell spelllang=en_us       " enable spell check globally
+"setlocal spell spelllang=en_us  " enable spell check for current buffer
+"set complete+=kspell            " enable word completion
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#statusline()}
 
@@ -110,7 +114,7 @@ if has("autocmd")
   " Enter automatically into the files directory
   autocmd BufEnter * silent! lcd %:p:h
 
-  autocmd BufNewFile,BufRead *.md setfiletype markdown tw=80
+  autocmd BufNewFile,BufRead *.md setfiletype markdown setlocal spell tw=80
 
 endif
 
