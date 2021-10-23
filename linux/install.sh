@@ -77,13 +77,12 @@ install_pkgs() {
     tmux \
     make \
     ansible \
+    stow \
+    jq \
     zsh \
-    fish \
     python3 \
     python3-venv \
     python3-pip \
-    stow \
-    jq \
     tree \
     fzf \
     ripgrep \
@@ -92,7 +91,8 @@ install_pkgs() {
     neovim \
     nnn \
     vifm \
-    golang-go
+    golang-go \
+    fish
   
   #  alacritty \
 }
