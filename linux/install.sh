@@ -83,6 +83,7 @@ install_pkgs() {
     python3-venv \
     python3-pip \
     stow \
+    jq \
     tree \
     fzf \
     ripgrep \
