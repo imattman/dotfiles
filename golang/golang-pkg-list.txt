@@ -28,7 +28,6 @@ github.com/newhook/go-symbols
 github.com/nsf/gocode
 github.com/rogpeppe/godef
 github.com/stretchr/testify
-github.com/tools/godep
 github.com/tpng/gopkgs
 github.com/zmb3/gogetdoc
 
