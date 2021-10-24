@@ -92,7 +92,9 @@ install_pkgs() {
     nnn \
     vifm \
     golang-go \
-    fish
+    fish \
+    entr \
+    watchman
   
   #  alacritty \
 }
