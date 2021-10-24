@@ -1,0 +1,15 @@
+# dev tools
+github.com/cortesi/modd/cmd/modd@latest
+github.com/cortesi/modd/cmd/devd@latest
+
+github.com/gohugoio/hugo@latest
+
+# terminal countdown timer
+github.com/antonmedv/countdown@latest
+ 
+# it can be easier to install buffalo via brew or other package manager
+github.com/gobuffalo/buffalo/buffalo@latest
+  
+goa.design/goa/v3/...@v3
+
+
