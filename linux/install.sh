@@ -80,6 +80,8 @@ install_pkgs() {
     stow \
     jq \
     zsh \
+    vim-nox \
+    neovim \
     python3 \
     python3-venv \
     python3-pip \
@@ -87,8 +89,7 @@ install_pkgs() {
     fzf \
     ripgrep \
     htop \
-    vim-nox \
-    neovim \
+    neofetch \
     nnn \
     vifm \
     golang-go \
