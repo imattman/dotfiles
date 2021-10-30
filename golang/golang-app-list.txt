@@ -7,6 +7,9 @@ github.com/gohugoio/hugo@latest
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
  
+# terminal markdown renderer
+github.com/charmbracelet/glow@latest
+
 # it can be easier to install buffalo via brew or other package manager
 github.com/gobuffalo/buffalo/buffalo@latest
   
