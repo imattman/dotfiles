@@ -1,5 +1,22 @@
 #!/bin/bash
 
-curl -s "https://golang.org/dl/?mode=json" \
-| jq -r '.[0].files[0].version'
+json() {
+  curl -s "https://golang.org/dl/?mode=json" \
+  | jq -r '.[0].files[0].version'
+}
+
+txt() {
+  curl -sSL 'https://golang.org/VERSION?m=text'
+}
+
+
+if [[ $# -eq 0 ]]; then
+  if [[ $(command -v jq) ]]; then
+    json
+  else
+    txt && echo
+  fi
+else
+  "$@"
+fi
 
