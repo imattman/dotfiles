@@ -16,7 +16,6 @@ call plug#begin()
 " Color schemes
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'gosukiwi/vim-atom-dark'
-Plug 'herrbischoff/cobalt2.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
