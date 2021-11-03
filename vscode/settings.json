@@ -145,6 +145,7 @@
 
   // Python settings
   //"python.defaultInterpreterPath": "/usr/local/bin/python3",
+  "python.formatting.autopep8Path": "${env:HOME}/.local/bin/autopep8",
   "python.formatting.provider": "autopep8", // black
 
   "[python]" : {
