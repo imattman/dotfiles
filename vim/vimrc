@@ -77,7 +77,7 @@ set listchars=tab:▸\ ,eol:¬    " Use the same symbols as TextMate for tabstop
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set expandtab
+set expandtab                   " Use 'retab' with noexpandtab and ts=4 to convert to tabs
 
 "set list                        " Show tabs and new lines
 set showmatch                   " Show matching brackets by flickering
