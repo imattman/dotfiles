@@ -7,6 +7,8 @@
   branch = auto
   interactive = auto
   ui = auto
+[init]
+	defaultBranch = main
 [core]
   excludesfile = ~/.gitignore_global
   # autocrlf values: true -> always convert, false -> never convert, input -> convert on commit
