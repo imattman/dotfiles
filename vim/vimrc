@@ -124,7 +124,7 @@ if has("autocmd")
   autocmd BufEnter * silent! lcd %:p:h
 
   autocmd BufNewFile,BufRead *.md setfiletype markdown
-  autocmd FileType markdown setlocal spell spelllang=en_us
+  "autocmd FileType markdown setlocal spell spelllang=en_us
   autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
 endif
