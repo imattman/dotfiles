@@ -2479,7 +2479,7 @@
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
-			<true/>
+			<false/>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -3109,9 +3109,9 @@
 		</dict>
 	</array>
 	<key>OpenArrangementAtStartup</key>
-	<true/>
-	<key>OpenNoWindowsAtStartup</key>
 	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>SoundForEsc</key>
