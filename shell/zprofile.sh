@@ -57,6 +57,7 @@ if [[ "$PLATFORM" == "darwin" ]]; then
 #  fi
 fi
 
+## Go
 export GOPATH="$WORKSPACE/go"
 if [[ $(command -v go) ]]; then
   export GOROOT=$(go env GOROOT)
@@ -64,8 +65,15 @@ if [[ $(command -v go) ]]; then
   export GOBIN="$GOPATH/bin"
 fi
 
+## Elixir
 # enable history in iEx
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+## Rust
+export CARGO_HOME="$WORKSPACE/rust/cargo"
+export RUSTUP_HOME="$WORKSPACE/rust/rustup"
+#export CARGO_HOME="$XDG_DATA_HOME/cargo"
+#export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 
 path=(
@@ -73,6 +81,7 @@ path=(
   $XDG_LOCAL_BIN
   $path
   $GOBIN
+  $CARGO_HOME/bin
 )
 
 
