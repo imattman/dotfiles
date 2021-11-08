@@ -156,6 +156,14 @@
     "editor.autoSurround": "languageDefined",
   },
 
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust",
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.autoSurround": "languageDefined",
+  },
+
   "[markdown]" : {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
