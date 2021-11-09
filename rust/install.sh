@@ -17,9 +17,13 @@ RUSTUP_URL="https://sh.rustup.rs"
 
 
 install_rustup() {
+  # install rust:
+  # - most defaults
+  # - do not modify PATH (assumed aleady in .dotfiles)
+  # - skip confirmation prompt
   curl --proto '=https' --tlsv1.2 -sSf \
     "$RUSTUP_URL" \
-    | sh -s -- --no-modify-path
+    | sh -s -- --no-modify-path -y
 }
 
 
