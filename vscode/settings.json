@@ -8,7 +8,7 @@
   // "window.zoomLevel": 0,
   // no colorTheme defaults to "Dark+"
 
-  // "workbench.colorTheme": "Darcula Theme from IntelliJ",
+  "workbench.colorTheme": "Darcula Theme from IntelliJ",
   // "workbench.colorTheme": "Darcula Theme from IntelliJ",
   // "workbench.colorTheme": "One Monokai",
   // "workbench.colorTheme": "Solarized Dark+",
@@ -19,7 +19,8 @@
   // "workbench.colorTheme": "Dracula At Night",
   // "workbench.colorTheme": "Cobalt2",
 
-  "workbench.iconTheme": "vscode-icons",
+  // "workbench.iconTheme": "vs-seti",
+  "workbench.iconTheme": "vscode-great-icons",
   // "workbench.iconTheme": "material-icon-theme",
 
   "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
@@ -157,7 +158,7 @@
   },
 
   "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust",
+    // "editor.defaultFormatter": "rust-lang.rust",
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
     "editor.renderWhitespace": "boundary",
