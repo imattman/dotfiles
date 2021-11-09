@@ -24,7 +24,7 @@ PKG_FILE="${1:-$PKG_FILE}"
 
 #GOMOD_PREFIX='env GO111MODULE=on'
 GOMOD_PREFIX=''
-CMD_PREFIX='echo '
+CMD_PREFIX=''
 
 go_get() {
   install_from_file "get" "$1"
