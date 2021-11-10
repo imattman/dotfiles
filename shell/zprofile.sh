@@ -6,6 +6,9 @@ source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile"
 export EDITOR=vim
 export VISUAL=vim
 
+# configure less not to paginate if less than one page
+export LESS="-F -X $LESS"
+
 export PLATFORM="$(uname -s | tr A-Z a-z)"
 export SCRIPTS="$HOME/bin"
 export WORKSPACE="$HOME/workspace"
