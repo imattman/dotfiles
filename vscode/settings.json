@@ -29,7 +29,7 @@
   // Use 0 to compute the lineHeight from the fontSize.
   "editor.lineHeight": 0,
 
-  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.lineHeight": 0,
 
   "editor.cursorStyle": "line",
