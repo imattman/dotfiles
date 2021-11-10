@@ -66,6 +66,7 @@ if [[ $(command -v go) ]]; then
 fi
 
 ## Elixir
+export MIX_HOME="$XDG_CONFIG_HOME/mix"
 # enable history in iEx
 export ERL_AFLAGS="-kernel shell_history enabled"
 
