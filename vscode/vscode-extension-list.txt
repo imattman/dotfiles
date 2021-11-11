@@ -15,9 +15,8 @@ formulahendry.code-runner
 geddski.macros
 golang.go
 GraphQL.vscode-graphql
+JakeBecker.elixir-ls
 jdinhlife.gruvbox
-matklad.rust-analyzer
-mjmcloug.vscode-elixir
 ms-azuretools.vscode-docker
 ms-python.python
 ms-python.vscode-pylance

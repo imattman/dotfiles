@@ -157,6 +157,19 @@
     "editor.autoSurround": "languageDefined",
   },
 
+  "[elixir]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.wordBasedSuggestions": false,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.trimAutoWhitespace": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+  },
+
   "[rust]": {
     // "editor.defaultFormatter": "rust-lang.rust",
     "editor.insertSpaces": true,
