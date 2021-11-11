@@ -74,6 +74,9 @@ install_pkgs() {
     os-prober \
     grub2-common \
     grub-customizer \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
     tmux \
     make \
     ansible \
@@ -83,8 +86,10 @@ install_pkgs() {
     vim-nox \
     neovim \
     python3 \
+    python3-dev \
     python3-venv \
     python3-pip \
+    python-is-python3 \
     tree \
     fzf \
     ripgrep \
