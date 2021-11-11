@@ -76,8 +76,7 @@
   // "editor.minimap.showSlider": "always",
 
   // don't phone home to the corporate mothership
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
 
   // bottom status bar
   "workbench.statusBar.visible": true,
