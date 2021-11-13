@@ -24,7 +24,7 @@ alias tstamp-num="date '+%Y%m%d.%H%M%S'"
 alias busy='look_busy'
 
 # update local git repos
-alias repoup='local-repos update'
+alias repoup='repos-local update'
 
 # homebrew
 alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
