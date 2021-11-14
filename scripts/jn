@@ -12,7 +12,7 @@ TEMPLATES_DIR="${TEMPLATES}/journal"
 TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 
 DATE_CMD="date"
-EDITOR_OPTS="+4"
+EDITOR_OPTS="+"
 
 usage() {
   local THIS_SCRIPT="$(basename $0)"
