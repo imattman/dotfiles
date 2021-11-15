@@ -31,6 +31,9 @@ all:
 
 	# tmux
 	[ -f ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
+	
+	# elixir
+	[ -f ~/.iex.exs ]           || ln -s $(PWD)/elixir/iex.exs ~/.iex.exs
 
   # scripts
 	[ -d ~/.local/bin ]         && stow -v -t ~/.local/bin scripts
@@ -62,6 +65,8 @@ clean:
 	[ -L ~/.gitignore_global ]  && unlink ~/.gitignore_global
 
 	[ -L ~/.tmux.conf ]         && unlink ~/.tmux.conf
+
+	[ -L ~/.iex.exs ]           && unlink ~/.iex.exs
 
 	[ -d ~/.local/bin ]         && stow -v -D -t ~/.local/bin scripts
 
