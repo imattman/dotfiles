@@ -74,9 +74,12 @@ install_pkgs() {
     os-prober \
     grub2-common \
     grub-customizer \
+    autoconf \
+    automake \
     build-essential \
-    libssl-dev \
+    libncurses5-dev \
     libffi-dev \
+    libssl-dev \
     tmux \
     make \
     ansible \
