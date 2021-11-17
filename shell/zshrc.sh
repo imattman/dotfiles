@@ -20,6 +20,10 @@ source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc"
 setopt CLOBBER              # Unset then Use >! and >>! to bypass.
 
 
+# override tmux to show color
+[[ -n "$TMUX" ]] && export TERM="xterm-256color"
+
+
 # Key bindings
 bindkey \^u backward-kill-line
 
