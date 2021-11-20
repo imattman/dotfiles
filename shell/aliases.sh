@@ -45,9 +45,8 @@ alias fishies=ascii_fish
 # python
 alias venv='python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheel && rehash'
 alias venv-site='python3 -m venv venv --system-site-packages && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheel && rehash'
-alias py_venv=venv
-alias py_venv_site=venv-site
 alias activate='py_activate_virtualenv'
+alias simple-httpd.py='py_simple_httpd'
 
 # golang
 alias goenv='go env'

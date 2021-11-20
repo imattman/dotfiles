@@ -57,10 +57,6 @@ cd_dropbox() {
 }
 
 
-simple_httpd() {
-  python3 -m http.server "$@"
-}
-
 numfmt() {
   echo "$*" | python3 -c "print('\n'.join('{:,}'.format(int(n)) for n in input().strip().split()))"
 }
@@ -142,6 +138,19 @@ new_python_script() {
   echo "$name created"
 }
 
+py_simple_httpd() {
+  local port
+  if [[ -n "$1" ]]; then
+    port="$1"
+    shift
+  else
+    echo "Defaulting to port 8000.  Specify port as first argument to override."
+    echo
+    port="8000"
+  fi
+
+  python3 -m http.server "$port" "$@"
+}
 
 # convenience function for finding and activating python virtual environment
 py_activate_virtualenv() {
