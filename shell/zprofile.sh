@@ -14,7 +14,11 @@ fi
 source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile"
 
 export EDITOR=vim
-export VISUAL=vim
+if [[ $(command -v gvim) ]]; then
+  export VISUAL=gvim
+else
+  export VISUAL=$EDITOR
+fi
 
 # configure less not to paginate if less than one page
 export LESS="-F -X $LESS"
