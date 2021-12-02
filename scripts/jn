@@ -161,7 +161,7 @@ for day in "${days[@]}"; do
 done
 
 if [[ -n $do_edit ]]; then
-  $EDITOR $EDITOR_OPTS $files
+  $VISUAL $EDITOR_OPTS $files
 fi
 
 
