@@ -12,6 +12,7 @@ TEMPLATES_DIR="${TEMPLATES}/journal"
 TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 
 DATE_CMD="date"
+JN_EDITOR=${VISUAL:-${EDITOR:-}}
 EDITOR_OPTS="+"
 
 usage() {
@@ -58,6 +59,15 @@ precheck() {
 
   if [[ ! -d "$JOURNAL_DIR" ]]; then
     echo "Journal directory not found: $JOURNAL_DIR"
+    exit 1
+  fi
+
+  if [[ ! $(command -v $JN_EDITOR) ]]; then
+    if [[ -z "$JN_EDITOR" ]]; then
+      echo "Either \$EDITOR or \$VISUAL must be set."
+    else
+      echo "$JN_EDITOR editor not found.  Check \$VISUAL and \$EDITOR"
+    fi
     exit 1
   fi
 
@@ -161,7 +171,7 @@ for day in "${days[@]}"; do
 done
 
 if [[ -n $do_edit ]]; then
-  $VISUAL $EDITOR_OPTS $files
+  $JN_EDITOR $EDITOR_OPTS $files
 fi
 
 
