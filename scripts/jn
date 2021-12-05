@@ -13,7 +13,7 @@ TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 
 DATE_CMD="date"
 JN_EDITOR=${VISUAL:-${EDITOR:-}}
-EDITOR_OPTS="+"
+EDITOR_OPTS="+4"
 
 usage() {
   local THIS_SCRIPT="$(basename $0)"
