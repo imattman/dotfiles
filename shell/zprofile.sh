@@ -13,16 +13,6 @@ fi
 # init zprezto:zprofile
 source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile"
 
-export EDITOR=vim
-if [[ $(command -v gvim) ]]; then
-  export VISUAL=gvim
-else
-  export VISUAL=$EDITOR
-fi
-
-# configure less not to paginate if less than one page
-export LESS="-F -X $LESS"
-
 export PLATFORM="$(uname -s | tr A-Z a-z)"
 export SCRIPTS="$HOME/bin"
 export WORKSPACE="$HOME/workspace"
@@ -47,7 +37,9 @@ done
 [[ -z "$TEMPLATES" ]] && "echo \$TEMPLATES not set"
 
 
+#
 # MacOS
+#
 if [[ "$PLATFORM" == "darwin" ]]; then
   # homebrew on M1 is in a different directory
   if [[ -d /opt/homebrew ]]; then
@@ -73,6 +65,17 @@ if [[ "$PLATFORM" == "darwin" ]]; then
 #    )
 #  fi
 fi
+
+
+export EDITOR=vim
+if [[ $(command -v gvim) ]]; then
+  export VISUAL=gvim
+else
+  export VISUAL=$EDITOR
+fi
+
+# configure less not to paginate if less than one page
+export LESS="-F -X $LESS"
 
 ## Go
 export GOPATH="$WORKSPACE/go"
