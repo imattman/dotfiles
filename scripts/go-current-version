@@ -1,12 +1,12 @@
 #!/bin/bash
 
 json() {
-  curl -s "https://golang.org/dl/?mode=json" \
+  curl -s "https://go.dev/dl/?mode=json" \
   | jq -r '.[0].files[0].version'
 }
 
 txt() {
-  curl -sSL 'https://golang.org/VERSION?m=text'
+  curl -sSL 'https://go.dev/VERSION?m=text'
 }
 
 
