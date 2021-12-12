@@ -41,7 +41,7 @@ usage() {
   OPTIONS:
      -h:  Show this message
      -l:  List prepared journal files without opening editor
-     -n:  Dry run; skip file preparation
+     -p:  Prepare header of entry files.  Can be used without edit.
 
 EOU
 }
@@ -88,6 +88,10 @@ isodate() {
   $DATE_CMD -d "$1" +%Y-%m-%d
 }
 
+date_path() {
+  $DATE_CMD -d "$1" "+%Y/%m/%d"
+}
+
 setup_vars() {
   local isodate="$1"
 
@@ -97,7 +101,10 @@ setup_vars() {
 
 
 jnfile() {
-  echo -n "$JOURNAL_DIR/${1}.md"
+  local isodate="$1"
+  local entry_dir="$(date_path "$isodate")"
+
+  printf "$JOURNAL_DIR/%s/%s.md" "$entry_dir" "$isodate"
 }
 
 
@@ -118,6 +125,8 @@ prepare() {
   local jnfile="$1"
   local isodate="$2"
 
+  mkdir -p "$(dirname "$jnfile")"
+
   if [[ ! -f "$jnfile" ]]; then
     header "$isodate" >> "$jnfile"
   else
@@ -131,12 +140,14 @@ prepare() {
 do_prepare=true
 do_edit=true
 
-while getopts 'hln' OPTION
+while getopts 'hlp' OPTION
 do
   case $OPTION in
     l)  do_edit=''
+        do_prepare=''
         ;;
-    n)  do_prepare=''
+    p)  do_prepare=true
+        do_edit=''
         ;;
     h|?)
         usage
