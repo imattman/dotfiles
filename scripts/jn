@@ -89,7 +89,7 @@ isodate() {
 }
 
 date_path() {
-  $DATE_CMD -d "$1" "+%Y/%m/%d"
+  $DATE_CMD -d "$1" "+%Y/%m"
 }
 
 setup_vars() {
