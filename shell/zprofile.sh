@@ -16,8 +16,14 @@ source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile"
 export PLATFORM="$(uname -s | tr A-Z a-z)"
 export SCRIPTS="$HOME/bin"
 export WORKSPACE="$HOME/workspace"
-export NOTES="$HOME/Notes"
 export DOCUMENTS="$HOME/Documents"
+export NOTES="$HOME/Notes"
+export NOTES_JOURNAL="$NOTES/journal"
+export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
+export NOTES_PROJECTS="$NOTES/projects"
+export NOTES_INVENTORY="$NOTES/inventory"
+export NOTES_RECIPES="$NOTES/recipes"
+export NOTES_SCRATCH="$NOTES/scratchpad"
 export PCLOUD="$HOME/pCloud Drive"
 
 tmpl_candidate_dirs=(
@@ -109,6 +115,12 @@ path=(
 cdpath=(
   $DOCUMENTS
   $NOTES
+  $NOTES_ZETTELKASTEN
+  $NOTES_JOURNAL
+  $NOTES_PROJECTS
+  $NOTES_RECIPES
+  $NOTES_INVENTORY
+  $NOTES_SCRATCH
   $WORKSPACE
   $WORKSPACE/websites
   $GOPATH/src/github.com/imattman

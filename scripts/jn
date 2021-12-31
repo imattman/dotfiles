@@ -7,7 +7,7 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-JOURNAL_DIR="${NOTES:-$HOME/Notes}/journal/daily"
+JOURNAL_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}/daily"
 TEMPLATES_DIR="${TEMPLATES}/journal"
 TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 
