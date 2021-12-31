@@ -1,5 +1,5 @@
 ---
-date: $DATE
+date: "$DATE"
 weekday: $WEEKDAY
 weight: 
 ---
