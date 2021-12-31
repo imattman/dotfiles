@@ -23,7 +23,7 @@ export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
 export NOTES_PROJECTS="$NOTES/projects"
 export NOTES_INVENTORY="$NOTES/inventory"
 export NOTES_RECIPES="$NOTES/recipes"
-export NOTES_SCRATCH="$NOTES/scratchpad"
+export NOTES_SCRATCHPAD="$NOTES/scratchpad"
 export PCLOUD="$HOME/pCloud Drive"
 
 tmpl_candidate_dirs=(
@@ -120,7 +120,7 @@ cdpath=(
   $NOTES_PROJECTS
   $NOTES_RECIPES
   $NOTES_INVENTORY
-  $NOTES_SCRATCH
+  $NOTES_SCRATCHPAD
   $WORKSPACE
   $WORKSPACE/websites
   $GOPATH/src/github.com/imattman
