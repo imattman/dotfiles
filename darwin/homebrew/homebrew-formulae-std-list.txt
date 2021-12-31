@@ -18,6 +18,9 @@ perl
 #python
 python3
 
+# git repo refactoring. See: https://github.com/newren/git-filter-repo/
+git-filter-repo
+
 # dev tools
 protobuf
 shellcheck
