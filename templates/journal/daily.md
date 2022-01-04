@@ -1,6 +1,8 @@
 ---
 date: "$DATE"
 weekday: $WEEKDAY
-weight: 
+weight:
+  pounds: 
+diet: fasting
 ---
 
