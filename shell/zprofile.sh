@@ -24,6 +24,7 @@ export NOTES_PROJECTS="$NOTES/projects"
 export NOTES_INVENTORY="$NOTES/inventory"
 export NOTES_RECIPES="$NOTES/recipes"
 export NOTES_SCRATCHPAD="$NOTES/scratchpad"
+export NOTES_WORK="$NOTES/work"
 export PCLOUD="$HOME/pCloud Drive"
 
 tmpl_candidate_dirs=(
@@ -114,12 +115,13 @@ path=(
 
 cdpath=(
   $DOCUMENTS
-  $NOTES
   $NOTES_ZETTELKASTEN
   $NOTES_JOURNAL
   $NOTES_PROJECTS
   $NOTES_RECIPES
   $NOTES_INVENTORY
+  $NOTES_WORK
+  $NOTES
   $NOTES_SCRATCHPAD
   $WORKSPACE
   $WORKSPACE/websites
