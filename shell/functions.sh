@@ -109,6 +109,38 @@ html_encode() {
 }
 
 
+update_linux() {
+  # TODO add support for pacman
+  if [[ $(command -v apt) ]]; then
+    echo "Updating apt packages..."
+    sudo apt update && sudo apt upgrade -y
+  fi
+
+  if [[ $(command -v flatpak) ]]; then
+    echo
+    echo "Updating flatpak..."
+    flatpak update -y
+  fi
+}
+
+update_macos() {
+  brew update && \
+    brew upgrade && \
+    brew cleanup && \
+    brew doctor
+}
+
+update_system() {
+  case "$PLATFORM" in
+    darwin) update_macos
+            ;;
+    linux)  update_linux
+            ;;
+    *)  echo "Unknown platform '$PLATFORM'"
+        return 1
+    esac
+}
+
 new_bash_script() {
   local name
   name="${1:-main.sh}"
