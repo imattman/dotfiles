@@ -27,7 +27,9 @@ alias busy='look_busy'
 alias repoup='repos-local update'
 
 # homebrew
-alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
+#alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
+alias brewup=update_macos
+alias sysup=update_system
 
 # tmux
 alias tmux-help="open 'http://tmuxcheatsheet.com/'"
