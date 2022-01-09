@@ -162,7 +162,7 @@ def gen_clone_script(repos):
 
 
 def main():
-    cmds = 'init list clone stat status update script'.split()
+    cmds = 'init list ls clone status stat update up script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
@@ -192,11 +192,11 @@ def main():
         if not repos:
             fail(f"Zero repos match filters {args.filter}")
 
-    if args.cmd == "list":
+    if args.cmd == "list" or args.cmd == "ls":
         list_repos(repos)
     if args.cmd == "clone":
         clone_repos(repos)
-    if args.cmd == "update":
+    if args.cmd.startswith("up"):
         update_repos(repos)
     if args.cmd.startswith("stat"):
         status_repos(repos)
