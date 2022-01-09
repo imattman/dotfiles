@@ -14,6 +14,7 @@ BASE_DIR=$(cd "$THIS_DIR" && pwd)
 PLATFORM="$(uname -s | tr A-Z a-z)"
 
 WORKSPACE_DIR="${WORKSPACE:-${HOME}/workspace}"
+NOTES_DIR="${NOTES:-${HOME}/Documents/Notes}"
 SCRIPTS_DIR="${SCRIPTS:-${HOME}/bin}"
 XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}"
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
@@ -24,25 +25,24 @@ PREZTO_DIR="${HOME}/.zprezto"
 PREZTO_PROMPT_SRC="${BASE_DIR}/shell/prompt_mattman_setup.prezto"
 PREZTO_PROMPT_DEST="${PREZTO_DIR}/modules/prompt/functions/prompt_mattman_setup"
 
-
+INIT_PRINTED=''       # flat to print only once
 export CMD_PREFIX=''  # set to 'echo' when dry-run
+
 
 usage() {
   cat<<EOU
-  Usage: $THIS_SCRIPT [OPTIONS]
+  Usage: $THIS_SCRIPT <COMMAND>
 
   A basic installer for my dotfiles.
 
+  COMMANDS:
+     help:    Show this message
+     init:    Set up user workspace, prezto, and other directories
+     server:  Install OS-specific packages and user workspace (no fonts)
+     all:     Install everything (default)
+
   OPTIONS:
-     -h:  Show this message
-     -o:  Perform OS-specific set up
-     -d:  Set up additional directories and symlinks (see Makefile)
-     -p:  Set up Prezto for zsh
-     -f:  Set up additional fonts
-     -x:  Execute non-idempotent scripts that should be run only once
-          with initial install
-     -a:  Run all options
-     -n:  Do not execute actions (dry run)
+     -n:      Do not execute actions (dry run)
 EOU
 }
 
@@ -61,9 +61,10 @@ setup_os() {
   esac
 }
 
+
 create_dirs() {
   for dir in "$XDG_CONFIG_DIR" "$XDG_DATA_HOME" "$XDG_LOCAL_BIN" \
-    "$SCRIPTS_DIR" "$WORKSPACE_DIR" ; do
+    "$SCRIPTS_DIR" "$WORKSPACE_DIR" "$NOTES_DIR" ; do
     if [[ ! -d "$dir" ]] ; then
       $CMD_PREFIX mkdir -p "$dir"
     else
@@ -71,6 +72,7 @@ create_dirs() {
     fi
   done
 }
+
 
 setup_prezto() {
   if [[ ! -e "$PREZTO_DIR" ]] ; then
@@ -86,87 +88,75 @@ setup_prezto() {
   fi
 }
 
+
 setup_fonts() {
   $CMD_PREFIX $PLATFORM/install-fonts.sh
 }
 
 
-do_setup_os=''
-do_create_dirs=''
-do_setup_fonts=''
-do_setup_prezto=''
-opt_set=''
+init() {
+  if [[ -z "$INIT_PRINTED" ]]; then
+    echo "Working from $BASE_DIR"
+    echo
+  fi
 
-while getopts 'hnaofdpx' OPTION
-do
-  case $OPTION in
-    o)  do_setup_os=1
-        opt_set=1
-        ;;
-    f)  do_setup_fonts=1
-        opt_set=1
-        ;;
-    d)  do_create_dirs=1
-        opt_set=1
-        ;;
-    p)  do_setup_prezto=1
-        opt_set=1
-        ;;
-    x)  do_setup_once=1
-        opt_set=1
-        ;;
-    n)  CMD_PREFIX='echo'
-        ;;
-    a)  do_create_dirs=1
-        do_setup_fonts=1
-        do_setup_prezto=1
-        do_setup_os=1
-        opt_set=1
-        ;;
-    h)  usage
-        exit 1
-        ;;
-    ?)  usage
-        exit 1
-        ;;
-  esac
-done
-
-shift $((OPTIND - 1))
-
-# use defults if no options specified
-if [[ -z "$opt_set" ]]; then
-  do_create_dirs=1
-  do_setup_os=1
-  do_setup_fonts=1
-  do_setup_prezto=1
-fi
+  cd "$BASE_DIR"
+  INIT_PRINTED='true'
+}
 
 
-echo "Working from $BASE_DIR"
-cd "$BASE_DIR"
-
-if [[ -n "$do_setup_os" ]]; then
-  setup_os
-fi
-
-if [[ -n "$do_create_dirs" ]]; then
+basic() {
+  init
   create_dirs
+  setup_prezto
 
   if [[ -n "$(command -v stow)" ]] ; then
     cd "$BASE_DIR" && $CMD_PREFIX make
   else
     echo "'stow' must be installed before running 'make'"
   fi
-fi
+}
 
-if [[ -n "$do_setup_prezto" ]]; then
-  setup_prezto
-fi
+server() {
+  init
+  setup_os
+  basic
+}
 
-if [[ -n "$do_setup_fonts" ]]; then
+all() {
+  init
+  setup_os
+  basic
   setup_fonts
-fi
+}
 
+
+
+for cmd in "$@"
+do
+  case $cmd in
+    init|quick|basic|dirs)
+        basic
+        ;;
+    server)
+        server
+        ;;
+    all|full)
+        all
+        ;;
+    -n)
+        CMD_PREFIX='echo'
+        shift # consume arg
+        ;;
+    -h|help|*)
+        usage
+        exit 1
+        ;;
+  esac
+done
+
+if [[ $# -eq 0 ]]; then
+  all
+fi
 
 
