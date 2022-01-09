@@ -1,0 +1,208 @@
+#!/usr/bin/env python3
+
+from collections import namedtuple
+from pathlib import Path
+from pprint import pprint
+import argparse
+import configparser
+import os
+import getpass
+import re
+import subprocess
+import sys
+
+DEFAULT_CONFIG_BASE = Path.home() / '.config'
+DEFAULT_CONFIG_DIR = 'repo-tools'
+DEFAULT_CONFIG_FILE = 'repos.cfg'
+
+Repo = namedtuple('Repo', ['repo_url', 'directory', 'section'])
+
+
+def fail(err_msg):
+    print(err_msg, file=sys.stderr)
+    sys.exit(1)
+
+
+def resolve_config_file(conf_file=None, verify_exists=True):
+    if conf_file:
+        full_config = Path(conf_file)
+    else:
+        conf_base = os.getenv('XDG_CONFIG_HOME', DEFAULT_CONFIG_BASE.resolve())
+        conf_path = Path(conf_base)
+        full_config = conf_path / DEFAULT_CONFIG_DIR / DEFAULT_CONFIG_FILE
+
+    config_dir = full_config.parent
+
+    if verify_exists:
+        if not config_dir.is_dir():
+            fail(f"Configuration directory not found: {config_dir}")
+
+        if not full_config.exists():
+            fail(f"Configuration file not found: {full_config}")
+
+    return full_config
+
+
+def read_config(config_file):
+    config = configparser.ConfigParser(
+        interpolation=configparser.ExtendedInterpolation())
+    config.read(config_file)
+    return config
+
+
+def build_repos(config):
+    repos = [Repo(config[section].get('repo_url', vars=os.environ),
+                  Path(config[section].get('local_dir', vars=os.environ)),
+                  section)
+             for section in config
+             if section != "DEFAULT"]
+
+    return repos
+
+
+def filter_repos(repos, filters):
+    patterns = [re.compile(pat, re.IGNORECASE) for pat in filters]
+    return [r for r in repos if any_match(patterns, r)]
+
+
+def any_match(patterns, repo):
+    # applying regex partial match against stringified named tuple seems to be good enough
+    return any([pat.findall(str(repo)) for pat in patterns])
+
+
+def init_config(config_file):
+    if config_file:
+        config_file = Path(config_file)
+    else:
+        config_file = resolve_config_file(verify_exists=False)
+
+    config_dir = config_file.parent
+
+    if config_file.exists():
+        fail(f"Configuration file already exists: {config_file}")
+
+    if not config_dir.is_dir():
+        print(f"Creating directory {config_dir}")
+        config_dir.mkdir(parents=True, exist_ok=True)
+
+    config = configparser.ConfigParser()
+    config['DEFAULT'] = {
+        'git-base': 'git@github.com:' + getpass.getuser(),
+        'git-base-private':  'git@git.home.lan:' + getpass.getuser()
+    }
+    config['notes'] = {
+        'repo_url': '${git-base}/notes.git',
+        'local_dir': '${home}/Documents/notes'
+    }
+
+    print(f"Creating configuration file {config_file}")
+    with open(config_file, 'w') as fout:
+        config.write(fout)
+
+
+def list_repos(repos):
+    width = max([len(r.section) for r in repos]) + 2
+
+    for r in repos:
+        if r.directory.is_dir():
+            status = 'FOUND'
+        else:
+            status = 'MISSING'
+        print(f"{status:8} {r.section:{width}} {r.directory}")
+
+
+def clone_repos(repos):
+    for r in repos:
+        if r.directory.is_dir():
+            print(f"Already exists: {r.directory}\n")
+            continue
+        parent_dir = r.directory.parent
+        if not parent_dir.is_dir():
+            print(f"Parent directory not found: {parent_dir}")
+            print(f"  skipping clone of {r.repo_url} to {r.directory}\n")
+            continue
+
+        print(f"Cloning {r.repo_url}")
+        subprocess.run(['git',
+                        'clone',
+                        f"{r.repo_url}",
+                        f"{r.directory.name}"],
+                       cwd=parent_dir)
+        print()
+
+
+def update_repos(repos):
+    for r in repos:
+        if r.directory.is_dir():
+            print(f"Updating {r.directory.name} ...")
+            subprocess.run(['git', 'pull'], cwd=r.directory)
+        else:
+            print(f"Not found on this machine: {r.directory}")
+        print()
+
+
+def status_repos(repos):
+    for r in repos:
+        print("#" * 80)
+        if r.directory.is_dir():
+            print(f"Status of {r.directory}")
+            subprocess.run(['git', 'status'], cwd=r.directory)
+        else:
+            print(f"Not found on this machine: {r.directory}")
+        print()
+
+
+def gen_clone_script(repos):
+    for r in repos:
+        parent_dir = r.directory.parent.resolve()
+        checkout_dir = r.directory.resolve()
+        print(f"# {r.section}")
+        print(f"mkdir -p '{parent_dir}' && \\")
+        print(f"  git clone '{r.repo_url}' '{checkout_dir}'\n")
+
+
+def main():
+    cmds = 'init list clone stat status update script'.split()
+    user_cfg = resolve_config_file(verify_exists=False)
+    parser = argparse.ArgumentParser(
+        description='A tool for cloning and updating multiple Git repos based on a personal configuration',
+        epilog=f'User config location: {user_cfg}')
+    parser.add_argument('cmd', metavar='subcommand', type=str,
+                        nargs='?', default='list', choices=cmds,
+                        help=f'task to run [init, clone, update, status, script]')
+    parser.add_argument('filter',  metavar='filter', nargs='*',
+                        help=f'repo selection filter (regex)')
+    parser.add_argument('-f', '--file', metavar='config_file', type=str, dest='config_file',
+                        nargs='?', help='path to configuration file')
+    parser.add_argument('-v', '--verbose',  action='store_true',
+                        dest='verbose',  help='verbose output')
+    args = parser.parse_args()
+
+    # initializing a new config has a short execution path
+    if args.cmd == "init":
+        init_config(args.config_file)
+        return
+
+    config_file = resolve_config_file(args.config_file)
+    config = read_config(config_file)
+    repos = build_repos(config)
+
+    if args.filter:
+        repos = filter_repos(repos, args.filter)
+        if not repos:
+            fail(f"Zero repos match filters {args.filter}")
+
+    if args.cmd == "list":
+        list_repos(repos)
+    if args.cmd == "clone":
+        clone_repos(repos)
+    if args.cmd == "update":
+        update_repos(repos)
+    if args.cmd.startswith("stat"):
+        status_repos(repos)
+    if args.cmd == "script":
+        gen_clone_script(repos)
+
+
+if __name__ == "__main__":
+    main()
