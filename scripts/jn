@@ -42,6 +42,8 @@ usage() {
      -h:  Show this message
      -l:  List prepared journal files without opening editor
      -p:  Prepare header of entry files.  Can be used without edit.
+     -t:  Supply template argument.  A basic match is performed looking
+          for templates that include/omit "daily-" prefix and ".md" suffix
 
 EOU
 }
@@ -84,6 +86,26 @@ precheck() {
   return 0
 }
 
+verify_template() {
+  local tmpl="$1"
+  local full_path
+
+  # partial name may have been supplied
+  for tfile in "$tmpl" "daily-${tmpl}" "daily-${tmpl}.md"; do
+    full_path="$TEMPLATES_DIR/${tfile}"
+    if [[ -f "$full_path" ]]; then
+      #echo "Setting template to $full_path"
+      TEMPLATE_FILE="$full_path"
+      return
+    fi
+  done
+
+  if [[ ! -f "$full_path" ]]; then
+    echo "Template file not found: $tmpl"
+    exit 1
+  fi
+}
+
 isodate() {
   $DATE_CMD -d "$1" +%Y-%m-%d
 }
@@ -110,12 +132,14 @@ jnfile() {
 
 header() {
   local day="$1"
+  local template="${2:-$TEMPLATE_FILE}"
   setup_vars "$day"
 
-  if [[ -f "$TEMPLATE_FILE" ]]; then
-    envsubst < "$TEMPLATE_FILE"
+  #echo "Using template ${template}"
+  if [[ -f "$template" ]]; then
+    envsubst < "$template"
   else
-    printf -- '---\ndate: "%s"\nweekday: "%s"\nweight: \n---\n\n' \
+    printf -- '---\ndate: "%s"\nweekday: "%s"\nhealth:\n  weight:\n    pounds: \n---\n\n' \
       "$DATE" "$WEEKDAY"
   fi
 }
@@ -140,7 +164,7 @@ prepare() {
 do_prepare=true
 do_edit=true
 
-while getopts 'hlp' OPTION
+while getopts 'hlpt:' OPTION
 do
   case $OPTION in
     l)  do_edit=''
@@ -148,6 +172,9 @@ do
         ;;
     p)  do_prepare=true
         do_edit=''
+        ;;
+    t)  tmpl="$OPTARG"
+        verify_template "$tmpl"
         ;;
     h|?)
         usage
