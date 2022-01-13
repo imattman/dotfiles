@@ -112,8 +112,24 @@ html_encode() {
 update_linux() {
   # TODO add support for pacman
   if [[ $(command -v apt) ]]; then
+    local upgrade='upgrade'
+    for arg in "$@"; do
+      case "$arg" in
+        full|system|all)
+            upgrade='full-upgrade'
+            echo "Performing full upgrade."
+            ;;
+      esac
+    done
+
     echo "Updating apt packages..."
-    sudo apt update && sudo apt upgrade -y
+    sudo apt update && \
+      sudo apt "$upgrade" -y
+
+    if [[ -f /var/run/reboot-required ]]; then
+      printf "\n*** Reboot is required ***\n\n"
+      ls -l /var/run/reboot*
+    fi
   fi
 
   if [[ $(command -v flatpak) ]]; then
@@ -132,9 +148,9 @@ update_macos() {
 
 update_system() {
   case "$PLATFORM" in
-    darwin) update_macos
+    darwin) update_macos blah "$@"
             ;;
-    linux)  update_linux
+    linux)  update_linux "$@"
             ;;
     *)  echo "Unknown platform '$PLATFORM'"
         return 1
