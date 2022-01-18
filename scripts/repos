@@ -172,7 +172,7 @@ def main():
                         help=f'task to run [init, clone, update, status, script]')
     parser.add_argument('filter',  metavar='filter', nargs='*',
                         help=f'repo selection filter (regex)')
-    parser.add_argument('-f', '--file', metavar='config_file', type=str, dest='config_file',
+    parser.add_argument('-c', '--config', metavar='config_file', type=str, dest='config_file',
                         nargs='?', help='path to configuration file')
     parser.add_argument('-v', '--verbose',  action='store_true',
                         dest='verbose',  help='verbose output')
