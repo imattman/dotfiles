@@ -111,16 +111,20 @@ def list_repos(repos):
         print(f"{status:8} {r.section:{width}} {r.directory}")
 
 
-def clone_repos(repos):
+def clone_repos(repos, create_parents=False):
     for r in repos:
         if r.directory.is_dir():
             print(f"Already exists: {r.directory}\n")
             continue
         parent_dir = r.directory.parent
         if not parent_dir.is_dir():
-            print(f"Parent directory not found: {parent_dir}")
-            print(f"  skipping clone of {r.repo_url} to {r.directory}\n")
-            continue
+            if create_parents:
+                print(f"Creating parent directory: {parent_dir}")
+                parent_dir.mkdir(parents=True, exist_ok=True)
+            else:
+                print(f"Parent directory not found: {parent_dir}")
+                print(f"  skipping clone of {r.repo_url} to {r.directory}\n")
+                continue
 
         print(f"Cloning {r.repo_url}")
         subprocess.run(['git',
@@ -174,6 +178,8 @@ def main():
                         help=f'repo selection filter (regex)')
     parser.add_argument('-c', '--config', metavar='config_file', type=str, dest='config_file',
                         nargs='?', help='path to configuration file')
+    parser.add_argument('-p', '--parents',  action='store_true',
+                        dest='parents',  help='make parent directories as needed for clone')
     parser.add_argument('-v', '--verbose',  action='store_true',
                         dest='verbose',  help='verbose output')
     args = parser.parse_args()
@@ -195,7 +201,7 @@ def main():
     if args.cmd == "list" or args.cmd == "ls":
         list_repos(repos)
     if args.cmd == "clone":
-        clone_repos(repos)
+        clone_repos(repos, args.parents)
     if args.cmd.startswith("up"):
         update_repos(repos)
     if args.cmd.startswith("stat"):
