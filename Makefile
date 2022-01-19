@@ -3,6 +3,9 @@ all:
 	# XDG_CONFIG_HOME
 	[ -d ~/.config ]            && stow -v -t ~/.config config
 
+  # XDG_DATA_HOME
+	[ -d ~/.local/share ]       && stow -v -t ~/.local/share share
+
 	# zsh
 	[ -f ~/.zshenv ]            || ln -s $(PWD)/shell/zshenv.sh ~/.zshenv
 	[ -f ~/.zprofile ]          || ln -s $(PWD)/shell/zprofile.sh ~/.zprofile
@@ -41,6 +44,7 @@ all:
 clean:
 	# -L tests symbolic links
 	[ -d ~/.config ]            && stow -v -D -t ~/.config config
+	[ -d ~/.local/share ]       && stow -v -D -t ~/.local/share share
 
 	[ -L ~/.zprofile ]          && unlink ~/.zprofile
 	[ -L ~/.zshrc ]             && unlink ~/.zshrc
