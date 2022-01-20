@@ -144,25 +144,23 @@ inoremap jk <ESC>               " map 'jk' as easy alternate to ESC from insert 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
-
 " next search
 nnoremap <C-l> :nohl<CR><C-l>   " Map redraw screen to also turn off highlighting
 
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
 nnoremap <leader>l :nohl<CR>:set list!<CR>
 
-
-" Jump to next error with Ctrl-n and previous error with Ctrl-p. Close the
-" quickfix window with <leader>a
-nnoremap <C-n> :cnext<CR>
-nnoremap <C-m> :cprevious<CR>
-"nnoremap <leader>a :cclose<CR>
+" Tabs
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-w> :tabclose<CR>
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprev<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
 noremap <Down> gj
-noremap j gj
 noremap k gk
+noremap j gj
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -174,6 +172,12 @@ nnoremap N Nzz
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
 
+" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+" quickfix window with <leader>a
+nnoremap <C-q> :copen<CR>
+nnoremap <C-n> :cnext<CR>
+nnoremap <C-m> :cprevious<CR>
+"nnoremap <leader>a :cclose<CR>
 
 " Use shift-Tab to bypass expandtab
 inoremap <S-Tab> <C-V><Tab>
