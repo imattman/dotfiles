@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# fail early
+#set -euo pipefail
+
+while IFS= read -r line; do
+  # modern bash
+  echo "${line,,}"
+done
+
