@@ -4,6 +4,9 @@ github.com/cortesi/devd/cmd/devd@latest
 
 github.com/gohugoio/hugo@latest
 
+# cobra CLI code gen
+github.com/spf13/cobra/cobra@latest
+
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
  
