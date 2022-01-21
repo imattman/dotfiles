@@ -119,6 +119,14 @@ setup_vars() {
 
   export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
   export WEEKDAY=$($DATE_CMD -d "$day" +%A)
+
+  DIET=''
+  case "$(echo "$WEEKDAY" | tr [A-Z] [a-z])" in
+    mon*|wed*|fri*)
+      DIET='fasting'
+      ;;
+  esac
+  export DIET
 }
 
 
