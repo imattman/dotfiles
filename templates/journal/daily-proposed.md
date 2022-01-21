@@ -2,12 +2,11 @@
 date: "$DATE"
 weekday: $WEEKDAY
 notes:
-- 
--
+  - 
 health:
   weight:
     pounds: 
-  diet: fasting
+  diet: $DIET
   note:
 locations:
   - description:
