@@ -1,8 +1,12 @@
 ---
 date: "$DATE"
 weekday: $WEEKDAY
-weight:
-  pounds: 
-diet: $DIET
+notes:
+  - 
+health:
+  weight:
+    pounds: 
+  diet: $DIET
+  note:
 ---
 
