@@ -3,8 +3,11 @@ date: "$DATE"
 weekday: $WEEKDAY
 notes:
   - 
-weight:
-  pounds: 
+health:
+  weight:
+    pounds: 
+  diet: $DIET
+  note:
 metadata:
   original:
     source:
