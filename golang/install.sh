@@ -13,10 +13,10 @@ THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
 
-PKG_FILE='golang-pkg-list.txt'
+PKG_FILE='golang-pkg-get-list.txt'
 PKG_FILE="$THIS_DIR/$PKG_FILE"
 
-APP_FILE='golang-app-list.txt'
+APP_FILE='golang-app-install-list.txt'
 APP_FILE="$THIS_DIR/$APP_FILE"
 
 # allow package file to be specified as argument
@@ -62,12 +62,19 @@ if [[ ! "$(command -v go)" ]] ; then
   exit 1
 fi
 
-go_get $PKG_FILE
-
-if [[ $# -eq 0 ]] ; then
-  go_install $APP_FILE
+if [[ $# -gt 0 ]]; then
+  for fname in "$@"; do
+    case "$fname" in
+      *install*)
+        go_install "$fname"
+        ;;
+      *get*)
+        go_get "$fname"
+        ;;
+    esac
+  done
+else
+  go_get "$PKG_FILE"
+  go_install "$APP_FILE"
 fi
-
-exit 0
-
 
