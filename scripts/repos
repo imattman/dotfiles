@@ -11,6 +11,9 @@ import re
 import subprocess
 import sys
 
+# Python 3.7 required for subprocess handling of output capture
+REQUIRED_VERSION = (3, 7)
+
 DEFAULT_CONFIG_BASE = Path.home() / '.config'
 DEFAULT_CONFIG_DIR = 'repo-tools'
 DEFAULT_CONFIG_FILE = 'repos.cfg'
@@ -146,11 +149,19 @@ def update_repos(repos):
 
 
 def status_repos(repos):
+    repo_clean_msg = 'nothing to commit, working tree clean'
+
     for r in repos:
-        print("#" * 80)
         if r.directory.is_dir():
-            print(f"Status of {r.directory}")
-            subprocess.run(['git', 'status'], cwd=r.directory)
+            result = subprocess.run(['git', 'status'], cwd=r.directory, check=True,
+                                    capture_output=True, encoding='utf-8')
+            if repo_clean_msg in result.stdout:
+                print(f"Status of {r.directory}")
+                print("  working tree clean")
+            else:
+                print("#" * 80)
+                print(f"Status of {r.directory}")
+                print(result.stdout)
         else:
             print(f"Not found on this machine: {r.directory}")
         print()
@@ -165,7 +176,15 @@ def gen_clone_script(repos):
         print(f"  git clone '{r.repo_url}' '{checkout_dir}'\n")
 
 
+def check_version():
+    req_major, req_minor = REQUIRED_VERSION
+    (major, minor, *details) = sys.version_info
+    if major < req_major or (major == req_major and minor < req_minor):
+        fail(f"This script requires Python v{req_major}.{req_minor} or later")
+
+
 def main():
+    check_version()
     cmds = 'init list ls clone status stat update up script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
