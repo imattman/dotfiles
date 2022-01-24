@@ -126,6 +126,9 @@ update_linux() {
     sudo apt update && \
       sudo apt "$upgrade" -y
 
+    echo "Removing old packages..."
+    sudo apt autoremove -y
+
     if [[ -f /var/run/reboot-required ]]; then
       printf "\n*** Reboot is required ***\n\n"
       ls -l /var/run/reboot*
