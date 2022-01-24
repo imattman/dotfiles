@@ -18,7 +18,7 @@ DEFAULT_CONFIG_BASE = Path.home() / '.config'
 DEFAULT_CONFIG_DIR = 'repo-tools'
 DEFAULT_CONFIG_FILE = 'repos.cfg'
 
-Repo = namedtuple('Repo', ['repo_url', 'directory', 'section'])
+Repo = namedtuple('Repo', ['repo_url', 'upstream_url', 'directory', 'section'])
 
 
 def fail(err_msg):
@@ -55,6 +55,7 @@ def read_config(config_file):
 
 def build_repos(config):
     repos = [Repo(config[section].get('repo_url', vars=os.environ),
+                  config[section].get('upstream_url', vars=os.environ),
                   Path(config[section].get('local_dir', vars=os.environ)),
                   section)
              for section in config
@@ -95,6 +96,7 @@ def init_config(config_file):
     }
     config['notes'] = {
         'repo_url': '${git-base}/notes.git',
+        'upstream_url': '${git-base-private}/notes.git',
         'local_dir': '${home}/Documents/notes'
     }
 
@@ -135,7 +137,33 @@ def clone_repos(repos, create_parents=False):
                         f"{r.repo_url}",
                         f"{r.directory.name}"],
                        cwd=parent_dir)
+        set_upstream(r)
         print()
+
+
+def verify_upstream(repos):
+    for r in repos:
+        set_upstream(r)
+
+
+def set_upstream(repo):
+    if not repo.directory.is_dir():
+        return
+
+    if not repo.upstream_url:
+        print(f"Upstream URL not set for {repo.section}")
+        return
+
+    result = subprocess.run(['git', 'remote', '-v'], cwd=repo.directory, check=True,
+                            capture_output=True, encoding='utf-8')
+    if repo.upstream_url in result.stdout:
+        print(
+            f"Remote 'upstream' already set for {repo.section}: {repo.upstream_url}")
+    else:
+        print(
+            f"Adding remote 'upstream' to {repo.section}: {repo.upstream_url}")
+        subprocess.run(['git', 'remote', 'add', 'upstream', repo.upstream_url],
+                       cwd=repo.directory, check=True)
 
 
 def update_repos(repos):
@@ -185,14 +213,14 @@ def check_version():
 
 def main():
     check_version()
-    cmds = 'init list ls clone status stat update up script'.split()
+    cmds = 'init list ls clone status stat update up upstream script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
         epilog=f'User config location: {user_cfg}')
     parser.add_argument('cmd', metavar='subcommand', type=str,
                         nargs='?', default='list', choices=cmds,
-                        help=f'task to run [init, clone, update, status, script]')
+                        help=f'task to run [init, clone, update, upstream, status, script]')
     parser.add_argument('filter',  metavar='filter', nargs='*',
                         help=f'repo selection filter (regex)')
     parser.add_argument('-c', '--config', metavar='config_file', type=str, dest='config_file',
@@ -219,13 +247,16 @@ def main():
 
     if args.cmd == "list" or args.cmd == "ls":
         list_repos(repos)
-    if args.cmd == "clone":
+    elif args.cmd == "clone":
         clone_repos(repos, args.parents)
-    if args.cmd.startswith("up"):
+    # check for 'upstream' first so 'up' prefix is associated with 'update'
+    elif args.cmd == "upstream":
+        verify_upstream(repos)
+    elif args.cmd.startswith("up"):
         update_repos(repos)
-    if args.cmd.startswith("stat"):
+    elif args.cmd.startswith("stat"):
         status_repos(repos)
-    if args.cmd == "script":
+    elif args.cmd == "script":
         gen_clone_script(repos)
 
 
