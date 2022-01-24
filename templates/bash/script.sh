@@ -11,3 +11,7 @@ THIS_SCRIPT=$(basename "$0")
 BASE_DIR=$(cd $(dirname "$0") && pwd)
 
 
+while IFS= read -r line;do
+  echo "  // ${line}"
+done
+
