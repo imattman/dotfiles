@@ -176,7 +176,7 @@ def update_repos(repos):
         print()
 
 
-def status_repos(repos):
+def status_repos(repos, verbose=False):
     repo_clean_msg = 'nothing to commit, working tree clean'
 
     for r in repos:
@@ -184,15 +184,15 @@ def status_repos(repos):
             result = subprocess.run(['git', 'status'], cwd=r.directory, check=True,
                                     capture_output=True, encoding='utf-8')
             if repo_clean_msg in result.stdout:
-                print(f"Status of {r.directory}")
-                print("  working tree clean")
+                if verbose:
+                    print(f"Status of {r.directory}")
+                    print("  working tree clean\n")
             else:
                 print("#" * 80)
                 print(f"Status of {r.directory}")
-                print(result.stdout)
+                print(result.stdout, "\n")
         else:
-            print(f"Not found on this machine: {r.directory}")
-        print()
+            print(f"Not found on this machine: {r.directory}\n")
 
 
 def gen_clone_script(repos):
@@ -228,7 +228,7 @@ def main():
     parser.add_argument('-p', '--parents',  action='store_true',
                         dest='parents',  help='make parent directories as needed for clone')
     parser.add_argument('-v', '--verbose',  action='store_true',
-                        dest='verbose',  help='verbose output')
+                        dest='verbose',  help="more verbose output on 'stat', etc.")
     args = parser.parse_args()
 
     # initializing a new config has a short execution path
@@ -255,7 +255,7 @@ def main():
     elif args.cmd.startswith("up"):
         update_repos(repos)
     elif args.cmd.startswith("stat"):
-        status_repos(repos)
+        status_repos(repos, args.verbose)
     elif args.cmd == "script":
         gen_clone_script(repos)
 
