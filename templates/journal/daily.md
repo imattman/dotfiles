@@ -1,6 +1,8 @@
 ---
 date: "$DATE"
 weekday: $WEEKDAY
+tags:
+  -
 notes:
   - 
 health:
@@ -8,5 +10,6 @@ health:
     pounds: 
   diet: $DIET
   note:
+uuid: "$UUID"
 ---
 

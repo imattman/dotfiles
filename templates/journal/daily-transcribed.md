@@ -1,6 +1,8 @@
 ---
 date: "$DATE"
 weekday: $WEEKDAY
+tags:
+  -
 notes:
   - 
 health:
@@ -13,5 +15,6 @@ metadata:
     source:
       note: 
     location:
+uuid: "$UUID"
 ---
 

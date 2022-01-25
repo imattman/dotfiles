@@ -1,6 +1,8 @@
 ---
 date: "$DATE"
 weekday: $WEEKDAY
+tags:
+  -
 notes:
   - 
 health:
@@ -17,5 +19,6 @@ locations:
       temperature:
         fahrenheit:
         celsius:
+uuid: "$UUID"
 ---
 
