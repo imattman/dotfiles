@@ -14,7 +14,7 @@ fi
 source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile"
 
 export PLATFORM="$(uname -s | tr A-Z a-z)"
-export SCRIPTS="$HOME/bin"
+export SCRIPTS="$XDG_LOCAL_SCRIPTS"
 export WORKSPACE="$HOME/workspace"
 export DOCUMENTS="$HOME/Documents"
 export NOTES="$HOME/Notes"
@@ -105,8 +105,8 @@ export RUSTUP_HOME="$WORKSPACE/rust/rustup"
 
 
 path=(
-  $HOME/bin
   $XDG_LOCAL_BIN
+  $XDG_LOCAL_SCRIPTS
   $path
   $GOBIN
   $CARGO_HOME/bin
@@ -125,6 +125,7 @@ cdpath=(
   $NOTES_SCRATCHPAD
   $WORKSPACE
   $WORKSPACE/websites
+  $XDG_LOCAL_HOME
   $GOPATH/src/github.com/imattman
   $GOPATH/src/gitlab.com/imattman
 )

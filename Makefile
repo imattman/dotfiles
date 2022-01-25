@@ -6,6 +6,9 @@ all:
   # XDG_DATA_HOME
 	[ -d ~/.local/share ]       && stow -v -t ~/.local/share share
 
+  # scripts
+	[ -d ~/.local/scripts ]     || ln -s $(PWD)/scripts ~/.local
+
 	# zsh
 	[ -f ~/.zshenv ]            || ln -s $(PWD)/shell/zshenv.sh ~/.zshenv
 	[ -f ~/.zprofile ]          || ln -s $(PWD)/shell/zprofile.sh ~/.zprofile
@@ -38,13 +41,14 @@ all:
 	# elixir
 	[ -f ~/.iex.exs ]           || ln -s $(PWD)/elixir/iex.exs ~/.iex.exs
 
-  # scripts
-	[ -d ~/.local/bin ]         && stow -v -t ~/.local/bin scripts
 
 clean:
 	# -L tests symbolic links
 	[ -d ~/.config ]            && stow -v -D -t ~/.config config
 	[ -d ~/.local/share ]       && stow -v -D -t ~/.local/share share
+
+	[ -L ~/.local/scripts ]     && unlink ~/.local/scripts
+#	[ -d ~/.local/bin ]         && stow -v -D -t ~/.local/bin scripts
 
 	[ -L ~/.zprofile ]          && unlink ~/.zprofile
 	[ -L ~/.zshrc ]             && unlink ~/.zshrc
@@ -72,6 +76,5 @@ clean:
 
 	[ -L ~/.iex.exs ]           && unlink ~/.iex.exs
 
-	[ -d ~/.local/bin ]         && stow -v -D -t ~/.local/bin scripts
-
 .PHONY: all
+
