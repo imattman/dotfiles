@@ -177,7 +177,7 @@ def update_repos(repos):
 
 
 def status_repos(repos, verbose=False):
-    repo_clean_msg = 'nothing to commit, working tree clean'
+    repo_clean_msg = 'working tree clean'
 
     for r in repos:
         if r.directory.is_dir():
@@ -191,7 +191,7 @@ def status_repos(repos, verbose=False):
                 print("#" * 80)
                 print(f"Status of {r.directory}")
                 print(result.stdout, "\n")
-        else:
+        elif verbose:
             print(f"Not found on this machine: {r.directory}\n")
 
 
