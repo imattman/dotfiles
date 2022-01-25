@@ -97,6 +97,7 @@ install_pkgs() {
     fzf \
     ripgrep \
     htop \
+    uuid \
     neofetch \
     nnn \
     vifm \

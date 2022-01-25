@@ -12,6 +12,7 @@ TEMPLATES_DIR="${TEMPLATES}/journal"
 TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 
 DATE_CMD="date"
+UUID_CMD="uuid"
 JN_EDITOR=${VISUAL:-${EDITOR:-}}
 EDITOR_OPTS="+5"
 
@@ -83,6 +84,10 @@ precheck() {
     exit 1
   fi
 
+  if [[ ! $(command -v $UUID_CMD) ]]; then
+    echo "Warning: 'uuid' command not found"
+  fi
+
   return 0
 }
 
@@ -119,6 +124,10 @@ setup_vars() {
 
   export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
   export WEEKDAY=$($DATE_CMD -d "$day" +%A)
+  export UUID=''
+  if [[ $(command -v $UUID_CMD) ]]; then
+    export UUID="$($UUID_CMD -v 1)"
+  fi
 
   DIET=''
   case "$(echo "$WEEKDAY" | tr [A-Z] [a-z])" in
