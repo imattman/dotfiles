@@ -15,10 +15,11 @@ PLATFORM="$(uname -s | tr A-Z a-z)"
 
 WORKSPACE_DIR="${WORKSPACE:-${HOME}/workspace}"
 NOTES_DIR="${NOTES:-${HOME}/Documents/Notes}"
-SCRIPTS_DIR="${SCRIPTS:-${HOME}/bin}"
 XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}"
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 XDG_LOCAL_BIN="${XDG_LOCAL_BIN:-$HOME/.local/bin}"
+XDG_LOCAL_SCRIPTS="${XDG_LOCAL_SCRIPTS:-$HOME/.local/scripts}"
+SCRIPTS_DIR="${XDG_LOCAL_SCRIPTS}"
 
 PREZTO_REPO='https://github.com/sorin-ionescu/prezto'
 PREZTO_DIR="${HOME}/.zprezto"
@@ -64,7 +65,7 @@ setup_os() {
 
 create_dirs() {
   for dir in "$XDG_CONFIG_DIR" "$XDG_DATA_HOME" "$XDG_LOCAL_BIN" \
-    "$SCRIPTS_DIR" "$WORKSPACE_DIR" "$NOTES_DIR" ; do
+    "$WORKSPACE_DIR" "$NOTES_DIR" ; do
     if [[ ! -d "$dir" ]] ; then
       $CMD_PREFIX mkdir -p "$dir"
     else
