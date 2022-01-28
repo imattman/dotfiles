@@ -3,6 +3,9 @@ autopep8
 #black
 pylint
 
+# Zsh and Bash tab completion generator
+shtab
+
 # markdown viewer
 mdv3
 # markdown presentation
