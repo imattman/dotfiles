@@ -134,6 +134,9 @@ setup_vars() {
     mon*|wed*|fri*)
       DIET='fasting'
       ;;
+    *)
+      DIET='keto'
+      ;;
   esac
   export DIET
 }
