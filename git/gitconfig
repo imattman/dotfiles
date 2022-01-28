@@ -45,17 +45,19 @@
   history = log --follow
   # list most commonly changed files in repo
   code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
-  syncupstream = "!git pull upstream master && git push origin master"
+  syncupstreammain = "!git pull upstream main && git push origin main"
+  syncupstreammaster = "!git pull upstream master && git push origin master"
   submodule-update = "!git submodule update --init --recursive"
   rollback-all = "!git checkout -- $(git ls-files -m)"
   unstage-all = "!git reset HEAD $(git ls-files -m)"
   commend = commit --amend --no-edit
   # a hack to reset commit date to now
   set-last-commit-now = "!git commit --amend --no-edit --date=\"$(date -R)\""
-  untracked-files = ls-files -o --exclude-standard
-  ignored-files = ls-files --others -i --exclude-standard
-  modified-files = ls-files -m
+  files-untracked = ls-files -o --exclude-standard
+  files-ignored = ls-files --others -i --exclude-standard
+  files-modified = ls-files -m
   delete-merged = "!git branch -D $(git branch --merged | grep -v '^*')"
+  url-origin = "!git remote get-url origin"
   gc-now = "gc --prune='0 days'"
   # SVN habits
   svn-stat = "!git --no-pager diff --name-status remotes/git-svn"
