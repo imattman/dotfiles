@@ -35,7 +35,7 @@ filetype plugin indent on       " ... and enable filetype detection
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 set ttymouse=xterm2             " Indicate terminal type for mouse codes
 set ttyscroll=3                 " Speedup scrolling
-set scrolloff=2                 " Min number of lines to show beyond cursor
+set scrolloff=1                 " Min number of lines to show beyond cursor
 set laststatus=2                " Show status line always
 
 set encoding=utf-8              " Set default encoding to UTF-8
@@ -151,10 +151,10 @@ nnoremap <C-l> :nohl<CR><C-l>   " Map redraw screen to also turn off highlightin
 nnoremap <leader>l :nohl<CR>:set list!<CR>
 
 " Tabs
-nnoremap <C-t> :tabnew<CR>
-nnoremap <C-w> :tabclose<CR>
-nnoremap <Tab> :tabnext<CR>
-nnoremap <S-Tab> :tabprev<CR>
+"nnoremap <C-t> :tabnew<CR>      "<C-t> is used with the tag stack. Not wise to override
+"nnoremap <C-w> :tabclose<CR>
+"nnoremap <Tab> :tabnext<CR>
+"nnoremap <S-Tab> :tabprev<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
@@ -199,10 +199,10 @@ noremap <leader>h :<C-u>split<CR>
 noremap <leader>v :<C-u>vsplit<CR>
 
 " easier window navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
 
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
