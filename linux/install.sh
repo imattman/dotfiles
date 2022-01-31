@@ -58,11 +58,13 @@ install_gui_pkgs() {
   sudo apt install -y \
     xsel \
     ulauncher \
-    neovim-qt \
     feh \
     imv \
     sxiv \
     sm
+
+  # currently install neovim from source
+    #neovim-qt \
 }
 
 
@@ -87,7 +89,6 @@ install_pkgs() {
     jq \
     zsh \
     vim-nox \
-    neovim \
     python3 \
     python3-dev \
     python3-venv \
@@ -106,6 +107,7 @@ install_pkgs() {
     entr \
     watchman
   
+  #  neovim \
   #  alacritty \
 }
 
