@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+# Repo URLs
+GIT_URL='https://api.github.com/repos/ryanoasis/nerd-fonts.git'
+TAGS_URL='https://api.github.com/repos/ryanoasis/nerd-fonts/tags'
+
+curl -s "$TAGS_URL" \
+  | jq -r '.[0].name'
+
