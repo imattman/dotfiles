@@ -104,7 +104,8 @@ set pumheight=10                " Completion window max size
 "set complete+=kspell            " enable word completion
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#statusline()}
+"set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#statusline()}
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
 " Enable to copy to clipboard for operations like yank, delete, change and put
 " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
@@ -150,12 +151,6 @@ nnoremap <C-l> :nohl<CR><C-l>   " Map redraw screen to also turn off highlightin
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
 nnoremap <leader>l :nohl<CR>:set list!<CR>
 
-" Tabs
-"nnoremap <C-t> :tabnew<CR>      "<C-t> is used with the tag stack. Not wise to override
-"nnoremap <C-w> :tabclose<CR>
-"nnoremap <Tab> :tabnext<CR>
-"nnoremap <S-Tab> :tabprev<CR>
-
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
 noremap <Down> gj
@@ -168,6 +163,10 @@ nnoremap n nzz
 "nnoremap n nzzzv
 nnoremap N Nzz
 "nnoremap N Nzzzv
+
+" Easy buffer switching
+nnoremap <S-h> <cmd>bprev<CR>
+nnoremap <S-l> <cmd>bnext<CR>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
@@ -189,7 +188,7 @@ set notimeout ttimeout ttimeoutlen=200
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" blow away selected line w/out clobbering default register
+" replace selected text w/out clobbering default register
 " then paste in what is currently in default register
 vnoremap <leader>p "_dP
 
@@ -208,11 +207,13 @@ nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
+" Use netrw for file explorer
+nnoremap <Leader>e <cmd>Lexplore 20<CR>
 
 
 " fzf mappings
-nnoremap <C-p> :GFiles<Cr>
-
+nnoremap <C-p> <cmd>GFiles<CR>
+nnoremap <Leader>f <cmd>Files<CR>
 
 " set to true to find project root from cwd
 "if executable('rg')
@@ -221,9 +222,7 @@ nnoremap <C-p> :GFiles<Cr>
 
 
 
-" "------------------------------------------------------------
-" "------------------------------------------------------------
-"
+" ------------------------------------------------------------
 " Plug in configuration loaded after main settings
 "
 
@@ -234,42 +233,14 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
-
-
-" "------------------------------------------------------------
+" ------------------------------------------------------------
 " vim-test
 " strategies: basic | make | neovim | vimterminal (vim8) | vimux
 let test#strategy = "vimterminal"
 
-" "------------------------------------------------------------
-" "" UltiSnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
-
-
-" "------------------------------------------------------------
-" "" NERDTree configuration
-" let g:NERDTreeChDirMode=2
-" let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-" let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-" let g:NERDTreeShowBookmarks=1
-" let g:nerdtree_tabs_focus_on_files=1
-" let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-" let g:NERDTreeWinSize = 30
-"
-"nnoremap <silent> <F2> :NERDTreeFind<CR>
-"noremap <F3> :NERDTreeToggle<CR>
-"noremap <leader>nt :NERDTreeToggle<CR>
-"noremap <leader>kb :NERDTreeToggle<CR>
-
-
-"------------------------------------------------------------
-"" Git
+" ------------------------------------------------------------
+" Git
 noremap <leader>ga :!git add .<CR>
 "noremap <leader>gc :!git commit -m '<C-R>="'"<CR>
 "noremap <leader>gsh :!git push<CR>
@@ -279,12 +250,8 @@ noremap <leader>gd :Gvdiff<CR>
 "noremap <leader>gr :Gremove<CR>
 
 
-
-""------------------------------------------------------------
-""------------------------------------------------------------
-"" Additional configs
+" ------------------------------------------------------------
+" Additional configs
 
 source ~/.vim/vimrc-golang.vim              " Go config
-
-
 
