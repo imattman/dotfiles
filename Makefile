@@ -4,7 +4,7 @@ all:
 	[ -d ~/.config ]            && stow -v -t ~/.config config
 
   # XDG_DATA_HOME
-	[ -d ~/.local/share ]       && stow -v -t ~/.local/share share
+	[ -d ~/.local/share ]       && stow -v -t ~/.local/share local-share
 
   # scripts
 	[ -d ~/.local/scripts ]     || ln -s $(PWD)/scripts ~/.local
@@ -45,7 +45,7 @@ all:
 clean:
 	# -L tests symbolic links
 	[ -d ~/.config ]            && stow -v -D -t ~/.config config
-	[ -d ~/.local/share ]       && stow -v -D -t ~/.local/share share
+	[ -d ~/.local/share ]       && stow -v -D -t ~/.local/share local-share
 
 	[ -L ~/.local/scripts ]     && unlink ~/.local/scripts
 #	[ -d ~/.local/bin ]         && stow -v -D -t ~/.local/bin scripts
