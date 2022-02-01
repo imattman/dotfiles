@@ -6,6 +6,10 @@ pylint
 # Zsh and Bash tab completion generator
 shtab
 
+# fancy text presentation
+# see: https://github.com/Textualize/rich-cli
+rich-cli
+
 # markdown viewer
 mdv3
 # markdown presentation
