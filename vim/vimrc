@@ -145,11 +145,14 @@ inoremap jk <ESC>               " map 'jk' as easy alternate to ESC from insert 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
+" set local CWD to that of current buffer
+nnoremap <Leader>cd  :lcd %:p:h<CR>
+
 " next search
 nnoremap <C-l> :nohl<CR><C-l>   " Map redraw screen to also turn off highlighting
 
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
-nnoremap <leader>l :nohl<CR>:set list!<CR>
+"nnoremap <leader>l :nohl<CR>:set list!<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
@@ -160,9 +163,7 @@ noremap j gj
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzz
-"nnoremap n nzzzv
 nnoremap N Nzz
-"nnoremap N Nzzzv
 
 " Easy buffer switching
 nnoremap <S-h> <cmd>bprev<CR>
@@ -198,10 +199,21 @@ noremap <leader>h :<C-u>split<CR>
 noremap <leader>v :<C-u>vsplit<CR>
 
 " easier window navigation
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
+" open alternate in vertical split (default is horizontal)
+nnoremap <C-w><C-^> :vsplit #<CR>
+nnoremap <C-w><C-6> :vsplit #<CR>
+nnoremap <C-w>6 :vsplit #<CR>
+
+
+" emacs habit
+nnoremap <C-w>0 <C-w>o
+"nnoremap <C-x>0 <C-w>o
+
 
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
@@ -214,6 +226,7 @@ nnoremap <Leader>e <cmd>Lexplore 20<CR>
 " fzf mappings
 nnoremap <C-p> <cmd>GFiles<CR>
 nnoremap <Leader>f <cmd>Files<CR>
+nnoremap <Leader>b <cmd>Buffers<CR>
 
 " set to true to find project root from cwd
 "if executable('rg')
