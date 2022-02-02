@@ -104,7 +104,9 @@ keymap("n", "<Leader>e", ":Lexplore 25<CR>", opts)
 keymap("n", "<Leader>cd", ":lcd %:p:h<CR>", opts)
 
 -- telescope
-keymap("n", "<Leader>f", "<CMD>Telescope find_files<CR>", opts)
+keymap("n", "<C-p>", "<CMD>Telescope find_files<CR>", opts)
+keymap("n", "<Leader>ff", "<CMD>Telescope find_files<CR>", opts)
+keymap("n", "<Leader>fg", "<CMD>Telescope git_files<CR>", opts)
 --keymap("n", "<Leader>gb", "<CMD>Telescope git_branches<CR>", opts)
 
 
