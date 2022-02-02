@@ -1,9 +1,13 @@
 #!/bin/bash
 
+# fail early
+set -ou pipefail
+
 THIS_SCRIPT=$(basename "$0")
 THIS_DIR=$(dirname "$0")
 BASE_DIR=$(cd "$THIS_DIR" && pwd)
 NEOVIM_REPO_URL="https://github.com/neovim/neovim.git"
+WORKSPACE="${WORKSPACE:-$HOME/workspace}"
 CLONE_DIR="$WORKSPACE/neovim"
 
 
