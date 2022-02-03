@@ -57,6 +57,7 @@ local options = {
   conceallevel = 0,                        -- so that `` is visible in markdown files
   timeoutlen = 300,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   updatetime = 300,                        -- faster completion (4000ms default)
+  autoread = true,                         -- automatically read changed files
 
   listchars= { tab='▸ ', eol='¬' },
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
