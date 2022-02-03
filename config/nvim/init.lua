@@ -8,6 +8,8 @@ require "mattman.colorscheme"
 require "mattman.cmp"
 require "mattman.telescope"
 require "mattman.treesitter"
+require "mattman.autocommands"
+require "mattman.golang"
 
 
 --------------------------------------------------
@@ -24,7 +26,7 @@ local options = {
   numberwidth = 2,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   cursorline = true,                       -- highlight the current line
-  wrap = false,                            -- display lines as one long line
+  wrap = false,                            -- wrap long lines
   scrolloff = 4,
   sidescrolloff = 4,
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
@@ -46,6 +48,7 @@ local options = {
   mouse = "a",                             -- allow the mouse to be used in neovim
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   fileencoding = "utf-8",                  -- the encoding written to a file
+  confirm = true,
   backup = false,                          -- creates a backup file
   swapfile = false,                        -- creates a swapfile
   undofile = false,                        -- enable persistent undo
@@ -55,6 +58,7 @@ local options = {
   timeoutlen = 300,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   updatetime = 300,                        -- faster completion (4000ms default)
 
+  listchars= { tab='▸ ', eol='¬' },
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
 }
 
@@ -105,9 +109,11 @@ keymap("n", "<Leader>cd", ":lcd %:p:h<CR>", opts)
 
 -- telescope
 keymap("n", "<C-p>", "<CMD>Telescope find_files<CR>", opts)
-keymap("n", "<Leader>ff", "<CMD>Telescope find_files<CR>", opts)
-keymap("n", "<Leader>fg", "<CMD>Telescope git_files<CR>", opts)
+keymap("n", "<Leader>f", "<CMD>Telescope find_files<CR>", opts)
+--keymap("n", "<Leader>fg", "<CMD>Telescope git_files<CR>", opts)
 --keymap("n", "<Leader>gb", "<CMD>Telescope git_branches<CR>", opts)
+--keymap("n", "<C-_>", "<CMD>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>", opts)
+keymap("n", "<C-_>", "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy='ascending', prompt_position='top'})<CR>", opts)
 
 
 -- better window navigation

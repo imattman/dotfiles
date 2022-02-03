@@ -8,17 +8,31 @@ local actions = require "telescope.actions"
 telescope.setup {
   defaults = {
 
-    prompt_prefix = "❯ ",
+    prompt_prefix = " ",
     selection_caret = "❯ ",
     path_display = { "smart" },
 
     mappings = {
       i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
+        ["<C-a>"] = function() print(vim.inspect(actions.get_selected_entry()))end,
+
+        --["<C-n>"] = actions.cycle_history_next,
+        --["<C-p>"] = actions.cycle_history_prev,
+
+        -- clear prompt input -- TODO: better way to do this?
+        ["<C-u>"] = function()
+          vim.cmd [[ normal! S ]]
+        end,
+
+        -- delete most recent word
+        ["<C-w>"] = function()
+          vim.cmd [[ normal! bcw ]]
+        end,
 
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
 
         ["<C-c>"] = actions.close,
 
@@ -30,7 +44,7 @@ telescope.setup {
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
 
-        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-b>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
 
         ["<PageUp>"] = actions.results_scrolling_up,
