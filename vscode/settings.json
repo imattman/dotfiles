@@ -63,6 +63,7 @@
   "explorer.openEditors.visible": 0,
   // delete from side tray without extra prompt
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
 
   // show file path breadcrumbs upper area of editor
   "breadcrumbs.enabled": true,
