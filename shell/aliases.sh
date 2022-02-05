@@ -14,8 +14,7 @@ alias cdw='cd_workspace'
 alias cdn='cd_notes'
 
 alias nv='nvim'
-alias vim='nvim'
-alias vim-old'\vim'
+#alias vim='nvim'
 alias vimf='edit_fzf vim'
 
 alias today="date '+%Y-%m-%d'"

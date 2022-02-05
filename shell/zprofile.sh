@@ -75,6 +75,10 @@ fi
 
 
 export EDITOR=vim
+if [[ $(command -v nvim) ]]; then
+  export EDITOR=nvim
+fi
+
 if [[ $(command -v gvim) ]]; then
   export VISUAL=gvim
 else
