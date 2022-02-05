@@ -166,8 +166,8 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " Easy buffer switching
-nnoremap <S-h> <cmd>bprev<CR>
-nnoremap <S-l> <cmd>bnext<CR>
+"nnoremap <S-h> <cmd>bprev<CR>
+"nnoremap <S-l> <cmd>bnext<CR>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
