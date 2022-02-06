@@ -55,6 +55,7 @@ local options = {
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
+
   timeoutlen = 300,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   updatetime = 300,                        -- faster completion (4000ms default)
   autoread = true,                         -- automatically read changed files
@@ -89,7 +90,7 @@ local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
 -- use spacebar as leader key
-keymap("", "<Space>", "<Nop>", opts)
+--keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -130,8 +131,12 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+--keymap("n", "<S-l>", ":bnext<CR>", opts)
+--keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<Leader> ", "<C-^>", opts)   -- easy toggle between alternate file
+keymap("n", "<Leader>6", "<C-^>", opts)
+keymap("n", "<Leader>n", ":bnext<CR>", opts)
+keymap("n", "<Leader>p", ":bprevious<CR>", opts)
 
 
 -- turn off hlsearch
