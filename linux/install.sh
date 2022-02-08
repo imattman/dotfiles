@@ -67,6 +67,15 @@ install_gui_pkgs() {
     #neovim-qt \
 }
 
+pandoc() {
+  sudo apt update && \
+    sudo apt install -y \
+    pandoc \
+    texlive-latex-base \
+    texlive-fonts-recommended \
+    texlive-extra-utils \
+    texlive-latex-extra
+}
 
 install_pkgs() {
   echo "Installing packages..."
