@@ -126,7 +126,14 @@ if has("autocmd")
 
   autocmd BufNewFile,BufRead *.md setfiletype markdown
   "autocmd FileType markdown setlocal spell spelllang=en_us
-  autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
+
+    "a - automatic formatting of paragraphs
+    "c - auto-wrap comments
+    "q - allow formatting coments with 'gq'
+    "t - auto-wrap text
+    "w - trailing whitespace indicates paragraph continues on next line
+  autocmd FileType markdown setlocal tw=80 fo=acqtw colorcolumn=+1
+  "autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
 endif
 

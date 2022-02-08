@@ -17,8 +17,17 @@ vim.cmd [[
 
   augroup _markdown
     autocmd!
-    autocmd FileType markdown setlocal wrap
+    autocmd FileType markdown setlocal textwidth=80 colorcolumn=+1
+
+    "a - automatic formatting of paragraphs
+    "c - auto-wrap comments
+    "q - allow formatting coments with 'gq'
+    "t - auto-wrap text
+    "w - trailing whitespace indicates paragraph continues on next line
+    autocmd FileType markdown setlocal formatoptions=acqtw
+
     autocmd FileType markdown setlocal spell
+    autocmd FileType markdown setlocal wrap
   augroup end
 
   augroup _auto_resize
