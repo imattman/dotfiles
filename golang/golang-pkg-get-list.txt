@@ -27,19 +27,18 @@ github.com/motemen/gore
 github.com/newhook/go-symbols
 github.com/nsf/gocode
 github.com/rogpeppe/godef
-github.com/stretchr/testify
 github.com/tpng/gopkgs
 github.com/zmb3/gogetdoc
+
+# testing
+github.com/stretchr/testify
+github.com/matryer/is
+github.com/matryer/moq
 
 #
 # common libs
 #
 github.com/pkg/errors
-
-github.com/jinzhu/gorm
-github.com/jmoiron/sqlx
-# postgres
-github.com/lib/pq
 
 github.com/spf13/afero
 github.com/spf13/cobra
@@ -47,6 +46,12 @@ github.com/spf13/viper
 github.com/spf13/pflag
 gopkg.in/russross/blackfriday.v2
 
+github.com/jinzhu/now
+github.com/jinzhu/gorm
+github.com/jmoiron/sqlx
+
+# postgres
+github.com/lib/pq
 
 github.com/caddyserver/caddy
 

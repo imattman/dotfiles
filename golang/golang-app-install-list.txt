@@ -13,8 +13,14 @@ github.com/antonmedv/countdown@latest
 # terminal markdown renderer
 github.com/charmbracelet/glow@latest
 
+# JSON -> struct tools
+github.com/m-zajac/json2go/...@latest
+
+# emoji lookup
+github.com/hackebrot/turtle/...@latest
+
 # it can be easier to install buffalo via brew or other package manager
-github.com/gobuffalo/buffalo/buffalo@latest
+#github.com/gobuffalo/buffalo/buffalo@latest
   
 goa.design/goa/v3/...@v3
 
