@@ -74,6 +74,7 @@ update() {
 build() {
   echo "Building neovim in directory $CLONE_DIR"
   cd "$CLONE_DIR" && \
+    rm -rf build && \
     make
 }
 
