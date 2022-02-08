@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+for dir in "$HOME/.local/share/nvim" "$HOME/.config/nvim/plugin"; do
+  if [[ -d "$dir" ]]; then
+    echo "Removing $dir"
+    rm -rf "$dir"
+  fi
+done
+
+

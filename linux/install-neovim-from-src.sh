@@ -19,14 +19,15 @@ usage() {
 
   The default is to execute all of the following subcommands in order:
 
-    deps       installs compile dependencies using 'apt install'
-    clone      clones neovim git repo to \$WORKSPACE
-    build      builds default 'make' target
-    install    installs 'nvim' binary via neovim make target
+    deps          installs compile dependencies using 'apt install'
+    clone         clones neovim git repo to \$WORKSPACE
+    build         builds default 'make' target
+    install       installs 'nvim' binary via neovim make target
+    clean_cache   removes local nvim cache directories
 
   If an existing workspace is detected, it will be updated.
 
-    update     updates git repo to latest
+    update        updates git repo to latest
 
 EOU
 }
@@ -84,6 +85,15 @@ install() {
     sudo make install
 }
 
+clean_cache() {
+  for dir in "$HOME/.local/share/nvim" "$HOME/.config/nvim/plugin"; do
+    if [[ -d "$dir" ]]; then
+      echo "Removing $dir"
+      rm -rf "$dir"
+    fi
+  done
+}
+
 
 if [[ $# -eq 0 ]]; then
   deps
@@ -98,7 +108,7 @@ else
         exit 1
         ;;
       *)
-        $@
+        "$arg"
         ;;
     esac
   done
