@@ -13,6 +13,9 @@ alias cdf='cd_fzf'
 alias cdw='cd_workspace'
 alias cdn='cd_notes'
 
+# journal tools
+alias jnf='jn_fzf'
+
 alias nv='nvim'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'

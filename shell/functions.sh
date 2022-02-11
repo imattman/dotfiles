@@ -11,7 +11,7 @@ fi
 
 cd_fzf() {
   local root="${1:-$PWD}"
-  local depth="${2:-99}"
+  local depth="${2:-4}"
 
   if [[ "$root" == '.' ]]; then
     root="$PWD"
@@ -19,7 +19,13 @@ cd_fzf() {
 
   #local parent=$(dirname "$root")
   #local base=$(basename "$root")
-  local dir=$(cd "$root" && fd -t d -d $depth -E "*/pkg/mod/*" . | fzf)
+  local dir
+  if [[ $(command -v fd) ]]; then
+    dir=$(cd "$root" && fd -t d -d $depth -E "*/pkg/mod/*" . | fzf)
+  else
+    #dir=$(cd "$root" && find . -type d -maxdepth $depth | fzf)
+    dir=$(cd "$root" && find . -maxdepth $depth -type d | fzf)
+  fi
 
   [[ -n "$dir" ]] && cd "$root/$dir"
 }
@@ -31,11 +37,37 @@ edit_fzf() {
     root="$PWD"
   fi
 
-  local file=$(cd "$root" && fd -t f -E "*/pkg/mod/*" . | fzf)
+  local fname
+  if [[ $(command -v fd) ]]; then
+    fname=$(cd "$root" && fd -t f -E "*/pkg/mod/*" . | fzf --preview 'cat {}' --border )
+  else
+    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border )
+  fi
 
-  if [[ -n "$file" ]] ; then
-    #echo "$editor $root/$file" 
-    [[ -e "$root/$file" ]] && $editor "$root/$file"
+  if [[ -n "$fname" ]] ; then
+    #echo "$editor $root/$fname"
+    [[ -e "$root/$fname" ]] && $editor "$root/$fname"
+  fi
+}
+
+
+jn_fzf() {
+  local root="${1:-$NOTES_JOURNAL/daily}"
+  if [[ "$root" == '.' ]]; then
+    root="$PWD"
+  fi
+
+  local fname
+  if [[ $(command -v fd) ]]; then
+    fname=$(cd "$root" && fd -t f . | fzf --preview 'cat {}' --border )
+  else
+    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border )
+  fi
+
+  if [[ -n "$fname" ]] ; then
+    #echo "$editor $root/$fname"
+    #[[ -e "$root/$fname" ]] && $EDITOR "$root/$fname"
+    [[ -e "$root/$fname" ]] && jn $(basename $fname .md)
   fi
 }
 
@@ -48,12 +80,12 @@ cd_notes() {
   cd_fzf "$NOTES" "$@"
 }
 
-cd_documents() {
-  cd_fzf "$DOCUMENTS" "$@"
+cd_journal() {
+  cd_fzf "$NOTES_JOURNAL" "$@"
 }
 
-cd_dropbox() {
-  cd_fzf "$DROPBOX" "$@"
+cd_documents() {
+  cd_fzf "$DOCUMENTS" "$@"
 }
 
 
