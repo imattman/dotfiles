@@ -59,9 +59,11 @@ jn_fzf() {
 
   local fname
   if [[ $(command -v fd) ]]; then
-    fname=$(cd "$root" && fd -t f . | fzf --preview 'cat {}' --border )
+    fname=$(cd "$root" && fd -t f . | fzf --preview 'cat {}' --border \
+      --color 'bg:#222222,preview-bg:#333333')
   else
-    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border )
+    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border \
+      --color 'bg:#222222,preview-bg:#333333')
   fi
 
   if [[ -n "$fname" ]] ; then
