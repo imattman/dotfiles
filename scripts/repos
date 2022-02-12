@@ -213,7 +213,7 @@ def check_version():
 
 def main():
     check_version()
-    cmds = 'init list ls clone status stat update up upstream script'.split()
+    cmds = 'init list ls clone status stat update up pull upstream script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
@@ -252,7 +252,7 @@ def main():
     # check for 'upstream' first so 'up' prefix is associated with 'update'
     elif args.cmd == "upstream":
         verify_upstream(repos)
-    elif args.cmd.startswith("up"):
+    elif args.cmd.startswith("up") or args.cmd == "pull":
         update_repos(repos)
     elif args.cmd.startswith("stat"):
         status_repos(repos, args.verbose)
