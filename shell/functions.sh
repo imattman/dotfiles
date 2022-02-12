@@ -50,6 +50,15 @@ edit_fzf() {
   fi
 }
 
+jn() {
+  # look for 'jn' in PATH (ignores this function)
+  local jnpath=$(whence -p jn)
+  if [[ -n "$jnpath" ]]; then
+    "$jnpath" "$@"
+  elif [[ $(whence -p jn.sh) ]]; then
+    jn.sh "$@"
+  fi
+}
 
 jn_fzf() {
   local root="${1:-$NOTES_JOURNAL/daily}"
