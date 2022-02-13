@@ -138,10 +138,12 @@ keymap("n", "<Leader>6", "<C-^>", opts)
 keymap("n", "<Leader>n", ":bnext<CR>", opts)
 keymap("n", "<Leader>p", ":bprevious<CR>", opts)
 
-
 -- turn off hlsearch
 keymap("n", "<Leader>l", "<CMD>nohl<CR>", opts)
 
+-- quickfix navigation
+keymap("n", "<C-n>", "<CMD>cnext<CR>", opts)
+keymap("n", "<C-m>", "<CMD>cprev<CR>", opts)
 
 -- Move text up and down
 -- MacOS requires unbind current <Option> input behavior
