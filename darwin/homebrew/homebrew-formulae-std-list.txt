@@ -3,7 +3,8 @@ macvim
 #macvim --with-cscope --with-lua --HEAD
 neovim
 
-emacs
+# don't really use emacs anymore... RIP
+#emacs
 #emacs  --with-cocoa  --with-librsvg
 # run:  brew linkapps emacs
 
