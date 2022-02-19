@@ -61,7 +61,10 @@ local options = {
   autoread = true,                         -- automatically read changed files
 
   listchars= { tab='▸ ', eol='¬' },
-  guifont = "monospace:h17",               -- the font used in graphical neovim applications
+
+  -- to select font:         :set guifont=*
+  -- paste current value:    <C-r> =&guifont
+  guifont = "Hack Nerd Font Mono:h16",     -- the font used in GUI
 }
 
 vim.opt.shortmess:append "c"
