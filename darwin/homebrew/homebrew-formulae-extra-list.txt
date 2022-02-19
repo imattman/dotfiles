@@ -13,6 +13,9 @@
 # allow terminal sharing. see: https://tmate.io/
 tmate
 
+# fish tank!
+asciiquarium
+
 # nonsense activity simulator
 genact
 
