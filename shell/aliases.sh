@@ -17,13 +17,13 @@ alias cdn='cd_notes'
 alias jnf='jn_fzf'
 
 alias nv='nvim'
-#alias vim='nvim'
+alias vim='nvim'
 alias vimf='edit_fzf vim'
 
 alias today="date '+%Y-%m-%d'"
 alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
 alias tstamp='now'
-alias tstamp-num="date '+%Y%m%d.%H%M%S'"
+alias tstampn="date '+%Y%m%d.%H%M%S'"
 
 alias busy='look_busy'
 
