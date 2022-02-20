@@ -1,0 +1,22 @@
+# Example jn.yaml configuration
+#
+# Copy this file to ~/.config/jn-tools/jn.yaml
+entry-files:
+  # root of directory tree for journal entry files 
+  root-directory: '$HOME/Notes/journal/daily'
+
+  # subdirectory and filename patter for new entries
+  layout: '{{.Year}}/{{.Month}}/{{.Year}}-{{.Month}}-{{.Day}}.md'
+
+  # file name selection when listing files
+  # an empty value will return all files under the directory tree
+  filename-pattern: '^\d\d\d\d-\d\d-\d\d.*\.md'
+
+templates:
+  root-directory: '$HOME/workspace/templates/journal'
+  default: daily.md
+  # 'env': env var replacement
+  # 'gotmpl': Go template
+  style: env
+verbose: false
+
