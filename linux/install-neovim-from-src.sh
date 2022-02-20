@@ -35,8 +35,8 @@ EOU
 
 deps() {
   echo "Installing dependencies (Ubuntu)..."
-  sudo apt update -y && \
-    sudo apt install \
+  sudo apt update && \
+    sudo apt install -y \
     ninja-build \
     gettext \
     libtool \
@@ -82,7 +82,7 @@ build() {
 
 install() {
   echo "Installing neovim"
-  cd "$CONE_DIR" && \
+  cd "$CLONE_DIR" && \
     sudo make install
 }
 
