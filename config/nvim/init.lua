@@ -20,6 +20,7 @@ require "mattman.golang"
 --------------------------------------------------
 
 local options = {
+  list = true,                             -- show whitespace characters
   termguicolors = true,                    -- set term gui colors (most terminals support this)
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines
@@ -60,7 +61,8 @@ local options = {
   updatetime = 300,                        -- faster completion (4000ms default)
   autoread = true,                         -- automatically read changed files
 
-  listchars= { tab='▸ ', eol='¬' },
+  listchars= { tab='» ', trail='·', nbsp='␣', eol='¬' },
+  --listchars= { tab='▸ ', eol='¬' },
 
   -- to select font:         :set guifont=*
   -- paste current value:    <C-r> =&guifont
@@ -134,12 +136,13 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- navigate buffers
---keymap("n", "<S-l>", ":bnext<CR>", opts)
---keymap("n", "<S-h>", ":bprevious<CR>", opts)
-keymap("n", "<Leader> ", "<C-^>", opts)   -- easy toggle between alternate file
-keymap("n", "<Leader>6", "<C-^>", opts)
-keymap("n", "<Leader>n", ":bnext<CR>", opts)
-keymap("n", "<Leader>p", ":bprevious<CR>", opts)
+keymap("n", "]b", ":bnext<CR>", opts)
+keymap("n", "[b", ":bprevious<CR>", opts)
+--keymap("n", "<Leader>n", ":bnext<CR>", opts)
+--keymap("n", "<Leader>p", ":bprevious<CR>", opts)
+
+keymap("n", "<Leader>6", "<C-^>", opts)   -- easy toggle between alternate file
+--keymap("n", "<Leader> ", "<C-^>", opts)
 
 -- turn off hlsearch
 keymap("n", "<Leader>l", "<CMD>nohl<CR>", opts)
