@@ -4,15 +4,23 @@
 set -eou pipefail
 
 
-if [ -z "$(xcode-select -p)" ]; then
+if [[ -z "$(xcode-select -p)" ]]; then
   echo "Command line tools not found"
-  sudo xcode-select --install
+  sudo xcode-select --install && \
+    exit 1
 fi
 
-if [ ! "$(command -v brew)" ]; then
-  echo "Homebrew not found"
-  open "https://brew.sh"
-  exit 1
+if [[ ! "$(command -v brew)" ]]; then
+  if [[ -d /opt/homebrew/bin ]]; then
+    echo "Adding /opt/homebrew paths to PATH"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+  fi
+
+  if [[ ! "$(command -v brew)" ]]; then
+    echo "Homebrew not found"
+    open "https://brew.sh"
+    exit 1
+  fi
 fi
 
 CASKS=""
