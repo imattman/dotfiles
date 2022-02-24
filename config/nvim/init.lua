@@ -57,7 +57,7 @@ local options = {
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
 
-  timeoutlen = 300,                        -- time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 400,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   updatetime = 300,                        -- faster completion (4000ms default)
   autoread = true,                         -- automatically read changed files
 
@@ -115,8 +115,8 @@ keymap("n", "<Leader>e", ":Lexplore 25<CR>", opts)
 keymap("n", "<Leader>cd", ":lcd %:p:h<CR>", opts)
 
 -- telescope
-keymap("n", "<C-p>", "<CMD>Telescope find_files<CR>", opts)
-keymap("n", "<Leader>f", "<CMD>Telescope find_files<CR>", opts)
+keymap("n", "<C-p>", "<CMD>Telescope git_files<CR>", opts)
+keymap("n", "<Leader>ff", "<CMD>Telescope find_files<CR>", opts)
 --keymap("n", "<Leader>fg", "<CMD>Telescope git_files<CR>", opts)
 --keymap("n", "<Leader>gb", "<CMD>Telescope git_branches<CR>", opts)
 --keymap("n", "<C-_>", "<CMD>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>", opts)

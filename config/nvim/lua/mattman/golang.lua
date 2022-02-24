@@ -7,15 +7,19 @@ end
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local keymap = vim.api.nvim_buf_set_keymap
+local option = vim.api.nvim_buf_set_option
 local opts = { noremap = true, silent = true }
 
 require'lspconfig'.gopls.setup{
   capabilities = capabilities,
 
   on_attach = function(client, bufnr)
+    --option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
     -- old keymap style for neovim < v0.7
     -- mappings require a <CMD> as string
     keymap(bufnr, "n", "K", "<CMD>lua vim.lsp.buf.hover<CR>", opts)
+    keymap(bufnr, "n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help<CR>", opts)
     keymap(bufnr, "n", "gd", "<CMD>lua vim.lsp.buf.definition<CR>", opts)
     keymap(bufnr, "n", "gt", "<CMD>lua vim.lsp.buf.type_definition<CR>", opts)
     keymap(bufnr, "n", "gi", "<CMD>lua vim.lsp.buf.implementation<CR>", opts)
