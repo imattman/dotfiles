@@ -22,6 +22,7 @@ require "mattman.golang"
 local options = {
   list = true,                             -- show whitespace characters
   termguicolors = true,                    -- set term gui colors (most terminals support this)
+  background = dark,
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines
   numberwidth = 2,                         -- set number column width to 2 {default 4}

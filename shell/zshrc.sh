@@ -21,7 +21,7 @@ setopt CLOBBER              # Unset then Use >! and >>! to bypass.
 
 
 # override tmux to show color
-[[ -n "$TMUX" ]] && export TERM="xterm-256color"
+#[[ -n "$TMUX" ]] && export TERM="xterm-256color"
 
 
 # Key bindings
