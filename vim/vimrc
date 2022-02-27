@@ -56,6 +56,7 @@ set wrap linebreak
 "set colorcolumn=+1              " Show text wrap column
 "set colorcolumn=80              " Show text wrap column
 
+set background=dark
 set visualbell                  " Use visual bell instead of audio
 set noerrorbells                " No beeps
 set t_vb=                       " Reset terminal code for visualbell for no flash
