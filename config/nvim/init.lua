@@ -124,10 +124,16 @@ keymap("n", "<C-_>", "<CMD>lua require('telescope.builtin').current_buffer_fuzzy
 
 
 -- better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+--keymap("n", "<C-h>", "<C-w>h", opts)
+--keymap("n", "<C-j>", "<C-w>j", opts)
+--keymap("n", "<C-k>", "<C-w>k", opts)
+--keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-w><C-^>", ":vsplit #<CR>", opts)
+keymap("n", "<C-w><C-6>", ":vsplit #<CR>", opts)
+keymap("n", "<C-w>6", ":vsplit #<CR>", opts)
+
+-- emacs habit
+keymap("n", "<C-w>0", "<C-w>o", opts)
 
 -- resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
