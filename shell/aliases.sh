@@ -16,8 +16,9 @@ alias cdn='cd_notes'
 # journal tools
 alias jnf='jn_fzf'
 
+alias v='nvim'
 alias nv='nvim'
-alias vim='nvim'
+#alias vim='nvim'
 alias vimf='edit_fzf vim'
 
 alias today="date '+%Y-%m-%d'"
