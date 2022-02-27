@@ -21,6 +21,9 @@ alias nv='nvim'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'
 
+# override term color -- can be workaround in tmux
+alias vimc='TERM=xterm-256color vim'
+
 alias today="date '+%Y-%m-%d'"
 alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
 alias tstamp='now'
