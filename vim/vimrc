@@ -208,10 +208,10 @@ noremap <leader>h :<C-u>split<CR>
 noremap <leader>v :<C-u>vsplit<CR>
 
 " easier window navigation
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
 
 " open alternate in vertical split (default is horizontal)
 nnoremap <C-w><C-^> :vsplit #<CR>
@@ -224,8 +224,12 @@ nnoremap <C-w>0 <C-w>o
 "nnoremap <C-x>0 <C-w>o
 
 
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
+"nnoremap <Leader>+ :vertical resize +5<CR>
+"nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <C-Up> :resize -2<CR>
+nnoremap <C-Down> :resize +2<CR>
+nnoremap <C-Left> :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 " Use netrw for file explorer
