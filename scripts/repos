@@ -195,6 +195,17 @@ def status_repos(repos, verbose=False):
             print(f"Not found on this machine: {r.directory}\n")
 
 
+def sync_repos(repos, verbose=False):
+    for r in repos:
+        if r.directory.is_dir():
+            print(f"Syncing {r.directory.name} ...")
+            subprocess.run(['git', 'pull'], cwd=r.directory)
+            subprocess.run(['git', 'push'], cwd=r.directory)
+        else:
+            print(f"Not found on this machine: {r.directory}")
+        print()
+
+
 def gen_clone_script(repos):
     for r in repos:
         parent_dir = r.directory.parent.resolve()
@@ -213,7 +224,7 @@ def check_version():
 
 def main():
     check_version()
-    cmds = 'init list ls clone status stat update up pull upstream script'.split()
+    cmds = 'init list ls clone status stat update up pull sync upstream script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
@@ -256,6 +267,8 @@ def main():
         update_repos(repos)
     elif args.cmd.startswith("stat"):
         status_repos(repos, args.verbose)
+    elif args.cmd.startswith("sync"):
+        sync_repos(repos, args.verbose)
     elif args.cmd == "script":
         gen_clone_script(repos)
 
