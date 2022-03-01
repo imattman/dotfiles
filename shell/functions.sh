@@ -153,7 +153,6 @@ html_encode() {
 
 
 update_linux() {
-  # TODO add support for pacman
   if [[ $(command -v apt) ]]; then
     local upgrade='upgrade'
     for arg in "$@"; do
@@ -176,7 +175,14 @@ update_linux() {
       printf "\n*** Reboot is required ***\n\n"
       ls -l /var/run/reboot*
     fi
+  elif [[ $(command -v pacman) ]]; then
+    echo "Updating pacman packages..."
+    sudo pacman -Syyu
+
+    echo "Removing unused packages..."
+    sudo pacman -Qdtq | sudo pacman -Rs -
   fi
+
 
   if [[ $(command -v flatpak) ]]; then
     echo
