@@ -20,6 +20,8 @@ alias v='nvim'
 alias nv='nvim'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'
+alias nvconf="$EDITOR ~/.config/nvim/init.lua"
+alias vconf="$EDITOR ~/.vim/vimrc"
 
 # override term color -- can be workaround in tmux
 alias vimc='TERM=xterm-256color vim'

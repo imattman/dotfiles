@@ -20,7 +20,7 @@ require "mattman.golang"
 --------------------------------------------------
 
 local options = {
-  list = true,                             -- show whitespace characters
+  list = false,                            -- show whitespace characters
   termguicolors = true,                    -- set term gui colors (most terminals support this)
   background = dark,
   number = true,                           -- set numbered lines
