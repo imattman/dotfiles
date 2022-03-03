@@ -1,8 +1,7 @@
 # mattman  .dotfiles/zsh/zprofile.sh
 
 # auto launch tmux
-AUTO_TMUX="off"
-AUTO_TMUX="${AUTO_TMUX:-on}"
+AUTO_TMUX="${AUTO_TMUX:-off}"
 
 if [[ "$AUTO_TMUX" == 'on' ]] && [[ $(command -v tmux) ]] && [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ ! "$TERM" =~ "tmux" ]] && [[ ! "$TERM" =~ "screen" ]]; then
   #tmux && exit; # detach causes exit

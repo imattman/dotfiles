@@ -42,7 +42,7 @@ fi
 
 [[ -f ~/.aliases.sh ]] && source ~/.aliases.sh
 [[ -f ~/.functions.sh ]] && source ~/.functions.sh
-[[ -f ~/.zsh.local ]] && source ~/.zsh.local
+#[[ -f ~/.zsh.local ]] && source ~/.zsh.local
 
 autoload -Uz compinit && compinit
 

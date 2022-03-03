@@ -9,6 +9,9 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$XDG_LOCAL_HOME/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$XDG_LOCAL_HOME/state}"
 
 
+[[ -f $HOME/.zsh.local ]] && source "$HOME/.zsh.local"
+
+
 # init zprezto:zshenv
 source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshenv"
 
