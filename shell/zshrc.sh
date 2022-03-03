@@ -46,3 +46,11 @@ fi
 
 autoload -Uz compinit && compinit
 
+# automatically launch tmux
+AUTO_TMUX="${AUTO_TMUX:-off}"
+
+if [[ "$AUTO_TMUX" == 'on' ]] && [[ $(command -v tmux) ]] && [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ ! "$TERM" =~ "tmux" ]] && [[ ! "$TERM" =~ "screen" ]]; then
+  tmux && echo "sleeping 3 before exit..." && sleep 3 && exit
+fi
+
+
