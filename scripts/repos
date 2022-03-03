@@ -176,6 +176,16 @@ def update_repos(repos):
         print()
 
 
+def latest_repos(repos):
+    for r in repos:
+        if r.directory.is_dir():
+            print("#" * 80)
+            print(f"Latest commmit of {r.directory}")
+            subprocess.run(['git', 'log', '-n', '1'], cwd=r.directory)
+            print()
+        #else:
+        #    print(f"Not found on this machine: {r.directory}")
+
 def status_repos(repos, verbose=False):
     repo_clean_msg = 'working tree clean'
 
@@ -224,14 +234,14 @@ def check_version():
 
 def main():
     check_version()
-    cmds = 'init list ls clone status stat update up pull sync upstream script'.split()
+    cmds = 'init list ls clone last latest status stat sync update up pull upstream script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
         epilog=f'User config location: {user_cfg}')
     parser.add_argument('cmd', metavar='subcommand', type=str,
                         nargs='?', default='list', choices=cmds,
-                        help=f'task to run [init, clone, update, upstream, status, script]')
+                        help=f'task to run [{",".join(cmds)}]')
     parser.add_argument('filter',  metavar='filter', nargs='*',
                         help=f'repo selection filter (regex)')
     parser.add_argument('-c', '--config', metavar='config_file', type=str, dest='config_file',
@@ -265,6 +275,8 @@ def main():
         verify_upstream(repos)
     elif args.cmd.startswith("up") or args.cmd == "pull":
         update_repos(repos)
+    elif args.cmd.startswith("la"):
+        latest_repos(repos)
     elif args.cmd.startswith("stat"):
         status_repos(repos, args.verbose)
     elif args.cmd.startswith("sync"):
