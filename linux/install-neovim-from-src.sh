@@ -21,9 +21,10 @@ usage() {
 
     deps          installs compile dependencies using 'apt install'
     clone         clones neovim git repo to \$WORKSPACE
-    build         builds default 'make' target
+    build         (re)builds default 'make' target
     install       installs 'nvim' binary via neovim make target
     clean_cache   removes local nvim cache directories
+    latest        clones, updates repo, builds, and installs latest from source
 
   If an existing workspace is detected, it will be updated.
 
@@ -84,6 +85,12 @@ install() {
   echo "Installing neovim"
   cd "$CLONE_DIR" && \
     sudo make install
+}
+
+latest() {
+  clone
+  build
+  install
 }
 
 clean_cache() {
