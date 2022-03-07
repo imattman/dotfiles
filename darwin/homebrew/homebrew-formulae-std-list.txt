@@ -1,7 +1,11 @@
 # editors
 macvim
 #macvim --with-cscope --with-lua --HEAD
-neovim
+
+#neovim
+# --HEAD luajit
+# --HEAD neovim
+
 
 # don't really use emacs anymore... RIP
 #emacs
