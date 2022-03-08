@@ -216,6 +216,27 @@ def sync_repos(repos, verbose=False):
         print()
 
 
+def rollback_repos(repos, rollback_n):
+    rollback_cmd = ['git', 'reset', '--hard', f'HEAD~{rollback_n}']
+    if rollback_n < 1:
+        print("Rollback value not specified (option '-r'). Showing dry run...\n")
+        rollback_cmd = ['echo'] + rollback_cmd
+
+    for r in repos:
+        print(f"{r.directory}")
+        if r.directory.is_dir():
+            result = subprocess.run(['git', 'branch', '--show-current'], 
+                                    cwd=r.directory, check=True,
+                                    capture_output=True, encoding='utf-8')
+            branch = result.stdout
+            if "main" in branch or "master" in branch:
+                print(f"rolling back {rollback_n} commits...")
+                subprocess.run(rollback_cmd, cwd=r.directory)
+            else:
+                print(f"not currently on branch main/master")
+            print()
+
+
 def gen_clone_script(repos):
     for r in repos:
         parent_dir = r.directory.parent.resolve()
@@ -234,7 +255,7 @@ def check_version():
 
 def main():
     check_version()
-    cmds = 'init list ls clone last latest status stat sync update up pull upstream script'.split()
+    cmds = 'init list ls clone last latest status stat sync update up pull upstream rollback script'.split()
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
@@ -248,6 +269,8 @@ def main():
                         nargs='?', help='path to configuration file')
     parser.add_argument('-p', '--parents',  action='store_true',
                         dest='parents',  help='make parent directories as needed for clone')
+    parser.add_argument('-r', '--rollback', type=int, metavar='N', dest='rollback',
+                        nargs='?', default=0,  help='number of commits to rollback on main/master')
     parser.add_argument('-v', '--verbose',  action='store_true',
                         dest='verbose',  help="more verbose output on 'stat', etc.")
     args = parser.parse_args()
@@ -281,6 +304,8 @@ def main():
         status_repos(repos, args.verbose)
     elif args.cmd.startswith("sync"):
         sync_repos(repos, args.verbose)
+    elif args.cmd.startswith("roll"):
+        rollback_repos(repos, args.rollback)
     elif args.cmd == "script":
         gen_clone_script(repos)
 
