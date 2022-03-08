@@ -23,7 +23,7 @@ github.com/jstemmer/gotags
 github.com/kisielk/errcheck
 github.com/klauspost/asmfmt/cmd/asmfmt
 github.com/lukehoban/go-outline
-github.com/motemen/gore
+github.com/x-motemen/gore
 github.com/newhook/go-symbols
 github.com/nsf/gocode
 github.com/rogpeppe/godef
@@ -44,7 +44,8 @@ github.com/spf13/afero
 github.com/spf13/cobra
 github.com/spf13/viper
 github.com/spf13/pflag
-gopkg.in/russross/blackfriday.v2
+github.com/russross/blackfriday/v2
+
 
 github.com/jinzhu/now
 github.com/jinzhu/gorm
@@ -68,7 +69,7 @@ github.com/gorilla/mux
 github.com/gorilla/pat
 github.com/gorilla/websocket
 github.com/monochromegane/the_platinum_searcher
-github.com/oxequa/realize
+#github.com/oxequa/realize
 github.com/rakyll/hey
 
 # other
