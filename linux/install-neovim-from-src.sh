@@ -35,21 +35,41 @@ EOU
 
 
 deps() {
-  echo "Installing dependencies (Ubuntu)..."
-  sudo apt update && \
-    sudo apt install -y \
-    ninja-build \
-    gettext \
-    libtool \
-    libtool-bin \
-    autoconf \
-    automake \
-    cmake \
-    g++ \
-    pkg-config \
-    unzip \
-    curl \
-    doxygen
+  if [[ $(command -v apt) ]]; then
+  echo "Installing dependencies (Ubuntu/Debian)..."
+    sudo apt update && \
+      sudo apt install -y \
+      ninja-build \
+      gettext \
+      libtool \
+      libtool-bin \
+      autoconf \
+      automake \
+      cmake \
+      g++ \
+      pkg-config \
+      unzip \
+      curl \
+      doxygen
+  fi
+
+  if [[ $(command -v dnf) ]]; then
+  echo "Installing dependencies (Fedora/Rocky)..."
+    sudo dnf -y install \
+      ninja-build \
+      libtool \
+      autoconf \
+      automake \
+      cmake \
+      gcc \
+      gcc-c++ \
+      make \
+      pkgconfig \
+      unzip \
+      patch \
+      gettext \
+      curl
+  fi
 }
 
 
