@@ -105,8 +105,21 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
       {
-          "before": ["<leader>","d"],
-          "after": ["d", "d"]
+          "before": ["K"],
+          // "commands": ["editor.action.showHover"]
+          "commands": ["editor.action.triggerParameterHints"]
+      },
+      {
+          "before": ["g","c"],
+          "commands": ["editor.action.commentLine"]
+      },
+      {
+          "before": ["g","i"],
+          "commands": ["editor.action.goToImplementation"]
+      },
+      {
+          "before": ["g","r"],
+          "commands": ["editor.action.goToReferences"]
       },
       {
           "before":["<leader>", "l"],
