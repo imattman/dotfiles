@@ -153,6 +153,7 @@ html_encode() {
 
 
 update_linux() {
+  # Ubuntu / Debian
   if [[ $(command -v apt) ]]; then
     local upgrade='upgrade'
     for arg in "$@"; do
@@ -175,12 +176,22 @@ update_linux() {
       printf "\n*** Reboot is required ***\n\n"
       ls -l /var/run/reboot*
     fi
+
+  # Arch
   elif [[ $(command -v pacman) ]]; then
     echo "Updating pacman packages..."
     sudo pacman -Syyu
 
     echo "Removing unused packages..."
     sudo pacman -Qdtq | sudo pacman -Rs -
+
+  # Fedora
+  elif [[ $(command -v dnf) ]]; then
+    echo "Updating dnf packages..."
+    sudo dnf -y update
+
+    echo "Removing unused packages..."
+    sudo dnf -y autoremove
   fi
 
 
