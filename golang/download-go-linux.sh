@@ -7,15 +7,17 @@ ARCH="amd64"
 
 
 current_version() {
-  curl -sSL 'https://golang.org/VERSION?m=text'
+  curl -sSL 'https://go.dev/VERSION?m=text'
 }
 
 url() {
   local version="${1:-}"
-  printf "https://golang.org/dl/%s.linux-%s.tar.gz" "$version" "$ARCH"
+  printf "https://go.dev/dl/%s.linux-%s.tar.gz" "$version" "$ARCH"
 }
 
 
+pkg_url="$(url $(current_version))"
+echo "Downloading  $pkg_url"
 
-echo curl -O -L "$(url $(current_version))"
+curl -O -L "$(url $(current_version))"
 
