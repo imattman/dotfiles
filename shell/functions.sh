@@ -83,6 +83,12 @@ jn_fzf() {
 }
 
 
+cd_repos() {
+  dir=$(repos ls -d | fzf)
+
+  [[ -n "$dir" ]] && cd "$root/$dir"
+}
+
 cd_workspace() {
   cd_fzf "$WORKSPACE" "$@"
 }

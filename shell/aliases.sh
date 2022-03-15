@@ -10,8 +10,9 @@ alias lla='ll -a'
 # cd helpers that use fzf
 alias fcd='cd_fzf'
 alias cdf='cd_fzf'
-alias cdw='cd_workspace'
 alias cdn='cd_notes'
+alias cdr='cd_repos'
+alias cdw='cd_workspace'
 
 # journal tools
 alias jnf='jn_fzf'
@@ -20,8 +21,11 @@ alias v='nvim'
 alias nv='nvim'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'
-alias nvconf="$EDITOR ~/.config/nvim/init.lua"
-alias vconf="$EDITOR ~/.vim/vimrc"
+
+alias cnvim="$EDITOR ~/.config/nvim/init.lua"
+alias cvim="$EDITOR ~/.vim/vimrc"
+alias crepos="$EDITOR ~/.config/repo-tools/repos.cfg"
+alias cjn="$EDITOR ~/.config/jn-tools/jn.toml"
 
 # override term color -- can be workaround in tmux
 alias vimc='TERM=xterm-256color vim'
