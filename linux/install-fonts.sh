@@ -105,6 +105,12 @@ nerdfonts() {
 }
 
 
+if [[ ! $(which jq) ]]; then
+  echo "jq not found in PATH"
+  exit 1
+fi
+
+
 if [[ $# -eq 0 ]]; then
   nerdfonts
 else
