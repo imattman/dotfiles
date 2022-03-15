@@ -114,12 +114,17 @@ install_pkgs() {
     golang-go \
     fish \
     entr \
-    watchman \
-    ncal
+    watchman
 
-  # 'ncal' required for '/usr/bin/cal' on PoPOS
-  
+  # kitty \
   #  neovim \
+
+  if [[ ! $(which cal) ]]; then
+    # 'ncal' required for '/usr/bin/cal' on PoPOS
+    sudo apt install -y ncal
+  fi
+
+  
   #  alacritty \
 }
 
