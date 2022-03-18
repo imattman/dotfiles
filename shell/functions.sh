@@ -194,7 +194,7 @@ update_linux() {
   # Fedora
   elif [[ $(command -v dnf) ]]; then
     echo "Updating dnf packages..."
-    sudo dnf -y update
+    sudo dnf -y upgrade
 
     echo "Removing unused packages..."
     sudo dnf -y autoremove
