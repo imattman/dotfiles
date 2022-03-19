@@ -14,22 +14,23 @@ require'lspconfig'.gopls.setup{
   capabilities = capabilities,
 
   on_attach = function(client, bufnr)
-    --option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- old keymap style for neovim < v0.7
-    -- mappings require a <CMD> as string
-    keymap(bufnr, "n", "K", "<CMD>lua vim.lsp.buf.hover<CR>", opts)
-    keymap(bufnr, "n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help<CR>", opts)
-    keymap(bufnr, "n", "gd", "<CMD>lua vim.lsp.buf.definition<CR>", opts)
-    keymap(bufnr, "n", "gt", "<CMD>lua vim.lsp.buf.type_definition<CR>", opts)
-    keymap(bufnr, "n", "gi", "<CMD>lua vim.lsp.buf.implementation<CR>", opts)
-    keymap(bufnr, "n", "]d", "<CMD>lua vim.diagnostic.goto_next<CR>", opts)
-    keymap(bufnr, "n", "[d", "<CMD>lua vim.diagnostic.goto_prev<CR>", opts)
-    keymap(bufnr, "n", "<leader>dn", "<CMD>lua vim.diagnostic.goto_next<CR>", opts)
-    keymap(bufnr, "n", "<leader>dp", "<CMD>lua vim.diagnostic.goto_prev<CR>", opts)
-    keymap(bufnr, "n", "<leader>dl", "<CMD>Telescope diagnostics<CR>", opts)
-    keymap(bufnr, "n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename<CR>", opts)
-    keymap(bufnr, "n", "<leader>ca", "<CMD>lua vim.lsp.buf.code_action<CR>", opts)
+    -- mappings require a <cmd> as string
+    keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    --keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    keymap(bufnr, "n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    keymap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    keymap(bufnr, "n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    keymap(bufnr, "n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    keymap(bufnr, "n", "<leader>dl", "<cmd>Telescope diagnostics()<CR>", opts)
+    keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
     -- newer keymap style for neovim v0.7+
     --
@@ -41,7 +42,7 @@ require'lspconfig'.gopls.setup{
 --    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {buffer=0})
 --    vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
 --    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
---    vim.keymap.set("n", "<leader>dl", "<CMD>Telescope diagnostics<CR>", {buffer=0})
+--    vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>", {buffer=0})
 --    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {buffer=0})
 --    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
     
