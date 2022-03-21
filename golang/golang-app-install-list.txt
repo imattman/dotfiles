@@ -2,10 +2,11 @@
 github.com/cortesi/modd/cmd/modd@latest
 github.com/cortesi/devd/cmd/devd@latest
 
-github.com/gohugoio/hugo@latest
+# Hugo v0.95 requires go 1.18
+github.com/gohugoio/hugo@v0.94
 
 # cobra CLI code gen
-github.com/spf13/cobra/cobra@latest
+github.com/spf13/cobra-cli@latest
 
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
@@ -22,6 +23,7 @@ github.com/hackebrot/turtle/...@latest
 # it can be easier to install buffalo via brew or other package manager
 #github.com/gobuffalo/buffalo/buffalo@latest
   
+# GOA web API gen tools
 goa.design/goa/v3/...@v3
 
 

@@ -43,9 +43,9 @@ github.com/pkg/errors
 github.com/spf13/afero
 github.com/spf13/cobra
 github.com/spf13/viper
-github.com/spf13/pflag
+github.com/urfave/cli/v2
+github.com/urfave/negroni
 github.com/russross/blackfriday/v2
-
 
 github.com/jinzhu/now
 github.com/jinzhu/gorm

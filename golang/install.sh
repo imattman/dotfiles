@@ -49,8 +49,8 @@ install_from_file() {
 
   sed -e 's/\s*#.*//' -e '/^\s*$/d' < "$pkg_file" | \
   while read -r pkg; do
-    echo $CMD_PREFIX go $fetch_type -v $pkg
-    $CMD_PREFIX go $fetch_type -v $pkg
+    echo $CMD_PREFIX go $fetch_type $pkg
+    $CMD_PREFIX go $fetch_type $pkg
     echo
   done
 }
