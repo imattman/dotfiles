@@ -18,6 +18,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Starting VIM with command :PlugInstall"
-vim -c PlugInstall
+vim -u ./vimrc-min -c PlugInstall
 
 exit 0
+
