@@ -107,10 +107,19 @@ install() {
     sudo make install
 }
 
+details() {
+  printf "\nnvim binary:\n"
+  ls -l $(which nvim)
+  printf "\n"
+  nvim --version
+}
+
+
 latest() {
   clone
   build
   install
+  details
 }
 
 clean_cache() {

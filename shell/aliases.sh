@@ -19,6 +19,7 @@ alias jnf='jn_fzf'
 
 alias v='nvim'
 alias nv='nvim'
+alias nvim-latest='~/.dotfiles/linux/install-neovim-from-src.sh latest'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'
 
