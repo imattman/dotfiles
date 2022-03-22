@@ -139,7 +139,7 @@ def clone_repos(repos, create_parents=False):
                         'clone',
                         f"{r.repo_url}",
                         f"{r.directory.name}"],
-                       cwd=parent_dir)
+                       cwd=parent_dir, check=True)
         set_upstream(r)
         print()
 
@@ -173,7 +173,7 @@ def update_repos(repos):
     for r in repos:
         if r.directory.is_dir():
             print(f"Updating {r.directory.name} ...")
-            subprocess.run(['git', 'pull'], cwd=r.directory)
+            subprocess.run(['git', 'pull'], cwd=r.directory, check=True)
         else:
             print(f"Not found on this machine: {r.directory}")
         print()
@@ -184,7 +184,7 @@ def latest_repos(repos):
         if r.directory.is_dir():
             print("#" * 80)
             print(f"Latest commmit of {r.directory}")
-            subprocess.run(['git', 'log', '-n', '1'], cwd=r.directory)
+            subprocess.run(['git', 'log', '-n', '1'], cwd=r.directory, check=True)
             print()
         #else:
         #    print(f"Not found on this machine: {r.directory}")
@@ -212,8 +212,8 @@ def sync_repos(repos, verbose=False):
     for r in repos:
         if r.directory.is_dir():
             print(f"Syncing {r.directory.name} ...")
-            subprocess.run(['git', 'pull'], cwd=r.directory)
-            subprocess.run(['git', 'push'], cwd=r.directory)
+            subprocess.run(['git', 'pull'], cwd=r.directory, check=True)
+            subprocess.run(['git', 'push'], cwd=r.directory, check=True)
         else:
             print(f"Not found on this machine: {r.directory}")
         print()
@@ -234,7 +234,7 @@ def rollback_repos(repos, rollback_n):
             branch = result.stdout
             if "main" in branch or "master" in branch:
                 print(f"rolling back {rollback_n} commits...")
-                subprocess.run(rollback_cmd, cwd=r.directory)
+                subprocess.run(rollback_cmd, cwd=r.directory, check=True)
             else:
                 print(f"not currently on branch main/master")
             print()
