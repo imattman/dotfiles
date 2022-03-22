@@ -45,6 +45,7 @@ set smartindent                 "
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 
 set number                      " Display numbers in left column
+set relativenumber
 set ruler                       " Display cursor position in status line
 set cursorline                  " Highlight cursor
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
