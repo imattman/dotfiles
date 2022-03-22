@@ -24,7 +24,6 @@ PIPX_FILE="$THIS_DIR/$PIPX_FILE"
 PIPX_FILE="${1:-$PIPX_FILE}"
 
 
-
 install_from_file() {
   local cmd="$1"
   local pkg_file="$2"
@@ -54,6 +53,13 @@ fi
 if [[ ! $(command -v pipx) ]]; then
   echo "pipx not found; installing..."
   python3 -m pip install --user pipx
+
+  if [[ $(command -v python-user-bin) ]]; then
+    local py_user_bin="$(python-user-bin)"
+    echo "Temporarily adding $py_user_bin to PATH"
+    export PATH="$PATH:$py_user_bin"
+  fi
+
   python3 -m pipx ensurepath
 fi
 
