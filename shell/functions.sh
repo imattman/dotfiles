@@ -105,6 +105,10 @@ cd_documents() {
   cd_fzf "$DOCUMENTS" "$@"
 }
 
+pathadd() {
+  local dir="${1:-$PWD}"
+  export PATH="$PATH:$dir"
+}
 
 numfmt() {
   echo "$*" | python3 -c "print('\n'.join('{:,}'.format(int(n)) for n in input().strip().split()))"
