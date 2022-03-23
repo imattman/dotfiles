@@ -97,6 +97,9 @@ export RUSTUP_HOME="$WORKSPACE/rust/rustup"
 #export CARGO_HOME="$XDG_DATA_HOME/cargo"
 #export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
+## NodeJS
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
+
 
 path=(
   $XDG_LOCAL_BIN
