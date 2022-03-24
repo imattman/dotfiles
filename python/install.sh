@@ -55,7 +55,7 @@ if [[ ! $(command -v pipx) ]]; then
   python3 -m pip install --user pipx
 
   if [[ $(command -v python-user-bin) ]]; then
-    local py_user_bin="$(python-user-bin)"
+    py_user_bin="$(python-user-bin)"
     echo "Temporarily adding $py_user_bin to PATH"
     export PATH="$PATH:$py_user_bin"
   fi
