@@ -20,31 +20,31 @@ usage() {
   local THIS_SCRIPT="$(basename $0)"
 
   cat<<EOU
-  Usage: $THIS_SCRIPT [OPTIONS] <date-1> [<date-2>...]
+Usage: $THIS_SCRIPT [OPTIONS] <date-1> [<date-2>...]
 
-  A utility for creating and editing personal journal files.
+A utility for creating and editing personal journal files.
 
-  Dates can be supplied in formats recoginzed by the gnu 'date'
-  command.  Defaults to 'today' if no date argument is supplied.
+Dates can be supplied in formats recoginzed by the gnu 'date'
+command.  Defaults to 'today' if no date argument is supplied.
 
-  Examples:
+Examples:
 
-    # open a journal entry for today
-    $THIS_SCRIPT
+  # open a journal entry for today
+  $THIS_SCRIPT
 
-    # open journal entries for several days
-    $THIS_SCRIPT 2020-09-01 yesterday today
+  # open journal entries for several days
+  $THIS_SCRIPT 2020-09-01 yesterday today
 
-    # list journal file for 5 days ago
-    $THIS_SCRIPT -l "5 days ago"
+  # list journal file for 5 days ago
+  $THIS_SCRIPT -l "5 days ago"
 
 
-  OPTIONS:
-     -h:  Show this message
-     -l:  List prepared journal files without opening editor
-     -p:  Prepare header of entry files.  Can be used without edit.
-     -t:  Supply template argument.  A basic match is performed looking
-          for templates that include/omit "daily-" prefix and ".md" suffix
+OPTIONS:
+   -h:  Show this message
+   -l:  List prepared journal files without opening editor
+   -p:  Prepare header of entry files.  Can be used without edit.
+   -t:  Supply template argument.  A basic match is performed looking
+        for templates that include/omit "daily-" prefix and ".md" suffix
 
 EOU
 }
@@ -124,6 +124,8 @@ setup_vars() {
 
   export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
   export WEEKDAY=$($DATE_CMD -d "$day" +%A)
+  export ISO_WEEK=$($DATE_CMD -d "$day" +%V)
+  export ISO_YEAR=$($DATE_CMD -d "$day" +%G)
   export UUID=''
   if [[ $(command -v $UUID_CMD) ]]; then
     export UUID="$($UUID_CMD -v 1)"
