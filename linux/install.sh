@@ -128,6 +128,11 @@ install_pkgs() {
   #  alacritty \
 }
 
+setup_flatpak() {
+  echo "Adding flathub repo..."
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+}
+
 
 case "$1" in
   -i|init*) 
@@ -148,6 +153,7 @@ case "$1" in
     ;;
   *)
     install_pkgs
+    setup_flatpak
     ;;
 esac
 
