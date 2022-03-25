@@ -8,11 +8,11 @@
   // "window.zoomLevel": 0,
   // no colorTheme defaults to "Dark+"
 
-  "workbench.colorTheme": "Darcula Theme from IntelliJ",
+  // "workbench.colorTheme": "Darcula Theme from IntelliJ",
   // "workbench.colorTheme": "Darcula Theme from IntelliJ",
   // "workbench.colorTheme": "One Monokai",
   // "workbench.colorTheme": "Solarized Dark+",
-  // "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "One Dark Pro",
   // "workbench.colorTheme": "Tomorrow Night Bright",
   // "workbench.colorTheme": "Nord",
   // "workbench.colorTheme": "Night Owl",
