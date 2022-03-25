@@ -124,6 +124,7 @@ setup_vars() {
 
   export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
   export WEEKDAY=$($DATE_CMD -d "$day" +%A)
+  export YEAR_DAY=$($DATE_CMD -d "$day" +%j) # 1..366
   export ISO_WEEK=$($DATE_CMD -d "$day" +%V)
   export ISO_YEAR=$($DATE_CMD -d "$day" +%G)
   export UUID=''
