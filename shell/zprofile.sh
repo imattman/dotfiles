@@ -112,6 +112,7 @@ path=(
 
 cdpath=(
   $DOCUMENTS
+  $WORKSPACE
   $NOTES_ZETTELKASTEN
   $NOTES_JOURNAL
   $NOTES_PROJECTS
@@ -120,7 +121,6 @@ cdpath=(
   $NOTES_WORK
   $NOTES
   $NOTES_SCRATCHPAD
-  $WORKSPACE
   $WORKSPACE/websites
   $XDG_LOCAL_HOME
   $GOPATH/src/github.com/imattman

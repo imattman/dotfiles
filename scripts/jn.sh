@@ -7,8 +7,9 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-JOURNAL_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}/daily"
-TEMPLATES_DIR="${TEMPLATES}/journal"
+JOURNAL_BASE="${NOTES_JOURNAL:-$HOME/Notes/journal}"
+JOURNAL_DIR="$JOURNAL_BASE/daily"
+TEMPLATES_DIR="$JOURNAL_BASE/templates"
 TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 
 DATE_CMD="date"
@@ -80,7 +81,7 @@ precheck() {
   fi
 
   if [[ ! -d "$TEMPLATES_DIR" ]]; then
-    echo "Templates directory not found; check \$TEMPLATES"
+    echo "Templates directory not found; check $TEMPLATES_DIR and \$TEMPLATES"
     exit 1
   fi
 
