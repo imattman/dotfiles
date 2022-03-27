@@ -25,6 +25,7 @@ alias vimf='edit_fzf vim'
 
 alias cnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cvim="$EDITOR ~/.vim/vimrc"
+alias ctmux="$EDITOR ~/.dotfiles/tmux/tmux.conf"
 alias crepos="$EDITOR ~/.config/repo-tools/repos.cfg"
 alias cjn="$EDITOR ~/.config/jn-tools/jn.toml"
 
