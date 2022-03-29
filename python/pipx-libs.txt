@@ -3,15 +3,21 @@ autopep8
 #black
 pylint
 
-# Zsh and Bash tab completion generator
-shtab
+# markdown formatter (useful for journal entries)
+mdformat
+
+# markdown viewer
+mdv3
+
+# markdown presentation
+lookatme
 
 # fancy text presentation
 # see: https://github.com/Textualize/rich-cli
 rich-cli
 
-# markdown viewer
-mdv3
-# markdown presentation
-lookatme
+# Zsh and Bash tab completion generator
+shtab
+
+
 
