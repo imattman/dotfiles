@@ -15,7 +15,7 @@ TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 DATE_CMD="date"
 UUID_CMD="uuid"
 JN_EDITOR=${VISUAL:-${EDITOR:-}}
-EDITOR_OPTS="+5"
+EDITOR_OPTS="+8"
 
 usage() {
   local THIS_SCRIPT="$(basename $0)"
@@ -36,16 +36,17 @@ Examples:
   # open journal entries for several days
   $THIS_SCRIPT 2020-09-01 yesterday today
 
-  # list journal file for 5 days ago
+  # list journal file path from 5 days ago
   $THIS_SCRIPT -l "5 days ago"
 
 
 OPTIONS:
    -h:  Show this message
-   -l:  List prepared journal files without opening editor
-   -p:  Prepare header of entry files.  Can be used without edit.
+   -l:  List derived journal file paths without opening editor
+   -p:  Prepare header of journal files.  Can be used without edit.
    -t:  Supply template argument.  A basic match is performed looking
-        for templates that include/omit "daily-" prefix and ".md" suffix
+        for templates that optionally can include "daily-" prefix 
+        and ".md" suffix
 
 EOU
 }
