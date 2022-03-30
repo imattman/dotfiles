@@ -120,7 +120,7 @@ keymap("n", "<C-p>", "<CMD>Telescope find_files<CR>", opts)
 keymap("n", "<C-f>", "<CMD>Telescope buffers<CR>", opts)
 keymap("n", "<Leader>ff", "<CMD>Telescope find_files<CR>", opts)
 keymap("n", "<Leader>fg", "<CMD>Telescope git_files<CR>", opts)
-keymap("n", "<Leader>fb", "<CMD>Telescope buffers<CR>", opts)
+keymap("n", "<Leader>b", "<CMD>Telescope buffers<CR>", opts)
 keymap("n", "<Leader>gc", "<CMD>Telescope git_commits<CR>", opts)
 keymap("n", "<C-_>", "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy='ascending', prompt_position='top'})<CR>", opts)
 

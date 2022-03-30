@@ -6,7 +6,8 @@ vim.cmd [[
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
 
-    autocmd BufEnter * silent! lcd %:p:h
+    " change local directory to that of buffer
+    "autocmd BufEnter * silent! lcd %:p:h
   augroup end
 
   augroup _git
