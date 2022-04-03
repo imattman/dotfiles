@@ -29,6 +29,8 @@ alias ctmux="$EDITOR ~/.dotfiles/tmux/tmux.conf"
 alias crepos="$EDITOR ~/.config/repo-tools/repos.cfg"
 alias cjn="$EDITOR ~/.config/jn-tools/jn.toml"
 
+alias nf='neofetch'
+
 # override term color -- can be workaround in tmux
 alias vimc='TERM=xterm-256color vim'
 
