@@ -31,6 +31,12 @@ vim.cmd [[
     autocmd FileType markdown setlocal wrap
   augroup end
 
+  augroup _journal
+    autocmd!
+    "autocmd BufRead,BufNewFile */journal/daily/* set formatprg=jnfmt
+    autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jnfmt<CR>
+  augroup end
+
   augroup _auto_resize
     autocmd!
     autocmd VimResized * tabdo wincmd = 

@@ -137,6 +137,8 @@ if has("autocmd")
   autocmd FileType markdown setlocal tw=80 fo=acqt colorcolumn=+1
   "autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
+  autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jnfmt<CR>
+
 endif
 
 
@@ -153,6 +155,10 @@ inoremap jk <ESC>               " map 'jk' as easy alternate to ESC from insert 
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
+
+" format buffer and return to current cursor position
+" set formatprg to configure 'gq' formatting behavior
+"nnoremap <F5> gggqG<C-o><C-o>
 
 " set local CWD to that of current buffer
 nnoremap <Leader>cd  :lcd %:p:h<CR>

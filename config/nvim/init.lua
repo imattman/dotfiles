@@ -115,6 +115,10 @@ keymap("n", "<Leader>e", ":Lexplore 25<CR>", opts)
 -- set local CWD to that of current buffer
 keymap("n", "<Leader>cd", ":lcd %:p:h<CR>", opts)
 
+-- apply formatting to entire buffer (gq) and return to cursor starting position
+-- see 'formatprg' for configuring external formatting program
+--keymap("n", "<F5>", "gggqG<C-o><C-o>", opts)
+
 -- telescope
 keymap("n", "<C-p>", "<CMD>Telescope find_files<CR>", opts)
 keymap("n", "<C-f>", "<CMD>Telescope buffers<CR>", opts)
