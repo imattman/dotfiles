@@ -11,7 +11,11 @@ WIFI_POWER_CONF='/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf'
 
 tlp() {
   echo "Installing TLP..."
-  sudo apt install -y  tlp
+  if [[ $(which apt) ]]; then
+    sudo apt install -y  tlp
+  elif [[ $(which dnf) ]]; then
+    sudo dnf install -y tlp
+  fi
 
   echo "Enabling TLP with systemd..."
   sudo systemctl enable --now tlp
@@ -43,6 +47,8 @@ cpufreq() {
 
 wifi() {
   # see: https://unix.stackexchange.com/questions/269661/how-to-turn-off-wireless-power-management-permanently
+  [[ ! -e "$WIFI_POWER_CONF" ]] && return
+
   echo "Updating $WIFI_POWER_CONF ..."
   echo
   echo "  [connection]"
