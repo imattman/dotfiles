@@ -25,7 +25,7 @@ vim.cmd [[
     "q - allow formatting coments with 'gq'
     "t - auto-wrap text
     "w - trailing whitespace indicates paragraph continues on next line
-    autocmd FileType markdown setlocal formatoptions=acqtw
+    autocmd FileType markdown setlocal formatoptions=acqt
 
     autocmd FileType markdown setlocal spell
     autocmd FileType markdown setlocal wrap

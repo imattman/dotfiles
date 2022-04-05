@@ -134,7 +134,7 @@ if has("autocmd")
     "q - allow formatting coments with 'gq'
     "t - auto-wrap text
     "w - trailing whitespace indicates paragraph continues on next line
-  autocmd FileType markdown setlocal tw=80 fo=acqtw colorcolumn=+1
+  autocmd FileType markdown setlocal tw=80 fo=acqt colorcolumn=+1
   "autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
 endif
