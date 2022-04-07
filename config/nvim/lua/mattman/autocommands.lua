@@ -22,10 +22,10 @@ vim.cmd [[
 
     "a - automatic formatting of paragraphs
     "c - auto-wrap comments
-    "q - allow formatting coments with 'gq'
+    "q - allow formatting comments with 'gq'
     "t - auto-wrap text
     "w - trailing whitespace indicates paragraph continues on next line
-    autocmd FileType markdown setlocal formatoptions=acqt
+    autocmd FileType markdown setlocal formatoptions=cqt
 
     autocmd FileType markdown setlocal spell
     autocmd FileType markdown setlocal wrap

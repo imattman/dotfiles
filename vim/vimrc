@@ -131,11 +131,10 @@ if has("autocmd")
 
     "a - automatic formatting of paragraphs
     "c - auto-wrap comments
-    "q - allow formatting coments with 'gq'
+    "q - allow formatting comments with 'gq'
     "t - auto-wrap text
     "w - trailing whitespace indicates paragraph continues on next line
-  autocmd FileType markdown setlocal tw=80 fo=acqt colorcolumn=+1
-  "autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
+  autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
   autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jnfmt<CR>
 
