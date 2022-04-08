@@ -33,8 +33,8 @@ vim.cmd [[
 
   augroup _journal
     autocmd!
-    "autocmd BufRead,BufNewFile */journal/daily/* set formatprg=jnfmt
-    autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jnfmt<CR>
+    "autocmd BufRead,BufNewFile */journal/daily/* set formatprg=jn-fmt
+    autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jn-fmt<CR>
   augroup end
 
   augroup _auto_resize

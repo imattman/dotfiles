@@ -136,7 +136,7 @@ if has("autocmd")
     "w - trailing whitespace indicates paragraph continues on next line
   autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
-  autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jnfmt<CR>
+  autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jn-fmt<CR>
 
 endif
 
