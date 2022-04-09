@@ -202,6 +202,14 @@ update_linux() {
 
     echo "Removing unused packages..."
     sudo dnf -y autoremove
+
+    if [[ $(which needs-restarting) ]]; then
+      # check if reboot is needed
+      sudo needs-restarting -r
+    else
+      echo "Did not find 'needs-restarting' script"
+      echo "To install run: 'dnf install dnf-utils'"
+    fi
   fi
 
 
