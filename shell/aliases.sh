@@ -39,10 +39,14 @@ alias boot_history='sudo journalctl --list-boots'
 alias timezone_cfg='sudo timedatectl status'
 
 
-alias today="date '+%Y-%m-%d'"
-alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
-alias tstamp='now'
-alias tstampn="date '+%Y%m%d.%H%M%S'"
+alias today=datestamp
+alias tomorrow='datestamp tomorrow'
+alias yesterday='datestamp yesterday'
+alias dstamp=datestamp
+
+alias now=timestamp
+alias tstamp=timestamp
+alias tstampn=timestampn
 
 alias busy='look_busy'
 

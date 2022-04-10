@@ -5,9 +5,41 @@ PLATFORM="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
 if [[ $PLATFORM == 'darwin' ]]; then
   XCLIP='pbcopy'
+  DATE_CMD='gdate'
 else
   XCLIP='xclip'
+  DATE_CMD='date'
 fi
+
+function datestamp() {
+  local format='+%Y-%m-%d'
+
+  if [[ -n "$1" ]]; then
+    $DATE_CMD -d "$1" "$format"
+  else
+    $DATE_CMD "$format"
+  fi
+}
+
+function timestamp() {
+  local format='+%Y-%m-%dT%H:%M:%S%z'
+
+  if [[ -n "$1" ]]; then
+    $DATE_CMD -d "$1" "$format"
+  else
+    $DATE_CMD "$format"
+  fi
+}
+
+function timestampn() {
+  local format='+%Y%m%d.%H%M%S'
+
+  if [[ -n "$1" ]]; then
+    $DATE_CMD -d "$1" "$format"
+  else
+    $DATE_CMD "$format"
+  fi
+}
 
 cd_fzf() {
   local root="${1:-$PWD}"
