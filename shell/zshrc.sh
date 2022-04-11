@@ -5,7 +5,7 @@ source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc"
 
 
 # for more details: `man zshoptions`
-#unsetopt SHARE_HISTORY       # don't share history across shells
+unsetopt SHARE_HISTORY       # don't share history across shells
                              # equiv: setopt no_share_history
 
 #setopt AUTO_CD              # Auto changes to a directory without typing cd.

@@ -10,6 +10,7 @@ export DOCUMENTS="$HOME/Documents"
 export NOTES="$HOME/Notes"
 export NOTES_JOURNAL="$NOTES/journal"
 export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
+export NOTES_TASKS="$NOTES/gtd-tasks"
 export NOTES_PROJECTS="$NOTES/projects"
 export NOTES_INVENTORY="$NOTES/inventory"
 export NOTES_RECIPES="$NOTES/recipes"
@@ -100,6 +101,9 @@ export RUSTUP_HOME="$WORKSPACE/rust/rustup"
 ## NodeJS
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 
+## Taskwarrior
+export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
+export TASKDATA=$NOTES_TASKS/.task
 
 path=(
   $XDG_LOCAL_BIN
@@ -115,6 +119,7 @@ cdpath=(
   $WORKSPACE
   $NOTES_ZETTELKASTEN
   $NOTES_JOURNAL
+  $NOTES_TASKS
   $NOTES_PROJECTS
   $NOTES_RECIPES
   $NOTES_INVENTORY

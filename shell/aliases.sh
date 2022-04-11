@@ -28,6 +28,7 @@ alias cvim="$EDITOR ~/.vim/vimrc"
 alias ctmux="$EDITOR ~/.dotfiles/tmux/tmux.conf"
 alias crepos="$EDITOR ~/.config/repo-tools/repos.cfg"
 alias cjn="$EDITOR ~/.config/jn-tools/jn.toml"
+alias ctask="$EDITOR ~/.config/taskwarrior/taskrc"
 
 alias nf='neofetch'
 
