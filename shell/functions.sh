@@ -93,9 +93,13 @@ jn() {
 }
 
 jn_fzf() {
-  local root="${1:-$NOTES_JOURNAL/daily}"
-  if [[ "$root" == '.' ]]; then
+  local subdir="${1:-}"
+  local root
+
+  if [[ "$subdir" == "." ]]; then
     root="$PWD"
+  else
+    root="$NOTES_JOURNAL/daily/$subdir"
   fi
 
   local fname
