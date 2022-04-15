@@ -70,11 +70,11 @@ if [[ $(command -v nvim) ]]; then
   export EDITOR=nvim
 fi
 
-if [[ $(command -v gvim) ]]; then
-  export VISUAL=gvim
-else
-  export VISUAL=$EDITOR
-fi
+#if [[ $(command -v gvim) ]]; then
+#  export VISUAL=gvim
+#else
+#  export VISUAL=$EDITOR
+#fi
 
 # configure less not to paginate if less than one page
 export LESS="-F -X $LESS"
