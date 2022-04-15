@@ -75,7 +75,8 @@ set confirm                     " Raise a dialog to confirm save when error occu
 syntax enable
 syntax on
 
-set listchars=tab:▸\ ,eol:¬    " Use the same symbols as TextMate for tabstops and EOLs
+"set listchars=tab:▸\ ,eol:¬    " Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:»\ ,trail:·,eol:¶
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
