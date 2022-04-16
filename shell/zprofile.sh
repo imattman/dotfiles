@@ -102,8 +102,9 @@ export RUSTUP_HOME="$WORKSPACE/rust/rustup"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 
 ## Taskwarrior
-export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
-export TASKDATA=$NOTES_TASKS/.task
+# taskwarrior now supports $XDG_CONFIG_HOME/task/taskrc
+#export TASKRC=$XDG_CONFIG_HOME/task/taskrc
+#export TASKDATA=$NOTES_TASKS/.task
 
 path=(
   $XDG_LOCAL_BIN

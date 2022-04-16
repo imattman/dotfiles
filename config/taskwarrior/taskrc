@@ -1,6 +1,0 @@
-# Taskwarrior config
-
-# remove header from verbose output
-# this keeps taskwarrior from warning about TASKRC and TASKDATA overrides
-verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,unwait
-
