@@ -49,6 +49,9 @@ alias now=timestamp
 alias tstamp=timestamp
 alias tstampn=timestampn
 
+alias lo='exit'
+alias po='sudo poweroff'
+
 alias busy='look_busy'
 
 # update local git repos
