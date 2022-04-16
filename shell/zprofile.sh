@@ -73,7 +73,7 @@ fi
 #if [[ $(command -v gvim) ]]; then
 #  export VISUAL=gvim
 #else
-#  export VISUAL=$EDITOR
+  export VISUAL=$EDITOR
 #fi
 
 # configure less not to paginate if less than one page
