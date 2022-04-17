@@ -138,6 +138,7 @@ if has("autocmd")
   autocmd FileType markdown setlocal tw=80 fo=cqt colorcolumn=+1
 
   autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jn-fmt<CR>
+  autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F6> :%!jn-fmt --expand<CR>
 
 endif
 
