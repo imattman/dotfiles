@@ -23,12 +23,17 @@ alias nvim-latest='~/.dotfiles/linux/install-neovim-from-src.sh latest'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'
 
+# taskwarrior
+alias t='task'
+alias tls='task ls'
+alias tadd='task add'
+
 alias cnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cvim="$EDITOR ~/.vim/vimrc"
 alias ctmux="$EDITOR ~/.dotfiles/tmux/tmux.conf"
 alias crepos="$EDITOR ~/.config/repo-tools/repos.cfg"
 alias cjn="$EDITOR ~/.config/jn-tools/jn.toml"
-alias ctask="$EDITOR ~/.config/taskwarrior/taskrc"
+alias ctask="$EDITOR ~/.config/task/taskrc"
 
 alias nf='neofetch'
 
