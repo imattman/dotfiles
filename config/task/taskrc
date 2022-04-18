@@ -40,6 +40,10 @@ report.next.filter=+PENDING -BLOCKING limit:20
 report.next.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 
+report.inbox.filter=+PENDING and (proj:Inbox or proj: )
+report.inbox.context=0
+report.inbox.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
+report.inbox.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 
 # Color theme (uncomment one to use)
 #include solarized-dark-256.theme
@@ -48,4 +52,12 @@ context.work.read=project:work
 context.work.write=project:work
 context.personal.read=project.not:work project.not:fun -fun
 context.fun.read=project:fun or +fun
+
+# override work context config, including data location (2.6.0+)
+#context.work.rc.default.command=overdue
+#context.work.rc.data.location=$NOTES_WORK/.task
+
+
+# latest news read
+news.version=2.6.0
 
