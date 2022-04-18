@@ -38,7 +38,7 @@ urgency.uda.priority..coefficient=1.8
 # example report config
 report.next.filter=+PENDING -BLOCKING limit:20
 report.next.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
 
 report.inbox.filter=+PENDING and (proj:Inbox or proj: )
 report.inbox.context=0
