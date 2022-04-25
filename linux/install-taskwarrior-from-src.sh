@@ -12,7 +12,7 @@ CLONE_DIR="$WORKSPACE/taskwarrior"
 
 
 usage() {
-  cat<<EOU
+  cat <<-EOU
 	Usage: $THIS_SCRIPT [subcommand]
 	
 	Installs *taskwarrior* from source on a fresh linux system.
@@ -27,9 +27,9 @@ usage() {
 	If an existing workspace is detected, it will be updated.
 	
 	  update        updates git repo to latest
-
+	
 	Maintenance commands:
-
+	
 	  clean_cache   removes local nvim cache directories
 	  latest        clones, updates repo, builds, and installs latest from source
 
@@ -58,7 +58,7 @@ deps() {
 
 
 clone() {
-  echo "Cloning taskwarrior repo to $CLONE_DIR"
+  printf "\nCloning taskwarrior repo to %s\n" "$CLONE_DIR"
   if [[ -d "$CLONE_DIR" ]]; then
     echo "Directory already exists: $CLONE_DIR"
     echo "Attempting 'git pull' to update"
@@ -72,21 +72,26 @@ clone() {
 
 
 update() {
-  echo "Updating taskwarrior repo in $CLONE_DIR"
+  printf "\nUpdating taskwarrior repo in %s\n" "$CLONE_DIR"
   cd $CLONE_DIR && git pull
 }
 
 
 build() {
-  echo "Building taskwarrior in directory $CLONE_DIR"
+  printf "\nBuilding taskwarrior in directory %s\n" "$CLONE_DIR"
   cd "$CLONE_DIR" && \
+    [[ -f Makefile ]] && printf "Makefile found; running 'make clean'\n\n" && \
+    make clean
+
+  cd "$CLONE_DIR" && \
+    printf "\nRunning 'cmake'\n" && \
     cmake -DCMAKE_BUILD_TYPE=release . && \
-    make clean && \
+    printf "\nRunning 'make' for primary build\n"
     make
 }
 
 install() {
-  echo "Installing task"
+  printf "\nInstalling 'task'\n"
   cd "$CLONE_DIR" && \
     sudo make install
 }
@@ -94,7 +99,7 @@ install() {
 details() {
   printf "\ntask binary:\n"
   ls -l $(which task)
-  printf "\n"
+  printf "\nversion: "
   task --version
 }
 
