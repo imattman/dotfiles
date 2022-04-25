@@ -12,7 +12,7 @@ CLONE_DIR="$WORKSPACE/neovim"
 
 
 usage() {
-  cat<<-EOU
+  cat <<-EOU
 	Usage: $THIS_SCRIPT [subcommand]
 	
 	Installs *neovim* from source on a fresh linux system.
@@ -39,7 +39,7 @@ EOU
 
 deps() {
   if [[ $(command -v apt) ]]; then
-  echo "Installing dependencies (Ubuntu/Debian)..."
+  printf "\nInstalling dependencies (Ubuntu/Debian)...\n"
     sudo apt update && \
       sudo apt install -y \
       ninja-build \
@@ -57,7 +57,7 @@ deps() {
   fi
 
   if [[ $(command -v dnf) ]]; then
-  echo "Installing dependencies (Fedora/Rocky)..."
+  printf "\nInstalling dependencies (Fedora/Rocky)...\n"
     sudo dnf -y install \
       ninja-build \
       libtool \
@@ -77,7 +77,7 @@ deps() {
 
 
 clone() {
-  echo "Cloning neovim repo to $CLONE_DIR"
+  printf "\nCloning neovim repo to %s\n" "$CLONE_DIR"
   if [[ -d "$CLONE_DIR" ]]; then
     echo "Directory already exists: $CLONE_DIR"
     echo "Attempting 'git pull' to update"
@@ -91,13 +91,13 @@ clone() {
 
 
 update() {
-  echo "Updating neovim repo in $CLONE_DIR"
+  printf "\nUpdating neovim repo in %s\n" "$CLONE_DIR"
   cd $CLONE_DIR && git pull
 }
 
 
 build() {
-  echo "Building neovim in directory $CLONE_DIR"
+  printf "\nBuilding neovim in directory %s\n" "$CLONE_DIR"
   cd "$CLONE_DIR" && \
     make clean && \
     rm -rf build && \
@@ -105,7 +105,7 @@ build() {
 }
 
 install() {
-  echo "Installing neovim"
+  printf "\nInstalling 'nvim'\n"
   cd "$CLONE_DIR" && \
     sudo make install
 }
