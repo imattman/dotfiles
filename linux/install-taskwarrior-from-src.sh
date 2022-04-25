@@ -86,7 +86,7 @@ build() {
   cd "$CLONE_DIR" && \
     printf "\nRunning 'cmake'\n" && \
     cmake -DCMAKE_BUILD_TYPE=release . && \
-    printf "\nRunning 'make' for primary build\n"
+    printf "\nRunning 'make' for primary build\n" && \
     make
 }
 
@@ -131,7 +131,5 @@ else
     esac
   done
 fi
-
-
 
 
