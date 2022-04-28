@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+
+import argparse
+import sys
+
+IGNORE = {'a', 'an', 'of', 'the'}
+
+
+def maybe_title(idx, word):
+    if idx == 0 or word not in IGNORE:
+        return word.title()
+
+    return word # unchanged
+
+
+def main():
+    parser = argparse.ArgumentParser(
+    description='A command line tool for converting words to "Title Case"')
+    args = parser.parse_args()
+
+    for line in sys.stdin:
+        words = [maybe_title(i, w) for i, w in enumerate(line.split()) ]
+        print(" ".join(words))
+
+
+if __name__ == "__main__":
+    main()
+
