@@ -189,6 +189,10 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+-- increment/decrement numbers in a column
+keymap("x", "<C-a>", "<C-a>gv", opts)
+keymap("x", "<C-x>", "<C-x>gv", opts)
+
 -- Terminal --
 -- better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
