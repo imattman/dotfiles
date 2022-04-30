@@ -23,6 +23,8 @@
   diffc = diff --cached
   co = checkout
   co-date = "!f() { d=${1:-2020-01-01}; git checkout $(git rev-list -1 --before=$d HEAD); }; f"
+  g = "grep --break --heading --line-number"
+  grep-group = "grep --break --heading --line-number"
   br = branch -a
   stsh = stash --keep-index
   staash = stash --include-untracked
@@ -74,6 +76,9 @@
 	rebase = false
 [branch]
 #  autosetuprebase = always
+[grep]
+  extendRegexp = true
+  lineNumber = true
 
 [credential]
   helper = osxkeychain
