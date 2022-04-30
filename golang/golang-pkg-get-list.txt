@@ -14,7 +14,8 @@ golang.org/x/lint/golint
 github.com/Masterminds/squirrel
 #github.com/alecthomas/gometalinter
 github.com/alfredxing/calc
-github.com/clipperhouse/gen
+# obsoleted by generics
+#github.com/clipperhouse/gen
 github.com/fatih/motion
 github.com/fogleman/primitive
 github.com/godoctor/godoctor
