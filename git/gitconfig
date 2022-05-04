@@ -59,6 +59,7 @@
   files-ignored = ls-files --others -i --exclude-standard
   files-modified = ls-files -m
   delete-merged = "!git branch -D $(git branch --merged | grep -v '^*')"
+  current-branch = "rev-parse --abbrev-ref HEAD"
   url-origin = "!git remote get-url origin"
   gc-now = "gc --prune='0 days'"
   # SVN habits
