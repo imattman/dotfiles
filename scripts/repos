@@ -184,26 +184,41 @@ def latest_repos(repos):
         if r.directory.is_dir():
             print("#" * 80)
             print(f"Latest commmit of {r.directory}")
-            subprocess.run(['git', 'log', '-n', '1'], cwd=r.directory, check=True)
+            subprocess.run(['git', 'log', '-n', '1'],
+                           cwd=r.directory, check=True)
             print()
-        #else:
+        # else:
         #    print(f"Not found on this machine: {r.directory}")
+
 
 def status_repos(repos, verbose=False):
     repo_clean_msg = 'working tree clean'
+    branch_current_msg = 'Your branch is up to date with'
 
     for r in repos:
         if r.directory.is_dir():
-            result = subprocess.run(['git', 'status'], cwd=r.directory, check=True,
-                                    capture_output=True, encoding='utf-8')
-            if repo_clean_msg in result.stdout:
-                if verbose:
-                    print(f"Status of {r.directory}")
-                    print("  working tree clean\n")
-            else:
+            git_status = subprocess.run(['git', 'status'], cwd=r.directory, check=True,
+                                        capture_output=True, encoding='utf-8')
+            git_status = git_status.stdout.strip()
+
+            branch_name = subprocess.run(['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+                                         cwd=r.directory, check=True,
+                                         capture_output=True, encoding='utf-8')
+            branch_name = branch_name.stdout.strip()
+
+            show_details = not(repo_clean_msg in git_status and
+                               branch_current_msg in git_status and
+                               (branch_name == 'main' or branch_name == 'master'))
+
+            if show_details:
                 print("#" * 80)
                 print(f"Status of {r.directory}")
-                print(result.stdout, "\n")
+                print(git_status, "\n")
+            else:
+                if verbose:  # or is_branch:
+                    print(f"Status of {r.directory}")
+                    print(f"  On branch {branch_name}")
+                    print("  working tree clean\n")
         elif verbose:
             print(f"Not found on this machine: {r.directory}\n")
 
@@ -228,7 +243,7 @@ def rollback_repos(repos, rollback_n):
     for r in repos:
         print(f"{r.directory}")
         if r.directory.is_dir():
-            result = subprocess.run(['git', 'branch', '--show-current'], 
+            result = subprocess.run(['git', 'branch', '--show-current'],
                                     cwd=r.directory, check=True,
                                     capture_output=True, encoding='utf-8')
             branch = result.stdout
