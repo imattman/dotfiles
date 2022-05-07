@@ -29,6 +29,8 @@ uda.priority.values= H,M,,L
 urgency.uda.priority.L.coefficient=0
 urgency.uda.priority..coefficient=1.8
 
+search.case.sensitive=0
+
 # remove header from verbose output
 # this keeps taskwarrior from warning about TASKRC and TASKDATA overrides
 # NOTE: not required now that `task` supports XDG_CONFIG location
@@ -44,6 +46,27 @@ report.inbox.filter=+PENDING and (proj:Inbox or proj: )
 report.inbox.context=0
 report.inbox.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.inbox.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+
+#report.items.filter=
+report.items.context=0
+report.items.labels=ID,Active,Age,Deps,P,Project,Recur,S,Due,Until,Description,Urg
+report.items.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.items.sort = id,start-,due+,project+,urgency-
+
+# report.list.columns = id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
+# report.list.context = 1
+# report.list.description = Most details of tasks
+# report.list.filter = status:pending -WAITING
+# report.list.labels = ID,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
+# report.list.sort = start-,due+,project+,urgency-
+
+# report.ls.columns = id,start.active,depends.indicator,project,tags,recur.indicator,wait.remaining,scheduled.countdown,due.countdown,until.countdown,description.count
+# report.ls.context = 1
+# report.ls.description = Few details of tasks
+# report.ls.filter = status:pending -WAITING
+# report.ls.labels = ID,A,D,Project,Tags,R,Wait,S,Due,Until,Description
+#report.ls.sort = start-,description+
+report.ls.sort = start-,due+,project+,urgency-
 
 # Color theme (uncomment one to use)
 #include solarized-dark-256.theme
