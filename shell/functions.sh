@@ -92,6 +92,19 @@ jn() {
   fi
 }
 
+jnb_today() {
+  cd "$NOTES_JOURNAL" || return 1
+
+  local branch="$(git rev-parse --abbrev-ref HEAD)"
+  if [[ $branch != "main" && $branch != "master" ]]; then
+    echo "WARNING: repo is currently on branch $branch"
+  fi
+
+  git checkout -b "entry-$(datestamp "$@")"
+  jn.sh today
+}
+
+
 jn_fzf() {
   local subdir="${1:-}"
   local root
