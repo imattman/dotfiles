@@ -16,6 +16,7 @@ alias cdw='cd_workspace'
 
 # journal tools
 alias jnf='jn_fzf'
+alias jns='jn_search'
 
 alias v='nvim'
 alias nv='nvim'
