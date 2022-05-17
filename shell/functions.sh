@@ -92,16 +92,18 @@ jn() {
   fi
 }
 
-jnb_today() {
+jn_branch() {
   cd "$NOTES_JOURNAL" || return 1
+  local day="${1:-today}"
+  local date="$(datestamp "$day")"
 
   local branch="$(git rev-parse --abbrev-ref HEAD)"
   if [[ $branch != "main" && $branch != "master" ]]; then
     echo "WARNING: repo is currently on branch $branch"
   fi
 
-  git checkout -b "entry-$(datestamp "$@")"
-  jn.sh today
+  git checkout -b "entry-${date}"
+  jn.sh "$date"
 }
 
 jn_search() {

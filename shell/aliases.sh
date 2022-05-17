@@ -15,6 +15,7 @@ alias cdr='cd_repos'
 alias cdw='cd_workspace'
 
 # journal tools
+alias jnb='jn_branch'
 alias jnf='jn_fzf'
 alias jns='jn_search'
 
