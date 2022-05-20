@@ -150,13 +150,14 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- navigate buffers
 keymap("n", "]b", ":bnext<CR>", opts)
 keymap("n", "[b", ":bprevious<CR>", opts)
---keymap("n", "<Leader>n", ":bnext<CR>", opts)
---keymap("n", "<Leader>p", ":bprevious<CR>", opts)
+keymap("n", "<Leader>n", ":bnext<CR>", opts)
+keymap("n", "<Leader>p", ":bprevious<CR>", opts)
 
-keymap("n", "<Leader>6", "<C-^>", opts)   -- easy toggle between alternate file
+keymap("n", "<Leader>o", "<C-^>", opts)   -- easy toggle between alternate file
 --keymap("n", "<Leader> ", "<C-^>", opts)
 
 -- turn off hlsearch
+keymap("n", "<C-l>", "<CMD>nohl<CR>", opts)
 keymap("n", "<Leader>l", "<CMD>nohl<CR>", opts)
 
 -- quickfix navigation
