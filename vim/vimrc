@@ -182,6 +182,8 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " Easy buffer switching
+nnoremap [b :bprev<CR>
+nnoremap ]b :bnext<CR>
 nnoremap <Leader>p :bprev<CR>
 nnoremap <Leader>n :bnext<CR>
 "nnoremap <S-h> <cmd>bprev<CR>
