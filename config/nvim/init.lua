@@ -181,7 +181,10 @@ keymap("v", ">", ">gv", opts)
 -- move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
+keymap("v", "p", '"_dP', opts) -- paste without clobbering default register
+-- search currently selected text
+--keymap("v", "//", 'y/\V<C-R>=escape(@", '/\')', opts)
+
 
 -- Visual Block --
 -- move text up and down

@@ -213,6 +213,9 @@ vnoremap K :m '<-2<CR>gv=gv
 " then paste in what is currently in default register
 vnoremap <leader>p "_dP
 
+" search for currently selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 
 " Split
 noremap <leader>h :<C-u>split<CR>
