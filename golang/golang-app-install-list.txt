@@ -14,6 +14,9 @@ github.com/antonmedv/countdown@latest
 # terminal markdown renderer
 github.com/charmbracelet/glow@latest
 
+# git TUI
+github.com/jesseduffield/lazygit@latest
+
 # JSON -> struct tools
 github.com/m-zajac/json2go/...@latest
 
