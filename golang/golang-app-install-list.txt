@@ -20,6 +20,9 @@ github.com/jesseduffield/lazygit@latest
 # JSON -> struct tools
 github.com/m-zajac/json2go/...@latest
 
+# image -> ASCII converter
+github.com/TheZoraiz/ascii-image-converter@latest
+
 # emoji lookup
 github.com/hackebrot/turtle/...@latest
 
