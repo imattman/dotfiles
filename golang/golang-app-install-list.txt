@@ -1,9 +1,12 @@
-# dev tools
-github.com/cortesi/modd/cmd/modd@latest
-github.com/cortesi/devd/cmd/devd@latest
+# task runner Make alternative with file-watch capability
+github.com/go-task/task/v3/cmd/task@latest
 
-# Hugo v0.95 requires go 1.18
-github.com/gohugoio/hugo@v0.94
+# http live reload
+github.com/cosmtrek/air@latest
+
+# Hugo v0.95 and later requires go 1.18
+github.com/gohugoio/hugo@latest
+#github.com/gohugoio/hugo@v0.94
 
 # cobra CLI code gen
 github.com/spf13/cobra-cli@latest
