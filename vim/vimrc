@@ -251,8 +251,8 @@ nnoremap <Leader>e <cmd>Lexplore 20<CR>
 
 
 " fzf mappings
-nnoremap <C-p> <cmd>GFiles<CR>
-nnoremap <Leader>f <cmd>Files<CR>
+nnoremap <C-p> <cmd>Files<CR>
+nnoremap <Leader>f <cmd>GFiles<CR>
 nnoremap <Leader>b <cmd>Buffers<CR>
 
 " set to true to find project root from cwd
