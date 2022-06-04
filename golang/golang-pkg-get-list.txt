@@ -1,10 +1,8 @@
 #
 # std tools
 #
-golang.org/x/tools/cmd/...
-golang.org/x/lint/golint
-#golang.org/x/crypto/...
-#golang.org/x/image/...
+#golang.org/x/crypto/...@latest
+#golang.org/x/image/...@latest
 
 
 #

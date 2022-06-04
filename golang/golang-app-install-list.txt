@@ -1,3 +1,7 @@
+# std tools
+golang.org/x/tools/cmd/...@latest
+golang.org/x/lint/golint@latest
+
 # task runner Make alternative with file-watch capability
 github.com/go-task/task/v3/cmd/task@latest
 
@@ -13,7 +17,7 @@ github.com/spf13/cobra-cli@latest
 
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
- 
+
 # terminal markdown renderer
 github.com/charmbracelet/glow@latest
 
@@ -31,8 +35,7 @@ github.com/hackebrot/turtle/...@latest
 
 # it can be easier to install buffalo via brew or other package manager
 #github.com/gobuffalo/buffalo/buffalo@latest
-  
+
 # GOA web API gen tools
 goa.design/goa/v3/...@v3
-
 
