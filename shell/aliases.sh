@@ -92,6 +92,8 @@ alias simple-httpd.py='py_simple_httpd'
 alias goenv='go env'
 alias gorun='go run'
 alias gobuild='go build'
+alias yaegi='rlwrap yaegi'
+alias go-interpreter='rlwrap yaegi'
 
 # json 
 alias jpp='json-pp'

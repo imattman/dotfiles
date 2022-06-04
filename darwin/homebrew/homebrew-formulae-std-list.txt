@@ -15,6 +15,10 @@ macvim
 
 # development languages
 go
+
+# rlwrap is a readline tool that makes yaegi (Go interpreter) more userfriendly
+rlwrap
+
 #elixir
 #erlang
 #node
