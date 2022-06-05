@@ -32,7 +32,7 @@ function timestamp() {
 }
 
 function timestampn() {
-  local format='+%Y%m%d.%H%M%S'
+  local format='+%Y-%m-%d.%H%M%S'
 
   if [[ -n "$1" ]]; then
     $DATE_CMD -d "$1" "$format"
