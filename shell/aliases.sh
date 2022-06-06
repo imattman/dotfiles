@@ -65,6 +65,9 @@ alias busy='look_busy'
 # update local git repos
 alias repoup='repos update'
 
+# 'cheat' cli + cheatsheets
+alias cht='cheat'
+
 # homebrew
 #alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
 alias brewup=update_macos
