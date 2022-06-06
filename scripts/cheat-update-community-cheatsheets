@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+COMMUNITY_REPO='https://github.com/cheat/cheatsheets.git'
+BASE_DIR="$HOME/.local/share/cheatsheets"
+COMMUNITY_DIR="$BASE_DIR/community"
+
+if [[ ! -d "$BASE_DIR" ]]; then
+  echo "Creating base directory $BASE_DIR ..."
+  mkdir -p "$BASE_DIR"
+fi
+
+if [[ ! -d "$COMMUNITY_DIR" ]]; then
+  git clone "$COMMUNITY_REPO" "$COMMUNITY_DIR"
+  exit 0
+fi
+
+echo "Updating community repo under $COMMUNITY_DIR ..."
+cd "$COMMUNITY_DIR" && git pull
+
+
