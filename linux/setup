@@ -91,6 +91,7 @@ install_pkgs() {
     libncurses5-dev \
     libffi-dev \
     libssl-dev \
+    inotify-tools \
     tmux \
     make \
     ansible \
