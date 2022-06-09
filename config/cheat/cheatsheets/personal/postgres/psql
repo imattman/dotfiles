@@ -1,0 +1,23 @@
+---
+syntax: bash
+tags:
+- postgres
+- psql
+---
+
+# `psql` short codes
+
+    \?             display help
+    \q             quit psql
+    \c DBNAME      connect to database DBNAME (can be URL)
+    \conninfo      display information about current connection
+    \l             list databases
+    \d             list tables, sequences, ...
+    \d NAME        describe table, sequence, ...
+    \i FILE        execute commands from FILE
+    \o FILE        send all query results to FILE
+    \du            show user accounts
+    \timing        toggle timing of commands
+
+
+

@@ -1,0 +1,17 @@
+---
+syntax: bash
+tags:
+- postgres
+- psql
+---
+
+# To install PostgreSQL via homebrew
+brew install postgresql
+
+# To start as a sevice
+brew services start postgresql
+
+# To query status of postgres service
+brew services info postgresql
+
+

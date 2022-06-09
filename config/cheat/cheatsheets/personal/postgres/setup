@@ -1,0 +1,23 @@
+---
+syntax: bash
+tags:
+- postgres
+- psql
+---
+
+# To create superuser `postgres` (prompts for password)
+createuser -s -P postgres
+
+# To connect as user `postgres`
+psql -U postgres
+
+# To show config file location (within psql)
+show config_file;
+
+# To create a DB for a given user (within psql)
+CREATE DATABASE mattman WITH OWNER mattman;
+
+# To change the password for a user (within psql)
+ALTER USER postgres WITH PASSWORD 'new-password';
+
+
