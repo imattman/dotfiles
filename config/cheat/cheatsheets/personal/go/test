@@ -1,0 +1,18 @@
+---
+syntax: bash
+tags:
+- go
+---
+
+# To run all tests in the current directory
+go test -v
+
+# To run all tests in the current directory tree
+go test -v ./...
+
+# To run all tests under directory tree, ignoring cache
+go test -v -count=1 ./...
+
+# To run benchmark tests
+go test -bench=./...
+

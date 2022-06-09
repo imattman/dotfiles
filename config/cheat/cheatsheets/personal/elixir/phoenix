@@ -1,0 +1,19 @@
+---
+syntax: bash
+tags:
+- elixir
+- phoenix
+---
+
+# To install Phoenix tooling
+mix archive.install hex phx_new
+
+# To display current hex version installed
+mix phx.new -v
+
+# To create a new project with default components and naming conventions
+mix phx.new hello_world
+
+# To create an app backed by sqlite as the datastore
+mix phx.new --database sqlite3 my_app
+

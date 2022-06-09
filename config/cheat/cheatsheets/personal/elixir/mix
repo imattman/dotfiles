@@ -1,0 +1,16 @@
+---
+syntax: bash
+tags:
+- elixir
+- mix
+---
+
+# To run only failed tests
+mix test --failed
+
+# To run tests for a file starting at a given line number
+mix test test/some/particular/file_test.exs:12
+
+# To show slowest N tests
+mix test --slowest N
+
