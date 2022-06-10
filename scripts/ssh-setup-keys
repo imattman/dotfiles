@@ -1,0 +1,163 @@
+#!/bin/sh
+#
+# SSH key setup helper
+
+# halt on errors
+set -eu
+
+
+THIS_SCRIPT="${0##*/}"
+THIS_DIR="${0%/*}"
+BASE_DIR="$(cd "$THIS_DIR" && pwd)"
+
+CONFIG_SRC="$BASE_DIR/../ssh/config"
+CONFIG_DEST="$HOME/.ssh/config"
+BACKUP_SUFFIX="$(date +%Y-%m-%d.%H%M%S)"
+
+SSH_KEY_FILE="${SSH_KEY_FILE:-$HOME/.ssh/id_ed25519}"
+SSH_EMAIL="${SSH_EMAIL:-}"
+PASS_PHRASE=""
+
+
+usage() {
+  cat <<- EOU
+	Usage: $THIS_SCRIPT [OPTIONS] <email>
+	
+	A helper script for configuring new SSH keys.
+	An email address must be supplied or set via via environment \$SSH_EMAIL
+	
+	OPTIONS:
+
+	  -f <keyfile>      path to new key pair
+	  -p <pass phrase>  pass phrase for new key pair
+	  -r                remove all keys from ssh agent
+	  -h                show this message
+
+	EXAMPLE:
+
+	  $THIS_SCRIPT -p 'some fancy pass phrase' "mattman@example.com" 
+
+EOU
+}
+
+debug() {
+  if [[ -n "${DEBUG:-}" ]]; then
+    echo "\$SSH_EMAIL    $SSH_EMAIL"
+    echo "\$SSH_KEY_FILE $SSH_KEY_FILE"
+    echo "\$PASS_PHRASE  '$PASS_PHRASE'"
+  fi
+}
+
+precheck() {
+  if [[ -z "$SSH_EMAIL" || "$SSH_EMAIL" == "-" ]]; then
+    echo "Email is required."
+    echo
+    usage
+    exit 1
+  fi
+}
+
+backup_config() {
+  if [[ -f "$CONFIG_DEST" ]]; then
+    local config_backup="${CONFIG_DEST}.${BACKUP_SUFFIX}"
+    echo "Backing up $CONFIG_DEST to $config_backup ..."
+    mv "$CONFIG_DEST" "$config_backup"
+    chmod 400 "$config_backup"
+  fi
+
+  if [[ -f "$SSH_KEY_FILE" ]]; then
+    local priv_key_backup="${SSH_KEY_FILE}.${BACKUP_SUFFIX}"
+
+    echo "Backing up $SSH_KEY_FILE to $priv_key_backup ..."
+    mv "$SSH_KEY_FILE" "$priv_key_backup"
+    chmod 400 "$priv_key_backup"
+  fi
+
+  local pub_key="${SSH_KEY_FILE}.pub"
+  if [[ -f "$pub_key" ]]; then
+    local pub_key_backup="${pub_key}.${BACKUP_SUFFIX}"
+    echo "Backing up $pub_key to $pub_key_backup ..."
+    mv "$pub_key" "$pub_key_backup"
+    chmod 400 "$pub_key_backup"
+  fi
+}
+
+copy_config() {
+  echo "Copying SSH config ..."
+  cp "$CONFIG_SRC" "$CONFIG_DEST"
+  chmod 600 "$CONFIG_DEST"
+}
+
+genkey() {
+  echo
+  echo "Generating new key pair $SSH_KEY_FILE ..."
+
+  if [[ -z "$PASS_PHRASE" ]]; then
+    echo
+    echo "************************************************************"
+    echo "             Generating without pass phrase"
+    echo "************************************************************"
+    echo
+  fi
+
+  # generate new key pair, use newer alternative to RSA
+  ssh-keygen -t ed25519 -f "$SSH_KEY_FILE" -C "${SSH_EMAIL}" -N "$PASS_PHRASE"
+}
+
+
+update_ssh_agent() {
+  echo
+  echo "Registering new key with ssh-agent ..."
+  #eval "$(ssh-agent -s)"
+  #ssh-add -K $(ls -1 ~/.ssh/id_* | grep -v '.pub$')
+  ssh-add "$SSH_KEY_FILE"
+
+  echo
+  echo "Keys currently registered:"
+  ssh-add -L
+}
+
+reset_ssh_agent() {
+  echo "Removing all keys from ssh agent ..."
+  ssh-add -D
+}
+
+all() {
+  debug
+  precheck
+  backup_config
+  copy_config
+  genkey
+  update_ssh_agent
+}
+
+
+while [[ $# -gt 0 ]]; do
+  arg="$1"
+  shift
+  case "$arg" in
+    -h|help)
+      usage
+      exit 1
+      ;;
+    -f)
+      SSH_KEY_FILE="$1"
+      shift
+      ;;
+    -p)
+      PASS_PHRASE="$1"
+      shift
+      ;;
+    -r)
+      reset_ssh_agent
+      exit 0
+      ;;
+    *)
+      SSH_EMAIL="$arg"
+      ;;
+  esac
+done
+
+all
+
+
