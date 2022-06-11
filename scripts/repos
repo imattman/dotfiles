@@ -179,14 +179,14 @@ def update_repos(repos):
         print()
 
 
-def latest_repos(repos):
+def latest_repos(repos, count=3):
     for r in repos:
         if r.directory.is_dir():
             print("#" * 80)
-            print(f"Latest commmit of {r.directory}")
-            subprocess.run(['git', 'log', '-n', '1'],
+            print(f"Latest commmits of {r.directory}\n")
+            subprocess.run(['git', '--no-pager', 'log', '-n', str(count), "--pretty=format:%ad  %h  %s", '--date-order', '--date=short'],
                            cwd=r.directory, check=True)
-            print()
+            print('\n')
         # else:
         #    print(f"Not found on this machine: {r.directory}")
 
@@ -197,7 +197,7 @@ def status_repos(repos, verbose=False):
 
     for r in repos:
         if r.directory.is_dir():
-            git_status = subprocess.run(['git', 'status'], cwd=r.directory, check=True,
+            git_status = subprocess.run(['git', '--no-pager', 'status'], cwd=r.directory, check=True,
                                         capture_output=True, encoding='utf-8')
             git_status = git_status.stdout.strip()
 
