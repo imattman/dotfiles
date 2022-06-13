@@ -47,6 +47,12 @@ deps() {
         libdigest-sha3-perl
   fi
 
+  # PoP_OS
+  if [[ ! $(which cmake) ]]; then
+    sudo apt install -y cmake
+  fi
+
+
   if [[ $(command -v dnf) ]]; then
   echo "Installing dependencies (Fedora/Rocky)..."
     sudo dnf -y install \
