@@ -17,7 +17,7 @@
 
 
 ;; Rest of config is documented in org-mode format
-(org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
+(org-babel-load-file (expand-file-name "~/.config/emacs/myinit.org"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -29,7 +29,7 @@
     ("ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "4cbec5d41c8ca9742e7c31cc13d8d4d5a18bd3a0961c18eb56d69972bbcf3071" default)))
  '(line-number-mode nil)
  '(org-default-notes-file (concat org-directory "/notes.org"))
- '(org-directory "~/Dropbox/orgfiles")
+ '(org-directory "~/Documents/Notes/notes-org")
  '(org-export-html-postamble nil)
  '(org-hide-leading-stars t)
  '(org-startup-folded (quote overview))

@@ -24,9 +24,6 @@ all:
 	[ -f ~/.bash.prompt ]       || ln -s $(PWD)/shell/bash-prompt.sh ~/.bash.prompt
 	[ -f ~/.bash.local ]        || cp $(PWD)/shell/local.sh ~/.bash.local
 
-	# emacs 
-	[ -d ~/.emacs.d ]           || ln -s $(PWD)/emacs.d ~/.emacs.d
-	
 	# vim
 	[ -f ~/.vimrc ]             || ln -s $(PWD)/vim/vimrc ~/.vimrc
 	[ -d ~/.vim ]               || ln -s $(PWD)/vim ~/.vim
