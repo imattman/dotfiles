@@ -24,6 +24,9 @@ all:
 	[ -f ~/.bash.prompt ]       || ln -s $(PWD)/shell/bash-prompt.sh ~/.bash.prompt
 	[ -f ~/.bash.local ]        || cp $(PWD)/shell/local.sh ~/.bash.local
 
+	# emacs -- still required for MacOS
+	[ -d ~/.emacs.d ]           || ln -s $(PWD)/config/emacs ~/.emacs.d
+	
 	# vim
 	[ -f ~/.vimrc ]             || ln -s $(PWD)/vim/vimrc ~/.vimrc
 	[ -d ~/.vim ]               || ln -s $(PWD)/vim ~/.vim
