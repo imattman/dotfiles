@@ -20,6 +20,8 @@
 ;; note the visual warning causes problems on OS X
 (setq ring-bell-function 'ignore) ;; disable audio/visual warning
 
+;(print (font-family-list))
 (set-face-attribute 'default nil
-  :family "Hack" :height 160 :weight 'normal)
+  :family "Hack Nerd Font" :height 160 :weight 'normal)
+;  :family "FiraCode Nerd Font" :height 160 :weight 'normal)
 
