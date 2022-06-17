@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # SSH key setup helper
 
@@ -30,6 +30,7 @@ usage() {
 
 	  -f <keyfile>      path to new key pair
 	  -p <pass phrase>  pass phrase for new key pair
+	  -l                list current keys registered with ssh agent
 	  -r                remove all keys from ssh agent
 	  -h                show this message
 
@@ -117,6 +118,10 @@ update_ssh_agent() {
   ssh-add -L
 }
 
+list_ssh_agent_keys() {
+  ssh-add -L
+}
+
 reset_ssh_agent() {
   echo "Removing all keys from ssh agent ..."
   ssh-add -D
@@ -128,7 +133,7 @@ all() {
   backup_config
   copy_config
   genkey
-  update_ssh_agent
+#  update_ssh_agent
 }
 
 
@@ -147,6 +152,10 @@ while [[ $# -gt 0 ]]; do
     -p)
       PASS_PHRASE="$1"
       shift
+      ;;
+    -l)
+      list_ssh_agent_keys
+      exit 0
       ;;
     -r)
       reset_ssh_agent

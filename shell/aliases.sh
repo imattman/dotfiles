@@ -25,6 +25,9 @@ alias nvim-latest='~/.dotfiles/linux/install-neovim-from-src.sh latest'
 #alias vim='nvim'
 alias vimf='edit_fzf vim'
 
+# I always forget this
+alias ssh-agent-list-keys='ssh-add -L'
+
 # taskwarrior
 alias t='task'
 alias tls='task ls'
