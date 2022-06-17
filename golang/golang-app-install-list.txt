@@ -30,6 +30,9 @@ github.com/charmbracelet/glow@latest
 # git TUI
 github.com/jesseduffield/lazygit@latest
 
+# yq - YAML processor (similar to `jq`)
+github.com/mikefarah/yq/v4@latest
+
 # JSON -> struct tools
 github.com/m-zajac/json2go/...@latest
 
