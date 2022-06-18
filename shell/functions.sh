@@ -103,7 +103,7 @@ jn_branch() {
   fi
 
   git checkout -b "entry-${date}"
-  jn.sh "$date"
+  #jn.sh "$date"
 }
 
 jn_search() {
