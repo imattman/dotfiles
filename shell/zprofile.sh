@@ -39,6 +39,10 @@ done
 # MacOS
 #
 if [[ "$PLATFORM" == "darwin" ]]; then
+  # register keys with ssh agent using passphrases stored in Keychain
+  ssh-add -q -A
+  #ssh-add -L
+
   # homebrew on M1 is in a different directory
   if [[ -d /opt/homebrew ]]; then
     path=(
