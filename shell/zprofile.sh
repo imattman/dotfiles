@@ -40,7 +40,8 @@ done
 #
 if [[ "$PLATFORM" == "darwin" ]]; then
   # register keys with ssh agent using passphrases stored in Keychain
-  ssh-add -q -A
+  # env value required to squash warning message about deprecated flag '-A'
+  APPLE_SSH_ADD_BEHAVIOR=macos ssh-add -q -A
   #ssh-add -L
 
   # homebrew on M1 is in a different directory
