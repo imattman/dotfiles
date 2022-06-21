@@ -1,3 +1,6 @@
 # emacs stuff that shouldn't be tracked
 *~
 
+# ignore any packages that get downloaded to this directory by mistake
+elpa/
+
