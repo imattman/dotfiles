@@ -15,11 +15,8 @@ github.com/cosmtrek/air@latest
 github.com/traefik/yaegi/cmd/yaegi@latest
 
 # Hugo v0.95 and later requires go 1.18
-github.com/gohugoio/hugo@latest
 #github.com/gohugoio/hugo@v0.94
-
-# cobra CLI code gen
-github.com/spf13/cobra-cli@latest
+github.com/gohugoio/hugo@latest
 
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
@@ -33,9 +30,6 @@ github.com/jesseduffield/lazygit@latest
 # yq - YAML processor (similar to `jq`)
 github.com/mikefarah/yq/v4@latest
 
-# JSON -> struct tools
-github.com/m-zajac/json2go/...@latest
-
 # image -> ASCII converter
 github.com/TheZoraiz/ascii-image-converter@latest
 
@@ -45,6 +39,21 @@ github.com/hackebrot/turtle/...@latest
 # it can be easier to install buffalo via brew or other package manager
 #github.com/gobuffalo/buffalo/buffalo@latest
 
+
+#
+# Utilities for working with Go code
+#
+
+# cobra CLI code gen
+github.com/spf13/cobra-cli@latest
+
+# autogenerate methods for enum types
+github.com/dmarkham/enumer@latest
+
+# JSON -> struct tools
+github.com/m-zajac/json2go/...@latest
+
 # GOA web API gen tools
 goa.design/goa/v3/...@v3
+
 
