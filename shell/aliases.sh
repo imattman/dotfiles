@@ -59,6 +59,7 @@ alias now=timestamp
 alias tstamp=timestamp
 alias tstampn=timestampn
 alias tsn=timestampn
+alias tsisosec=timestamp_isosec
 
 alias lo='exit'
 alias po='sudo poweroff'

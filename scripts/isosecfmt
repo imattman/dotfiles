@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+#
+# a simple formatter for timestamps in ISO Second format
+
+import argparse
+import re
+import sys
+
+STD = re.compile(r'^\d{4}-\d{2}-\d{2}[T\.\s]\d{2}[:\.]\d{2}[:\.]\d{2}(-\d+)?$')
+INLINE = re.compile(r'^\d{14}$')
+
+
+def match_wellformed(val, fmt_as_num=False):
+    # example: 2022-06-23T15:18:34-0700
+    if STD.match(val):
+        return val.lower()
+
+    return None
+
+
+def match_inline(val, fmt_as_num=False):
+    # example: 20220623151451 
+    if INLINE.match(val):
+        if fmt_as_num:
+            return format_as_num(val)
+        else:
+            return format_as_hhmmss(val)
+
+    return None
+
+
+def format_as_hhmmss(val):
+    return f'{val[0:4]}-{val[4:6]}-{val[6:8]}T{val[8:10]}:{val[10:12]}:{val[12:14]}'
+
+
+def format_as_num(val):
+    return f'{val[0:4]}-{val[4:6]}-{val[6:8]}.{val[8:14]}'
+
+
+def find_match(val, fmt):
+    m = match_inline(val, fmt) # TODO: use wallrus operator
+    if m:
+        return m
+
+    m = match_wellformed(val, fmt) # TODO: needs more wallrus
+    if m:
+        return m
+
+    return f'unable to find match for {val}'
+
+
+def process(val, fmt):
+    val = val.strip()
+    if not val:
+        return
+
+    print(find_match(val, fmt))
+
+
+def main():
+    parser = argparse.ArgumentParser(
+    description='A command line tool for formatting ISO seconds')
+    parser.add_argument('-n', '--num',  action='store_true', default=False,
+                        dest='num_fmt',  help='use simple number format for time')
+    parser.add_argument('timestamps',  metavar='timestamps', nargs='*')
+    args = parser.parse_args()
+
+    if args.timestamps:
+        for val in args.timestamps:
+            process(val, args.num_fmt)
+    else:
+        for line in sys.stdin:
+            process(line, args.num_fmt)
+
+
+if __name__ == '__main__':
+    main()
+
+

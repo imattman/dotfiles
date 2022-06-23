@@ -41,6 +41,16 @@ function timestampn() {
   fi
 }
 
+function timestamp_isosec() {
+  local format='+%Y%m%d%H%M%S'
+
+  if [[ -n "$1" ]]; then
+    $DATE_CMD -d "$1" "$format"
+  else
+    $DATE_CMD "$format"
+  fi
+}
+
 cd_fzf() {
   local root="${1:-$PWD}"
   local depth="${2:-4}"
