@@ -16,6 +16,7 @@ usage() {
 	
 	OPTIONS:
 	  -h:  Show this message
+	  -l:  Display current gnome key rebinds
 	  -c:  Add dnf COPR aux repos
 	  -p:  Add apt PPA aux repos
 	  -g:  Install apt GUI packages (image viewers, etc.)
@@ -23,6 +24,15 @@ usage() {
 EOU
 }
 
+configure_gnome_key_rebinds() {
+  # use `dconf` or `gsettings`
+  # dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier']"
+  # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
+
+  # show remappings
+  #echo gsettings get org.gnome.desktop.input-sources xkb-options
+  gsettings get org.gnome.desktop.input-sources xkb-options
+}
 
 add_dnf_coprs() {
   echo "Adding COPR for emacs..."
@@ -145,6 +155,9 @@ case "$1" in
   -h)
     usage
     exit 1
+    ;;
+  -l)
+    configure_gnome_key_rebinds
     ;;
   -c)
     add_dnf_coprs
