@@ -6,36 +6,36 @@ BASE_DIR=$(cd "$THIS_DIR" && pwd)
 
 
 usage() {
-  cat<<EOU
-  Usage: $THIS_SCRIPT [OPTIONS]
-
-  Install initial packages on a fresh linux (ubuntu) system system.
-
-  The default behavior is to install a baseline set of packages such as 
-  zsh, tree, stow, etc.
-
-  OPTIONS:
-     -h:  Show this message
-     -i:  Perform intial upgrade of all packages and reboot
-     -p:  Add apt PPAs
-     -g:  Install GUI packages (image viewers, etc.)
+  cat <<- EOU
+	Usage: $THIS_SCRIPT [OPTIONS]
+	
+	Install initial packages on a fresh linux (ubuntu) system system.
+	
+	The default behavior is to install a baseline set of packages such as 
+	zsh, tree, stow, etc.
+	
+	OPTIONS:
+	  -h:  Show this message
+	  -c:  Add dnf COPR aux repos
+	  -p:  Add apt PPA aux repos
+	  -g:  Install apt GUI packages (image viewers, etc.)
 
 EOU
 }
 
 
-update_full() {
-    echo "Upgrading all packages..."
-
-    sudo apt update && \
-    sudo apt full-upgrade -y
+add_dnf_coprs() {
+  echo "Adding COPR for emacs..."
+  sudo dnf copr enable bhavin192/emacs-pretest
 }
 
-
-add_ppas() {
+add_apt_ppas() {
   echo "Adding PPAs..."
 
   local PPAS="
+  # current emacs
+  ppa:kelleyk/emacs
+
   # current python
   ppa:deadsnakes/ppa
 
@@ -52,7 +52,7 @@ add_ppas() {
   
 }
 
-install_gui_pkgs() {
+install_apt_gui_pkgs() {
   echo "Installing GUI packages..."
 
   sudo apt install -y \
@@ -146,11 +146,14 @@ case "$1" in
     usage
     exit 1
     ;;
+  -c)
+    add_dnf_coprs
+    ;;
   -p)
-    add_ppas
+    add_apt_ppas
     ;;
   -g)
-    install_gui_pkgs
+    install_apt_gui_pkgs
     ;;
   *)
     install_pkgs
