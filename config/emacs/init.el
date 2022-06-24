@@ -27,7 +27,9 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+	     '("melpa" . "https://melpa.org/packages/")
+	     '("elpa" . "https://elpa.gnu.org/packages/")
+	     '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
 (package-initialize)
 
 ;; bootstrap 'use-package'
