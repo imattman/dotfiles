@@ -37,6 +37,9 @@ all:
 
 	# tmux
 	[ -f ~/.tmux.conf ]         || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
+
+	# Xmodmap key rebindings for X11
+	[ -f ~/.Xmodmap ]           || ln -s $(PWD)/linux/Xmodmap ~/.Xmodmap
 	
 	# elixir
 	[ -f ~/.iex.exs ]           || ln -s $(PWD)/elixir/iex.exs ~/.iex.exs
@@ -73,6 +76,8 @@ clean:
 	[ -L ~/.gitignore_global ]  && unlink ~/.gitignore_global
 
 	[ -L ~/.tmux.conf ]         && unlink ~/.tmux.conf
+
+	[ -L ~/.Xmodmap ]           && unlink ~/.Xmodmap
 
 	[ -L ~/.iex.exs ]           && unlink ~/.iex.exs
 
