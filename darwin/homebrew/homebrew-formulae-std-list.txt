@@ -1,16 +1,14 @@
 # editors
 macvim
-#macvim --with-cscope --with-lua --HEAD
+
+# emacs with extras: https://github.com/d12frosted/homebrew-emacs-plus
+# to add to /Applications:
+#   ln -s /opt/homebrew/opt/emacs-plus/Emacs.app /Applications
+emacs-plus
 
 #neovim
 # --HEAD luajit
 # --HEAD neovim
-
-
-# don't really use emacs anymore... RIP
-#emacs
-#emacs  --with-cocoa  --with-librsvg
-# run:  brew linkapps emacs
 
 
 # development languages

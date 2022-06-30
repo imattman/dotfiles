@@ -68,9 +68,8 @@ brew doctor && \
 
 # install 3rd party apps via casks
 brew tap caskroom/versions
+brew tap d12frosted/emacs-plus
 # note:  `brew cask search` is now simply `brew search`
 #   brew search java
 #   brew cask install java8
-
-exit 0
 
