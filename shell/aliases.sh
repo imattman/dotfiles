@@ -64,6 +64,8 @@ alias tsisosec=timestamp_isosec
 alias lo='exit'
 alias po='sudo poweroff'
 
+# fun & antics
+alias fishies=ascii_fish
 alias busy='look_busy'
 
 # update local git repos
@@ -73,22 +75,21 @@ alias repoup='repos update'
 alias cht='cheat'
 
 # homebrew
-#alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
 alias brewup=update_macos
 alias sysup=update_system
 
 # tmux
 alias tmux-help="open 'http://tmuxcheatsheet.com/'"
 
-# docker
-alias dm='docker-machine'
-alias dock='docker'
-alias dcomp='docker-compose'
-alias dmenv='eval $(docker-machine env)'
 
-# some fun with docker
-#alias fishies='docker run -it --rm --name fishies danielkraic/asciiquarium'
-alias fishies=ascii_fish
+# docker
+alias d='docker'
+alias dock='docker'
+alias dc='docker-compose'
+alias dcompose='docker-compose'
+alias dmenv='eval $(docker-machine env)'
+alias dlog-name='docker_log_name'
+alias dlog='docker_log_name'
 
 # python
 alias venv='python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheel && rehash'

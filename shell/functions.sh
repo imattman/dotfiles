@@ -422,6 +422,16 @@ git_preview() {
 }
 
 
+# view docker log for container registered under a name
+docker_log_name() {
+  local name="${1:-}"
+  if [[ -z "$name" ]]; then
+    return 1
+  fi
+
+  docker logs "$(docker ps -q -f name=$name)"
+}
+
 # fishies!
 ascii_fish() {
   if [[ $(command -v asciiquarium) ]]; then
