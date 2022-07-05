@@ -9,21 +9,19 @@ export WORKSPACE="$HOME/workspace"
 export DOCUMENTS="$HOME/Documents"
 export NOTES="$HOME/Notes"
 export NOTES_JOURNAL="$NOTES/journal"
-export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
-export NOTES_TASKS="$NOTES/gtd-tasks"
 export NOTES_PROJECTS="$NOTES/projects"
-export NOTES_INVENTORY="$NOTES/inventory"
-export NOTES_RECIPES="$NOTES/recipes"
 export NOTES_SCRATCHPAD="$NOTES/scratchpad"
+export NOTES_TASKS="$NOTES/gtd-tasks"
+export NOTES_TECHNOTES="$NOTES/technotes"
 export NOTES_WORK="$NOTES/work"
+export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
 export PCLOUD="$HOME/pCloud Drive"
 
 tmpl_candidate_dirs=(
   $WORKSPACE/templates
   $XDG_CONFIG_HOME/templates
   $XDG_DATA_HOME/templates
-  $WORKSPACE/Templates
-  $HOME/Templates
+  $HOME/.dotfiles/templates
 )
 
 for t in "$tmpl_candidate_dirs[@]"; do
@@ -123,17 +121,17 @@ path=(
 cdpath=(
   $DOCUMENTS
   $WORKSPACE
+  $NOTES_TECHNOTES
   $NOTES_ZETTELKASTEN
   $NOTES_JOURNAL
   $NOTES_TASKS
   $NOTES_PROJECTS
-  $NOTES_RECIPES
-  $NOTES_INVENTORY
   $NOTES_WORK
   $NOTES
   $NOTES_SCRATCHPAD
   $WORKSPACE/websites
   $XDG_LOCAL_HOME
+  $HOME
   $GOPATH/src/github.com/imattman
   $GOPATH/src/gitlab.com/imattman
 )
