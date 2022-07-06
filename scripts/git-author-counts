@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# fail early
+set -euo pipefail
+
+git log --format='%an %aE' \
+  | sort \
+  | uniq -c \
+  | sort -nr
+
