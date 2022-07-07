@@ -13,6 +13,7 @@ import sys
 # Python 3.7 required for subprocess handling of output capture
 REQUIRED_VERSION = (3, 7)
 
+CONFIG_ENV = 'REPOS_CONFIG'
 DEFAULT_CONFIG_BASE = Path.home() / '.config'
 DEFAULT_CONFIG_DIR = 'repo-tools'
 DEFAULT_CONFIG_FILE = 'repos.cfg'
@@ -26,8 +27,12 @@ def fail(err_msg):
 
 
 def resolve_config_file(conf_file=None, verify_exists=True):
+    repos_conf_env = os.getenv(CONFIG_ENV)
+
     if conf_file:
         full_config = Path(conf_file)
+    elif repos_conf_env:
+        full_config = Path(repos_conf_env)
     else:
         conf_base = os.getenv('XDG_CONFIG_HOME', DEFAULT_CONFIG_BASE.resolve())
         conf_path = Path(conf_base)
@@ -36,6 +41,9 @@ def resolve_config_file(conf_file=None, verify_exists=True):
     config_dir = full_config.parent
 
     if verify_exists:
+        if repos_conf_env:
+            print(f"Environment config override: {repos_conf_env}")
+
         if not config_dir.is_dir():
             fail(f"Configuration directory not found: {config_dir}")
 
@@ -277,7 +285,7 @@ def main():
     user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
-        epilog=f'User config location: {user_cfg}')
+        epilog=f'''User config location: {user_cfg} Value can be overriden with environment variable REPOS_CONFIG''')
     parser.add_argument('cmd', metavar='subcommand', type=str,
                         nargs='?', default='list', choices=cmds,
                         help=f'task to run [{",".join(cmds)}]')
