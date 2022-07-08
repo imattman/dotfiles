@@ -1,0 +1,5 @@
+---
+attribution: $AUTHOR
+data: quote
+---
+
