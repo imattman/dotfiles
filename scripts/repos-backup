@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+THIS_SCRIPT=$(basename "$0")
+THIS_DIR=$(dirname "$0")
+BASE_DIR=$(cd "$THIS_DIR" && pwd)
+
+PLATFORM="$(uname -s | tr A-Z a-z)"
+TIMESTAMP="$(date '+%Y-%m-%d.%H%M%S')"
+
+REPOS_CMD="${REPOS_CMD:-repos}"
+DOTFILES="dotfiles"
+INCLUDE_DOTFILES=''
+
+
+usage() {
+cat <<-EOU
+	Usage: $THIS_SCRIPT COMMAND
+	
+	Backup current repos to directories with timestamp.
+	The backup skips 'dotfiles' by default.
+	
+	COMMANDS:
+	  dotfiles     Backup dotfiles repo
+	  help         Show this message
+	
+	Default is to run 'all'.
+
+EOU
+}
+
+
+precheck() {
+  if [[ ! $(which "$REPOS_CMD") ]]; then
+    echo "repos tool not found: $REPOS_CMD"
+    exit 1
+  fi
+}
+
+backup() {
+  # Perl > AWK ftw!  :-)
+  for repo_dir in $(repos ls | grep -v "$DOTFILES" | perl -lane 'print $F[2]'); do
+    if [[ ! -d "$repo_dir" ]]; then
+      continue
+    fi
+
+    local backup="${repo_dir}.${TIMESTAMP}"
+    echo "Backing up $repo_dir -> $backup"
+    mv "$repo_dir" "$backup"
+  done
+}
+
+dotfiles() {
+  if [[ -z "$INCLUDE_DOTFILES" ]]; then
+    return 0
+  fi
+  
+  local dotfiles_dir="$HOME/.dotfiles"
+
+  if [[ ! -d "$dotfiles_dir" ]]; then
+    echo "dotfiles directory not found: $dotfiles_dir"
+    return 1
+  fi
+
+  local backup="$HOME/dotfiles.${TIMESTAMP}"
+  echo "Moving $dotfiles_dir to $backup ..."
+  mv "$dotfiles_dir" "$backup"
+}
+
+
+all() {
+  precheck
+  backup
+  dotfiles
+}
+
+
+for cmd in "$@"
+do
+  case $cmd in
+    all)
+        all
+        ;;
+    dotfiles)
+        INCLUDE_DOTFILES=1
+        dotfiles
+        ;;
+    -h|help)
+        usage
+        exit 1
+        ;;
+    *)
+        "$cmd"
+  esac
+done
+
+if [[ $# -eq 0 ]]; then
+  all
+fi
+
+
