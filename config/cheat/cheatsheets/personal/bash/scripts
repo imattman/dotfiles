@@ -1,0 +1,29 @@
+---
+syntax: bash
+tags:
+- bash
+---
+
+# Bash string manipulation:
+#   ${var#pattern}          delete shortest part of the match at beginning of var
+#   ${var##pattern}         delete longest part of the match at beginning of var
+#   ${var%pattern}          delete shortest part of the match at end of var
+#   ${var%%pattern}         delete longest part of match at end of var
+#   ${var/pattern/string}   longest match to pattern is replaced by string (first)
+#   ${var//pattern/string}  longest match to pattern is globally replaced by string
+#   ${var,,}                convert $var to lowercase
+#   ${var^^}                convert $var to uppercase
+
+# alternative to basename
+path_basename="${path##*}"
+
+# alternative to dirname
+path_dirname="${path%/*}"
+
+# to rename files removing ".bak" extension
+for fn in *.bak; do
+  mv "$fn" "${fn%.bak}"
+done
+
+
+
