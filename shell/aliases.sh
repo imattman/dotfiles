@@ -14,6 +14,9 @@ alias cdn='cd_notes'
 alias cdr='cd_repos'
 alias cdw='cd_workspace'
 
+# repos tools
+alias repos-config-env='repos_config_env'
+
 # journal tools
 alias jnb='jn_branch'
 alias jnf='jn_fzf'

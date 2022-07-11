@@ -92,6 +92,44 @@ edit_fzf() {
   fi
 }
 
+repos_config_env() {
+  local cfg="${1:-list}"
+
+  local repo_cfg_dir="$WORKSPACE/tools/repo-management"
+  local -a options=("all" "std" "min" "server" "clear")
+
+  case "$cfg" in
+    ls|list|-h|-l)
+      for cf in "${options[@]}"; do
+        echo "$cf"
+      done
+      ;;
+    all)
+      export REPOS_CONFIG="$repo_cfg_dir/repos-all.cfg"
+      ;;
+    std)
+      export REPOS_CONFIG="$repo_cfg_dir/repos-std.cfg"
+      ;;
+    min)
+      export REPOS_CONFIG="$repo_cfg_dir/repos-min.cfg"
+      ;;
+    server)
+      export REPOS_CONFIG="$repo_cfg_dir/repos-server.cfg"
+      ;;
+    clear|none|-c)
+      unset REPOS_CONFIG
+      echo "\$REPOS_CONFIG cleared"
+      ;;
+    *)
+      echo "Unknown option '$cfg'"
+      ;;
+  esac
+
+  if [[ -n "$REPOS_CONFIG" ]]; then
+    echo "\$REPOS_CONFIG $REPOS_CONFIG"
+  fi
+}
+
 jn() {
   # look for 'jn' in PATH (ignores this function)
   local jnpath=$(whence -p jn)
