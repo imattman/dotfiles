@@ -94,7 +94,6 @@ install_pkgs() {
     sudo apt install -y \
     os-prober \
     grub2-common \
-    grub-customizer \
     autoconf \
     automake \
     build-essential \
@@ -115,6 +114,7 @@ install_pkgs() {
     python3-pip \
     python-is-python3 \
     tree \
+    enscript \
     fzf \
     ripgrep \
     htop \
@@ -129,6 +129,7 @@ install_pkgs() {
 
   # kitty \
   #  neovim \
+  #  grub-customizer \
 
   if [[ ! $(which cal) ]]; then
     # 'ncal' required for '/usr/bin/cal' on PoPOS
