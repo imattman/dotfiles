@@ -1,0 +1,19 @@
+---
+syntax: bash
+tags:
+- bash
+---
+
+# Use `declare -a` to create an array variable
+declare -a CONFIGS=(
+  "$CFG_DIR/repos.cfg"
+  "$CFG_DIR/jn-tools.yml"
+  "$CFG_DIR/reports.yml"
+)
+
+# example iteration syntax
+for cfg in "${CONFIGS[@]}"; do
+  ...
+done
+
+
