@@ -40,14 +40,13 @@ precheck() {
 }
 
 backup() {
-  # Perl > AWK ftw!  :-)
-  for repo_dir in $(repos ls | grep -v "$DOTFILES" | perl -lane 'print $F[2]'); do
+  for repo_dir in $(repos ls -d | grep -v "$DOTFILES"); do
     if [[ ! -d "$repo_dir" ]]; then
       continue
     fi
 
     local backup="${repo_dir}.${TIMESTAMP}"
-    echo "Backing up $repo_dir -> $backup"
+    echo "Backing up $repo_dir ..."
     mv "$repo_dir" "$backup"
   done
 }
