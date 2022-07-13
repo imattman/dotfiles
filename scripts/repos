@@ -6,6 +6,7 @@ from pathlib import Path
 import argparse
 import configparser
 import getpass
+import itertools
 import os
 import re
 import subprocess
@@ -19,8 +20,10 @@ DEFAULT_CONFIG_BASE = Path.home() / '.config'
 DEFAULT_CONFIG_DIR = 'repo-tools'
 DEFAULT_CONFIG_FILE = 'repos.cfg'
 
+MAX_SUBJECT_LEN = 55
+
 Repo = namedtuple('Repo', ['repo_url', 'upstream_url', 'directory', 'section'])
-Commit = namedtuple('Commit', ['repo', 'hash', 'date', 'subject'])
+Commit = namedtuple('Commit', ['repo', 'hash', 'datetime', 'subject'])
 
 
 def fail(err_msg):
@@ -189,7 +192,7 @@ def update_repos(repos):
         print()
 
 
-def latest_repos(repos, count=20):
+def latest_repos(repos, count=25):
     all_commits = []
     for r in repos:
         if r.directory.is_dir():
@@ -201,17 +204,32 @@ def latest_repos(repos, count=20):
                 (hash, tstamp, subject) = line.split(" ", 2)
                 commit = Commit(r, hash, dt.fromisoformat(tstamp), subject)
                 all_commits.append(commit)
+
     latest_commits = sorted(
-        all_commits, key=lambda c: c.date, reverse=True)[:count]
+        all_commits, key=lambda c: c.datetime, reverse=True)[:count]
 
-    section_size = max(len(c.repo.section) for c in latest_commits)
+    max_size = max(len(c.repo.section) for c in latest_commits)
+    commits_by_day = itertools.groupby(
+        latest_commits, key=lambda c: c.datetime.date())
 
+    for _date, commits in commits_by_day:
+        for i, c in enumerate(commits, start=1):
+            subject = c.subject
+            if len(subject) > MAX_SUBJECT_LEN:
+                subject = subject[:MAX_SUBJECT_LEN] + "..."
+            print(
+                f"[{i}] {c.datetime:%Y-%m-%d} {c.hash[:7]} {c.repo.section:<{max_size}} {subject}"
+            )
+        print()
+
+
+def print_commits_nongrouped(latest_commits, max_size):
     for c in latest_commits:
         subject = c.subject
-        if len(subject) > 57:
-            subject = subject[:57] + "..."
+        if len(subject) > MAX_SUBJECT_LEN:
+            subject = subject[:MAX_SUBJECT_LEN] + "..."
         print(
-            f"{c.date:%Y-%m-%d} {c.hash[:7]} {c.repo.section:<{section_size}} {subject}"
+            f"{c.datetime:%Y-%m-%d} {c.hash[:7]} {c.repo.section:<{max_size}} {subject}"
         )
 
 
@@ -309,12 +327,12 @@ def main():
                         help=f'repo selection filter (regex)')
     parser.add_argument('-c', '--config', metavar='config_file', type=str, dest='config_file',
                         nargs='?', help='path to configuration file')
-    parser.add_argument('-d', '--dirsonly',  action='store_true', default=False,
+    parser.add_argument('-d', '--dirsonly', action='store_true', default=False,
                         dest='dirsonly',  help='print only directories in repos listing')
     parser.add_argument('-p', '--parents',  action='store_true',
                         dest='parents',  help='make parent directories as needed for clone')
     parser.add_argument('-n', '--num', type=int, metavar='N', dest='n_commits',
-                        nargs='?', default=20,  help='number of commits to display')
+                        nargs='?', default=25,  help='number of commits to display')
     parser.add_argument('-r', '--rollback', type=int, metavar='R', dest='rollback',
                         nargs='?', default=0,  help='number of commits to rollback')
     parser.add_argument('-v', '--verbose',  action='store_true',
