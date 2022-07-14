@@ -20,8 +20,6 @@ DEFAULT_CONFIG_BASE = Path.home() / '.config'
 DEFAULT_CONFIG_DIR = 'repo-tools'
 DEFAULT_CONFIG_FILE = 'repos.cfg'
 
-MAX_SUBJECT_LEN = 55
-
 Repo = namedtuple('Repo', ['repo_url', 'upstream_url', 'directory', 'section'])
 Commit = namedtuple('Commit', ['repo', 'hash', 'datetime', 'subject'])
 
@@ -196,7 +194,7 @@ def latest_repos(repos, count=25):
     all_commits = []
     for r in repos:
         if r.directory.is_dir():
-            git_log = subprocess.run(['git', 'log', '-n', str(count), "--format=%H %aI %s"],
+            git_log = subprocess.run(['git', 'log', '-n', str(count), "--format=%h %aI %s"],
                                      cwd=r.directory, check=True,
                                      capture_output=True, encoding='utf-8')
             git_log = git_log.stdout.strip()
@@ -215,12 +213,25 @@ def latest_repos(repos, count=25):
     for _date, commits in commits_by_day:
         for i, c in enumerate(commits, start=1):
             subject = c.subject
-            if len(subject) > MAX_SUBJECT_LEN:
-                subject = subject[:MAX_SUBJECT_LEN] + "..."
-            print(
-                f"[{i}] {c.datetime:%Y-%m-%d} {c.hash[:7]} {c.repo.section:<{max_size}} {subject}"
+            line = fit_console(
+              f"[{i}] {c.datetime:%Y-%m-%d} {c.hash} {c.repo.section:<{max_size}} {subject}"
             )
+            print(line)
         print()
+
+def fit_console(line):
+    try:
+        result = subprocess.run(['tput', 'cols'], check=True, 
+                       capture_output=True, encoding='utf-8')
+        width = int(result.stdout.strip())
+    except:
+        # assume 'tput' isn't available
+        width = 80
+
+    if len(line) > width:
+        return line[:width - 3] + "..."
+
+    return line
 
 
 def print_commits_nongrouped(latest_commits, max_size):
