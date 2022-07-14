@@ -219,17 +219,12 @@ def latest_repos(repos, count=25):
             print(line)
         print()
 
-def fit_console(line):
-    try:
-        result = subprocess.run(['tput', 'cols'], check=True, 
-                       capture_output=True, encoding='utf-8')
-        width = int(result.stdout.strip())
-    except:
-        # assume 'tput' isn't available
-        width = 80
 
-    if len(line) > width:
-        return line[:width - 3] + "..."
+def fit_console(line):
+    (cols, _lines) = os.get_terminal_size()
+
+    if len(line) > cols:
+        return line[:cols - 3] + "..."
 
     return line
 
