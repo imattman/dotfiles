@@ -3,7 +3,8 @@ golang.org/x/tools/cmd/...@latest
 golang.org/x/lint/golint@latest
 
 # Go debugger
-github.com/go-delve/delve@latest
+github.com/go-delve/delve/cmd/dlv@latest
+
 
 # task runner Make alternative with file-watch capability
 github.com/go-task/task/v3/cmd/task@latest
