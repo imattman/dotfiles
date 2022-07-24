@@ -229,7 +229,7 @@ do
         ;;
     h|?)
         usage
-        exit 1
+        exit 0
         ;;
   esac
 done
