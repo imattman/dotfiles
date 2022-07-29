@@ -22,7 +22,6 @@ usage() {
 	-p, --param     Some param description
 
 EOF
-  exit
 }
 
 cleanup() {
@@ -56,7 +55,10 @@ parse_params() {
 
   while :; do
     case "${1-}" in
-    -h | --help) usage ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
     -v | --verbose) set -x ;;
     --no-color) NO_COLOR=1 ;;
     -f | --flag) flag=1 ;; # example flag

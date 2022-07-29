@@ -46,7 +46,7 @@ else
     case "$1" in
       help|-h)
         usage
-        exit 1
+        exit 0
         ;;
       *)
         "$1" "$@"
