@@ -338,7 +338,7 @@ def main():
     parser.add_argument('-p', '--parents',  action='store_true',
                         dest='parents',  help='make parent directories as needed for clone')
     parser.add_argument('-n', '--num', type=int, metavar='N', dest='n_commits',
-                        nargs='?', default=25,  help='number of commits to display')
+                        nargs='?', default=20,  help='number of commits to display')
     parser.add_argument('-r', '--rollback', type=int, metavar='R', dest='rollback',
                         nargs='?', default=0,  help='number of commits to rollback')
     parser.add_argument('-v', '--verbose',  action='store_true',
