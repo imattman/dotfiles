@@ -39,6 +39,8 @@
   logs = log --pretty=format:'%h%x09%ad%x09%an%x09%s' --date=short
   logsc = log --pretty=format:'%C(yellow)%h%x09%Cred%ad%x09%Cblue%an%Cgreen%d%x09%Creset%s' --date=short
   lol = log --oneline --graph --decorate
+  logd = log --format=fuller
+  log-dates = log --format=fuller
   tree = log --graph --branches --pretty=oneline --decorate
   grog = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
   authors-remote = for-each-ref --sort=authordate --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)%(align:25,left)%(color:yellow) %(authorname)%(end)%(color:reset)%(refname:strip=3)' refs/remotes
