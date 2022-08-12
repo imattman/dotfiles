@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# fail early
+set -eou pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+THIS_SCRIPT="${0##*/}"
+BASE_DIR="$(cd "${0%/*}" && pwd)"
+
+
+usage() {
+  cat <<-EOU
+	Usage: $THIS_SCRIPT [OPTIONS] <COMMAND>
+	
+	Description here...
+	
+	OPTIONS
+	   -h      Show this message
+
+EOU
+}
+
+
+match_commit_date_to_author() {
+  local auth_date="$(git log -n 1 --format=%aD)"
+  GIT_COMMITTER_DATE="$auth_date" git commit --amend --no-edit --date="$auth_date"
+}
+
+
+all() {
+  match_commit_date_to_author
+}
+
+
+if [[ $# -eq 0 ]]; then
+  all "$@"
+else
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      help|-h)
+        usage
+        exit 0
+        ;;
+      *)
+        "$1" "$@"
+        ;;
+    esac
+    shift
+  done
+fi
+
