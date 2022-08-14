@@ -14,7 +14,8 @@ TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
 CONFIG_DIR="$JOURNAL_BASE/config"
 CONFIG_FILE="$CONFIG_DIR/jn.env"
 
-# diet modulo values initialized in precheck function after loading config
+# diet values initialized in precheck function after loading config
+DIET=''
 DIET_MODULO=''
 DIET_MODULO_OFFSET=''
 
@@ -61,6 +62,7 @@ precheck() {
   if [[ -f "$CONFIG_FILE" ]]; then
     source "$CONFIG_FILE"
   fi
+  DIET="${JN_DIET:-}"
   DIET_MODULO="${JN_DIET_MODULO:-}"
   DIET_MODULO_OFFSET="${JN_DIET_MODULO_OFFSET:-0}"
 
@@ -148,26 +150,27 @@ setup_vars() {
     export UUID="$($UUID_CMD -v 1)"
   fi
 
-  DIET=''
-  if [[ -n "$DIET_MODULO" ]]; then
-    local adjusted_day=$(($YEAR_DAY + $DIET_MODULO_OFFSET))
-    local val=$((adjusted_day % $DIET_MODULO))
+  if [[ -z "$DIET" ]]; then
+    if [[ -n "$DIET_MODULO" ]]; then
+      local adjusted_day=$(($YEAR_DAY + $DIET_MODULO_OFFSET))
+      local val=$((adjusted_day % $DIET_MODULO))
 
-    case $val in
-      0) DIET='fasting'
-        ;;
-      *) DIET='keto'
-        ;;
-    esac
-  else
-    case "$(echo "$WEEKDAY" | tr [A-Z] [a-z])" in
-      mon*|wed*|fri*)
-        DIET='fasting'
-        ;;
-      *)
-        DIET='keto'
-        ;;
-    esac
+      case $val in
+        0) DIET='fasting'
+          ;;
+        *) DIET='keto'
+          ;;
+      esac
+    else
+      case "$(echo "$WEEKDAY" | tr [A-Z] [a-z])" in
+        mon*|wed*|fri*)
+          DIET='fasting'
+          ;;
+        *)
+          DIET='keto'
+          ;;
+      esac
+    fi
   fi
   export DIET
 }
