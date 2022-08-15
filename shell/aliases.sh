@@ -64,6 +64,9 @@ alias tstampn=timestampn
 alias tsn=timestampn
 alias tsisosec=timestamp_isosec
 
+# git habits
+alias git-fix-date=git-date-fix
+
 alias lo='exit'
 alias po='sudo poweroff'
 
