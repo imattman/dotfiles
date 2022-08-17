@@ -14,6 +14,9 @@
   # autocrlf values: true -> always convert, false -> never convert, input -> convert on commit
   autocrlf = input
   editor = $EDITOR
+[merge]
+  # complain if fast-forward merge isn't an option
+  ff = only
 [alias]
   stat = status
   s = status -s -b
@@ -79,8 +82,8 @@
 [push]
   default = simple
 [pull]
-  # perform merge
-	rebase = false
+  # avoid unnecessary merge commits
+	rebase = true
 [branch]
 #  autosetuprebase = always
 [grep]
