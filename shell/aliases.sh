@@ -66,6 +66,8 @@ alias tsisosec=timestamp_isosec
 
 # git habits
 alias git-fix-date=git-date-fix
+alias git-rebase-author-date='git rebase --committer-date-is-author-date'
+
 
 alias lo='exit'
 alias po='sudo poweroff'
