@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+# Repo URLs
+GIT_URL='https://api.github.com/repos/ventoy/Ventoy.git'
+TAGS_URL='https://api.github.com/repos/ventoy/Ventoy/tags'
+
+VERSION="$(curl -s "$TAGS_URL"  | jq -r '.[0].name')"
+
+# strip leading 'v'
+VER_NUM="${VERSION#v*}"
+
+LINUX_PAYLOAD="ventoy-${VER_NUM}-linux.tar.gz"
+DOWNLOAD_URL="https://github.com/ventoy/Ventoy/releases/download/$VERSION/$LINUX_PAYLOAD"
+
+echo "Version: $VERSION"
+echo
+echo "Download: $DOWNLOAD_URL"
+
+#cd ~/Downloads && wget "$DOWNLOAD_URL"
+
