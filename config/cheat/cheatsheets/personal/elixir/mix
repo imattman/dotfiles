@@ -14,3 +14,6 @@ mix test test/some/particular/file_test.exs:12
 # To show slowest N tests
 mix test --slowest N
 
+# To run tests of specific child app at root of umbrella app
+mix cmd --app child_app_name mix test --color
+
