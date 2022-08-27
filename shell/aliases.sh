@@ -45,9 +45,6 @@ alias ctask="$EDITOR ~/.config/task/taskrc"
 
 alias nf='neofetch'
 
-# override term color -- can be workaround in tmux
-alias vimc='TERM=xterm-256color vim'
-
 # linux stuff I forget
 alias boot_history='sudo journalctl --list-boots'
 alias timezone_cfg='sudo timedatectl status'

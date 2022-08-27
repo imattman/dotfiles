@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# wrapper script that detects if running in tmux and sets terminal color
+# TODO: find a better way to handle this
+
+# fail early
+set -euo pipefail
+
+vim="$(which vim)"
+vim="${vim:-/usr/bin/vim}"
+
+if [[ -n "$TMUX" ]]; then
+  TERM=xterm-256color $vim "$@"
+else
+  $vim "$@"
+fi
+
