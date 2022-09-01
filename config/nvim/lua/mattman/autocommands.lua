@@ -36,6 +36,9 @@ vim.cmd [[
     "autocmd BufRead,BufNewFile */journal/daily/* set formatprg=jn-fmt
     autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jn-fmt<CR>
     autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F6> :%!jn-fmt --expand<CR>
+
+    " change local directory to that of buffer
+    autocmd BufEnter * silent! lcd %:p:h
   augroup end
 
   augroup _auto_resize
