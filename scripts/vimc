@@ -10,8 +10,8 @@ vim="$(which vim)"
 vim="${vim:-/usr/bin/vim}"
 
 if [[ -n "${TMUX:-}" ]]; then
-  TERM=xterm-256color $vim "$@"
+  TERM=xterm-256color exec $vim "$@"
 else
-  $vim "$@"
+  exec $vim "$@"
 fi
 
