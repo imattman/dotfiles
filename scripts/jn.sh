@@ -18,6 +18,8 @@ CONFIG_FILE="$CONFIG_DIR/jn.env"
 DIET=''
 DIET_MODULO=''
 DIET_MODULO_OFFSET=''
+DIET_DEFAULT='keto'
+DIET_FAST='fasting'
 
 DATE_CMD="date"
 UUID_CMD="uuid"
@@ -63,6 +65,8 @@ precheck() {
     source "$CONFIG_FILE"
   fi
   DIET="${JN_DIET:-}"
+  DIET_DEFAULT="${JN_DIET_DEFAULT:-$DIET_DEFAULT}"
+  DIET_FAST="${JN_DIET_FAST:-$DIET_FAST}"
   DIET_MODULO="${JN_DIET_MODULO:-}"
   DIET_MODULO_OFFSET="${JN_DIET_MODULO_OFFSET:-0}"
 
@@ -156,18 +160,18 @@ setup_vars() {
       local val=$((adjusted_day % $DIET_MODULO))
 
       case $val in
-        0) DIET='fasting'
+        0) DIET="$DIET_FAST"
           ;;
-        *) DIET='keto'
+        *) DIET="$DIET_DEFAULT"
           ;;
       esac
     else
       case "$(echo "$WEEKDAY" | tr [A-Z] [a-z])" in
         mon*|wed*|fri*)
-          DIET='fasting'
+          DIET="$DIET_FAST"
           ;;
         *)
-          DIET='keto'
+          DIET="$DIET_DEFAULT"
           ;;
       esac
     fi
