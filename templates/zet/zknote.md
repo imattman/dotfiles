@@ -4,6 +4,6 @@ id: $ID
 tags:
 - society
 - religion
-data: zknote
+doctype: zknote
 ---
 

@@ -1,5 +1,6 @@
 ---
 attribution: $AUTHOR
-data: quote
+source: $SOURCE
+doctype: quote
 ---
 

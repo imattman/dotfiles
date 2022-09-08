@@ -2,6 +2,6 @@
 term: $TERM
 definitions:
 - 
-data: vocab
+doctype: vocab
 ---
 

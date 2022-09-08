@@ -4,6 +4,6 @@ tags:
 - elixir
 - go
 - git
-data: technote
+doctype: technote
 ---
 
