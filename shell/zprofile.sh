@@ -68,16 +68,20 @@ if [[ "$PLATFORM" == "darwin" ]]; then
 fi
 
 
-export EDITOR=vim
-if [[ $(command -v nvim) ]]; then
-  export EDITOR=nvim
+if [[ -z "$EDITOR" ]]; then
+  export EDITOR=vim
+  if [[ $(command -v nvim) ]]; then
+    export EDITOR=nvim
+  fi
 fi
 
-#if [[ $(command -v gvim) ]]; then
-#  export VISUAL=gvim
-#else
-  export VISUAL=$EDITOR
-#fi
+if [[ -z "$VISUAL" ]]; then
+#  if [[ $(command -v gvim) ]]; then
+#    export VISUAL=gvim
+#  else
+    export VISUAL=$EDITOR
+#  fi
+fi
 
 # configure less not to paginate if less than one page
 export LESS="-F -X $LESS"
