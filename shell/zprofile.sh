@@ -68,7 +68,7 @@ if [[ "$PLATFORM" == "darwin" ]]; then
 fi
 
 
-if [[ -z "$EDITOR" ]]; then
+if [[ -z "$EDITOR" || "$EDITOR" == "nano" ]]; then
   export EDITOR=vim
   if [[ $(command -v nvim) ]]; then
     export EDITOR=nvim
