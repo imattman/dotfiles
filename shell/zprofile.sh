@@ -75,7 +75,7 @@ if [[ -z "$EDITOR" || "$EDITOR" == "nano" ]]; then
   fi
 fi
 
-if [[ -z "$VISUAL" ]]; then
+if [[ -z "$VISUAL" || "$VISUAL" == "nano" ]]; then
 #  if [[ $(command -v gvim) ]]; then
 #    export VISUAL=gvim
 #  else
