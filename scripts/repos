@@ -123,11 +123,15 @@ def list_repos(repos, dirs_only=False):
     width = max([len(r.section) for r in repos]) + 2
 
     for r in repos:
+        display = not dirs_only
         if r.directory.is_dir():
             status = 'FOUND'
+            display = True
         else:
             status = 'MISSING'
-        print(layout.format(r=r, status=status, width=width))
+
+        if display:
+            print(layout.format(r=r, status=status, width=width))
 
 
 def clone_repos(repos, create_parents=False):
