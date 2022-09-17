@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
@@ -15,9 +16,11 @@ import (
 
 func main() {
 	var (
-		addr string
+		addr   string
+		noDirs bool
 	)
 	flag.StringVar(&addr, "addr", ":8000", "server address and port")
+	flag.BoolVar(&noDirs, "nodirs", false, "disable directory listings")
 	flag.Parse()
 
 	logger := log.New(os.Stdout, "", log.LstdFlags)
@@ -27,9 +30,15 @@ func main() {
 		docroot = flag.Arg(0)
 	}
 
+	var handler http.Handler = http.FileServer(http.Dir(docroot))
+	if noDirs {
+		handler = disableDirListings(handler)
+	}
+	handler = logRequests(logger, handler)
+
 	server := &http.Server{
 		Addr:         addr,
-		Handler:      logRequests(logger, http.FileServer(http.Dir(docroot))),
+		Handler:      handler,
 		ErrorLog:     logger,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
@@ -72,5 +81,16 @@ func logRequests(logger *log.Logger, hdlr http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		hdlr.ServeHTTP(w, r)
 		logger.Println(r.Method, r.URL.Path, r.RemoteAddr)
+	})
+}
+
+func disableDirListings(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasSuffix(r.URL.Path, "/") {
+			http.Error(w, "directory listings not permitted", http.StatusForbidden)
+			return
+		}
+
+		next.ServeHTTP(w, r)
 	})
 }
