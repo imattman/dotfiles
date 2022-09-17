@@ -65,6 +65,8 @@ alias tsisosec=timestamp_isosec
 alias git-fix-date=git-date-fix
 alias git-rebase-author-date='git rebase --committer-date-is-author-date'
 
+# calendar with week starting Monday
+alias cal-euro='ncal -M -b'
 
 alias lo='exit'
 alias po='sudo poweroff'
