@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import datetime
+
+target_date = datetime.date(2023, 9, 18)
+
+def main():
+    today = datetime.date.today()
+    delta = target_date - today
+
+    print(f"{delta.days} days ({delta.days / 7:.1f} weeks) until {target_date}")
+
+
+if __name__ == '__main__':
+    main()
+
+
