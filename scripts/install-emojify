@@ -16,8 +16,8 @@ HOMEBREW_OK=''
 LOCAL_HOME="${XDG_LOCAL_HOME:-$HOME/.local}"
 LOCAL_BIN="${XDG_LOCAL_BIN:-$LOCAL_HOME/bin}"
 
-SCRIPT_NAME="diff-so-fancy"
-REPO_URL="https://github.com/so-fancy/diff-so-fancy.git"
+SCRIPT_NAME="emojify"
+REPO_URL="https://github.com/mrowa44/emojify.git"
 REPO_DIR="$LOCAL_HOME/$SCRIPT_NAME"
 REPO_SCRIPT="$REPO_DIR/$SCRIPT_NAME"
 
