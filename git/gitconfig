@@ -26,7 +26,8 @@
   diffc = diff --cached
   co = checkout
   co-date = "!f() { d=${1:-2020-01-01}; git checkout $(git rev-list -1 --before=$d HEAD); }; f"
-  find = log --all --pretty=format:'%Cgreen%H %Cblue%s\n%b%Creset' --name-status --grep
+  log-find = log --all --name-status --grep
+  find-log = log --all --name-status --grep
   g = "grep --break --heading --line-number"
   grep-group = "grep --break --heading --line-number"
   br = branch -a
