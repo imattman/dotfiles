@@ -139,6 +139,7 @@ if has("autocmd")
 
   autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F5> :%!jn-fmt<CR>
   autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F6> :%!jn-fmt --expand<CR>
+  autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F8> :%!emojify<CR>
 
 endif
 
