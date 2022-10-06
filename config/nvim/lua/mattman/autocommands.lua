@@ -39,7 +39,7 @@ vim.cmd [[
     autocmd BufRead,BufNewFile */journal/daily/*  nnoremap <F8> :%!emojify<CR>
 
     " change local directory to that of buffer
-    autocmd BufEnter * silent! lcd %:p:h
+    autocmd BufEnter */journal/daily/*  silent! lcd %:p:h
   augroup end
 
   augroup _auto_resize
