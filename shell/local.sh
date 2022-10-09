@@ -4,6 +4,9 @@
 # or applicable for general source control
 
 export AUTO_TMUX="off"
+#export EDITOR="nvim"
+export VISUAL="nvim"
+
 export FOO_API_TOKEN="xxxxxxx"
 
 
