@@ -98,6 +98,12 @@ alias dmenv='eval $(docker-machine env)'
 alias dlog-name='docker_log_name'
 alias dlog='docker_log_name'
 
+# quick n' dirty MySQL testing via docker
+# TODO: move these to more robust script
+alias mysql-docker-eph-server='docker run --rm -d -p 3306:3306 --name=mysql-ephemeral -e MYSQL_ROOT_PASSWORD=tiger mysql'
+alias mysql-docker-eph-server-stop='docker stop mysql-ephemeral'
+alias mysql-docker-eph-client='docker exec -it mysql-ephemeral mysql -u root --password=tiger'
+
 # python
 alias venv='python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheel && rehash'
 alias venv-site='python3 -m venv venv --system-site-packages && source venv/bin/activate && python3 -m pip install --upgrade pip setuptools wheel && rehash'
