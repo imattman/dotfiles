@@ -1,0 +1,23 @@
+---
+syntax: bash
+tags:
+- go
+- golang
+---
+
+# To download all modules for a project
+go mod download
+
+# To verify downloaded modules match checksums in 'go.sum'
+go mod verify
+
+# To update a module in current project
+go get -u <module URL>
+
+# To update a module to a specific version
+go get -u <module URL>@vN.n.n
+
+# To clean up and remove unused modules
+go mod tidy
+
+
