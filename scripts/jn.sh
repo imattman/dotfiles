@@ -140,7 +140,7 @@ date_path() {
 }
 
 setup_vars() {
-  local isodate="$1"
+  local day="$1"
 
   export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
   export WEEKDAY=$($DATE_CMD -d "$day" +%A)
@@ -267,7 +267,7 @@ for day in "${days[@]}"; do
 done
 
 if [[ -n $do_edit ]]; then
-  $JN_EDITOR $EDITOR_OPTS $files
+  exec $JN_EDITOR $EDITOR_OPTS $files
 fi
 
 
