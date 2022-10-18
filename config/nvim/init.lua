@@ -3,13 +3,13 @@
 --------------------------------------------------
 -- plugins
 --------------------------------------------------
-require "mattman.plugins"
-require "mattman.colorscheme"
-require "mattman.cmp"
-require "mattman.telescope"
-require "mattman.treesitter"
-require "mattman.autocommands"
-require "mattman.golang"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.telescope"
+require "user.treesitter"
+require "user.autocommands"
+require "user.golang"
 
 
 --------------------------------------------------

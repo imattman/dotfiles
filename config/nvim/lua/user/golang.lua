@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local keymap = vim.api.nvim_buf_set_keymap
 local option = vim.api.nvim_buf_set_option
