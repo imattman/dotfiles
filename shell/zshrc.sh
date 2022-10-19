@@ -22,7 +22,7 @@ setopt CLOBBER              # Unset then Use >! and >>! to bypass.
 
 # override tmux to show color
 #[[ -n "$TMUX" ]] && export TERM="xterm-256color"
-[[ -n "$TMUX" ]] && export GIT_EDITOR=vimc
+[[ -n "$TMUX" && -z "$GIT_EDITOR" ]] && export GIT_EDITOR=vimc
 
 
 
