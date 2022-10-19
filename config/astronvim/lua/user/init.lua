@@ -44,11 +44,14 @@ local config = {
   options = {
     opt = {
       -- set to true or false etc.
-      relativenumber = true, -- sets vim.opt.relativenumber
-      number = true, -- sets vim.opt.number
-      spell = false, -- sets vim.opt.spell
-      signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-      wrap = false, -- sets vim.opt.wrap
+      relativenumber = true,   -- sets vim.opt.relativenumber
+      number = true,           -- sets vim.opt.number
+      spell = false,           -- sets vim.opt.spell
+      signcolumn = "auto",     -- sets vim.opt.signcolumn to auto
+      wrap = false,            -- sets vim.opt.wrap
+
+      listchars = { tab='» ', trail='·', nbsp='␣', eol='¬' },
+      -- listchars = { tab='» ', trail='·', nbsp='␣', eol='¶' },
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -341,6 +344,48 @@ local config = {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+
+    vim.api.nvim_create_augroup("markdown", { clear = true })
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+      desc = "Set formatting options in Markdown files",
+      group = "markdown",
+      pattern = "*.md",
+      command = "silent! setlocal formatoptions=cqt spell wrap",
+    })
+
+    vim.api.nvim_create_augroup("journal", { clear = true })
+    vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
+      desc = "Register keybind for journal formatting",
+      group = "journal",
+      pattern = "*/journal/daily/*",
+      command = "nnoremap <F5> :silent %!jn-fmt<CR>",
+    })
+    vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
+      desc = "Register keybind for journal format expansion",
+      group = "journal",
+      pattern = "*/journal/daily/*",
+      command = "nnoremap <F6> :silent %!jn-fmt --expand<CR>",
+    })
+    vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
+      desc = "Register emojify keybind",
+      group = "journal",
+      pattern = "*/journal/daily/*",
+      command = "nnoremap <F8> :silent %!emojify<CR>",
+    })
+    vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
+      desc = "Use local directory when editing journal files",
+      group = "journal",
+      pattern = "*/journal/daily/*",
+      command = ":silent lcd %:p:h",
+    })
+
+    vim.api.nvim_create_augroup("packer_conf", { clear = true })
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      desc = "Sync packer after modifying plugins.lua",
+      group = "packer_conf",
+      pattern = "plugins.lua",
+      command = "source <afile> | PackerSync",
+    })
   end,
 }
 
