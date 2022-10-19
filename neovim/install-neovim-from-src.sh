@@ -9,6 +9,7 @@ BASE_DIR=$(cd "$THIS_DIR" && pwd)
 NEOVIM_REPO_URL="https://github.com/neovim/neovim.git"
 WORKSPACE="${WORKSPACE:-$HOME/workspace}"
 CLONE_DIR="$WORKSPACE/neovim"
+GIT_TAG="v0.8.0"
 
 
 usage() {
@@ -92,26 +93,33 @@ clone() {
 
 update() {
   printf "\nUpdating neovim repo in %s\n" "$CLONE_DIR"
-  cd $CLONE_DIR && git pull
+
+  cd $CLONE_DIR && \
+    git checkout master && \
+    git pull
 }
 
 
 build() {
-  printf "\nBuilding neovim in directory %s\n" "$CLONE_DIR"
+  printf "\nBuilding neovim in directory %s\nGit Tag: %s\n" "$CLONE_DIR" "$GIT_TAG"
+
   cd "$CLONE_DIR" && \
     make clean && \
     rm -rf build && \
-    make
+    git checkout "$GIT_TAG" && \
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
 }
 
 install() {
   printf "\nInstalling 'nvim'\n"
+
   cd "$CLONE_DIR" && \
     sudo make install
 }
 
 details() {
   printf "\nnvim binary:\n"
+
   ls -l $(which nvim)
   printf "\n"
   nvim --version
@@ -135,12 +143,17 @@ clean_cache() {
 }
 
 
-if [[ $# -eq 0 ]]; then
+all() {
   deps
   clone
   build
   install
   details
+}
+
+
+if [[ $# -eq 0 ]]; then
+  all
 else
   for arg in "$@"; do
     case "$arg" in
@@ -154,7 +167,4 @@ else
     esac
   done
 fi
-
-
-
 
