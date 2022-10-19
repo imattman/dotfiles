@@ -166,7 +166,7 @@ set pastetoggle=<F11>
 nnoremap <Leader>cd  :lcd %:p:h<CR>
 
 " next search
-nnoremap <C-l> :nohl<CR><C-l>   " Map redraw screen to also turn off highlighting
+nnoremap <Leader>hh :nohl<CR><C-l> "disable highlighting
 
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
 "nnoremap <leader>l :nohl<CR>:set list!<CR>
