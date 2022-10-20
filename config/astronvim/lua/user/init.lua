@@ -209,7 +209,7 @@ local config = {
 
       ["<C-p>"] = { "<cmd>Telescope find_files<cr>", desc = "Find files" },
 
-      ["<leader>hh"] = { ":nohl<cr>", desc = "Disable search highlighting" },
+      -- ["<leader>hh"] = { ":nohl<cr>", desc = "Disable search highlighting" },
       -- ["<leader>l"] = { ":nohl", desc = "Disable search highlighting" },
 
 
@@ -239,7 +239,6 @@ local config = {
         config = function()
           vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
           require("catppuccin").setup()
-      --    vim.api.nvim_command "colorscheme catppuccin"
         end
       },
 
@@ -353,11 +352,17 @@ local config = {
       command = "silent! setlocal formatoptions=cqt spell wrap",
     })
 
+    -- personal journal formatting and helpers
     vim.api.nvim_create_augroup("journal", { clear = true })
+    vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
+      desc = "Set formatting options in journal files",
+      group = "journal",
+      pattern = "*/journal/daily/*",
+      command = "silent! setlocal formatoptions=cqt spell wrap",
+    })
     vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
       desc = "Register keybind for journal formatting",
       group = "journal",
-      pattern = "*/journal/daily/*",
       command = "nnoremap <F5> :silent %!jn-fmt<CR>",
     })
     vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
@@ -379,6 +384,7 @@ local config = {
       command = ":silent lcd %:p:h",
     })
 
+    -- autorun packer when plugin list modifed
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
       desc = "Sync packer after modifying plugins.lua",
