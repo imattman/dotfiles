@@ -349,7 +349,14 @@ local config = {
       desc = "Set formatting options in Markdown files",
       group = "markdown",
       pattern = "*.md",
-      command = "silent! setlocal formatoptions=cqt spell wrap",
+      -- format options:
+      --   a - automatic formatting of paragraphs
+      --   c - auto-wrap comments
+      --   q - allow formatting comments with 'gq'
+      --   t - auto-wrap text
+      --   w - trailing whitespace indicates paragraph continues on next line
+      -- command = "silent! setlocal spell formatoptions=acqt textwidth=80 colorcolumn=+1 wrap",
+      command = "silent! setlocal spell formatoptions=cqt textwidth=80 colorcolumn=+1 wrap",
     })
 
     -- personal journal formatting and helpers
