@@ -22,6 +22,9 @@ alias jnb='jn_branch'
 alias jnf='jn_fzf'
 alias jns='jn_search'
 
+# exercism
+alias exc='exercism'
+
 alias v='nvim'
 alias nv='nvim'
 alias nvim-latest='~/.dotfiles/linux/install-neovim-from-src.sh latest'
