@@ -24,10 +24,10 @@ DIET_FAST='fasting'
 DATE_CMD="date"
 UUID_CMD="uuid"
 JN_EDITOR=${VISUAL:-${EDITOR:-}}
-EDITOR_OPTS="+8"
+EDITOR_OPTS=''  # "+8"
 
 usage() {
-  local THIS_SCRIPT="$(basename $0)"
+  local THIS_SCRIPT="${0##*/}"
 
   cat<<EOU
 Usage: $THIS_SCRIPT [OPTIONS] <date-1> [<date-2>...]
@@ -64,11 +64,20 @@ precheck() {
   if [[ -f "$CONFIG_FILE" ]]; then
     source "$CONFIG_FILE"
   fi
+
   DIET="${JN_DIET:-}"
   DIET_DEFAULT="${JN_DIET_DEFAULT:-$DIET_DEFAULT}"
   DIET_FAST="${JN_DIET_FAST:-$DIET_FAST}"
   DIET_MODULO="${JN_DIET_MODULO:-}"
   DIET_MODULO_OFFSET="${JN_DIET_MODULO_OFFSET:-0}"
+
+  DIET_MON="${JN_DIET_MON:-$DIET_DEFAULT}"
+  DIET_TUE="${JN_DIET_TUE:-$DIET_DEFAULT}"
+  DIET_WED="${JN_DIET_WED:-$DIET_DEFAULT}"
+  DIET_THU="${JN_DIET_THU:-$DIET_DEFAULT}"
+  DIET_FRI="${JN_DIET_FRI:-$DIET_DEFAULT}"
+  DIET_SAT="${JN_DIET_SAT:-$DIET_DEFAULT}"
+  DIET_SUN="${JN_DIET_SUN:-$DIET_DEFAULT}"
 
   if [[ $(uname -s | grep -i darwin) ]]; then
     DATE_CMD=gdate
@@ -166,10 +175,14 @@ setup_vars() {
           ;;
       esac
     else
-      case "$(echo "$WEEKDAY" | tr [A-Z] [a-z])" in
-        mon*|wed*|fri*)
-          DIET="$DIET_FAST"
-          ;;
+      case "${WEEKDAY,,}" in
+        mon*) DIET="$DIET_MON" ;;
+        tue*) DIET="$DIET_TUE" ;;
+        wed*) DIET="$DIET_WED" ;;
+        thu*) DIET="$DIET_THU" ;;
+        fri*) DIET="$DIET_FRI" ;;
+        sat*) DIET="$DIET_SAT" ;;
+        sat*) DIET="$DIET_SUN" ;;
         *)
           DIET="$DIET_DEFAULT"
           ;;
