@@ -15,7 +15,7 @@ tags:
 #   ${var^^}                convert $var to uppercase
 
 # alternative to basename
-path_basename="${path##*}"
+path_basename="${path##*/}"
 
 # alternative to dirname
 path_dirname="${path%/*}"
