@@ -12,6 +12,9 @@ mdv3
 # markdown presentation
 lookatme
 
+# terminal based spreadsheet
+visidata
+
 # fancy text presentation
 # see: https://github.com/Textualize/rich-cli
 rich-cli
