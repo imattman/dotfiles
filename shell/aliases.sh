@@ -19,8 +19,14 @@ alias repos-config-env='repos_config_env'
 
 # journal tools
 alias jnb='jn_branch'
-alias jnf='jn_fzf'
-alias jns='jn_search'
+alias jnf='jn_fzf_list'
+alias jns='jn_fzf_search'
+
+# zettelkasten tools
+alias vocab='vocab_fzf_list'
+alias vocabf='vocab_fzf_list'
+alias vocs='vocab_fzf_search'
+alias vocabs='vocab_fzf_search'
 
 # exercism
 alias exc='exercism'

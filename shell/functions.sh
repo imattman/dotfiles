@@ -154,7 +154,7 @@ jn_branch() {
   #jn.sh "$date"
 }
 
-jn_search() {
+jn_fzf_search() {
   local subdir="${1:-}"
   local root
   local fname
@@ -183,7 +183,7 @@ jn_search() {
   [[ -e "$root/$fname" ]] && jn $(basename $fname .md)
 }
 
-jn_fzf() {
+jn_fzf_list() {
   local subdir="${1:-}"
   local root
 
@@ -207,6 +207,60 @@ jn_fzf() {
     #[[ -e "$root/$fname" ]] && $EDITOR "$root/$fname"
     [[ -e "$root/$fname" ]] && jn $(basename $fname .md)
   fi
+}
+
+vocab_fzf_list() {
+  local subdir="${1:-}"
+  local root
+
+  if [[ "$subdir" == "." ]]; then
+    root="$PWD"
+  else
+    root="$NOTES_ZETTELKASTEN/vocabulary"
+  fi
+
+  local fname
+  if [[ $(command -v fd) ]]; then
+    fname=$(cd "$root" && fd -t f . | fzf --preview 'cat {}' --border \
+      --color 'bg:#222222,preview-bg:#333333')
+  else
+    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border \
+      --color 'bg:#222222,preview-bg:#333333')
+  fi
+
+  if [[ -n "$fname" ]] ; then
+    #echo "$editor $root/$fname"
+    [[ -e "$root/$fname" ]] && $EDITOR "$root/$fname"
+  fi
+}
+
+vocab_fzf_search() {
+  local subdir="${1:-}"
+  local root
+  local fname
+
+  if [[ "$subdir" == "." ]]; then
+    root="$PWD"
+  else
+    root="$NOTES_ZETTELKASTEN/vocabulary"
+  fi
+
+  cd "$root" || return 1
+
+  RG_PREFIX="rg --column --line-number --no-heading --color=always --sort=path --smart-case "
+  #RG_PREFIX="rg -l --no-heading --color=always --smart-case "
+  INITIAL_QUERY=""
+  fname=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" fzf \
+    --bind "change:reload:$RG_PREFIX {q} || true" \
+    --ansi --phony --query "$INITIAL_QUERY" \
+    --delimiter=: --reverse \
+    --preview 'nl {1}' --border  --color 'bg:#222222,preview-bg:#333333')
+
+  [[ -z "$fname" ]] && return 1
+
+  fname="$(echo $fname | cut -d: -f 1)"
+  #echo "\$fname is $fname"
+  [[ -e "$root/$fname" ]] && cat $(basename $fname .md)
 }
 
 
