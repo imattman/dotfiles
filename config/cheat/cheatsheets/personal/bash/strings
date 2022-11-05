@@ -20,10 +20,16 @@ path_basename="${path##*/}"
 # alternative to dirname
 path_dirname="${path%/*}"
 
+# to remove extension
+bare="${file_name%.ext}"
+
 # to rename files removing ".bak" extension
 for fn in *.bak; do
   mv "$fn" "${fn%.bak}"
 done
+
+# to replace space with "-"
+safe="${orig// /-}"
 
 
 
