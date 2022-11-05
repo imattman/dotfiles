@@ -1,0 +1,294 @@
+#!/usr/bin/env bash
+
+# fail early
+set -euo pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+VOCAB_DIR="${ZET_VOCAB:-$NOTES_ZETTELKASTEN/vocabulary}"
+TEMPLATES_DIR="$HOME/.dotfiles/templates/zet"
+TEMPLATE_FILE="$TEMPLATES_DIR/vocab.md"
+#CONFIG_DIR="$JOURNAL_BASE/config"
+#CONFIG_FILE="$CONFIG_DIR/jn.env"
+
+VOCAB_EDITOR=${VOCAB_EDITOR:-${VISUAL:-${EDITOR:-}}}
+VOCAB_VIEWER=${VOCAB_VIEWER:-$PAGER}
+EDITOR_OPTS=''
+
+DATE_CMD="date"
+UUID_CMD="uuid"
+
+usage() {
+  local THIS_SCRIPT="${0##*/}"
+
+  cat<<EOU
+Usage: $THIS_SCRIPT [OPTIONS] [<term>]
+
+A utility for searching and editing vocabulary notes within
+my zettelkasten repo.
+
+Examples:
+
+  # select and view term via fzf
+  $THIS_SCRIPT
+
+  # select and open term for edit
+  $THIS_SCRIPT -e
+
+  # list all vocab entry files
+  $THIS_SCRIPT -l
+
+
+OPTIONS:
+   -h:  Show this message
+
+EOU
+}
+
+
+precheck() {
+  if [[ $(uname -s | grep -i darwin) ]]; then
+    DATE_CMD=gdate
+
+    if [[ ! $(command -v gdate) ]]; then
+      echo "'gdate' not found. Install gnu coreutils"
+      echo "  brew install coreutils"
+      exit 1
+    fi
+  fi
+
+  if [[ ! -d "$VOCAB_DIR" ]]; then
+    echo "Vocab directory not found: $VOCAB_DIR"
+    exit 1
+  fi
+
+  if [[ ! $(command -v $VOCAB_EDITOR) ]]; then
+    if [[ -z "$JN_EDITOR" ]]; then
+      echo "Either \$EDITOR or \$VISUAL must be set."
+    else
+      echo "$VOCAB_EDITOR editor not found.  Check \$VISUAL and \$EDITOR"
+    fi
+    exit 1
+  fi
+
+  if [[ ! $(command -v envsubst) ]]; then
+    echo "'envsubst' command not found"
+    echo 1
+  fi
+
+  if [[ ! -d "$TEMPLATES_DIR" ]]; then
+    echo "Templates directory not found; check $TEMPLATES_DIR and \$TEMPLATES"
+    exit 1
+  fi
+
+  if [[ ! $(command -v $UUID_CMD) ]]; then
+    echo "Warning: 'uuid' command not found"
+  fi
+
+  return 0
+}
+
+verify_template() {
+  local tmpl="$1"
+  local full_path
+
+  # partial name may have been supplied
+  for tfile in "$tmpl" "daily-${tmpl}" "daily-${tmpl}.md"; do
+    full_path="$TEMPLATES_DIR/${tfile}"
+    if [[ -f "$full_path" ]]; then
+      #echo "Setting template to $full_path"
+      TEMPLATE_FILE="$full_path"
+      return
+    fi
+  done
+
+  if [[ ! -f "$full_path" ]]; then
+    echo "Template file not found: $tmpl"
+    exit 1
+  fi
+}
+
+term_to_filename() {
+  local term="${1}"
+  local ext="${2:-.md}"
+
+  local fname
+
+  # replace spaces with dash
+  fname="${term// /-}"
+  return "${fname}.${ext}"
+}
+
+filename_to_term() {
+  local fname="${1}"
+  local prefix="${2:-vocab-}"
+  local ext="${3:-.md}"
+
+  local term="$fname"
+
+  # extract basename
+  term="${term##*/}"
+
+  # remove prefix
+  term="${term#${prefix}}"
+
+  # remove extension
+  term="${term%${ext}}"
+
+  # replace spaces with dash
+  term="${term//-/ }"
+
+  printf "$term"
+}
+
+list() {
+  local long_fmt="${1:-}"
+
+  for fpath in $(find $VOCAB_DIR -type f -name "vocab-*.md"); do
+    if [[ -n $long_fmt ]]; then
+      printf "%s\n" "$fpath"
+    else
+      printf "%s\n" "$(filename_to_term "$fpath")"
+    fi
+  done
+}
+
+list_fzf_cols() {
+  for fpath in $(list 'long' | sort); do
+    term="$(filename_to_term "$fpath")"
+    printf "%s,%s\n" "$fpath" "$term"
+  done
+}
+
+fzf_list() {
+  local query="${1:-}"
+  local fzf_query=''
+
+  if [[ -n "$query" ]]; then
+    fzf_query="-q '$query' --select-1"
+  fi
+  
+
+  selection=$(list_fzf_cols | sort | fzf --layout=reverse \
+    --delimiter=,  --with-nth=2  $fzf_query \
+    --preview 'cat {1}' --border \
+    --color 'bg:#222222,preview-bg:#333333')
+
+    echo "${selection%,*}"
+}
+
+#fzf_search() {
+#
+#}
+
+
+isodate() {
+  $DATE_CMD -d "$1" +%Y-%m-%d
+}
+
+
+setup_vars() {
+  local day="$1"
+
+  export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
+  export WEEKDAY=$($DATE_CMD -d "$day" +%A)
+  export YEAR_DAY=$($DATE_CMD -d "$day" +%j) # 1..366
+  export ISO_WEEK=$($DATE_CMD -d "$day" +%V)
+  export ISO_YEAR=$($DATE_CMD -d "$day" +%G)
+  export TODAY=$($DATE_CMD  +%Y-%m-%d)
+
+  export UUID=''
+  if [[ $(command -v $UUID_CMD) ]]; then
+    export UUID="$($UUID_CMD -v 1)"
+  fi
+}
+
+
+# header() {
+#   local day="$1"
+#   local template="${2:-$TEMPLATE_FILE}"
+#   setup_vars "$day"
+# 
+#   #echo "Using template ${template}"
+#   if [[ -f "$template" ]]; then
+#     envsubst < "$template"
+#   else
+#     printf -- '---\ndate: "%s"\nweekday: "%s"\nhealth:\n  weight:\n    pounds: \n---\n\n' \
+#       "$DATE" "$WEEKDAY"
+#   fi
+# }
+
+
+# prepare() {
+#   local jnfile="$1"
+#   local isodate="$2"
+# 
+#   mkdir -p "$(dirname "$jnfile")"
+# 
+#   if [[ ! -f "$jnfile" ]]; then
+#     header "$isodate" >> "$jnfile"
+#   else
+#     touch "$jnfile"
+#   fi
+# 
+#   echo -n "$jnfile"
+# }
+
+
+do_prepare=''
+do_edit=''
+long_fmt=''
+vocab_file=''
+
+while getopts 'helt:' OPTION
+do
+  case $OPTION in
+    e)  do_edit=true
+        ;;
+    l)  long_fmt=true
+        ;;
+    p)  do_prepare=true
+        ;;
+    t)  tmpl="$OPTARG"
+        verify_template "$tmpl"
+        ;;
+    h|?)
+        usage
+        exit 0
+        ;;
+  esac
+done
+
+shift $((OPTIND - 1))
+
+
+precheck
+
+# default to 'today'
+if [[ $# -eq 0 ]]; then
+  #list_fzf_cols
+  #exit 0
+
+  if [[ -n $long_fmt ]]; then
+    list "$long_fmt"
+  else
+    vocab_file=$(fzf_list)
+  fi
+fi
+
+
+# bail early if no file was selected
+if [[ -z "$vocab_file" ]]; then
+  exit 0
+fi
+
+# edit or view the selected file
+if [[ -n $do_edit ]]; then
+  exec $VOCAB_EDITOR $EDITOR_OPTS "$vocab_file"
+else
+  exec $VOCAB_VIEWER "$vocab_file"
+fi
+
+
