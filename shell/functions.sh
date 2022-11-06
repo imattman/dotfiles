@@ -209,30 +209,6 @@ jn_fzf_list() {
   fi
 }
 
-vocab_fzf_list() {
-  local subdir="${1:-}"
-  local root
-
-  if [[ "$subdir" == "." ]]; then
-    root="$PWD"
-  else
-    root="$NOTES_ZETTELKASTEN/vocabulary"
-  fi
-
-  local fname
-  if [[ $(command -v fd) ]]; then
-    fname=$(cd "$root" && fd -t f . | fzf --preview 'cat {}' --border \
-      --color 'bg:#222222,preview-bg:#333333')
-  else
-    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border \
-      --color 'bg:#222222,preview-bg:#333333')
-  fi
-
-  if [[ -n "$fname" ]] ; then
-    #echo "$editor $root/$fname"
-    [[ -e "$root/$fname" ]] && $EDITOR "$root/$fname"
-  fi
-}
 
 vocab_fzf_search() {
   local subdir="${1:-}"
