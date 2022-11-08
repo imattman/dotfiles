@@ -84,8 +84,10 @@
 [push]
   default = simple
 [pull]
+  # perform merge
+  rebase = false
   # avoid unnecessary merge commits
-	rebase = true
+  # rebase = true
 [branch]
 #  autosetuprebase = always
 [grep]
