@@ -173,7 +173,7 @@ jn_fzf_search() {
   fname=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" fzf \
     --bind "change:reload:$RG_PREFIX {q} || true" \
     --ansi --phony --query "$INITIAL_QUERY" \
-    --delimiter=: --reverse \
+    --delimiter=: --layout=reverse \
     --preview 'nl {1}' --border  --color 'bg:#222222,preview-bg:#333333')
 
   [[ -z "$fname" ]] && return 1
@@ -195,10 +195,12 @@ jn_fzf_list() {
 
   local fname
   if [[ $(command -v fd) ]]; then
-    fname=$(cd "$root" && fd -t f . | fzf --preview 'cat {}' --border \
+    fname=$(cd "$root" && fd -t f . | fzf --layout=reverse \
+      --preview 'cat {}' --border \
       --color 'bg:#222222,preview-bg:#333333')
   else
-    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --preview 'cat {}' --border \
+    fname=$(cd "$root" && find . -type f -name "*.md" | fzf --layout=reverse \
+      --preview 'cat {}' --border \
       --color 'bg:#222222,preview-bg:#333333')
   fi
 
