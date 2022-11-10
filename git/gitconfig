@@ -18,6 +18,10 @@
   # complain if fast-forward merge isn't an option
   ff = only
 [alias]
+  mainbranch = "!git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
+  pull-rebase = "!git pull origin $(git mainbranch) --rebase"
+  update-branch = "!git pull origin $(git rev-parse --abbrev-ref HEAD) --rebase"
+  publish = push origin HEAD --force-with-lease
   stat = status
   s = status -s -b
   st = status --short --branch
