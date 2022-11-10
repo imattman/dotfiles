@@ -38,7 +38,10 @@ Examples:
   $THIS_SCRIPT -e
 
   # list all vocab entry files
-  $THIS_SCRIPT -l
+  $THIS_SCRIPT ls -l 
+
+  # list all vocab entry terms
+  $THIS_SCRIPT ls
 
 
 OPTIONS:
@@ -65,7 +68,7 @@ precheck() {
   fi
 
   if [[ ! $(command -v $VOCAB_EDITOR) ]]; then
-    if [[ -z "$JN_EDITOR" ]]; then
+    if [[ -z "$VOCAB_EDITOR" ]]; then
       echo "Either \$EDITOR or \$VISUAL must be set."
     else
       echo "$VOCAB_EDITOR editor not found.  Check \$VISUAL and \$EDITOR"
@@ -143,11 +146,12 @@ filename_to_term() {
   printf "$term"
 }
 
-list() {
-  local long_fmt="${1:-}"
+list_terms() {
+  local path_fmt="${1:-}"
+  local query="${2:-}"
 
   for fpath in $(find $VOCAB_DIR -type f -name "vocab-*.md"); do
-    if [[ -n $long_fmt ]]; then
+    if [[ -n $path_fmt ]]; then
       printf "%s\n" "$fpath"
     else
       printf "%s\n" "$(filename_to_term "$fpath")"
@@ -156,13 +160,13 @@ list() {
 }
 
 list_fzf_cols() {
-  for fpath in $(list 'long' | sort); do
+  for fpath in $(list_terms 'long' | sort); do
     term="$(filename_to_term "$fpath")"
     printf "%s,%s\n" "$fpath" "$term"
   done
 }
 
-fzf_list() {
+select_term() {
   local query="${1:-}"
   local fzf_query=''
 
@@ -179,15 +183,10 @@ fzf_list() {
     echo "${selection%,*}"
 }
 
-#fzf_search() {
-#
-#}
-
 
 isodate() {
   $DATE_CMD -d "$1" +%Y-%m-%d
 }
-
 
 setup_vars() {
   local day="$1"
@@ -237,58 +236,88 @@ setup_vars() {
 # }
 
 
-do_prepare=''
-do_edit=''
+
+cmd=''
+term=''
 long_fmt=''
+do_edit=''
 vocab_file=''
 
-while getopts 'helt:' OPTION
-do
-  case $OPTION in
-    e)  do_edit=true
-        ;;
-    l)  long_fmt=true
-        ;;
-    p)  do_prepare=true
-        ;;
-    t)  tmpl="$OPTARG"
-        verify_template "$tmpl"
-        ;;
-    h|?)
-        usage
-        exit 0
-        ;;
+for arg in "$@"; do
+  case "$arg" in
+    show|view)
+      cmd='show'
+      ;;
+    ls|list)
+      cmd='list'
+      ;;
+    find|search)
+      cmd='search'
+      ;;
+    add|new|-a)
+      cmd='add'
+      ;;
+    -e|edit)
+      do_edit=true
+      ;;
+    -l)
+      long_fmt=true
+      ;;
+    -t)
+      shift
+      templ="$1"
+      verify_template "$tmpl"
+      ;;
+    -h|help)
+      usage
+      exit 0
+      ;;
+    *)
+      term="$arg"
+      ;;
   esac
-done
 
-shift $((OPTIND - 1))
+  shift
+done
 
 
 precheck
 
-# default to 'today'
-if [[ $# -eq 0 ]]; then
-  #list_fzf_cols
-  #exit 0
+# default to select and show
+if [[ -z "$cmd" ]]; then
+  cmd='show'
+fi
 
-  if [[ -n $long_fmt ]]; then
-    list "$long_fmt"
+# cat <<EOM
+# cmd:      $cmd
+# term:     $term
+# long_fmt: $long_fmt
+# do_edit:  $do_edit
+# EOM
+
+
+case "$cmd" in
+  show)
+    vocab_file="$(select_term "$term")"
+    ;;
+  list)
+    list_terms "$long_fmt" "$term"
+    ;;
+  search)
+    vocab_file="$(search "$term")"
+    ;;
+  add)
+    vocab_file="$(prepare_add "$term")"
+    ;;
+esac
+
+
+if [[ -n "$vocab_file" ]]; then
+  if [[ -n "$do_edit" ]]; then
+    exec $VOCAB_EDITOR $EDITOR_OPTS "$vocab_file"
   else
-    vocab_file=$(fzf_list)
+    exec $VOCAB_VIEWER "$vocab_file"
   fi
-fi
-
-
-# bail early if no file was selected
-if [[ -z "$vocab_file" ]]; then
-  exit 0
-fi
-
-# edit or view the selected file
-if [[ -n $do_edit ]]; then
-  exec $VOCAB_EDITOR $EDITOR_OPTS "$vocab_file"
-else
-  exec $VOCAB_VIEWER "$vocab_file"
 fi
 
 
