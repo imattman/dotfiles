@@ -14,7 +14,7 @@ TEMPLATE_FILE="$TEMPLATES_DIR/vocab.md"
 #CONFIG_FILE="$CONFIG_DIR/jn.env"
 
 VOCAB_EDITOR=${VOCAB_EDITOR:-${VISUAL:-${EDITOR:-}}}
-VOCAB_VIEWER=${VOCAB_VIEWER:-$PAGER}
+VOCAB_VIEWER=${VOCAB_VIEWER:-cat}
 EDITOR_OPTS=''
 
 DATE_CMD="date"
@@ -29,23 +29,37 @@ Usage: $THIS_SCRIPT [OPTIONS] [<term>]
 A utility for searching and editing vocabulary notes within
 my zettelkasten repo.
 
-Examples:
+COMMANDS
 
-  # select and view term via fzf
+  ls [-l]     list vocabulary terms / files
+  show        present user selection of terms (fzf) and display user choice
+  edit | -e   similar to 'show' but opens file for edit after selection
+  search | -s search vocabulary terms based on content
+  add <term>  adds new vocab file and opens for edit
+
+OPTIONS
+
+  -l          list long format with full file path
+  -e          open file for edit after selection
+  -s          search file contents
+  -h          show this message
+
+EXAMPLES
+
+  # these perform the same action
+  # 'show' is the default behavior when no command is specified
+  $THIS_SCRIPT show
   $THIS_SCRIPT
 
-  # select and open term for edit
+  # select file then open for edit
+  $THIS_SCRIPT edit
   $THIS_SCRIPT -e
-
-  # list all vocab entry files
-  $THIS_SCRIPT ls -l 
 
   # list all vocab entry terms
   $THIS_SCRIPT ls
 
-
-OPTIONS:
-   -h:  Show this message
+  # list all vocab entry files
+  $THIS_SCRIPT ls -l
 
 EOU
 }
@@ -78,6 +92,11 @@ precheck() {
 
   if [[ ! $(command -v envsubst) ]]; then
     echo "'envsubst' command not found"
+    echo 1
+  fi
+
+  if [[ ! $(command -v rg) ]]; then
+    echo "'rg' (ripgrep) command not found"
     echo 1
   fi
 
@@ -170,13 +189,8 @@ select_term() {
   local query="${1:-}"
   local fzf_query=''
 
-  if [[ -n "$query" ]]; then
-    fzf_query="-q '$query' --select-1"
-  fi
-  
-
   selection=$(list_fzf_cols | sort | fzf --layout=reverse \
-    --delimiter=,  --with-nth=2  $fzf_query \
+    --delimiter=,  --with-nth=2  --query="$query" --select-1 \
     --preview 'cat {1}' --border \
     --color 'bg:#222222,preview-bg:#333333')
 
