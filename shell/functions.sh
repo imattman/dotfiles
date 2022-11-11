@@ -212,36 +212,6 @@ jn_fzf_list() {
 }
 
 
-vocab_fzf_search() {
-  local subdir="${1:-}"
-  local root
-  local fname
-
-  if [[ "$subdir" == "." ]]; then
-    root="$PWD"
-  else
-    root="$NOTES_ZETTELKASTEN/vocabulary"
-  fi
-
-  cd "$root" || return 1
-
-  RG_PREFIX="rg --column --line-number --no-heading --color=always --sort=path --smart-case "
-  #RG_PREFIX="rg -l --no-heading --color=always --smart-case "
-  INITIAL_QUERY=""
-  fname=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" fzf \
-    --bind "change:reload:$RG_PREFIX {q} || true" \
-    --ansi --phony --query "$INITIAL_QUERY" \
-    --delimiter=: --reverse \
-    --preview 'nl {1}' --border  --color 'bg:#222222,preview-bg:#333333')
-
-  [[ -z "$fname" ]] && return 1
-
-  fname="$(echo $fname | cut -d: -f 1)"
-  #echo "\$fname is $fname"
-  [[ -e "$root/$fname" ]] && cat $(basename $fname .md)
-}
-
-
 cd_repos() {
   dir=$(repos ls -d | fzf)
 

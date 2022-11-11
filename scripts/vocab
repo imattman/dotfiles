@@ -23,26 +23,24 @@ UUID_CMD="uuid"
 usage() {
   local THIS_SCRIPT="${0##*/}"
 
-  cat<<EOU
+  cat<<-EOU
 Usage: $THIS_SCRIPT [OPTIONS] [<term>]
 
-A utility for searching and editing vocabulary notes within
-my zettelkasten repo.
+A utility for searching and editing vocabulary notes within my 
+zettelkasten repo.
 
 COMMANDS
 
-  ls [-l]     list vocabulary terms / files
-  show        present user selection of terms (fzf) and display user choice
-  edit | -e   similar to 'show' but opens file for edit after selection
-  search | -s search vocabulary terms based on content
-  add <term>  adds new vocab file and opens for edit
+  show, <none>    default action; presents selection screen of term to view
+  -e, edit        similar to 'show' but opens file for edit after selection
+  -s, search      search vocabulary terms based on content
+  -a, add <term>  adds new vocab file and opens for edit
+  ls [-l]         list vocabulary terms / files
 
 OPTIONS
 
-  -l          list long format with full file path
-  -e          open file for edit after selection
-  -s          search file contents
-  -h          show this message
+  -l              list long format with full file path
+  -h              show this message
 
 EXAMPLES
 
@@ -52,7 +50,6 @@ EXAMPLES
   $THIS_SCRIPT
 
   # select file then open for edit
-  $THIS_SCRIPT edit
   $THIS_SCRIPT -e
 
   # list all vocab entry terms
@@ -187,7 +184,7 @@ list_fzf_cols() {
 
 select_term() {
   local query="${1:-}"
-  local fzf_query=''
+  local selection
 
   selection=$(list_fzf_cols | sort | fzf --layout=reverse \
     --delimiter=,  --with-nth=2  --query="$query" --select-1 \
@@ -197,10 +194,24 @@ select_term() {
     echo "${selection%,*}"
 }
 
+search() {
+  local query="${1:-}"
+  local selection
 
-isodate() {
-  $DATE_CMD -d "$1" +%Y-%m-%d
+  cd "$VOCAB_DIR" || return 1
+
+  RG_PREFIX="rg --column --line-number --no-heading --color=always --sort=path --smart-case "
+
+  INITIAL_QUERY="$query"
+  selection=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" fzf \
+    --bind "change:reload:$RG_PREFIX {q} || true" \
+    --ansi --phony --query "$INITIAL_QUERY" \
+    --delimiter=: --reverse \
+    --preview 'nl {1}' --border  --color 'bg:#222222,preview-bg:#333333')
+
+  echo "$VOCAB_DIR/${selection%%:*}"
 }
+
 
 setup_vars() {
   local day="$1"
@@ -265,10 +276,7 @@ for arg in "$@"; do
     ls|list)
       cmd='list'
       ;;
-    find|search)
-      cmd='search'
-      ;;
-    add|new|-a)
+    -a|add|new)
       cmd='add'
       ;;
     -e|edit)
@@ -276,6 +284,9 @@ for arg in "$@"; do
       ;;
     -l)
       long_fmt=true
+      ;;
+    -s|search|find)
+      cmd='search'
       ;;
     -t)
       shift
