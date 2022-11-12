@@ -11,6 +11,11 @@ else
   DATE_CMD='date'
 fi
 
+
+function set-xterm-color() {
+  export TERM=xterm-256color
+}
+
 function datestamp() {
   local format='+%Y-%m-%d'
 
