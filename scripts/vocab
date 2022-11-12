@@ -62,6 +62,7 @@ EOU
 }
 
 
+
 precheck() {
   if [[ $(uname -s | grep -i darwin) ]]; then
     DATE_CMD=gdate
@@ -130,15 +131,25 @@ verify_template() {
 }
 
 term_to_filename() {
-  local term="${1}"
-  local ext="${2:-.md}"
+  local term="${1:-}"
+  local prefix="${2:-vocab-}"
+  local ext="${3:-.md}"
 
   local fname
 
   # replace spaces with dash
   fname="${term// /-}"
-  return "${fname}.${ext}"
+  printf "%s%s%s" "$prefix" "$fname" "$ext"
 }
+
+term_to_fullpath() {
+  local term="${1:-}"
+  local prefix="${2:-vocab-}"
+  local ext="${3:-.md}"
+
+  printf "%s/%s" "$VOCAB_DIR" "$(term_to_filename "$term" "$prefix" "$ext")"
+}
+
 
 filename_to_term() {
   local fname="${1}"
@@ -212,16 +223,48 @@ search() {
   echo "$VOCAB_DIR/${selection%%:*}"
 }
 
+prepare_add() {
+  local term="${1:-}"
+  local full_path="${2}"
+  local template="${3:-$TEMPLATE_FILE}"
+
+  if [[ -z "$term" ]]; then
+    echo "empty term not allowed"
+    exit 1
+  fi
+
+  if [[ -e "$full_path" ]]; then
+    echo "Vocab file already exists: $full_path"
+    exit 1
+  fi
+
+  gen_header "$term" "$template" > "$full_path"
+}
+
+gen_header() {
+  local term="$1"
+  local template="${2:-$TEMPLATE_FILE}"
+
+  if [[ ! -e "$template" ]]; then
+    echo "Template file not found: $template"
+    exit 1
+  fi
+
+  setup_vars "$term"
+  envsubst < "$template"
+}
+
 
 setup_vars() {
-  local day="$1"
+  local term="$1"
+  local day="${2:-today}"
 
+  export TERM="$term"
   export DATE=$($DATE_CMD -d "$day" +%Y-%m-%d)
   export WEEKDAY=$($DATE_CMD -d "$day" +%A)
   export YEAR_DAY=$($DATE_CMD -d "$day" +%j) # 1..366
   export ISO_WEEK=$($DATE_CMD -d "$day" +%V)
   export ISO_YEAR=$($DATE_CMD -d "$day" +%G)
-  export TODAY=$($DATE_CMD  +%Y-%m-%d)
 
   export UUID=''
   if [[ $(command -v $UUID_CMD) ]]; then
@@ -230,19 +273,6 @@ setup_vars() {
 }
 
 
-# header() {
-#   local day="$1"
-#   local template="${2:-$TEMPLATE_FILE}"
-#   setup_vars "$day"
-# 
-#   #echo "Using template ${template}"
-#   if [[ -f "$template" ]]; then
-#     envsubst < "$template"
-#   else
-#     printf -- '---\ndate: "%s"\nweekday: "%s"\nhealth:\n  weight:\n    pounds: \n---\n\n' \
-#       "$DATE" "$WEEKDAY"
-#   fi
-# }
 
 
 # prepare() {
@@ -278,6 +308,7 @@ for arg in "$@"; do
       ;;
     -a|add|new)
       cmd='add'
+      do_edit=true
       ;;
     -e|edit)
       do_edit=true
@@ -332,7 +363,8 @@ case "$cmd" in
     vocab_file="$(search "$term")"
     ;;
   add)
-    vocab_file="$(prepare_add "$term")"
+    vocab_file="$(term_to_fullpath "$term")"
+    prepare_add "$term" "$vocab_file"
     ;;
 esac
 
