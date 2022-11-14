@@ -36,6 +36,7 @@ COMMANDS
   -s, search      search vocabulary terms based on content
   -a, add <term>  adds new vocab file and opens for edit
   ls [-l]         list vocabulary terms / files
+  -v, verify      verify term contents match file names
 
 OPTIONS
 
@@ -174,11 +175,11 @@ filename_to_term() {
 }
 
 list_terms() {
-  local path_fmt="${1:-}"
+  local long_fmt="${1:-}"
   local query="${2:-}"
 
   for fpath in $(find $VOCAB_DIR -type f -name "vocab-*.md"); do
-    if [[ -n $path_fmt ]]; then
+    if [[ -n $long_fmt ]]; then
       printf "%s\n" "$fpath"
     else
       printf "%s\n" "$(filename_to_term "$fpath")"
@@ -273,22 +274,23 @@ setup_vars() {
 }
 
 
+verify_filenames() {
+  local ok=''
 
+  for fpath in $(list_terms 'long' | sort); do
+    term="$(filename_to_term "$fpath")"
+    # perform case-insensitive grep to account for uppercase acronyms
+    # not reflected in file names
+    if [[ ! $(grep -i "$term" "$fpath") ]]; then
+      printf "%s: \"%s\" not found\n" "$fpath" "$term"
+      ok=false
+    fi
+  done
 
-# prepare() {
-#   local jnfile="$1"
-#   local isodate="$2"
-# 
-#   mkdir -p "$(dirname "$jnfile")"
-# 
-#   if [[ ! -f "$jnfile" ]]; then
-#     header "$isodate" >> "$jnfile"
-#   else
-#     touch "$jnfile"
-#   fi
-# 
-#   echo -n "$jnfile"
-# }
+  if [[ -n $ok ]]; then
+    return 2
+  fi
+}
 
 
 
@@ -318,6 +320,9 @@ for arg in "$@"; do
       ;;
     -s|search|find)
       cmd='search'
+      ;;
+    -v|verify|fsck)
+      cmd='verify'
       ;;
     -t)
       shift
@@ -365,6 +370,9 @@ case "$cmd" in
   add)
     vocab_file="$(term_to_fullpath "$term")"
     prepare_add "$term" "$vocab_file"
+    ;;
+  verify)
+    verify_filenames
     ;;
 esac
 
