@@ -382,7 +382,9 @@ local config = {
       desc = "Register emojify keybind",
       group = "journal",
       pattern = "*/journal/daily/*",
-      command = "nnoremap <F8> :silent %!emojify<CR>G",
+      -- use 'E' register for location placeholder
+      command = "nnoremap <F8> mE:silent %!emojify<CR>`E",
+      -- command = "nnoremap <F8> :silent %!emojify<CR>G",
     })
     vim.api.nvim_create_autocmd("BufRead,BufNewFile,BufEnter", {
       desc = "Use local directory when editing journal files",
