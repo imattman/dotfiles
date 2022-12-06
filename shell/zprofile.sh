@@ -15,6 +15,7 @@ export NOTES_TASKS="$NOTES/gtd-tasks"
 export NOTES_TECHNOTES="$NOTES/technotes"
 export NOTES_WORK="$NOTES/work"
 export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
+export NOTES_MISC="$NOTES/sundry-misc"
 export PCLOUD="$HOME/pCloud Drive"
 
 tmpl_candidate_dirs=(
@@ -131,12 +132,11 @@ cdpath=(
   $NOTES_TASKS
   $NOTES_PROJECTS
   $NOTES_WORK
+  $NOTES_MISC
   $NOTES
   $NOTES_SCRATCHPAD
   $WORKSPACE/websites
   $XDG_LOCAL_HOME
   $HOME
-  $GOPATH/src/github.com/imattman
-  $GOPATH/src/gitlab.com/imattman
 )
 
