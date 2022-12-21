@@ -15,6 +15,9 @@ github.com/go-task/task/v3/cmd/task@latest
 # cheatsheet notes cli lookup
 github.com/cheat/cheat/cmd/cheat@latest
 
+# UUID library and CLI
+github.com/oklog/ulid/cmd/ulid@latest
+
 # http live reload
 github.com/cosmtrek/air@latest
 
