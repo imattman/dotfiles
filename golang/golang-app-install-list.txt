@@ -24,9 +24,10 @@ github.com/cosmtrek/air@latest
 # yaegi Go interpretter
 github.com/traefik/yaegi/cmd/yaegi@latest
 
-# Hugo v0.95 and later requires go 1.18
+# Hugo is generally available in package repositories
+#  v0.95 and later requires go 1.18
 #github.com/gohugoio/hugo@v0.94
-github.com/gohugoio/hugo@latest
+#github.com/gohugoio/hugo@latest
 
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
