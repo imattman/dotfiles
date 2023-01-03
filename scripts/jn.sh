@@ -141,7 +141,12 @@ verify_template() {
 }
 
 isodate() {
-  $DATE_CMD -d "$1" +%Y-%m-%d
+  local day="${1:-today}"
+
+  # strip possible ".md" extension
+  day="${day%.md}"
+
+  $DATE_CMD -d "$day" +%Y-%m-%d
 }
 
 date_path() {
