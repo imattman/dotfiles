@@ -1,0 +1,23 @@
+---
+syntax: text
+tags:
+- vim
+- unicode
+---
+
+# use <C-k> followed by digraph shortcut to insert symbol
+
+symbol  digraph  description
+------  -------  -----------
+•       oo       bullet
+◆       Db       diamond bullet
+ϴ       '%       Greek theta
+£       Pd       British pound symbol
+©       Co       copyright symbol
+®       Rg       registered trademark symbol
+€       Eu       euro symbol
+‐       -1       hyphen
+–       -N       en-dash
+—       -M       em-dash
+
+
