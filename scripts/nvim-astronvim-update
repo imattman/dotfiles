@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+echo "Updating astronvim config and purging nvim cache files..."
+cd ~/.config/nvim && \
+  git pull && \
+  nvim-purge-cache
+
+
