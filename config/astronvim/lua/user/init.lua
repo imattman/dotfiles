@@ -212,6 +212,9 @@ local config = {
       -- ["<leader>hh"] = { ":nohl<cr>", desc = "Disable search highlighting" },
       -- ["<leader>l"] = { ":nohl", desc = "Disable search highlighting" },
 
+      -- quickfix navigation
+      ["<C-n>"] = { "<cmd>cnext<cr>", desc = "Next quickfix item" },
+      ["<C-m>"] = { "<cmd>cprev<cr>", desc = "Prev quickfix item" },
 
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
