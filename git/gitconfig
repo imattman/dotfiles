@@ -29,6 +29,8 @@
   shorty = status --short --branch
   dif = diff
   diffc = diff --cached
+  diffs = diff --stat
+  diffcs = diff --cached --stat
   co = checkout
   co-date = "!f() { d=${1:-2020-01-01}; git checkout $(git rev-list -1 --before=$d HEAD); }; f"
   log-find = log --all --name-status --grep
