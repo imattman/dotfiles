@@ -10,11 +10,13 @@ def main():
     delta = target_date - today  # type datetime.timedelta
     print(f"{delta.days} days ({delta.days / 7:.1f} weeks) until {target_date}")
 
-    print(f"\nMilestone Dates\n{'=' * 21}")
+    print(f"\nMilestone Dates\n{'=' * 28}")
     for days in milestone_days:
         delta = timedelta(days=days)
         milestone = target_date - delta
-        print(f"{milestone} - {days} days")
+        #print(f"{milestone} - {days} days")
+        dstamp = milestone.strftime("%a %b %d, %Y")
+        print(f"{days:3d} days - {dstamp}")
 
 
 if __name__ == '__main__':
