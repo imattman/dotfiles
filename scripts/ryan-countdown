@@ -1,22 +1,60 @@
 #!/usr/bin/env python3
 
 from datetime import date, timedelta
+from pprint import pprint
 
-target_date = date(2023, 9, 18)
-milestone_days = [300, 250, 200, 150, 100, 60, 50, 40, 30, 20, 10]
+TARGET_DATE = date(2023, 9, 18)
+
+MILESTONE_DAYS = [250, 200, 150, 100, 60, 50, 40, 30, 20, 10]
+NOTABLE_DATES = [
+        (date(2022, 12, 25), "Christmas"),
+        (date(2023, 1, 1), "New Years"),
+        (date(2023, 3, 17), "St. Patrick's Day"),
+        (date(2023, 4, 9), "Easter"),
+        (date(2023, 5, 14), "Mother's Day"),
+        (date(2023, 6, 18), "Father's Day"),
+        (date(2023, 7, 14), "Independence Day"),
+        ]
+
+
+
+def parse_date(dstamp):
+    return date.strptime(dstamp, "%Y-%m-%d")
+
+def gen_deltas(ref_date, dspecs):
+    return [(dstamp, (ref_date - dstamp).days , label) for (dstamp, label) in dspecs]
+
+def calc_dates(ref_date, deltas):
+    return [(ref_date - timedelta(days=n), n, '') for n in deltas]
+
+def fmt_date(dt):
+    return dt.strftime("%a, %b %d, %Y")
+
+def fmt_lines(dspec):
+    (dt, ndays, label) = dspec
+
+    line = f"{ndays:3d} days - {fmt_date(dt)}"
+    if label:
+        line += f"  {label}"
+
+    return line
+
 
 def main():
     today = date.today()
-    delta = target_date - today  # type datetime.timedelta
-    print(f"{delta.days} days ({delta.days / 7:.1f} weeks) until {target_date}")
+    delta = TARGET_DATE - today  # type datetime.timedelta
+    print(f"{delta.days} days ({delta.days / 7:.1f} weeks) until {TARGET_DATE}")
 
-    print(f"\nMilestone Dates\n{'=' * 28}")
-    for days in milestone_days:
-        delta = timedelta(days=days)
-        milestone = target_date - delta
-        #print(f"{milestone} - {days} days")
-        dstamp = milestone.strftime("%a %b %d, %Y")
-        print(f"{days:3d} days - {dstamp}")
+    days = sorted(calc_dates(TARGET_DATE, MILESTONE_DAYS) + \
+            gen_deltas(TARGET_DATE, NOTABLE_DATES))
+    #pprint(days)
+
+    days_formatted = [fmt_lines(dspec) for dspec in days]
+    #pprint(days_formatted)
+
+    mlen = max(len(line) for line in days_formatted)
+    print(f"\nMilestone Dates\n{'=' * mlen }")
+    print("\n".join(days_formatted))
 
 
 if __name__ == '__main__':
