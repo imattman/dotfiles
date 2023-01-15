@@ -9,7 +9,7 @@ BASE_DIR=$(cd "$THIS_DIR" && pwd)
 NEOVIM_REPO_URL="https://github.com/neovim/neovim.git"
 WORKSPACE="${WORKSPACE:-$HOME/workspace}"
 CLONE_DIR="$WORKSPACE/neovim"
-GIT_TAG="v0.8.0"
+GIT_TAG="v0.8.2"
 
 
 usage() {
