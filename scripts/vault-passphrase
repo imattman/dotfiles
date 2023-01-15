@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+# fail early
+set -euo pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+
+usage() {
+  local THIS_SCRIPT="${0##*/}"
+
+  cat<<-EOU
+Usage: $THIS_SCRIPT [OPTIONS] <pass phrase>
+
+A utility for generating a sha256 hash from a supplied pass phrase.
+
+The pass phrase can be supplied as a command line argument.
+This script falls back to reading the environment value from 
+VAULT_PASSPHRASE when a command line argument is not provided.
+
+OPTIONS
+
+  -h              show this message
+
+EXAMPLES
+
+  # supply pass phrase via command line
+  $THIS_SCRIPT "wubba lubba dub dub"
+
+  # supply via environment
+  VAULT_PASSPHRASE="wubba lubba dub dub" $THIS_SCRIPT
+
+EOU
+}
+
+process_phrase() {
+  local phrase="$1"
+
+  printf "%s" "$phrase" \
+    | sha256sum \
+    | perl -ane 'print $F[0], "\n"'
+}
+
+
+passphrase=''
+
+for arg in "$@"; do
+  case "$arg" in
+    -h|help)
+      usage
+      exit 0
+      ;;
+    *)
+      passphrase="$arg"
+      ;;
+  esac
+
+  shift
+done
+
+if [[ -z "$passphrase" ]]; then
+  if [[ -n "${VAULT_PASSPHRASE:-}" ]]; then
+    passphrase="$VAULT_PASSPHRASE"
+  else
+    echo "Pass phrase not supplied"
+    exit 2
+  fi
+fi
+
+process_phrase "$passphrase"
+
+
+
