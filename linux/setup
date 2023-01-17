@@ -11,8 +11,8 @@ usage() {
 	
 	Install initial packages on a fresh linux (ubuntu) system system.
 	
-	The default behavior is to install a baseline set of packages such as 
-	zsh, tree, stow, etc.
+	The default behavior installs a baseline set of packages such as zsh,
+	tree, stow, etc.
 	
 	OPTIONS:
 	  -h:  Show this message

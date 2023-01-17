@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # fail early
-set -ou pipefail
+set -eou pipefail
 
 if [[ -n "${DEBUG:=}" ]]; then
   set -x
@@ -51,10 +51,10 @@ EOU
 setup_os() {
   case "$PLATFORM" in
     darwin)
-      $CMD_PREFIX $THIS_DIR/darwin/install.sh
+      $CMD_PREFIX $THIS_DIR/darwin/setup
       ;;
     linux)
-      $CMD_PREFIX $THIS_DIR/linux/install.sh
+      $CMD_PREFIX $THIS_DIR/linux/setup
       ;;
     *)
       echo "Unrecognized platform: '$PLATFORM'"

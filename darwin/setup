@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # fail early
 set -eou pipefail
 
 
 if [[ -z "$(xcode-select -p)" ]]; then
-  echo "Command line tools not found"
+  echo "XCode command line tools not found"
   sudo xcode-select --install && \
     exit 1
 fi
