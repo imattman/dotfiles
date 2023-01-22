@@ -165,11 +165,11 @@ set pastetoggle=<F11>
 " set local CWD to that of current buffer
 nnoremap <Leader>cd  :lcd %:p:h<CR>
 
-" next search
-nnoremap <Leader>hh :nohl<CR><C-l> "disable highlighting
+" turn off current search highlight
+nnoremap <silent> <Leader>h :nohl<CR>
 
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
-"nnoremap <leader>l :nohl<CR>:set list!<CR>
+nnoremap <silent> <Leader>l :nohl<CR>:set list!<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
@@ -219,8 +219,8 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 
 " Split
-noremap <leader>h :<C-u>split<CR>
-noremap <leader>v :<C-u>vsplit<CR>
+"noremap <leader>h :<C-u>split<CR>
+"noremap <leader>v :<C-u>vsplit<CR>
 
 " easier window navigation
 "nnoremap <C-j> <C-w>j
