@@ -5,6 +5,9 @@ tags:
 - mix
 ---
 
+# To install hex.pm on a new machine
+mix local.hex
+
 # To run only failed tests
 mix test --failed
 
