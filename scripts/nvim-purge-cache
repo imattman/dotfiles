@@ -3,7 +3,15 @@
 # fail early
 set -euo pipefail
 
-for dir in "$HOME/.local/share/nvim" "$HOME/.config/nvim/plugin"; do
+declare -a DIRS=(
+  "$HOME/.config/nvim/plugin"
+  "$HOME/.local/share/nvim"
+  "$HOME/.local/state/nvim"
+  "$HOME/.cache/nvim"
+)
+
+
+for dir in "${DIRS[@]}"; do
   if [[ -d "$dir" ]]; then
     echo "Removing $dir"
     rm -rf "$dir"
