@@ -8,6 +8,9 @@ tags:
 # To install hex.pm on a new machine
 mix local.hex
 
+# To create a new project and override the module namespace
+mix new kv --module KV
+
 # To run only failed tests
 mix test --failed
 
@@ -19,4 +22,10 @@ mix test --slowest N
 
 # To run tests of specific child app at root of umbrella app
 mix cmd --app child_app_name mix test --color
+
+# To verify source code is formatted (useful for CI builds)
+mix format --check-formatted
+
+# To run a prod build
+MIX_ENV=prod mix compile
 
