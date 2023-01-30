@@ -1,0 +1,12 @@
+---
+tags:
+- elixir
+- iex
+---
+
+# To exit, use Control-C twice
+<C-c> <C-c>
+
+# To break from line continuation
+    #iex:break
+
