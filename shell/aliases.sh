@@ -45,6 +45,10 @@ alias t='task'
 alias tls='task ls'
 alias tadd='task add'
 
+# elixir
+alias iexm='iex -S mix'
+
+# shortcuts to edit various config files
 alias cnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cvim="$EDITOR ~/.vim/vimrc"
 alias ctmux="$EDITOR ~/.dotfiles/tmux/tmux.conf"
