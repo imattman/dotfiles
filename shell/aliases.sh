@@ -7,6 +7,15 @@ alias ll='ls -l -h'
 alias l='ll'
 alias lla='ll -a'
 
+alias _='sudo'
+alias e='${(z)EDITOR}}'
+alias eg='${(z)VISUAL:-${(z)EDITOR}}'
+alias p='${(z)PAGER}'
+alias b='${(z)BROWSER}'
+
+alias diffu="diff --unified"
+alias type='type -a'
+
 # cd helpers that use fzf
 alias fcd='cd_fzf'
 alias cdf='cd_fzf'
