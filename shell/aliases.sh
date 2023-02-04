@@ -8,8 +8,8 @@ alias l='ll'
 alias lla='ll -a'
 
 alias _='sudo'
-alias e='${(z)EDITOR}}'
-alias eg='${(z)VISUAL:-${(z)EDITOR}}'
+alias e='${(z)EDITOR}'
+alias ge='${(z)VISUAL:-${(z)EDITOR}}'
 alias p='${(z)PAGER}'
 alias b='${(z)BROWSER}'
 
