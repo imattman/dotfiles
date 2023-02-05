@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# A convenience script for editing commonplace log entries
+# A convenience script for editing daybook log entries
 
 # fail early
 set -euo pipefail
@@ -9,14 +9,14 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-CM_DIR="${NOTES_ZETTELKASTEN/commonplace}"
-CM_ENTRY_FILE="${NOTES_COMMONPLACE_FILE:-$CM_DIR/commonplace-log.md}"
+DBK_DIR="${NOTES_ZETTELKASTEN/daybook}"
+DBK_ENTRY_FILE="${NOTES_DAYBOOK_FILE:-$DBK_DIR/daybook-log.md}"
 TEMPLATES_DIR="${TEMPLATES_DIR:-$HOME/.dotfiles/templates/zet}"
-TEMPLATE_FILE="$TEMPLATES_DIR/commonplace.md"
+TEMPLATE_FILE="$TEMPLATES_DIR/daybook.md"
 
 DATE_CMD="date"
 UUID_CMD="uuid"
-CM_EDITOR=${VISUAL:-${EDITOR:-}}
+DBK_EDITOR=${VISUAL:-${EDITOR:-}}
 EDITOR_OPTS=''  # "+8"
 
 usage() {
@@ -25,7 +25,7 @@ usage() {
   cat<<EOU
 Usage: $THIS_SCRIPT [OPTIONS] [date1 [date2 ...]]
 
-A utility for managing commonplace log entries.
+A utility for managing daybook log entries.
 
 Examples:
 
@@ -38,7 +38,7 @@ Examples:
 OPTIONS:
    -h:  Show this message
    -t:  Supply template argument.  A basic match is performed looking
-        for templates that optionally can include "commonplace-" prefix 
+        for templates that optionally can include "daybook-" prefix 
         and ".md" suffix
 
 EOU
@@ -55,15 +55,15 @@ precheck() {
     fi
   fi
 
-  if [[ ! -d "$CM_DIR" ]]; then
-    echo "Warning: commonplace directory not found: $CM_DIR"
+  if [[ ! -d "$DBK_DIR" ]]; then
+    echo "Warning: daybook directory not found: $DBK_DIR"
   fi
 
-  if [[ ! $(command -v $CM_EDITOR) ]]; then
-    if [[ -z "$CM_EDITOR" ]]; then
+  if [[ ! $(command -v $DBK_EDITOR) ]]; then
+    if [[ -z "$DBK_EDITOR" ]]; then
       echo "Either \$EDITOR or \$VISUAL must be set."
     else
-      echo "$CM_EDITOR editor not found.  Check \$VISUAL and \$EDITOR"
+      echo "$DBK_EDITOR editor not found.  Check \$VISUAL and \$EDITOR"
     fi
     exit 1
   fi
@@ -90,7 +90,7 @@ verify_template() {
   local full_path
 
   # partial name may have been supplied
-  for tfile in "$tmpl" "${tmpl}.md" "commonplace-${tmpl}" "commonplace-${tmpl}.md"; do
+  for tfile in "$tmpl" "${tmpl}.md" "daybook-${tmpl}" "daybook-${tmpl}.md"; do
     full_path="$TEMPLATES_DIR/${tfile}"
     #echo "  checking for template ${full_path}"
     if [[ -f "$full_path" ]]; then
@@ -159,7 +159,7 @@ prepare() {
 
 do_prepare=
 do_edit=
-cmfile="${CM_ENTRY_FILE}"
+cmfile="${DBK_ENTRY_FILE}"
 
 while getopts 'fhlpt:' OPTION
 do
@@ -207,7 +207,7 @@ for day in "${days[@]}"; do
 done
 
 if [[ -n $do_edit ]]; then
-  exec $CM_EDITOR $EDITOR_OPTS $files
+  exec $DBK_EDITOR $EDITOR_OPTS $files
 fi
 
 
