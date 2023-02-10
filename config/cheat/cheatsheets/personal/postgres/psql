@@ -13,9 +13,12 @@ tags:
     \conninfo      display information about current connection
     \l             list databases
     \d             list tables, sequences, ...
+    \d+            list with additional info
     \d NAME        describe table, sequence, ...
     \i FILE        execute commands from FILE
     \o FILE        send all query results to FILE
+    \e             edit last command in $EDITOR
+    \e FILE        edit file in editor; contents are copied into query buffer
     \du            show user accounts
     \timing        toggle timing of commands
 
