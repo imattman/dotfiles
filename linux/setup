@@ -125,7 +125,9 @@ install_pkgs() {
     golang-go \
     fish \
     entr \
-    watchman
+    watchman \
+    dictd \
+    dict-gcide
 
   # kitty \
   #  neovim \
