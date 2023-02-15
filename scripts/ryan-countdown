@@ -13,7 +13,7 @@ NOTABLE_DATES = [
     (date(2023, 4, 9), "Easter"),
     (date(2023, 5, 14), "Mother's Day"),
     (date(2023, 6, 18), "Father's Day"),
-    (date(2023, 7, 14), "Independence Day"),
+    (date(2023, 7, 4), "Independence Day"),
     (date(2023, 9, 4), "Labor Day"),
 ]
 
