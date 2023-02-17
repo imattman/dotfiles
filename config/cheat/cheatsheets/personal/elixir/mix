@@ -11,6 +11,9 @@ mix local.hex
 # To create a new project and override the module namespace
 mix new kv --module KV
 
+# To run multiple mix tasks
+mix do clean, compile
+
 # To run only failed tests
 mix test --failed
 
