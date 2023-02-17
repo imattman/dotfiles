@@ -1,0 +1,37 @@
+---
+syntax: bash
+tags:
+- asdf
+- elixir
+---
+
+# To install erlang and elixir on a new machine
+# 1. Register plugins
+asdf plugin-add elixir  https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add erlang  https://github.com/asdf-vm/asdf-erlang.git
+
+# Alternate way
+asdf plugin-list-all | grep -E '(erlang|elixir)' | xargs -n 2 asdf plugin-add
+
+# 2. List erlang and elixir versions
+asdf list-all erlang
+asdf list-all elixir
+
+# 3. Install specific versions
+# note: make sure elixir is compiled with matching version of erlang/OTP
+asdf install erlang 25.2.3
+asdf install 1.14.3-otp-25
+
+# To update plugins
+asdf plugin-update --all
+
+# To activate specific versions globally
+asdf global erlang 25.2.3
+asdf global elixir 1.14.3
+
+# To activate specific versions locally within a directory tree
+asdf local erlang 25.2.3
+asdf local elixir 1.14.3
+
+
+
