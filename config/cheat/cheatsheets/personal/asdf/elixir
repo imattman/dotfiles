@@ -19,8 +19,8 @@ asdf list-all elixir
 
 # 3. Install specific versions
 # note: make sure elixir is compiled with matching version of erlang/OTP
-asdf install erlang 25.2.3
-asdf install 1.14.3-otp-25
+KERL_BUILD_DOCS=yes asdf install erlang 25.2.3
+asdf install elixir 1.14.3-otp-25
 
 # To update plugins
 asdf plugin-update --all
