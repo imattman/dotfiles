@@ -1,0 +1,142 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+THIS_SCRIPT=$(basename "$0")
+THIS_DIR=$(dirname "$0")
+BASE_DIR=$(cd "$THIS_DIR" && pwd)
+
+PLATFORM="$(uname -s | tr A-Z a-z)"
+TIMESTAMP="$(date '+%Y-%m-%d.%H%M%S')"
+
+# set to non-empty string to enable homebrew install
+HOMEBREW_OK=''
+
+LOCAL_HOME="${XDG_LOCAL_HOME:-$HOME/.local}"
+LOCAL_BIN="${XDG_LOCAL_BIN:-$LOCAL_HOME/bin}"
+
+SCRIPT_NAME="asdf"
+REPO_URL="https://github.com/asdf-vm/asdf.git"
+TAGS_URL='https://api.github.com/repos/asdf-vm/asdf/tags'
+
+#REPO_DIR="$LOCAL_HOME/$SCRIPT_NAME"
+REPO_DIR="$HOME/.asdf"
+REPO_SCRIPT="$REPO_DIR/bin/$SCRIPT_NAME"
+
+
+
+usage() {
+cat <<-EOU
+	Usage: $THIS_SCRIPT [OPTIONS]
+	
+	Installer script for '$SCRIPT_NAME' utility.
+
+	By default this script clones the $SCRIPT_NAME git repo and
+	links the script under $LOCAL_HOME/bin
+	
+	OPTIONS
+
+	  brew      Use homebrew to perform installation
+	  clone     Perform only git clone
+	  symlink   Update symlink
+	  -h        Show this message
+	
+EOU
+}
+
+
+precheck() {
+  if [[ $(which "$SCRIPT_NAME") ]]; then
+    echo "$SCRIPT_NAME already installed: $(which $SCRIPT_NAME)"
+    exit 1
+  fi
+
+  if [[ -d "$REPO_DIR" ]]; then
+    echo "Repo directory found: $REPO_DIR"
+
+    if [[ -e "$LOCAL_BIN/$SCRIPT_NAME" ]]; then
+      echo "Script found: $LOCAL_BIN/$SCRIPT_NAME"
+      echo "Check \$PATH"
+      exit 1
+    fi
+
+    echo "Script not found under $LOCAL_BIN"
+    echo "Run this script with 'symlink' option to correct."
+    exit 1
+  fi
+}
+
+
+homebrew() {
+  brew install "$SCRIPT_NAME"
+}
+
+
+clone() {
+  # use current version as branch
+  version="$(curr_version)"
+
+  echo "Cloning to $REPO_DIR"
+  echo "Setting branch to $version"
+
+  cd "$LOCAL_HOME" && \
+    git clone "$REPO_URL" "$REPO_DIR" --branch "$version"
+}
+
+curr_version() {
+  curl -s "$TAGS_URL" \
+    | jq -r '.[0].name'
+}
+
+symlink() {
+  if [[ ! -e "$REPO_SCRIPT" ]]; then
+    "File not found: $REPO_SCRIPT"
+  fi
+
+  cd "$LOCAL_BIN" && \
+    ln -sf "$REPO_SCRIPT"  .
+}
+
+
+all() {
+  precheck
+  if [[ $PLATFORM == "darwin" && -n "$HOMEBREW_OK" ]]; then
+    homebrew
+  else
+    clone
+    symlink
+  fi
+}
+
+
+for cmd in "$@"
+do
+  case $cmd in
+    all)
+        all
+        ;;
+    clone)
+        clone
+        ;;
+    brew|homebrew)
+        HOMEBREW_OK=true
+        homebrew
+        ;;
+    link|symlink)
+        symlink
+        ;;
+    -h|help)
+        usage
+        exit 0
+        ;;
+    *)
+        "$cmd"
+  esac
+done
+
+if [[ $# -eq 0 ]]; then
+  all
+fi
+
+

@@ -17,6 +17,8 @@ export NOTES_WORK="$NOTES/work"
 export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
 export NOTES_MISC="$NOTES/sundry-misc"
 export PCLOUD="$HOME/pCloud Drive"
+#export ASDF_DIR="$XDG_LOCAL_HOME/asdf"
+export ASDF_DIR="$HOME/.asdf"
 
 tmpl_candidate_dirs=(
   $WORKSPACE/templates

@@ -35,10 +35,10 @@ unalias cp
 unalias mv
 
 # asdf config and completions
-if [[ -f ~/.asdf/asdf.sh ]]; then
-  source ~/.asdf/asdf.sh
+if [[ -f "$ASDF_DIR/asdf.sh" ]]; then
+  source "$ASDF_DIR/asdf.sh"
 
-  fpath=($HOME/.asdf/completions $fpath)
+  fpath=("$ASDF_DIR/completions" $fpath)
 fi
 
 
