@@ -51,10 +51,10 @@ EOU
 setup_os() {
   case "$PLATFORM" in
     darwin)
-      $CMD_PREFIX $THIS_DIR/darwin/setup
+      $CMD_PREFIX $THIS_DIR/darwin/install.sh
       ;;
     linux)
-      $CMD_PREFIX $THIS_DIR/linux/setup
+      $CMD_PREFIX $THIS_DIR/linux/install.sh
       ;;
     *)
       echo "Unrecognized platform: '$PLATFORM'"
