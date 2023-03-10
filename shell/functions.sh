@@ -100,7 +100,7 @@ edit_fzf() {
 repos_config_env() {
   local cfg="${1:-list}"
 
-  local repo_cfg_dir="$WORKSPACE/tools/repo-management"
+  local repo_cfg_dir="${REPOS_CONF_DIR:-$WORKSPACE/tools/repo-tools}"
   local -a options=("all" "std" "min" "server" "clear")
 
   case "$cfg" in
