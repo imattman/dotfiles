@@ -10,12 +10,13 @@ export REPOS_CONF_DIR="$WORKSPACE/tools/repo-tools"
 export DOCUMENTS="$HOME/Documents"
 export NOTES="$HOME/Notes"
 export NOTES_JOURNAL="$NOTES/journal"
-export NOTES_PROJECTS="$NOTES/projects"
-export NOTES_SCRATCHPAD="$NOTES/scratchpad"
-export NOTES_TASKS="$NOTES/gtd-tasks"
 export NOTES_TECHNOTES="$NOTES/technotes"
-export NOTES_WORK="$NOTES/work"
 export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
+export NOTES_PROJECTS="$NOTES/projects"
+export NOTES_TRANSIENT="$NOTES/transient"
+export NOTES_TASKS="$NOTES_TRANSIENT/gtd-tasks"
+export NOTES_SCRATCHPAD="$NOTES_TRANSIENT/scratchpad"
+export NOTES_WORK="$NOTES/work"
 export NOTES_MISC="$NOTES/sundry-misc"
 export PCLOUD="$HOME/pCloud Drive"
 #export ASDF_DIR="$XDG_LOCAL_HOME/asdf"
@@ -132,12 +133,11 @@ cdpath=(
   $NOTES_TECHNOTES
   $NOTES_ZETTELKASTEN
   $NOTES_JOURNAL
-  $NOTES_TASKS
+  $NOTES_TRANSIENT
   $NOTES_PROJECTS
   $NOTES_WORK
   $NOTES_MISC
   $NOTES
-  $NOTES_SCRATCHPAD
   $WORKSPACE/websites
   $XDG_LOCAL_HOME
   $HOME

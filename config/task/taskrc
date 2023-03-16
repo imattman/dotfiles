@@ -15,7 +15,7 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-#data.location=/Users/mattman/Notes/gtd-tasks/.task
+#data.location=$NOTES_TRANSIENT/gtd-tasks/.task
 data.location=$NOTES_TASKS/.task
 #hooks.location=~/.config/task/hooks
 #data.location=~/.local/share/task
