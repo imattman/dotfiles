@@ -245,7 +245,13 @@ pathadd() {
 }
 
 numfmt() {
-  echo "$*" | python3 -c "print('\n'.join('{:,}'.format(int(n)) for n in input().strip().split()))"
+  local numfmt_bin=$(whence -p numfmt)
+  # use gnu 'numfmt' if available
+  if [[ -n "$numfmt_bin" ]]; then
+    "$numfmt_bin" --grouping "$@"
+  else
+    echo "$*" | python3 -c "print('\n'.join('{:,}'.format(int(n)) for n in input().strip().split()))"
+  fi
 }
 
 
