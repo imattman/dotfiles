@@ -1,0 +1,35 @@
+---
+syntax: bash
+tags:
+- taskwarrior
+---
+
+# General taskwarrior usage
+task <filter> <command> [<args>]
+
+# To list all projects
+task proj
+
+# To list all tasks in project "errands"
+task proj:errands
+
+# To list tasks in project "errands" that contain description "milk"
+task proj:errands milk
+
+# To list all tags
+task tag
+
+# To list tasks with tag 'finance'
+task +finance
+
+# To change the project to "mentoring" for task 42
+task 42 mod proj:mentoring
+
+# To mark task 42 as complete
+task 42 done
+
+# To undo most recent change
+task undo
+
+
+
