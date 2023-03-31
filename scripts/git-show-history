@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# fail early
+set -eou pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+THIS_SCRIPT="${0##*/}"
+BASE_DIR="$(cd "${0%/*}" && pwd)"
+
+
+usage() {
+  cat <<-EOU
+	Usage: $THIS_SCRIPT <file>
+	
+	Display git file history details.
+	
+	OPTIONS
+	   -h      Show this message
+
+EOU
+}
+
+
+show_history() {
+  local -a refs=$(git log --follow --format=%H "$1")
+
+  git show ${refs}
+}
+
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      show_history "$1"
+      ;;
+  esac
+  shift
+done
+
+
