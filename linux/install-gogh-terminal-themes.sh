@@ -1,17 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# fail early
 set -eou pipefail
 
-THIS_SCRIPT=$(basename "$0")
-THIS_DIR=$(dirname "$0")
-BASE_DIR=$(cd "$THIS_DIR" && pwd)
-WORKSPACE="${1:-$WORKSPACE}"
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+THIS_SCRIPT="${0##*/}"
+BASE_DIR="$(cd "${0%/*}" && pwd)"
+
+CLONE_BASE="${1:-XDG_LOCAL_HOME}"
 CLONE_DIR="gogh-terminal-themes"
 
 
-cd "$WORKSPACE"
-git clone https://github.com/Mayccoll/Gogh.git "$CLONE_DIR"
-cd "${CLONE_DIR}/themes"
+cd "$CLONE_BASE" && \
+  git clone https://github.com/Mayccoll/Gogh.git "$CLONE_DIR"
 
 
 if [[ $(grep -i ubuntu /etc/os-release) ]]; then
@@ -24,8 +28,8 @@ fi
 echo "Run desired install scripts:"
 
 echo
-echo "  cd $WORKSPACE/$CLONE_DIR/themes"
+echo "  cd $CLONE_BASE/$CLONE_DIR/themes"
 echo
-echo "  ./dracula.sh"
 echo "  ./tomorrow-night-bright.sh"
+echo "  ./dracula.sh"
 

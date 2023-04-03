@@ -1,14 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-THIS_SCRIPT=$(basename "$0")
-THIS_DIR=$(dirname "$0")
-BASE_DIR=$(cd "$THIS_DIR" && pwd)
+# fail early
+set -eou pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+THIS_SCRIPT="${0##*/}"
+BASE_DIR="$(cd "${0%/*}" && pwd)"
 
 TAGS_URL='https://api.github.com/repos/ryanoasis/nerd-fonts/tags'
 DOWNLOAD_URL='https://github.com/ryanoasis/nerd-fonts/releases/download'
-NERD_FONT_DIR="$WORKSPACE/nerdfonts"
-NERD_FONT_LIST="FiraMono.zip  Hack.zip	Inconsolata.zip  JetBrainsMono.zip"
+NERD_FONT_DIR="$XDG_LOCAL_HOME/nerdfonts"
+FONTS_DEST="$XDG_DATA_HOME/fonts"
 
+# TODO: use array
+NERD_FONT_LIST="FiraMono.zip  Hack.zip	Inconsolata.zip  JetBrainsMono.zip"
 FONT_FILES='Fira Mono Regular Nerd Font Complete Mono.otf
 Hack Regular Nerd Font Complete Mono.ttf
 Inconsolata Regular Nerd Font Complete Mono.otf
@@ -17,21 +25,32 @@ JetBrains Mono Regular Nerd Font Complete Mono.ttf'
 
 
 usage() {
-  cat<<EOU
-  Usage: $THIS_SCRIPT [SUBCOMMAND]
-
-  Install fonts on a debian/ubuntu linux system.
-
-  SUBCOMMANDS:
-
-    nerdfonts Downloads and installs select Nerdfonts 
-              for user (default)
-    fonts     Installs non-nerdfonts via apt
-    msfonts   Installs MS fonts with license prompt
-    remove    Removes standard fonts
-
+  cat <<-EOU
+	Usage: $THIS_SCRIPT [SUBCOMMAND]
+	
+	Install fonts on a debian/ubuntu linux system.
+	
+	SUBCOMMANDS
+	 
+	  nerdfonts Downloads and installs select Nerdfonts 
+	            for user (default)
+	  fonts     Installs non-nerdfonts via apt
+	  msfonts   Installs MS fonts with license prompt
+	  remove    Removes standard fonts
 
 EOU
+}
+
+precheck() {
+  if [[ -z "$XDG_DATA_HOME" ]]; then
+    echo '$XDG_DATA_HOME not set'
+    exit 1
+  fi
+
+  if [[ ! $(which jq) ]]; then
+    echo "jq not found in PATH"
+    exit 1
+  fi
 }
 
 
@@ -75,7 +94,7 @@ nerdfonts_version() {
 
 nerdfonts() {
   echo "Downloading nerdfonts to $NERD_FONT_DIR ..."
-  cd $WORKSPACE && \
+  cd "${NERD_FONT_DIR%/*}" && \
     mkdir -p "$NERD_FONT_DIR" && \
     cd "$NERD_FONT_DIR"
 
@@ -93,11 +112,11 @@ nerdfonts() {
     unzip "$f"
   done
 
-  [[ -d ~/.local/share/fonts ]] || mkdir -p ~/.local/share/fonts
+  echo "Copying fonts to $FONTS_DEST ..."
+  [[ -d "$FONTS_DEST" ]] || mkdir -p "$FONTS_DEST"
 
-  echo "Copying fonts to \$HOME/.local/share/fonts"
   while IFS= read -r font; do
-    cp "$font" ~/.local/share/fonts
+    cp "$font" "$FONTS_DEST"
   done <<< "$FONT_FILES"
 
   echo "Resetting font cache"
@@ -105,13 +124,8 @@ nerdfonts() {
 }
 
 
-if [[ ! $(which jq) ]]; then
-  echo "jq not found in PATH"
-  exit 1
-fi
-
-
 if [[ $# -eq 0 ]]; then
+  precheck
   nerdfonts
 else
   for arg in "$@"; do
