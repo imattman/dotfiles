@@ -92,7 +92,7 @@ fi
 export LESS="-F -X $LESS"
 
 ## Go
-export GOPATH="$WORKSPACE/go"
+export GOPATH="$XDG_DATA_HOME/go"
 if [[ $(command -v go) ]]; then
   export GOROOT=$(go env GOROOT)
   #export GOBIN="$XDG_LOCAL_BIN"
@@ -100,18 +100,26 @@ if [[ $(command -v go) ]]; then
 fi
 
 ## Elixir
-export MIX_HOME="$XDG_CONFIG_HOME/mix"
+export MIX_HOME="$XDG_DATA_HOME/mix"
 # enable history in iEx
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 ## Rust
-export CARGO_HOME="$WORKSPACE/rust/cargo"
-export RUSTUP_HOME="$WORKSPACE/rust/rustup"
-#export CARGO_HOME="$XDG_DATA_HOME/cargo"
-#export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 ## NodeJS
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
+
+## Perl
+user_perl="$XDG_DATA_HOME/perl5"
+if [[ -d "$user_perl" ]]; then
+  eval "$(perl -Mlocal::lib=$user_perl)"
+#  export PERL_LOCAL_LIB_ROOT="$user_perl"
+#  export PERL_MB_OPT="--install_base $user_perl"
+#  export PERL_MM_OPT="INSTALL_BASE=$user_perl"
+fi
+
 
 ## Taskwarrior
 # taskwarrior now supports $XDG_CONFIG_HOME/task/taskrc
