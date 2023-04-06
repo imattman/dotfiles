@@ -95,6 +95,9 @@
   # rebase = true
 [branch]
 #  autosetuprebase = always
+[advice]
+  # quiet warnings when rebasing
+  skippedCherryPicks = false
 [grep]
   extendRegexp = true
   lineNumber = true
