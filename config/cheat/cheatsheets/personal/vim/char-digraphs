@@ -5,19 +5,53 @@ tags:
 - unicode
 ---
 
+# To list a searchable table of available mappings
+:help digraph-table
+
+# To view current mappings
+:digraphs
+
+
 # use <C-k> followed by digraph shortcut to insert symbol
 
 symbol  digraph  description
 ------  -------  -----------
 •       oo       bullet
 ◆       Db       diamond bullet
+·       ~.       middle dot
 ϴ       '%       Greek theta
 £       Pd       British pound symbol
 ©       Co       copyright symbol
 ®       Rg       registered trademark symbol
+™       TM       trade mark sign
 €       Eu       euro symbol
 ‐       -1       hyphen
 –       -N       en-dash
 —       -M       em-dash
 
+¶       pp       pilcrow sign
+¬       -,       not sign
+«       <<       left-pointing double angle quotation mark
+»       >>       right-pointing double angle quotation mark
+±       +-       plus-minus sign
+℅       co       care of
+µ       My       micro sign
+°       DG       degree sign
+℃       oC       degree celsius
+℉       oF       degree fahrenheit
+“       "6       left double quotation mark
+”       "9       right double quotation mark
+
+æ       ae
+ä       a:
+å       aa
+ç       c,
+é       e'
+è       e`
+ñ       n~
+ø       o/
+ö       o:
+ô       o^
+ü       u:
+ß       ss
 
