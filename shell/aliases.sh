@@ -135,6 +135,7 @@ alias simple-httpd.py='py_simple_httpd'
 # golang
 alias goenv='go env'
 alias gorun='go run'
+alias go-test='go_test'
 alias gobuild='go build'
 alias yaegi='rlwrap yaegi'
 alias go-interpreter='rlwrap yaegi'
