@@ -14,9 +14,34 @@
   # autocrlf values: true -> always convert, false -> never convert, input -> convert on commit
   autocrlf = input
   editor = $EDITOR
+[credential]
+  helper = osxkeychain
+[fetch]
+  # clobber branches that are no longer on the remote
+  prune = true
+[push]
+  default = simple
+[pull]
+  # perform merge
+  rebase = false
+  # avoid unnecessary merge commits
+  # rebase = true
+[branch]
+#  autosetuprebase = always
 [merge]
   # complain if fast-forward merge isn't an option
   ff = only
+[log]
+  follow = true
+[grep]
+  extendRegexp = true
+  lineNumber = true
+[advice]
+  # quiet warnings when rebasing
+  skippedCherryPicks = false
+[rerere]
+	enabled = true
+	autoUpdate = true
 [alias]
   mainbranch = "!git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
   pull-rebase = "!git pull origin $(git mainbranch) --rebase"
@@ -36,7 +61,6 @@
   co = checkout
   co-date = "!f() { d=${1:-2020-01-01}; git checkout $(git rev-list -1 --before=$d HEAD); }; f"
   log-find = log --all --name-status --grep
-  find-log = log --all --name-status --grep
   g = "grep --break --heading --line-number"
   grep-group = "grep --break --heading --line-number"
   br = branch -a
@@ -58,6 +82,8 @@
   logds = log --format=fuller --stat
   tree = log --graph --branches --pretty=oneline --decorate
   grog = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+  shortlog-counts = shortlog -sne
+  user-counts = shortlog -sne
   authors-remote = for-each-ref --sort=authordate --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)%(align:25,left)%(color:yellow) %(authorname)%(end)%(color:reset)%(refname:strip=3)' refs/remotes
   # commit message
   log-msg = log --format=%B
@@ -83,25 +109,4 @@
   svn-diff = diff remotes/git-svn
   fixup = commit --amend -C HEAD
   up = pull --rebase --autostash
-[fetch]
-  # clobber branches that are no longer on the remote
-  prune = true
-[push]
-  default = simple
-[pull]
-  # perform merge
-  rebase = false
-  # avoid unnecessary merge commits
-  # rebase = true
-[branch]
-#  autosetuprebase = always
-[advice]
-  # quiet warnings when rebasing
-  skippedCherryPicks = false
-[grep]
-  extendRegexp = true
-  lineNumber = true
-
-[credential]
-  helper = osxkeychain
 
