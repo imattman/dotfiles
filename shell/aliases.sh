@@ -9,6 +9,7 @@ alias lla='ll -a'
 
 alias _='sudo'
 alias e='${(z)EDITOR}'
+alias v='${(z)VISUAL:-${(z)EDITOR}}'
 alias ge='${(z)VISUAL:-${(z)EDITOR}}'
 alias p='${(z)PAGER}'
 alias b='${(z)BROWSER}'
@@ -40,11 +41,9 @@ alias jns='jn_fzf_search'
 # exercism
 alias exc='exercism'
 
-alias v='nvim'
-alias nv='nvim'
 alias nvim-latest='~/.dotfiles/linux/install-neovim-from-src.sh latest'
 #alias vim='nvim'
-alias vimf='edit_fzf vim'
+#alias vimf='edit_fzf vim'
 
 # I always forget this
 alias ssh-agent-list-keys='ssh-add -L'
