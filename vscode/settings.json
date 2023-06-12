@@ -35,7 +35,7 @@
   "editor.cursorStyle": "line",
   "editor.smoothScrolling": true,
   "editor.cursorBlinking": "phase",
-  "editor.cursorSmoothCaretAnimation": false,
+  "editor.cursorSmoothCaretAnimation": "off",
 
   "editor.detectIndentation": true,
   "editor.insertSpaces": true,
