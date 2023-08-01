@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+#
+# wrapper script for launching journal workspace
+
+# fail early
+set -eou pipefail
+
+if [[ -n "${DEBUG:=}" ]]; then
+  set -x
+fi
+
+THIS_SCRIPT="${0##*/}"
+BASE_DIR="$(cd "${0%/*}" && pwd)"
+
+SESSION_NAME="journal"
+WINDOW_NAME="jn-edit"
+JN_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}"
+
+# keep strict varible checks happy
+TMUX="${TMUX:-}"
+TMUX_PANE="${TMUX:-}"
+
+
+usage() {
+  cat <<-EOU
+	Usage: $THIS_SCRIPT [OPTIONS] <COMMAND>
+	
+	Tmux session launcher for journal workspace.
+	
+	OPTIONS
+	   -h      Show this message
+
+EOU
+}
+
+
+attach_or_launch() {
+  if [[ ! -z "$TMUX" ]] || [[ ! -z "$TMUX_PANE" ]]; then
+      echo "Already inside a tmux session, do not know what to do"
+      exit 1
+  fi
+
+  if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+    echo "attaching to existing session..."
+    tmux attach -t "$SESSION_NAME"
+    return
+  fi
+
+  local window="${SESSION_NAME}:${WINDOW_NAME}"
+  local main_pane="${window}.1"
+  local aux_pane="${window}.2"
+
+  #cd "$JN_DIR"
+
+  tmux new-session -c "$JN_DIR" -n "$WINDOW_NAME" -d -s "$SESSION_NAME"
+  tmux split -h -c "$JN_DIR" -t "$SESSION_NAME"
+  tmux select-pane -t "$main_pane"
+  tmux resize-pane -t "$main_pane" -x 55%
+  
+  tmux send-keys -t "$aux_pane" 'repos latest' Enter
+  #tmux send-keys -t "$aux_pane" 'cheat emojify' Enter
+
+  #tmux list-sessions
+  tmux attach -t "$SESSION_NAME"
+}
+
+
+all() {
+  attach_or_launch
+}
+
+
+if [[ $# -eq 0 ]]; then
+  all "$@"
+else
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      help|-h)
+        usage
+        exit 0
+        ;;
+      *)
+        "$1" "$@"
+        ;;
+    esac
+    shift
+  done
+fi
+
