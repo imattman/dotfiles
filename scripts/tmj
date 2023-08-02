@@ -13,7 +13,7 @@ THIS_SCRIPT="${0##*/}"
 BASE_DIR="$(cd "${0%/*}" && pwd)"
 
 SESSION_NAME="journal"
-WINDOW_NAME="jn-edit"
+WINDOW_NAME="entry"
 JN_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}"
 
 # keep strict varible checks happy
