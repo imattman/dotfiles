@@ -13,8 +13,10 @@ THIS_SCRIPT="${0##*/}"
 BASE_DIR="$(cd "${0%/*}" && pwd)"
 
 SESSION_NAME="journal"
-WINDOW_NAME="entry"
+JN_WINDOW="entry"
+TASK_WINDOW="tasks"
 JN_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}"
+TASKS_DIR="$NOTES_TASKS"
 
 # keep strict varible checks happy
 TMUX="${TMUX:-}"
@@ -46,21 +48,30 @@ attach_or_launch() {
     return
   fi
 
-  local window="${SESSION_NAME}:${WINDOW_NAME}"
-  local main_pane="${window}.1"
-  local aux_pane="${window}.2"
+  local jn_window="${SESSION_NAME}:${JN_WINDOW}"
+  local jn_main_pane="${jn_window}.1"
+  local jn_aux_pane="${jn_window}.2"
+
+  local task_window="${SESSION_NAME}:${TASK_WINDOW}"
+  local task_main_pane="${task_window}.1"
+  local task_aux_pane="${task_window}.2"
 
   #cd "$JN_DIR"
 
-  tmux new-session -c "$JN_DIR" -n "$WINDOW_NAME" -d -s "$SESSION_NAME"
+  # jn entry window
+  tmux new-session -c "$JN_DIR" -n "$JN_WINDOW" -d -s "$SESSION_NAME"
   tmux split -h -c "$JN_DIR" -t "$SESSION_NAME"
-  tmux select-pane -t "$main_pane"
-  tmux resize-pane -t "$main_pane" -x 55%
-  
-  tmux send-keys -t "$aux_pane" 'repos latest' Enter
-  #tmux send-keys -t "$aux_pane" 'cheat emojify' Enter
+  #tmux select-pane -t "$jn_main_pane"
+  tmux resize-pane -t "$jn_main_pane" -x 55%
+  tmux send-keys -t "$jn_aux_pane" 'repos latest' Enter
+  #tmux send-keys -t "$jn_aux_pane" 'cheat emojify' Enter
 
-  #tmux list-sessions
+  # task window
+  tmux new-window -c "$TASKS_DIR" -n "$TASK_WINDOW"
+
+  # set focus and hop in
+  tmux select-window -t "$jn_window"
+  tmux select-pane -t "$jn_main_pane"
   tmux attach -t "$SESSION_NAME"
 }
 
