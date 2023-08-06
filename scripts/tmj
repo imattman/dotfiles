@@ -14,7 +14,7 @@ BASE_DIR="$(cd "${0%/*}" && pwd)"
 
 SESSION_NAME="journal"
 JN_WINDOW="entry"
-TASK_WINDOW="tasks"
+TASK_WINDOW="@GTD"
 JN_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}"
 TASKS_DIR="$NOTES_TASKS"
 
