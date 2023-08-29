@@ -166,11 +166,13 @@ set pastetoggle=<F11>
 " set local CWD to that of current buffer
 nnoremap <Leader>cd  :lcd %:p:h<CR>
 
-" turn off current search highlight
-nnoremap <silent> <Leader>h :nohl<CR>
+" remove highlight of search with ENTER
+nnoremap <silent><CR> :nohl<CR>
 
 " Shortcut to rapidly toggle `set list` and deselect search highlighting
-nnoremap <silent> <Leader>l :nohl<CR>:set list!<CR>
+"nnoremap <silent> <Leader>l :nohl<CR>:set list!<CR>
+nnoremap <silent> <Leader>h :tabprev<CR>
+nnoremap <silent> <Leader>l :tabnext<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
@@ -188,8 +190,9 @@ nnoremap [b :bprev<CR>
 nnoremap ]b :bnext<CR>
 nnoremap <Leader>p :bprev<CR>
 nnoremap <Leader>n :bnext<CR>
-"nnoremap <S-h> <cmd>bprev<CR>
-"nnoremap <S-l> <cmd>bnext<CR>
+" ditto for tabs
+nnoremap [t :tabprev<CR>
+nnoremap ]t :tabnext<CR>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
