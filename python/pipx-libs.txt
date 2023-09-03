@@ -12,6 +12,9 @@ mdv3
 # markdown presentation
 lookatme
 
+# TUI interface to Taskwarrior
+vit
+
 # terminal based spreadsheet
 visidata
 
