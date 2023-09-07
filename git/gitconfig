@@ -52,6 +52,7 @@
   s = status -s -b
   st = status --short --branch
   shorty = status --short --branch
+  rootdir = rev-parse --show-toplevel
   dif = diff
   diffc = diff --cached
   diffs = diff --stat

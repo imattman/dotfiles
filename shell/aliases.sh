@@ -6,6 +6,8 @@ alias ls='ls -F'
 alias ll='ls -l -h'
 alias l='ll'
 alias lla='ll -a'
+# list single column by size
+alias lt='ls -1 -S -s -h -F'
 
 alias _='sudo'
 alias e='${(z)EDITOR}'
@@ -31,6 +33,11 @@ alias repos-config-env='repos_config_env'
 alias jnb='jn_branch'
 alias jnf='jn_fzf_list'
 alias jns='jn_fzf_search'
+
+# linux conveniences
+# pretty print mounted drives
+alias mounts="mount | awk '{ printf \"%s\t%s\n\",\$1,\$3; }' | grep -E '^/dev/' | sort | column -t"
+
 
 # zettelkasten tools
 #alias vocab='vocab_fzf_list'
