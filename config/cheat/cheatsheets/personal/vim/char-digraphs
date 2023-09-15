@@ -42,6 +42,12 @@ symbol  digraph  description
 “       "6       left double quotation mark
 ”       "9       right double quotation mark
 
+½       14       fraction one quarter
+⅓       13       fraction one third
+½       12       fraction one half
+⅔       23       fraction two thirds
+¾       34       fraction three quarters
+
 æ       ae
 ä       a:
 å       aa
