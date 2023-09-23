@@ -45,6 +45,7 @@
 [alias]
   mainbranch = "!git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
   pull-rebase = "!git pull origin $(git mainbranch) --rebase"
+  pul = pull
   update-branch = "!git pull origin $(git rev-parse --abbrev-ref HEAD) --rebase"
   publish = push -u origin HEAD --force-with-lease
   pub = publish
