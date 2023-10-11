@@ -1,0 +1,19 @@
+---
+syntax: bash
+tags:
+- tar
+---
+
+# Use `--transform` with a sed expression to alter archive paths
+# ex: prepend "DATE-backup/" to path
+tar -czf backup.tar.gz \
+  --transform="s|^|$(date +%Y-%m-%d)-backup/|"  ~/workspace/stuff
+
+# Use `--show-transformed-names` with `--transform` to preview result
+tar -tzf go1.21.3-linux-amd64.tar.gz \
+  --transform="s|go/|go-1.21.3/|"  --show-transformed-names
+
+# Use `--strip-components=N` to remove the first N components of file path
+tar -zxf bootstrap.tar.gz bootstrap/install.sh --strip-components=1
+
+
