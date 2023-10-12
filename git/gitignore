@@ -3,10 +3,14 @@
 # Mac cruft
 .DS_Store
 
-# Python stuff
+# Python virtual environments
 venv/
 env/
 
+# VS Code project configs
+.vscode
+
+# project environment settings
 .env
 
 
