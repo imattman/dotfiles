@@ -27,7 +27,7 @@ function datestamp() {
 }
 
 function timestamp() {
-  local format='+%Y-%m-%dT%H:%M:%S%z'
+  local format='+%Y-%m-%d-%H%M%S'
 
   if [[ -n "$1" ]]; then
     $DATE_CMD -d "$1" "$format"
@@ -36,13 +36,13 @@ function timestamp() {
   fi
 }
 
-function timestampn() {
-  local format='+%Y-%m-%d.%H%M%S'
+function timestamp_utc() {
+  local format='+%Y-%m-%d-%H%M%S'
 
   if [[ -n "$1" ]]; then
-    $DATE_CMD -d "$1" "$format"
+    $DATE_CMD -u -d "$1" "$format"
   else
-    $DATE_CMD "$format"
+    $DATE_CMD -u "$format"
   fi
 }
 

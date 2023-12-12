@@ -85,8 +85,7 @@ alias dstamp=datestamp
 
 alias now=timestamp
 alias tstamp=timestamp
-alias tstampn=timestampn
-alias tsn=timestampn
+alias tstamputc=timestamp_utc
 alias tsisosec=timestamp_isosec
 
 # git habits
