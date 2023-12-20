@@ -12,7 +12,9 @@ tags:
 #   ${var/pattern/string}   longest match to pattern is replaced by string (first)
 #   ${var//pattern/string}  longest match to pattern is globally replaced by string
 #   ${var,,}                convert $var to lowercase
+#   ${var,}                 convert first char of $var to lowercase
 #   ${var^^}                convert $var to uppercase
+#   ${var^}                 convert first char of $var to uppercase
 
 # alternative to basename
 path_basename="${path##*/}"
