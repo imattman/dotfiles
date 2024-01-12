@@ -36,6 +36,14 @@
 [grep]
   extendRegexp = true
   lineNumber = true
+[diff]
+  tool = difftastic
+[difftool]
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
 [advice]
   # quiet warnings when rebasing
   skippedCherryPicks = false
@@ -58,6 +66,11 @@
   diffc = diff --cached
   diffs = diff --stat
   diffcs = diff --cached --stat
+
+  # difftastic for fancier diffs
+  dft = difftool
+  log-diff = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
+
   comit = commit
   commmit = commit
   co = checkout
@@ -90,6 +103,8 @@
   # commit message
   log-msg = log --format=%B
   log-msg-latest = log --format=%B -n 1
+  # commit file contents
+  log-contents = git log -p
   # show just files changed in revision
   log-files-only = diff-tree --no-commit-id --name-only -r 
   history = log --follow
