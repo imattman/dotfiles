@@ -1,0 +1,10 @@
+---
+syntax: bash
+tags:
+- rust
+- cargo
+---
+
+# To run tests without supressing test output
+cargo test -- --nocapture
+
