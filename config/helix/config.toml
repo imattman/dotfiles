@@ -1,0 +1,21 @@
+theme = "onedarker"
+#theme = "gruvbox_dark_hard"
+
+[editor]
+#auto-info = false           # disable info box in middle of screen
+line-number = "relative"
+cursorline = false
+bufferline = "multiple"     # list open buffers at top
+#cursorcolumn = true
+mouse = true
+scrolloff = 4
+#shell = ["bash", "-c"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
