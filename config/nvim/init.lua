@@ -19,6 +19,6 @@ require("lazy").setup("plugins")
 require("markdown")
 require("journal")
 
-vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "catppuccin"
 -- vim.cmd.colorscheme "kanagawa"
 
