@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
   --   t - auto-wrap text
   --   w - trailing whitespace indicates paragraph continues on next line
   -- command = "silent! setlocal spell formatoptions=acqt textwidth=80 colorcolumn=+1 wrap",
-  command = "silent! setlocal spell formatoptions=cqt textwidth=80 colorcolumn=+1 wrap",
+  command = "silent! setlocal spell formatoptions=cqt textwidth=80 colorcolumn=+1 wrap joinspaces",
 })
 
 vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
