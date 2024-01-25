@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
   desc = "Set formatting options in journal files",
   group = "journal",
   pattern = "*/journal/daily/*",
-  command = "silent! setlocal formatoptions=acqt spell wrap joinspaces",
+  command = "silent! setlocal formatoptions=cqt spell wrap joinspaces",
 })
 vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
   desc = "Register keybind for journal formatting",
