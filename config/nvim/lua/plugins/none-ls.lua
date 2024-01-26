@@ -1,5 +1,6 @@
 return {
   "nvimtools/none-ls.nvim",
+  enabled = false,  -- causes issues with markdown
 
   config = function()
     -- note: "none-ls" was forked from "null-ls" with remnants of the old name remaining
