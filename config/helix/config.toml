@@ -1,5 +1,7 @@
-theme = "onedarker"
-#theme = "gruvbox_dark_hard"
+theme = "kanagawa"
+#theme = "adwaita-dark"
+#theme = "jellybeans"
+#theme = "onedarker"
 
 [editor]
 #auto-info = false           # disable info box in middle of screen
