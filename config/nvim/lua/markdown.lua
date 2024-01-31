@@ -18,6 +18,9 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
   group = "markdown",
   pattern = "*.md",
   callback = function(event)
+    vim.cmd('iabbrev :shrug: ¯\\_(ツ)_/¯')
+    vim.cmd('iabbrev &shrug; ¯\\_(ツ)_/¯')
+
     vim.cmd("iabbrev :smile: 😄")
     vim.cmd("iabbrev :smile: 😄")
     vim.cmd("iabbrev :smiley: 😃")
