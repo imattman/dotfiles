@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+  echo '¯\_(ツ)_/¯'
+fi
+
+
