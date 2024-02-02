@@ -5,6 +5,8 @@ tags:
 - cargo
 ---
 
+# see `rustup` options for viewing docs locally
+
 # To run tests without supressing test output
 cargo test -- --nocapture
 

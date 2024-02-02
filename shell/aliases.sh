@@ -137,13 +137,18 @@ alias venv-site='python3 -m venv venv --system-site-packages && source venv/bin/
 alias activate='py_activate_virtualenv'
 alias simple-httpd.py='py_simple_httpd'
 
-# golang
+# go
 alias goenv='go env'
 alias gorun='go run'
 alias go-test='go_test'
 alias gobuild='go build'
 alias yaegi='rlwrap yaegi'
 alias go-interpreter='rlwrap yaegi'
+
+# rust
+alias rust-book='rustup doc --book'
+alias rust-ref='rustup doc --reference'
+alias rust-example='rustup doc --rust-by-example'
 
 # json 
 alias jpp='json-pp'

@@ -1,0 +1,27 @@
+---
+syntax: bash
+tags:
+- rust
+- rustup
+---
+
+# Launch local copy of standard lib documentation
+rustup doc --std
+
+# Launch local copy of "The Book" and other resources
+rustup doc --book
+rustup doc --rust-by-example
+rustup doc --reference
+
+# View documentation options
+rustup doc --help
+
+# Show current installed toolchain version
+rustup show
+
+# Check for toolchain updates
+rustup check
+
+# Update toolchain and `rustup`
+rustup update
+
