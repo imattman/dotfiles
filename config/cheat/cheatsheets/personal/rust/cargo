@@ -10,3 +10,6 @@ tags:
 # To run tests without supressing test output
 cargo test -- --nocapture
 
+# To view documentation for current project including dependencies
+cargo doc --open
+
