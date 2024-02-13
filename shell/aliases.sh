@@ -38,6 +38,9 @@ alias jns='jn_fzf_search'
 # pretty print mounted drives
 alias mounts="mount | awk '{ printf \"%s\t%s\n\",\$1,\$3; }' | grep -E '^/dev/' | sort | column -t"
 
+# reload font cache (use after adding files to ~/.local/share/fonts)
+alias font-reload-cache="fc-cache -fv"
+
 
 # zettelkasten tools
 #alias vocab='vocab_fzf_list'
