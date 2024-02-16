@@ -56,3 +56,22 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<leader>h", ":nohl<CR>", { silent = true })
+vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
+
+-- Visual mode --
+-- stay in indent mode
+vim.keymap.set("v", "<", "<gv", { silent = true })
+vim.keymap.set("v", ">", ">gv", { silent = true })
+
+-- move text up and down
+--vim.keymap.set("v", "<A-j>", ":m .+1<CR>==gv", { silent = true })
+--vim.keymap.set("v", "<A-k>", ":m .-2<CR>==gv", { silent = true })
+vim.keymap.set("v", "p", '"_dP', { silent = true }) -- paste without clobbering default register
+
+-- increment/decrement numbers in a column
+vim.keymap.set("x", "<C-a>", "<C-a>gv", { silent = true })
+vim.keymap.set("x", "<C-x>", "<C-x>gv", { silent = true })
+
+
