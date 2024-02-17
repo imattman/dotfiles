@@ -7,6 +7,8 @@
   branch = auto
   interactive = auto
   ui = auto
+[column]
+#  ui = auto
 [init]
 	defaultBranch = main
 [core]
@@ -14,6 +16,7 @@
   # autocrlf values: true -> always convert, false -> never convert, input -> convert on commit
   autocrlf = input
   editor = $EDITOR
+  #fsmonitor = true
 [credential]
   helper = osxkeychain
 [fetch]
@@ -27,6 +30,7 @@
   # avoid unnecessary merge commits
   # rebase = true
 [branch]
+  sort = committerdate
 #  autosetuprebase = always
 [merge]
   # complain if fast-forward merge isn't an option
@@ -48,6 +52,7 @@
   # quiet warnings when rebasing
   skippedCherryPicks = false
 [rerere]
+  # ReReRe - Reuse Recorded Resolution
 	enabled = true
 	autoUpdate = true
 [alias]
@@ -66,6 +71,7 @@
   diffc = diff --cached
   diffs = diff --stat
   diffcs = diff --cached --stat
+  diffw = diff --word-diff
 
   # difftastic for fancier diffs
   dft = difftool
@@ -80,8 +86,7 @@
   grep-group = "grep --break --heading --line-number"
   br = branch -a
   stsh = stash --keep-index
-  staash = stash --include-untracked
-  staaash = stash --all
+  staash = stash --all
   parents = "rev-list --parents --topo-order HEAD"
   common-ancestor = merge-base
   oldest-ancestor = "!zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -"
