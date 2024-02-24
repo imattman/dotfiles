@@ -60,6 +60,12 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
     vim.cmd("iabbrev :rage: 😡")
     vim.cmd("iabbrev :cursing_face: 🤬")
 
+    vim.cmd("iabbrev :coffee: ☕")
+    vim.cmd("iabbrev :sun: ☀️")
+    vim.cmd("iabbrev :sunshine: ☀️")
+    vim.cmd("iabbrev :umbrella: ☔")
+    vim.cmd("iabbrev :rain: 🌧️")
+
     vim.cmd("iabbrev :facepalm: 🤦")
     vim.cmd("iabbrev :hugging: 🤗")
     vim.cmd("iabbrev :heart: ❤️ ")
