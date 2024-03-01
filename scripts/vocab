@@ -7,7 +7,7 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-VOCAB_DIR="${ZET_VOCAB:-$NOTES_ZETTELKASTEN/vocabulary}"
+VOCAB_DIR="${ZET_VOCAB:-$NOTES_ZK/vocabulary}"
 TEMPLATES_DIR="$HOME/.dotfiles/templates/zet"
 TEMPLATE_FILE="$TEMPLATES_DIR/vocab.md"
 #CONFIG_DIR="$JOURNAL_BASE/config"

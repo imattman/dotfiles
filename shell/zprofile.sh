@@ -11,7 +11,8 @@ export DOCUMENTS="$HOME/Documents"
 export NOTES="$HOME/Notes"
 export NOTES_JOURNAL="$NOTES/journal"
 export NOTES_TECHNOTES="$NOTES/technotes"
-export NOTES_ZETTELKASTEN="$NOTES/zettelkasten"
+export NOTES_ZK="$NOTES/zettelkasten"
+export NOTES_DAYBOOK="$NOTES_ZK/daybook"
 export NOTES_PROJECTS="$NOTES/projects"
 export NOTES_TRANSIENT="$NOTES/transient"
 export NOTES_TASKS="$NOTES_TRANSIENT/gtd-tasks"
@@ -139,7 +140,7 @@ cdpath=(
   $DOCUMENTS
   $WORKSPACE
   $NOTES_TECHNOTES
-  $NOTES_ZETTELKASTEN
+  $NOTES_ZK
   $NOTES_JOURNAL
   $NOTES_TRANSIENT
   $NOTES_PROJECTS

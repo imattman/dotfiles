@@ -9,7 +9,7 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-DBK_DIR="${NOTES_ZETTELKASTEN/daybook}"
+DBK_DIR="${NOTES_ZK/daybook}"
 DBK_ENTRY_FILE="${NOTES_DAYBOOK_FILE:-$DBK_DIR/daybook-log.md}"
 TEMPLATES_DIR="${TEMPLATES_DIR:-$HOME/.dotfiles/templates/zet}"
 TEMPLATE_FILE="$TEMPLATES_DIR/daybook.md"
