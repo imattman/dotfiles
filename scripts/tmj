@@ -13,10 +13,14 @@ THIS_SCRIPT="${0##*/}"
 BASE_DIR="$(cd "${0%/*}" && pwd)"
 
 SESSION_NAME="journal"
-JN_WINDOW="jn"
-TASK_WINDOW="@GTD"
 JN_DIR="${NOTES_JOURNAL:-$HOME/Notes/journal}"
+JN_WINDOW="jn"
 TASKS_DIR="$NOTES_TASKS"
+TASK_WINDOW="@GTD"
+SCRATCH_DIR="$NOTES_SCRATCHPAD"
+SCRATCH_WINDOW="scratch"
+DAYBOOK_DIR="${NOTES_DAYBOOK:-$NOTES_ZK/daybook}"
+DAYBOOK_WINDOW="daybook"
 
 # keep strict varible checks happy
 TMUX="${TMUX:-}"
@@ -56,7 +60,13 @@ attach_or_launch() {
   local task_main_pane="${task_window}.1"
   local task_aux_pane="${task_window}.2"
 
-  #cd "$JN_DIR"
+  local scratch_window="${SESSION_NAME}:${SCRATCH_WINDOW}"
+  local scratch_main_pane="${scratch_window}.1"
+  local scratch_aux_pane="${scratch_window}.2"
+
+  local daybook_window="${SESSION_NAME}:${DAYBOOK_WINDOW}"
+  local daybook_main_pane="${daybook_window}.1"
+  local daybook_aux_pane="${daybook_window}.2"
 
   # jn entry window
   tmux new-session -c "$JN_DIR" -n "$JN_WINDOW" -d -s "$SESSION_NAME"
@@ -68,6 +78,14 @@ attach_or_launch() {
 
   # task window
   tmux new-window -c "$TASKS_DIR" -n "$TASK_WINDOW"
+  #tmux split -h -c "$SCRATCH_DIR" -t "$SESSION_NAME"
+  #tmux select-pane -t "$task_main_pane"
+
+  # scratchpad window
+  tmux new-window -c "$SCRATCH_DIR" -n "$SCRATCH_WINDOW"
+
+  # daybook window
+  tmux new-window -c "$DAYBOOK_DIR" -n "$DAYBOOK_WINDOW"
 
   # set focus and hop in
   tmux select-window -t "$jn_window"
