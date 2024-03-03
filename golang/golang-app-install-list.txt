@@ -5,6 +5,9 @@ golang.org/x/lint/golint@latest
 # Go debugger
 github.com/go-delve/delve/cmd/dlv@latest
 
+# Go profiler
+github.com/google/pprof@latest
+
 # LSP server
 golang.org/x/tools/gopls@latest
 
