@@ -11,8 +11,8 @@ JOURNAL_BASE="${NOTES_JOURNAL:-$HOME/Notes/journal}"
 JOURNAL_DIR="$JOURNAL_BASE/daily"
 TEMPLATES_DIR="$JOURNAL_BASE/templates"
 TEMPLATE_FILE="$TEMPLATES_DIR/daily.md"
-CONFIG_DIR="$JOURNAL_BASE/config"
-CONFIG_FILE="$CONFIG_DIR/jn.env"
+CONFIG_FILE="$XDG_CONFIG_HOME/jn-tools/jn.env"
+CONFIG_FILE_DEFAULT="$JOURNAL_BASE/config/jn.env"
 
 # diet values initialized in precheck function after loading config
 DIET=''
@@ -61,8 +61,10 @@ EOU
 }
 
 precheck() {
-  if [[ -f "$CONFIG_FILE" ]]; then
+  if [[ -r "$CONFIG_FILE" ]]; then
     source "$CONFIG_FILE"
+  elif [[ -r "$CONFIG_FILE_DEFAULT" ]]; then
+    source "$CONFIG_FILE_DEFAULT"
   fi
 
   DIET="${JN_DIET:-}"
