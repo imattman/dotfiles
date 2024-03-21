@@ -7,29 +7,37 @@ tags:
 # General taskwarrior usage
 task <filter> <command> [<args>]
 
-# To list all projects
+# List all projects
 task proj
 
-# To list all tasks in project "errands"
+# List all tasks in project "errands"
 task proj:errands
 
-# To list tasks in project "errands" that contain description "milk"
+# List tasks in project "errands" that contain description "milk"
 task proj:errands milk
 
-# To list all tags
+# List all tags
 task tag
 
-# To list tasks with tag 'finance'
+# List tasks with tag 'finance'
 task +finance
 
-# To change the project to "mentoring" for task 42
+# Change the project to "mentoring" for task 42
 task 42 mod proj:mentoring
 
-# To mark task 42 as complete
+# Mark task 42 as complete
 task 42 done
 
-# To undo most recent change
+# Undo most recent change
 task undo
 
+# Show current task configuration settings
+task show
+
+# Set `TASKDATA` to read data from different directory
+TASKDATA=$HOME/temp/gtd task ...
+
+# Set `TASKRC` to use alternate config
+TASKRC=$HOME/temp/gtd/task.cfg task ...
 
 
