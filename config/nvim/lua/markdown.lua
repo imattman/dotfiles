@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
 vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
   desc = "Configure emoji abbreviations",
   group = "markdown",
-  pattern = "*.md",
+  pattern = { "*.md", ".txt"},
   callback = function(event)
     vim.cmd('iabbrev :shrug: ¯\\_(ツ)_/¯')
     vim.cmd('iabbrev &shrug; ¯\\_(ツ)_/¯')
@@ -37,11 +37,15 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
     vim.cmd("iabbrev :wave: 👋")
 
     vim.cmd("iabbrev :neutral_face: 😐")
+    vim.cmd("iabbrev :neutral: 😐")
     vim.cmd("iabbrev :frowning_face: ☹️ ")
+    vim.cmd("iabbrev :frown: ☹️ ")
     vim.cmd("iabbrev :slightly_frowning_face: 🙁")
     vim.cmd("iabbrev :tired_face: 😫")
+    vim.cmd("iabbrev :tired: 😫")
     vim.cmd("iabbrev :raised_eyebrow: 🤨")
     vim.cmd("iabbrev :roll_eyes: 🙄")
+    vim.cmd("iabbrev :eye_roll: 🙄")
     vim.cmd("iabbrev :open_mouth: 😮")
     vim.cmd("iabbrev :thinking: 🤔")
     vim.cmd("iabbrev :upside_down_face: 🙃")
@@ -65,6 +69,11 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
     vim.cmd("iabbrev :sunshine: ☀️")
     vim.cmd("iabbrev :umbrella: ☔")
     vim.cmd("iabbrev :rain: 🌧️")
+
+
+    vim.cmd("iabbrev :linux: 🐧")
+    vim.cmd("iabbrev :penguin: 🐧")
+    vim.cmd("iabbrev :rust: 🦀")
 
     vim.cmd("iabbrev :facepalm: 🤦")
     vim.cmd("iabbrev :hugging: 🤗")
