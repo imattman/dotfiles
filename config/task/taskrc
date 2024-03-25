@@ -50,19 +50,20 @@ report.inbox.columns=id,start.age,entry.age,depends,priority,project,tags,recur,
 #report.items.filter=
 report.items.context=0
 report.items.labels=ID,Active,Age,Deps,P,Project,Recur,S,Due,Until,Description,Urg
-report.items.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+#report.items.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.items.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.items.sort = id,start-,due+,project+,urgency-
 
 report.zk.filter=+PENDING proj:zk
 report.zk.context=0
 report.zk.labels=ID,Active,Age,Deps,P,Project,Recur,S,Due,Until,Description,Urg
-report.zk.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.zk.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.zk.sort = id,start-,due+,project+,urgency-
 
 report.jn.filter=+PENDING proj:journal
 report.jn.context=0
 report.jn.labels=ID,Active,Age,Deps,P,Project,Recur,S,Due,Until,Description,Urg
-report.jn.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.jn.columns=id,start.age,entry.age,depends,priority,project,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
 report.jn.sort = id,start-,due+,project+,urgency-
 
 # report.list.columns = id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
