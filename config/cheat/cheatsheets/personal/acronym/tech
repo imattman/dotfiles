@@ -2,6 +2,8 @@
 
 KPI   Key Performance Indicator
 OKR   Objectives and Key Results
+OLAP  Online analytical processing (often column-based DBs)
+OLTP  Online transaction processing (traditional RDBMs)
 RCA   Root Cause Analysis
 SAFe  Scaled Agile Framework
 
