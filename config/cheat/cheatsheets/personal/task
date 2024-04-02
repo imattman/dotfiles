@@ -19,11 +19,21 @@ task proj:errands milk
 # List all tags
 task tag
 
-# List tasks with tag 'finance'
-task +finance
+# List tasks with tag 'errand'
+task +errand
+
+# List tasks without tag 'finance'
+task -finance
+
+# List tasks with *any* tags
+task +TAGGED
+task tags.any:
 
 # Change the project to "mentoring" for task 42
 task 42 mod proj:mentoring
+
+# Add tag "meetup" to task 42
+task 42 mod +meetup
 
 # Mark task 42 as complete
 task 42 done
