@@ -61,6 +61,7 @@ alias ssh-agent-list-keys='ssh-add -L'
 # taskwarrior
 alias t='task'
 alias tls='task ls'
+alias tasks='task items'
 alias tadd='task add'
 
 # elixir
