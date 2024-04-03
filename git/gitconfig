@@ -72,6 +72,7 @@
   diffs = diff --stat
   diffcs = diff --cached --stat
   diffw = diff --word-diff
+  diff-ls-files = diff --name-only
 
   # difftastic for fancier diffs
   dft = difftool
@@ -111,7 +112,7 @@
   # commit file contents
   log-contents = log -p
   # show just files changed in revision
-  log-files-only = diff-tree --no-commit-id --name-only -r 
+  log-ls-files = diff-tree --no-commit-id --name-only -r 
   history = log --follow
   # list most commonly changed files in repo
   code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
