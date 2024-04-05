@@ -11,7 +11,7 @@ return {
         "html",
         "javascript",
         "lua",
-        "markdown",
+  --      "markdown",
         "python",
         "rust",
         "yaml",

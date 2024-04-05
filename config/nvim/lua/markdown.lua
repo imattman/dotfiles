@@ -33,7 +33,9 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
     vim.cmd("iabbrev :cry: 😢")
 
     vim.cmd("iabbrev :thumbsup: 👍")
+    vim.cmd("iabbrev :thumbs_up: 👍")
     vim.cmd("iabbrev :thumbsdown: 👎")
+    vim.cmd("iabbrev :thumbs_down: 👎")
     vim.cmd("iabbrev :wave: 👋")
 
     vim.cmd("iabbrev :neutral_face: 😐")
