@@ -1,9 +1,11 @@
 # tech acronyms
 
 KPI   Key Performance Indicator
+NPS   Net Promoter Score (scale 1-9, likelihood one would recommend X)
 OKR   Objectives and Key Results
 OLAP  Online analytical processing (often column-based DBs)
 OLTP  Online transaction processing (traditional RDBMs)
+OTEL  OpenTelemetry
 RCA   Root Cause Analysis
 SAFe  Scaled Agile Framework
 
