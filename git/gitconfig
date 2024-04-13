@@ -114,6 +114,7 @@
   # show just files changed in revision
   log-ls-files = diff-tree --no-commit-id --name-only -r 
   history = log --follow
+  rebase-keep-dates = rebase --committer-date-is-author-date
   # list most commonly changed files in repo
   code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
   syncupstreammain = "!git pull upstream main && git push origin main"
