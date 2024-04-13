@@ -23,7 +23,7 @@
   "workbench.iconTheme": "vscode-great-icons",
   // "workbench.iconTheme": "material-icon-theme",
 
-  "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+  // "editor.fontFamily": "'Hack Nerd Font Mono', 'Fira Code', 'Courier New', monospace",
   "editor.fontWeight": "normal",
   "editor.fontSize": 16,
   // Use 0 to compute the lineHeight from the fontSize.
@@ -175,7 +175,6 @@
   "[elixir]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.wordBasedSuggestions": false,
     "editor.formatOnType": true,
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
@@ -256,4 +255,5 @@
       "haskell": "runhaskell",
       "nim": "nim compile --verbosity:0 --hints:off --run"
   },
+  "update.showReleaseNotes": false,
 }
