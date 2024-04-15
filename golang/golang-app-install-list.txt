@@ -29,6 +29,10 @@ github.com/oklog/ulid/cmd/ulid@latest
 # http live reload
 github.com/cosmtrek/air@latest
 
+# enum boilerplate generator
+# see: https://www.zarl.dev/articles/enums
+github.com/zarldev/goenums@latest
+
 # yaegi Go interpretter
 github.com/traefik/yaegi/cmd/yaegi@latest
 
