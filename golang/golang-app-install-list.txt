@@ -47,8 +47,10 @@ github.com/a-h/templ/cmd/templ@latest
 # terminal countdown timer
 github.com/antonmedv/countdown@latest
 
-# terminal markdown renderer
+# Charm tools
 github.com/charmbracelet/glow@latest
+github.com/charmbracelet/gum@latest
+#github.com/charmbracelet/skate@latest
 
 # terminal presentation tool (by Charm developer)
 github.com/maaslalani/slides@latest
