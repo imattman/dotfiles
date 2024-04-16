@@ -101,7 +101,8 @@
   logf = log --format=fuller
   log-details = log --format=fuller --stat
   logds = log --format=fuller --stat
-  tree = log --graph --branches --pretty=oneline --decorate
+  logt = log --graph --branches --pretty=oneline --decorate
+  tree = log --graph --branches --pretty=oneline --decorate --all
   grog = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
   shortlog-counts = shortlog -sne
   user-counts = shortlog -sne
