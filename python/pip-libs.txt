@@ -1,4 +1,0 @@
-# common libraries
-requests
-pytest
-

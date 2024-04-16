@@ -65,7 +65,13 @@ fi
 
 
 install_from_file pipx $PIPX_FILE
-install_from_file 'python3 -m pip install --user' $PIP_FILE
+
+if [[ -r "$PIP_FILE" ]]; then
+  install_from_file 'python3 -m pip install --user' $PIP_FILE
+else
+  echo "pip file not found: $PIP_FILE"
+  echo "skipping pip library install..."
+fi
 
 exit 0
 
