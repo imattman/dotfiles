@@ -9,7 +9,7 @@ return {
 	},
 
 	config = function()
-		vim.keymap.set('n', '<leader>e', ':Neotree reveal left toggle<CR>', { silent = true})
+		vim.keymap.set('n', '<C-n>', ':Neotree reveal left toggle<CR>', { silent = true})
 		-- vim.keymap.set('n', '<C-n>', ':Neotree reveal left toggle<CR>', { silent = true})
 	end
 }
