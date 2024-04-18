@@ -499,6 +499,21 @@ ascii_fish() {
   echo "asciiquarium not found"
 }
 
+check_cpu_virtualization_enabled() {
+  if [[ "$PLATFORM" != "linux" ]]; then
+    echo "check only supported on Linux"
+    return 1
+  fi
+
+  # VMX is the Intel flag
+  # SVM is the AMD flag
+  if [[ $(grep -c -E "(vmx|svm)" /proc/cpuinfo) -gt 0 ]]; then
+    echo "YES"
+  else
+    echo "NO"
+  fi
+}
+
 
 # colorize output of 'go test'
 # shamelessly stolen from Jon Calhoun
