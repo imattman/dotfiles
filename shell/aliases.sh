@@ -95,6 +95,7 @@ alias tsisosec=timestamp_isosec
 # git habits
 alias git-fix-date=git-date-fix
 alias git-rebase-author-date='git rebase --committer-date-is-author-date'
+alias lg='lazygit'
 
 # calendar with week starting Monday
 alias cal-euro='ncal -M -b'
