@@ -26,8 +26,11 @@ github.com/cheat/cheat/cmd/cheat@latest
 # UUID library and CLI
 github.com/oklog/ulid/cmd/ulid@latest
 
-# http live reload
+# http livereload
 github.com/cosmtrek/air@latest
+
+# simple livereload tool -- not functional and seems abandoned
+# github.com/cortesi/devd@latest
 
 # enum boilerplate generator
 # see: https://www.zarl.dev/articles/enums
@@ -85,6 +88,6 @@ github.com/dmarkham/enumer@latest
 github.com/m-zajac/json2go/...@latest
 
 # GOA web API gen tools
-goa.design/goa/v3/...@v3
+#goa.design/goa/v3/...@v3
 
 
