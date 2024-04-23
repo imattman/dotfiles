@@ -1,0 +1,15 @@
+# shell prompts made easy
+starship
+
+# simple HTTP server with livereload
+live-server
+
+# Felix - TUI file manager
+felix
+
+# Code search and rewrite util
+ast-grep
+
+# Taskwarrior TUI front end
+taskwarrior-tui
+
