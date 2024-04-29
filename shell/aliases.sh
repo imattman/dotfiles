@@ -33,6 +33,7 @@ alias repos-config-env='repos_config_env'
 alias jnb='jn_branch'
 alias jnf='jn_fzf_list'
 alias jns='jn_fzf_search'
+alias jnconf='e $XDG_CONFIG_HOME/jn-tools/jn.env'
 
 # linux conveniences
 # pretty print mounted drives
