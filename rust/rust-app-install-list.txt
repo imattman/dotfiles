@@ -1,7 +1,10 @@
 # shell prompts made easy
 starship
 
-# simple HTTP server with livereload
+# simple HTTP server
+simple-http-server
+
+# another simple HTTP server with livereload
 live-server
 
 # Felix - TUI file manager
