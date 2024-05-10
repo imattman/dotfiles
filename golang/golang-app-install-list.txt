@@ -36,6 +36,9 @@ github.com/cosmtrek/air@latest
 # see: https://www.zarl.dev/articles/enums
 github.com/zarldev/goenums@latest
 
+# Go test output formatter
+github.com/bitfield/gotestdox/cmd/gotestdox@latest
+
 # yaegi Go interpretter
 github.com/traefik/yaegi/cmd/yaegi@latest
 
