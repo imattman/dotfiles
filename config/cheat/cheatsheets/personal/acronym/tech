@@ -1,6 +1,7 @@
 # tech acronyms
 
 CVE   Common Vulnerabilities and Exposures
+ELF   Executable and Linkable Format (Linux binary)
 KPI   Key Performance Indicator
 NPS   Net Promoter Score (scale 1-9, likelihood one would recommend X)
 OKR   Objectives and Key Results
