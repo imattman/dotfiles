@@ -26,8 +26,11 @@ github.com/cheat/cheat/cmd/cheat@latest
 # UUID library and CLI
 github.com/oklog/ulid/cmd/ulid@latest
 
-# http livereload
+# HTTP livereload
 github.com/air-verse/air@latest
+
+# HTTP server with request inspection and configurable response handling
+github.com/gchaincl/httplab/cmd/httplab@latest
 
 # simple livereload tool -- not functional and seems abandoned
 # github.com/cortesi/devd@latest
@@ -63,6 +66,9 @@ github.com/maaslalani/slides@latest
 
 # git TUI
 github.com/jesseduffield/lazygit@latest
+
+# docker TUI
+github.com/jesseduffield/lazydocker@latest
 
 # yq - YAML processor (similar to `jq`)
 github.com/mikefarah/yq/v4@latest
