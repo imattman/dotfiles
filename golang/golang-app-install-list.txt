@@ -27,7 +27,7 @@ github.com/cheat/cheat/cmd/cheat@latest
 github.com/oklog/ulid/cmd/ulid@latest
 
 # http livereload
-github.com/cosmtrek/air@latest
+github.com/air-verse/air@latest
 
 # simple livereload tool -- not functional and seems abandoned
 # github.com/cortesi/devd@latest
