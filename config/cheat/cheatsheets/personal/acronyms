@@ -1,7 +1,15 @@
+---
+syntax: text
+tags:
+- jargon
+- terms
+---
+
 # tech acronyms
 
+BSS   Block Starting Symbol (segment of binary text)
 CVE   Common Vulnerabilities and Exposures
-ELF   Executable and Linkable Format (Linux binary)
+ELF   Executable and Linkable Format (Linux binary file)
 KPI   Key Performance Indicator
 NPS   Net Promoter Score (scale 1-9, likelihood one would recommend X)
 OKR   Objectives and Key Results
