@@ -1,6 +1,9 @@
 # shell prompts made easy
 starship
 
+# command runner (modern 'make')
+just
+
 # simple HTTP server
 simple-http-server
 
@@ -12,6 +15,9 @@ felix
 
 # Code search and rewrite util
 ast-grep
+
+# AST-based diff tool
+difftastic
 
 # Taskwarrior TUI front end
 taskwarrior-tui
