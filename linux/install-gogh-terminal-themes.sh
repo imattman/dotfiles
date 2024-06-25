@@ -10,7 +10,7 @@ fi
 THIS_SCRIPT="${0##*/}"
 BASE_DIR="$(cd "${0%/*}" && pwd)"
 
-CLONE_BASE="${1:-XDG_LOCAL_HOME}"
+CLONE_BASE="${1:-$XDG_LOCAL_HOME}"
 CLONE_DIR="gogh-terminal-themes"
 
 
