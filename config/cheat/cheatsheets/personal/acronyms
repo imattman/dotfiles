@@ -10,6 +10,7 @@ tags:
 BSS   Block Starting Symbol (segment of binary text)
 CVE   Common Vulnerabilities and Exposures
 ELF   Executable and Linkable Format (Linux binary file)
+GTS   Grand Touring Support (latest-1, Bluefin Linux community)
 KPI   Key Performance Indicator
 NPS   Net Promoter Score (scale 1-9, likelihood one would recommend X)
 OKR   Objectives and Key Results
