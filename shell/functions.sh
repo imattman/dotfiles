@@ -358,6 +358,12 @@ update_linux() {
     echo "Updating flatpak..."
     flatpak update -y
   fi
+
+  if [[ $(command -v snap) ]]; then
+    echo
+    echo "Updating snap..."
+    sudo snap refresh
+  fi
 }
 
 update_macos() {
