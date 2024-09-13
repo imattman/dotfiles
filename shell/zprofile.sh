@@ -94,11 +94,11 @@ export LESS="-F -X $LESS"
 
 ## Go
 export GOPATH="$XDG_DATA_HOME/go"
-if [[ $(command -v go) ]]; then
-  export GOROOT=$(go env GOROOT)
-  #export GOBIN="$XDG_LOCAL_BIN"
-  export GOBIN="$GOPATH/bin"
-fi
+export GOBIN="$GOPATH/bin"
+# if [[ $(command -v go) ]]; then
+#   #export GOROOT=$(go env GOROOT)
+#   #export GOBIN="$XDG_LOCAL_BIN"
+# fi
 
 ## Elixir
 export MIX_HOME="$XDG_DATA_HOME/mix"

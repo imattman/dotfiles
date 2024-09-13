@@ -26,6 +26,9 @@ alias cdn='cd_notes'
 alias cdr='cd_repos'
 alias cdw='cd_workspace'
 
+# distrobox
+alias dbox='distrobox'
+
 # repos tools
 alias repos-config-env='repos_config_env'
 
