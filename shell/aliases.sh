@@ -32,11 +32,14 @@ alias dbox='distrobox'
 # repos tools
 alias repos-config-env='repos_config_env'
 
-# journal tools
-alias jnb='jn_branch'
+# journal & daybook tools
+alias jnbr='jn_branch'
 alias jnf='jn_fzf_list'
 alias jns='jn_fzf_search'
 alias jnconf='e $XDG_CONFIG_HOME/jn-tools/jn.env'
+alias dbkbr='dbk_branch'
+alias dbkf='dbk_fzf_list'
+alias dbks='dbk_fzf_search'
 
 # linux conveniences
 # pretty print mounted drives

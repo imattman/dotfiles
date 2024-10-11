@@ -135,6 +135,20 @@ repos_config_env() {
   fi
 }
 
+dbk_branch() {
+  cd "$NOTES_DAYBOOK" || return 1
+  local day="${1:-today}"
+  local date="$(datestamp "$day")"
+
+  local branch="$(git rev-parse --abbrev-ref HEAD)"
+  if [[ $branch != "main" && $branch != "master" ]]; then
+    echo "WARNING: repo is currently on branch $branch"
+  fi
+
+  git checkout -b "daybook-${date}"
+  #jn.sh "$date"
+}
+
 jn() {
   # look for 'jn' in PATH (ignores this function)
   local jnpath=$(whence -p jn)
