@@ -14,6 +14,8 @@ return {
   --      "markdown",
         "python",
         "rust",
+        "vim",
+        "vimdoc",
         "yaml",
       },
       -- auto_install = true,
