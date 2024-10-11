@@ -57,6 +57,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<leader>h", ":nohl<CR>", { silent = true })
+vim.keymap.set("n", "<esc>", ":nohl<CR>", { silent = true })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
 

@@ -24,10 +24,10 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
   command = "nnoremap <F8> mE:silent %!emojify<CR>`E",
   -- command = "nnoremap <F8> :silent %!emojify<CR>G",
 })
-vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
-  desc = "Use local directory when editing journal files",
-  group = "journal",
-  pattern = "*/journal/daily/*",
-  command = ":silent lcd %:p:h",
-})
+-- vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
+--   desc = "Use local directory when editing journal files",
+--   group = "journal",
+--   pattern = "*/journal/daily/*",
+--   command = ":silent lcd %:p:h",
+-- })
 

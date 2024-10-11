@@ -72,6 +72,10 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
     vim.cmd("iabbrev :umbrella: ☔")
     vim.cmd("iabbrev :rain: 🌧️")
 
+    vim.cmd("iabbrev :books: 📚")
+    vim.cmd("iabbrev :notebook: 📓")
+    vim.cmd("iabbrev :pen: ✒️")
+    vim.cmd("iabbrev :pencil: ✏️ ")
 
     vim.cmd("iabbrev :linux: 🐧")
     vim.cmd("iabbrev :penguin: 🐧")
