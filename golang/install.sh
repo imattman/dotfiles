@@ -74,7 +74,8 @@ if [[ $# -gt 0 ]]; then
     esac
   done
 else
-  go_get "$PKG_FILE"
+  # delegate dependency managment to respective projects
+  #go_get "$PKG_FILE"
   go_install "$APP_FILE"
 fi
 
