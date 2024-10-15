@@ -19,5 +19,6 @@ OLTP  Online transaction processing (traditional RDBMs)
 OTEL  OpenTelemetry
 RCA   Root Cause Analysis
 SAFe  Scaled Agile Framework
+ULID  Universally unique Lexicographically sortable IDentifier
 
 
