@@ -2,6 +2,10 @@
 golang.org/x/tools/cmd/...@latest
 golang.org/x/lint/golint@latest
 
+# to disable telemetry upload or completely:
+#   gotelemetry {local|off}
+golang.org/x/telemetry/cmd/gotelemetry@latest
+
 # Go debugger
 github.com/go-delve/delve/cmd/dlv@latest
 
