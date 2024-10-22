@@ -17,6 +17,7 @@ OKR   Objectives and Key Results
 OLAP  Online analytical processing (often column-based DBs)
 OLTP  Online transaction processing (traditional RDBMs)
 OTEL  OpenTelemetry
+RAG   Retrieval-augmented generation (LLM enhanced by information retrieval system)
 RCA   Root Cause Analysis
 SAFe  Scaled Agile Framework
 ULID  Universally unique Lexicographically sortable IDentifier
