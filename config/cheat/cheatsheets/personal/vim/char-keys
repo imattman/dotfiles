@@ -2,8 +2,18 @@
 syntax: text
 tags:
 - vim
+- special-chars
 - unicode
 ---
+
+# Use <C-v> to insert special keys such as '\t' and '\r'
+<C-v><Tab>   inserts '\t'
+<C-v><C-i>   also inserts '\t'
+<C-v><C-m>   inserts '\r' (carriage return)
+<C-v><C-j>   inserts '\n'
+
+# To find additional documentation on special keys
+:help ins-special-keys
 
 # To list a searchable table of available mappings
 :help digraph-table
@@ -12,7 +22,7 @@ tags:
 :digraphs
 
 
-# use <C-k> followed by digraph shortcut to insert symbol
+# Use <C-k> followed by digraph shortcut to insert symbol
 
 symbol  digraph  description
 ------  -------  -----------
