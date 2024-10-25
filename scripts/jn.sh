@@ -24,7 +24,7 @@ DIET_FAST='fasting'
 DATE_CMD="date"
 UUID_CMD="uuid"
 JN_EDITOR=${VISUAL:-${EDITOR:-}}
-EDITOR_OPTS=''  # "+8"
+EDITOR_OPTS='-c /pounds -c nohl'
 
 usage() {
   local THIS_SCRIPT="${0##*/}"
@@ -287,7 +287,8 @@ for day in "${days[@]}"; do
 done
 
 if [[ -n $do_edit ]]; then
-  exec $JN_EDITOR $EDITOR_OPTS $files
+  cd "$JOURNAL_DIR"
+  exec $JN_EDITOR ${EDITOR_OPTS@Q} $files
 fi
 
 
