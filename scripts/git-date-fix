@@ -26,7 +26,7 @@ EOU
 
 match_commit_date_to_author() {
   local auth_date="$(git log -n 1 --format=%aD)"
-  GIT_COMMITTER_DATE="$auth_date" git commit --amend --no-edit --date="$auth_date"
+  GIT_COMMITTER_DATE="$auth_date" git commit --amend --no-edit --allow-empty --date="$auth_date"
 }
 
 
