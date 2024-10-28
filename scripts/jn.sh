@@ -24,7 +24,7 @@ DIET_FAST='fasting'
 DATE_CMD="date"
 UUID_CMD="uuid"
 JN_EDITOR=${VISUAL:-${EDITOR:-}}
-EDITOR_OPTS='-c /pounds -c nohl'
+EDITOR_OPTS=('-c /pounds' '-c nohl' '-c normal $')
 
 usage() {
   local THIS_SCRIPT="${0##*/}"
@@ -245,11 +245,11 @@ do_edit=true
 while getopts 'hlpt:' OPTION
 do
   case $OPTION in
-    l)  do_edit=''
-        do_prepare=''
+    l)  do_edit=false
+        do_prepare=false
         ;;
     p)  do_prepare=true
-        do_edit=''
+        do_edit=false
         ;;
     t)  tmpl="$OPTARG"
         verify_template "$tmpl"
@@ -266,7 +266,7 @@ shift $((OPTIND - 1))
 
 precheck
 days=("$@")
-files=""
+files=()
 
 # default to 'today'
 if [[ ${#days[@]} -eq 0 ]]; then
@@ -277,18 +277,18 @@ fi
 for day in "${days[@]}"; do
   isodate=$(isodate "$day")
   jnfile=$(jnfile "$isodate")
-  if [[ -n $do_prepare ]]; then
+  if [[ $do_prepare == true ]]; then
     prepare "$jnfile" "$isodate"
-  else
+  elif [[ $do_edit != true ]]; then
     echo "$jnfile"
   fi
 
-  files="${files} $jnfile"
+  files+=("$jnfile")
 done
 
-if [[ -n $do_edit ]]; then
+if [[ $do_edit == true ]]; then
   cd "$JOURNAL_DIR"
-  exec $JN_EDITOR ${EDITOR_OPTS@Q} $files
+  exec $JN_EDITOR "${EDITOR_OPTS[@]}" "${files[@]}"
 fi
 
 
