@@ -16,6 +16,22 @@ function set-xterm-color() {
   export TERM=xterm-256color
 }
 
+function cal() {
+  local ncalpath=$(whence -p ncal)
+  local calpath=$(whence -p cal)
+
+  if [[ -n "$ncalpath" ]]; then
+    # ncal output in old format, weeks start on Mon
+    $ncalpath -b -M "$@"
+  elif [[ -n "$calpath" ]]; then
+    # fall back to old 'cal'
+    $calpath "$@"
+  else
+    echo "neither 'ncal' nor 'cal' found"
+    return 1
+  fi
+}
+
 function datestamp() {
   local format='+%Y-%m-%d'
 
