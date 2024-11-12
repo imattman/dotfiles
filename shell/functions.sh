@@ -20,8 +20,9 @@ function cal() {
   local ncalpath=$(whence -p ncal)
   local calpath=$(whence -p cal)
 
-  if [[ -n "$ncalpath" ]]; then
+  if [[ -n "$ncalpath" && "$PLATFORM" != 'darwin' ]]; then
     # ncal output in old format, weeks start on Mon
+    # note: MacOS doesn't support `ncal` options
     $ncalpath -b -M "$@"
   elif [[ -n "$calpath" ]]; then
     # fall back to old 'cal'
