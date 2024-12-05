@@ -30,6 +30,7 @@ symbol  digraph  description
 ◆       Db       diamond bullet
 ·       ~.       middle dot
 ϴ       '%       Greek theta
+Δ       D*       Greek delta
 £       Pd       British pound symbol
 ©       Co       copyright symbol
 ®       Rg       registered trademark symbol
@@ -39,8 +40,13 @@ symbol  digraph  description
 –       -N       en-dash
 —       -M       em-dash
 
+§       SE       section sign
 ¶       pp       pilcrow sign
-¬       -,       not sign
+¬       NO       logical not
+∪       )U       union
+∩       (U       intersection
+∑       +Z       sum
+Π       *P       product
 «       <<       left-pointing double angle quotation mark
 »       >>       right-pointing double angle quotation mark
 ±       +-       plus-minus sign
