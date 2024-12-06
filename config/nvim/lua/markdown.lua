@@ -87,6 +87,23 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile","BufEnter"}, {
     vim.cmd("iabbrev :kissing_heart: 😘")
     vim.cmd("iabbrev :heart_eyes: 😍")
     vim.cmd("iabbrev :clown_face: 🤡")
+
+    vim.cmd("iabbrev :delta: Δ")
+    vim.cmd("iabbrev :section: §")
+
+    vim.cmd("iabbrev :not: ¬")
+    vim.cmd("iabbrev :union: ∪")
+    vim.cmd("iabbrev :intersect: ∩")
+    vim.cmd("iabbrev :intersection: ∩")
+    vim.cmd("iabbrev :empty: ∅")
+    vim.cmd("iabbrev :emptyset: ∅")
+    vim.cmd("iabbrev :integral: ∫")
+    vim.cmd("iabbrev :derivative: ∂")
+    vim.cmd("iabbrev :differential: ∂")
+    vim.cmd("iabbrev :sum: ∑")
+    vim.cmd("iabbrev :sigma: ∑")
+    vim.cmd("iabbrev :product: ∏")
+
   end
 })
 
