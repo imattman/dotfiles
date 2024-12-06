@@ -9,15 +9,20 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-DBK_DIR="${NOTES_ZK/daybook}"
-DBK_ENTRY_FILE="${NOTES_DAYBOOK_FILE:-$DBK_DIR/daybook-log.md}"
-TEMPLATES_DIR="${TEMPLATES_DIR:-$HOME/.dotfiles/templates/zet}"
-TEMPLATE_FILE="$TEMPLATES_DIR/daybook.md"
+#DBK_DIR="${NOTES_ZK/daybook}"
+: ${DBK_DIR:=${NOTES_ZK}/daybook}
+#DBK_ENTRY_FILE="${NOTES_DAYBOOK_FILE:-$DBK_DIR/daybook-log.md}"
+
+: ${DBK_TEMPLATES_DIR:=$NOTES_ZK/templates}
+: ${DBK_TEMPLATE_HEADER:=daybook-header.md}
+: ${DBK_TEMPLATE_ENTRY:=daybook-entry.md}
+: ${DBK_TEMPLATE_HEADER_PATH:=$DBK_TEMPLATES_DIR/$DBK_TEMPLATE_HEADER}
+: ${DBK_TEMPLATE_ENTRY_PATH:=$DBK_TEMPLATES_DIR/$DBK_TEMPLATE_ENTRY}
+: ${DBK_EDITOR:=${VISUAL:-${EDITOR:-}}}
 
 DATE_CMD="date"
 UUID_CMD="uuid"
-DBK_EDITOR=${VISUAL:-${EDITOR:-}}
-EDITOR_OPTS=''  # "+8"
+DBK_EDITOR_OPTS=('-c normal G' '-c ?topic' '-c nohl' '-c normal $')
 
 usage() {
   local THIS_SCRIPT="${0##*/}"
@@ -37,9 +42,6 @@ Examples:
 
 OPTIONS:
    -h:  Show this message
-   -t:  Supply template argument.  A basic match is performed looking
-        for templates that optionally can include "daybook-" prefix 
-        and ".md" suffix
 
 EOU
 }
@@ -73,8 +75,8 @@ precheck() {
     echo 1
   fi
 
-  if [[ ! -d "$TEMPLATES_DIR" ]]; then
-    echo "Templates directory not found; check $TEMPLATES_DIR and \$TEMPLATES"
+  if [[ ! -d "$DBK_TEMPLATES_DIR" ]]; then
+    echo "Templates directory not found; check $DBK_TEMPLATES_DIR"
     exit 1
   fi
 
@@ -82,31 +84,20 @@ precheck() {
     echo "Warning: 'uuid' command not found"
   fi
 
+  if [[ ! -f "$DBK_TEMPLATE_HEADER_PATH" ]]; then
+    echo "Template header file not found: $DBK_TEMPLATE_HEADER_PATH"
+    exit 1
+  fi
+
+  if [[ ! -f "$DBK_TEMPLATE_ENTRY_PATH" ]]; then
+    echo "Template entry file not found: $DBK_TEMPLATE_ENTRY_PATH"
+    exit 1
+  fi
+
   return 0
 }
 
-verify_template() {
-  local tmpl="$1"
-  local full_path
-
-  # partial name may have been supplied
-  for tfile in "$tmpl" "${tmpl}.md" "daybook-${tmpl}" "daybook-${tmpl}.md"; do
-    full_path="$TEMPLATES_DIR/${tfile}"
-    #echo "  checking for template ${full_path}"
-    if [[ -f "$full_path" ]]; then
-      #echo "Setting template to $full_path"
-      TEMPLATE_FILE="$full_path"
-      return
-    fi
-  done
-
-  if [[ ! -f "$full_path" ]]; then
-    echo "Template file not found: $tmpl"
-    exit 1
-  fi
-}
-
-datestamp() {
+isodate() {
   local day="${1:-today}"
 
   # strip possible ".md" extension
@@ -114,6 +105,11 @@ datestamp() {
 
   $DATE_CMD -d "$day" +%Y-%m-%d
 }
+
+date_path() {
+  $DATE_CMD -d "$1" "+%Y"
+}
+
 
 setup_vars() {
   local day="$1"
@@ -132,11 +128,17 @@ setup_vars() {
   fi
 }
 
+dbkfile() {
+  local isodate="$1"
+  local entry_dir="$(date_path "$isodate")"
 
-header() {
-  local day="$1"
-  local template="${2:-$TEMPLATE_FILE}"
-  setup_vars "$day"
+  printf "$DBK_DIR/%s/%s-daybook.md" "$entry_dir" "$isodate"
+}
+
+
+process_template() {
+  local template="$1"
+  local day="$2"
 
   #echo "Using template ${template}"
   if [[ ! -f "$template" ]]; then
@@ -149,31 +151,34 @@ header() {
 
 
 prepare() {
-  local cmfile="$1"
+  local dbkfile="$1"
   local isodate="$2"
 
-  header "$isodate" >> "$cmfile"
-  echo -n "$cmfile"
+  setup_vars "$isodate"
+
+  if [[ ! -f "$dbkfile" ]]; then
+    process_template "$DBK_TEMPLATE_HEADER_PATH" "$isodate" >> "$dbkfile"
+  fi
+
+  process_template "$DBK_TEMPLATE_ENTRY_PATH" "$isodate" >> "$dbkfile"
+
+#  echo -n "$dbkfile"
 }
 
 
-do_prepare=
-do_edit=
-cmfile="${DBK_ENTRY_FILE}"
+do_prepare=true
+do_edit=true
+dbkfile=''
 
-while getopts 'fhlpt:' OPTION
+while getopts 'fhlp' OPTION
 do
   case $OPTION in
-    f)  cmfile="$OPTARG"
+    f)  dbkfile="$OPTARG"
         ;;
-    l)  do_edit=''
-        do_prepare=''
+    l)  do_edit=false
+        do_prepare=false
         ;;
     p)  do_prepare=true
-        do_edit=''
-        ;;
-    t)  tmpl="$OPTARG"
-        verify_template "$tmpl"
         ;;
     h|?)
         usage
@@ -187,27 +192,28 @@ shift $((OPTIND - 1))
 
 precheck
 days=("$@")
-files=""
+files=()
 
 # default to 'today'
 if [[ ${#days[@]} -eq 0 ]]; then
   days=('today')
 fi
 
-
 for day in "${days[@]}"; do
-  datestamp=$(datestamp "$day")
-  if [[ -n $do_prepare ]]; then
-    prepare "$cmfile" "$datestamp"
-  else
-    header "$datestamp"
+  isodate=$(isodate "$day")
+  dbkfile=$(dbkfile "$isodate")
+  if [[ $do_prepare == true ]]; then
+    prepare "$dbkfile" "$isodate"
+  elif [[ $do_edit != true ]]; then
+    echo "$dbkfile"
   fi
 
-  files="${files} $cmfile"
+  files+=("$dbkfile")
 done
 
-if [[ -n $do_edit ]]; then
-  exec $DBK_EDITOR $EDITOR_OPTS $files
-fi
 
+if [[ $do_edit == true ]]; then
+  cd "$DBK_DIR"
+  exec $DBK_EDITOR "${DBK_EDITOR_OPTS[@]}" "${files[@]}"
+fi
 
