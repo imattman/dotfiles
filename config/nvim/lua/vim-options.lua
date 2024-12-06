@@ -61,6 +61,12 @@ vim.keymap.set("n", "<esc>", ":nohl<CR>", { silent = true })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
 
+-- split windows
+vim.keymap.set("n", "<C-h>", "<C-W>h<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", "<C-W>j<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", "<C-W>k<CR>", { silent = true })
+vim.keymap.set("n", "<C-l>", "<C-W>l<CR>", { silent = true })
+
 -- Visual mode --
 -- stay in indent mode
 vim.keymap.set("v", "<", "<gv", { silent = true })
