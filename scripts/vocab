@@ -7,11 +7,9 @@ if [[ -n "${DEBUG:=}" ]]; then
   set -x
 fi
 
-VOCAB_DIR="${ZET_VOCAB:-$NOTES_ZK/vocabulary}"
-TEMPLATES_DIR="$HOME/.dotfiles/templates/zet"
-TEMPLATE_FILE="$TEMPLATES_DIR/vocab.md"
-#CONFIG_DIR="$JOURNAL_BASE/config"
-#CONFIG_FILE="$CONFIG_DIR/jn.env"
+VOCAB_DIR="${ZK_VOCAB:-$NOTES_ZK/vocabulary}"
+VOCAB_TEMPLATES_DIR="${ZK_VOCAB_TEMPLATES:-$NOTES_ZK/templates}"
+VOCAB_TEMPLATE_FILE="$VOCAB_TEMPLATES_DIR/vocab.md"
 
 VOCAB_EDITOR=${VOCAB_EDITOR:-${VISUAL:-${EDITOR:-}}}
 VOCAB_VIEWER=${VOCAB_VIEWER:-cat}
@@ -99,8 +97,8 @@ precheck() {
     echo 1
   fi
 
-  if [[ ! -d "$TEMPLATES_DIR" ]]; then
-    echo "Templates directory not found; check $TEMPLATES_DIR and \$TEMPLATES"
+  if [[ ! -d "$VOCAB_TEMPLATES_DIR" ]]; then
+    echo "Templates directory not found; check $VOCAB_TEMPLATES_DIR and \$TEMPLATES"
     exit 1
   fi
 
@@ -117,10 +115,10 @@ verify_template() {
 
   # partial name may have been supplied
   for tfile in "$tmpl" "daily-${tmpl}" "daily-${tmpl}.md"; do
-    full_path="$TEMPLATES_DIR/${tfile}"
+    full_path="$VOCAB_TEMPLATES_DIR/${tfile}"
     if [[ -f "$full_path" ]]; then
       #echo "Setting template to $full_path"
-      TEMPLATE_FILE="$full_path"
+      $VOCAB_TEMPLATE_FILE="$full_path"
       return
     fi
   done
@@ -227,7 +225,7 @@ search() {
 prepare_add() {
   local term="${1:-}"
   local full_path="${2}"
-  local template="${3:-$TEMPLATE_FILE}"
+  local template="${3:-$VOCAB_TEMPLATE_FILE}"
 
   if [[ -z "$term" ]]; then
     echo "empty term not allowed"
@@ -244,7 +242,7 @@ prepare_add() {
 
 gen_header() {
   local term="$1"
-  local template="${2:-$TEMPLATE_FILE}"
+  local template="${2:-$VOCAB_TEMPLATE_FILE}"
 
   if [[ ! -e "$template" ]]; then
     echo "Template file not found: $template"
@@ -297,7 +295,7 @@ verify_filenames() {
 cmd=''
 term=''
 long_fmt=''
-do_edit=''
+do_edit=false
 vocab_file=''
 
 for arg in "$@"; do
@@ -378,7 +376,7 @@ esac
 
 
 if [[ -n "$vocab_file" ]]; then
-  if [[ -n "$do_edit" ]]; then
+  if [[ "$do_edit" == true ]]; then
     exec $VOCAB_EDITOR $EDITOR_OPTS "$vocab_file"
   else
     exec $VOCAB_VIEWER "$vocab_file"
