@@ -42,6 +42,8 @@ Examples:
 
 OPTIONS:
    -h:  Show this message
+   -l:  List derived daybook file paths without opening editor
+   -p:  Prepare header of daybook files.  Can be used without edit.
 
 EOU
 }
@@ -154,9 +156,11 @@ prepare() {
   local dbkfile="$1"
   local isodate="$2"
 
+  local dbkdir="${dbkfile%/*}"
   setup_vars "$isodate"
 
   if [[ ! -f "$dbkfile" ]]; then
+    mkdir -p "$dbkdir"
     process_template "$DBK_TEMPLATE_HEADER_PATH" "$isodate" >> "$dbkfile"
   fi
 
@@ -175,10 +179,11 @@ do
   case $OPTION in
     f)  dbkfile="$OPTARG"
         ;;
-    l)  do_edit=false
-        do_prepare=false
+    l)  do_prepare=false
+        do_edit=false
         ;;
     p)  do_prepare=true
+        do_edit=false
         ;;
     h|?)
         usage
