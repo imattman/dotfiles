@@ -69,8 +69,11 @@ attach_or_launch() {
   local daybook_aux_pane="${daybook_window}.2"
 
   # jn entry window
-  tmux new-session -c "$JN_DIR" -n "$JN_WINDOW" -d -s "$SESSION_NAME"
+  #tmux new-session -c "$JN_DIR" -n "$JN_WINDOW" -d -s "$SESSION_NAME"
+  tmux new-session -c "$WORKSPACE" -n "$JN_WINDOW" -d -s "$SESSION_NAME"
   tmux split -h -c "$JN_DIR" -t "$SESSION_NAME"
+  tmux rotate-window
+
   #tmux select-pane -t "$jn_main_pane"
   tmux resize-pane -t "$jn_main_pane" -x 55%
   tmux send-keys -t "$jn_aux_pane" 'repos latest' Enter
