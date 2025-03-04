@@ -18,6 +18,8 @@ unsetopt SHARE_HISTORY       # don't share history across shells
 #setopt MULTIOS              # Write to multiple descriptors.
 #setopt EXTENDED_GLOB        # Use extended globbing syntax.
 setopt CLOBBER              # Unset then Use >! and >>! to bypass.
+setopt PROMPT_CR            # add \r before prompt
+setopt PROMPT_SP            # preserve partial line before prompt ('%' marker)
 
 
 # override tmux to show color
