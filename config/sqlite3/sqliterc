@@ -1,5 +1,15 @@
 # sqlite3 user settings
 
+# disable PRAGMA output for cleaner results with scripting
+# .output /dev/null
+# PRAGMA synchronous = OFF;
+# PRAGMA foreign_keys = ON;
+# PRAGMA journal_mode = MEMORY;
+# PRAGMA locking_mode = EXCLUSIVE;
+# # 500MB cache
+# PRAGMA cache_size = -500000;
+# .output stdout
+
 .mode box
 #.mode column
 #.mode table 
