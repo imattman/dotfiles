@@ -1,0 +1,12 @@
+# sqlite3 user settings
+
+.mode box
+#.mode column
+#.mode table 
+#.mode insert
+
+.headers on
+
+# applies to 'list' mode
+#.separator |
+
