@@ -16,6 +16,10 @@
 #.mode insert
 
 .headers on
+.nullvalue NULL
+
+# stop on error
+.bail OFF
 
 # applies to 'list' mode
 #.separator |
