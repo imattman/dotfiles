@@ -8,6 +8,10 @@ export EDITOR="nvim"
 #export VISUAL="nvim"
 #export GIT_EDITOR=vimc
 
+# MacOS
+#export JAVA_HOME="$(/usr/libexec/java_home)"
+#export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
+
 export FOO_API_TOKEN="xxxxxxx"
 
 
