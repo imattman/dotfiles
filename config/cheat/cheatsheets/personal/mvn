@@ -1,0 +1,52 @@
+---
+syntax: bash
+tags:
+- maven
+- mvn
+- java
+---
+
+# To build a project
+mvn compile
+
+# To perform a clean build and package
+mvn clean package
+
+# To run tests
+mvn test
+
+# To compile but not run tests
+mvn test-compile
+
+# To build and install package to local cache ~/.m2/repository/...
+mvn install
+
+# To verify project and dependencies
+mvn verify
+
+
+# To list project dependencies
+mvn dependency:tree
+
+
+# To display general help
+mvn help:help
+
+# To display help for the compiler plugin (short syntax available for default plugins)
+mvn help:describe -Dplugin=compiler
+
+# Equivalent of above using long syntax
+mvn help:describe -Dplugin=org.apache.maven.plugin:maven-compiler-plugin
+
+# To display detailed help for the compiler:compile goal
+mvn help:describe -Dplugin=compiler -Dgoal=compile -Ddetail=true
+
+
+# To show Effective POM 
+# for defaults see MAVEN_HOME/lib/maven-model-builder-xxx.jar!.../pom-4.0.0.xml
+mvn help:effective-pom
+
+# To create a new project using one of the default archetypes
+# NOTE: trailing ':'
+mvn archetype:generate -Dfilter=org.apache.maven.archetypes:
+
