@@ -235,7 +235,7 @@ prepare() {
     touch "$jnfile"
   fi
 
-  echo -n "$jnfile"
+#  echo -n "$jnfile"
 }
 
 
