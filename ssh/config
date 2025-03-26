@@ -10,7 +10,7 @@
 #   Configure repo to use specific user:
 #
 #       git config user.name  "John Doe"
-#       git config user.emmail  "john.doe@example.com"
+#       git config user.email  "john.doe@example.com"
 #
 #   Verify in .git/config:
 #       [remote]
@@ -19,7 +19,11 @@
 #
 #   Register all keys under ~/.ssh
 #
-#       ssh-add -K $(ls ~/.ssh/id_* | grep -v '.pub$')
+#       # MacOS
+#       ssh-add --apple-use-keychain ~/.ssh/private-key
+#
+#       # MacOS before 12.0 (Monterey)
+#       ssh-add -K ~/.ssh/private-key
 #       
 #       # list current
 #       ssh-add -l
