@@ -166,14 +166,11 @@ dbk_branch() {
   #jn.sh "$date"
 }
 
-jn() {
-  # look for 'jn' in PATH (ignores this function)
-  local jnpath=$(whence -p jn)
-  if [[ -n "$jnpath" ]]; then
-    "$jnpath" "$@"
-  elif [[ $(whence -p jn.sh) ]]; then
-    jn.sh "$@"
-  fi
+function jn-diet() {
+  JN_DIET="$(jn diet-options | fzf --reverse)"
+  export JN_DIET
+
+  echo "JN_DIET: $JN_DIET"
 }
 
 jn_branch() {
