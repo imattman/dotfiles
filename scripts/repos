@@ -24,12 +24,21 @@ Repo = namedtuple('Repo', ['repo_url', 'upstream_url', 'directory', 'section'])
 Commit = namedtuple('Commit', ['repo', 'hash', 'datetime', 'subject'])
 
 
+def check_version():
+    req_major, req_minor = REQUIRED_VERSION
+    (major, minor, *details) = sys.version_info
+    if major < req_major or (major == req_major and minor < req_minor):
+        fail(f"This script requires Python v{req_major}.{req_minor} or later")
+
+
 def fail(err_msg):
     print(err_msg, file=sys.stderr)
     sys.exit(1)
 
 
+#def resolve_config_file(conf_file=None, verify_exists=True):
 def resolve_config_file(conf_file=None, verify_exists=True):
+
     repos_conf_env = os.getenv(CONFIG_ENV)
 
     if conf_file:
@@ -316,17 +325,38 @@ def gen_clone_script(repos):
         print(f"  git clone '{r.repo_url}' '{checkout_dir}'\n")
 
 
-def check_version():
-    req_major, req_minor = REQUIRED_VERSION
-    (major, minor, *details) = sys.version_info
-    if major < req_major or (major == req_major and minor < req_minor):
-        fail(f"This script requires Python v{req_major}.{req_minor} or later")
+def parse_args_example():
+    common_args = argparse.ArgumentParser(add_help=False)
+    common_args.add_argument('--config', '-c', help='config file')
+    common_args.add_argument('--verbose', '-v', help='verbose')
+
+    # main parser
+    parser = argparse.ArgumentParser(description='A tool for cloning and updating multiple Git repos based on a personal configuration')
+
+    # subcommand parsers
+    # value of subcommand will be stored in key defined by 'dest'
+    subparsers = parser.add_subparsers(dest='cmd', help='Available subcommands')
+
+    # define subcommand with aliases and link to common_args
+    init = subparsers.add_parser("init", parents=[common_args])
+    init.set_defaults(func=init)
+
+    report.add_argument("--limit", "-l", type=int, help='limit count')
+    report.set_defaults(func=run_report)
+
+    # set default function if no subcommand is specified
+    parser.set_defaults(func=run_default_behavior)
+
+    # value for subcommand is stored in `args.subcmd`
+    args = parser.parse_args()
+    return args
 
 
-def main():
-    check_version()
+
+def parse_args():
+    #user_cfg = resolve_config_file(args, verify_exists=False)
+
     cmds = 'init list ls clone last latest status stat sync update up pull upstream rollback script'.split()
-    user_cfg = resolve_config_file(verify_exists=False)
     parser = argparse.ArgumentParser(
         description='A tool for cloning and updating multiple Git repos based on a personal configuration',
         epilog=f'''User config location: {user_cfg} Value can be overriden with environment variable REPOS_CONFIG''')
@@ -383,7 +413,17 @@ def main():
         rollback_repos(repos, args.rollback)
     elif args.cmd == "script":
         gen_clone_script(repos)
+    return args
 
+
+def main(args=None):
+    check_version()
+    args = parse_args()
+    config_file = resolve_config_file(args.config_file)
+    config = read_config(config_file)
+    repos = build_repos(config)
+
+    return 0
 
 if __name__ == "__main__":
-    main()
+    exit(main())
