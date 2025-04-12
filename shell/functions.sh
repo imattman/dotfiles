@@ -167,14 +167,27 @@ dbk_branch() {
 }
 
 jn() {
-  # look for 'jn' in PATH (ignores this function)
-  local jnpath=$(whence -p jn)
-  if [[ -n "$jnpath" ]]; then
-    "$jnpath" "$@"
-  elif [[ $(whence -p jn.sh) ]]; then
-    jn.sh "$@"
-  fi
+  local jn_opts=('jn' 'jn-edit' 'jn.sh')
+
+  for jn_exec in "${jn_opts[@]}"; do
+    # look for 'jn' in PATH (ignores this function)
+    if [[ $(whence -p "$jn_exec") ]]; then
+      "$jn_exec" "$@"
+      return
+    fi
+  done
+
+  echo "no 'jn' variant found in PATH"
+  return 1
 }
+
+jn-diet() {
+  #JN_DIET="$(jn diet-options | fzf --reverse)"
+  JN_DIET="$(printf "low-carb\nketo\nfasting\nunrestricted\n" | fzf --reverse)"
+  export JN_DIET
+  echo "JN_DIET: $JN_DIET"
+}
+
 
 jn_branch() {
   cd "$NOTES_JOURNAL" || return 1
