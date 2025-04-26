@@ -163,15 +163,16 @@ dbk_branch() {
   fi
 
   git checkout -b "daybook-${date}"
-  #jn.sh "$date"
 }
 
 jn() {
   local jn_opts=('jn' 'jn-edit' 'jn.sh')
 
-  for jn_exec in "${jn_opts[@]}"; do
+  for jn_opt in "${jn_opts[@]}"; do
     # look for 'jn' in PATH (ignores this function)
-    if [[ $(whence -p "$jn_exec") ]]; then
+    local jn_exec="$(whence -p "$jn_opt")"
+    if [[ -n "$jn_exec" ]]; then
+      #echo "using $jn_exec"
       "$jn_exec" "$@"
       return
     fi
