@@ -10,10 +10,11 @@ fi
 THIS_SCRIPT="${0##*/}"
 BASE_DIR="$(cd "${0%/*}" && pwd)"
 
+DATE_CMD='date'
 
 usage() {
   cat <<-EOU
-	Usage: $THIS_SCRIPT [OPTIONS] <COMMAND>
+	Usage: $THIS_SCRIPT [OPTIONS] [DATE]
 	
 	Description here...
 	
@@ -23,32 +24,50 @@ usage() {
 EOU
 }
 
+precheck() {
+  if [[ $(uname -s | grep -i darwin) ]]; then
+    DATE_CMD=gdate
 
-match_commit_date_to_author() {
-  local auth_date="$(git log -n 1 --format=%aD)"
+    if [[ ! $(command -v gdate) ]]; then
+      echo "'gdate' not found. Install gnu coreutils"
+      echo "  brew install coreutils"
+      exit 1
+    fi
+  fi
+}
+
+set_commit_and_author_date() {
+  local auth_date="${1:-}"
+
+  if [[ -z "$auth_date" ]]; then
+    auth_date="$(git log -n 1 --format=%aD)"
+  else
+    echo finding date from $DATE_CMD -d "$auth_date"
+    auth_date="$($DATE_CMD -d "$auth_date")"
+  fi
+
+
+  #echo git commit --amend --no-edit --allow-empty --date="$auth_date"
   GIT_COMMITTER_DATE="$auth_date" git commit --amend --no-edit --allow-empty --date="$auth_date"
 }
 
 
 all() {
-  match_commit_date_to_author
+  set_commit_and_author_date "$@"
 }
 
 
 if [[ $# -eq 0 ]]; then
   all "$@"
 else
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      help|-h)
-        usage
-        exit 0
-        ;;
-      *)
-        "$1" "$@"
-        ;;
-    esac
-    shift
-  done
+  case "$1" in
+    help|-h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      all "$@"
+      ;;
+  esac
 fi
 
