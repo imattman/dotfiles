@@ -53,13 +53,16 @@ set_commit_and_author_date() {
 
 
 all() {
+  precheck
   set_commit_and_author_date "$@"
 }
+
 
 
 if [[ $# -eq 0 ]]; then
   all "$@"
 else
+  precheck
   case "$1" in
     help|-h|--help)
       usage
