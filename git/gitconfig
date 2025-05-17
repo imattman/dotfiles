@@ -37,6 +37,10 @@
   ff = only
 [log]
   follow = true
+  date = short
+  #date = local
+[format]
+  pretty = format:%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae%C(reset) %C(green)%s%C(reset)
 [grep]
   extendRegexp = true
   lineNumber = true
@@ -94,15 +98,19 @@
   first-commit = "log --max-parents=0 HEAD"
   first-commit-hash = "rev-list --max-parents=0 HEAD"
   last = log -1 HEAD
-  logs = log --pretty=format:'%h%x09%ad%x09%an%x09%s' --date=short
-  logsc = log --pretty=format:'%C(yellow)%h%x09%Cred%ad%x09%Cblue%an%Cgreen%d%x09%Creset%s' --date=short
-  lol = log --oneline --graph --decorate
-  logd = log --format=format:'%C(yellow)commit %H%Creset%ncommit date: %cd\nauthor date: %ad%n%n%w(80,4,4)%s%n'
-  logf = log --format=fuller
+  # note: use '%x09' for <TAB>
+  #logs = log --pretty=format:'%h%x09%ad%x09%an%x09%s' --date=short
+  #logs = log --pretty=format:'%h %ad %an %s' --date=short
+  logs = log --pretty=format:'%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae %C(green)%s%C(reset)' --date=short
+  # show weekday
+  logw = log --pretty=format:'%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae %C(green)%s%C(reset)' --date=format:'%Y-%m-%d %a'
+  logsw = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(green)%s%C(reset)' --date=format:'%Y-%m-%d %a'
+  lol = log --oneline --graph --decorate --branches --all
+  tree = log --graph --branches --decorate --pretty=oneline --all
+  logd = log --format=format:'%C(yellow)commit %H%C(reset)%ncommit date: %cd\nauthor date: %ad%n%n%w(80,4,4)%s%n' --date=local
+  logf = log --format=fuller --date=local
   log-details = log --format=fuller --stat
   logds = log --format=fuller --stat
-  logt = log --graph --branches --pretty=oneline --decorate
-  tree = log --graph --branches --pretty=oneline --decorate --all
   grog = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
   shortlog-counts = shortlog -sne
   user-counts = shortlog -sne
