@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# fail early
+set -euo pipefail
+
+DATE_CMD='date'
+ALLOW_REBASE_MAIN=false
+
+
+usage() {
+  local THIS_SCRIPT="${0##*/}"
+
+  cat<<EOU
+Usage: $THIS_SCRIPT [OPTIONS]
+
+A utility for launching a git interactive rebase with 'exec' blocks
+prepopulated.
+
+OPTIONS:
+   -h:  Show this message
+   -f:  Force. Required when rebasing on branch 'main'
+
+EOU
+}
+
+function precheck() {
+  if [[ $(uname -s | grep -i darwin) ]]; then
+    DATE_CMD='gdate'
+
+    if [[ ! $(command -v gdate) ]]; then
+      echo "'gdate' not found. Install gnu coreutils"
+      echo "  brew install coreutils"
+      exit 1
+    fi
+  fi
+
+  local current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+  if [[ "$current_branch" == 'main' || "$current_branch" == 'master' ]]; then
+    if [[ $ALLOW_REBASE_MAIN != true ]]; then
+      echo "Rebase disallowed without force option while on branch $current_branch"
+      exit 1
+    fi
+
+    echo "WARNING: rebasing while on $current_branch"
+  fi
+
+}
+
+for arg in "$@"; do
+  case $arg in
+    -h|--help|help)
+      usage
+      exit 0
+      ;;
+    -f|--force)
+      ALLOW_REBASE_MAIN=true
+      ;;
+  esac
+done
+
+precheck
+git rebase -i --exec "git-date-fix '30 minutes ago'" main
+
+
