@@ -4,6 +4,9 @@ starship
 # command runner (modern 'make')
 just
 
+# terminal markdown slideshow tool
+presenterm
+
 # simple HTTP server
 simple-http-server
 
