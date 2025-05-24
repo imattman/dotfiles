@@ -60,6 +60,8 @@ for arg in "$@"; do
 done
 
 precheck
-git rebase -i --exec "git-date-fix '30 minutes ago'" main
+#timeshift="$($DATE_CMD -Iseconds -d '30 minutes ago')"
+timeshift="20 minutes ago"
+git rebase -i --exec "git-date-fix '$timeshift'" main
 
 

@@ -37,10 +37,11 @@
   ff = only
 [log]
   follow = true
-  date = short
-  #date = local
+  #date = short
+  #date = iso-local
+  date = local
 [format]
-  pretty = format:%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae%C(reset) %C(green)%s%C(reset)
+  #pretty = format:%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae%C(reset) %C(green)%s%C(reset)
 [grep]
   extendRegexp = true
   lineNumber = true
@@ -103,8 +104,7 @@
   #logs = log --pretty=format:'%h %ad %an %s' --date=short
   logs = log --pretty=format:'%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae %C(green)%s%C(reset)' --date=short
   # show weekday
-  logw = log --pretty=format:'%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae %C(green)%s%C(reset)' --date=format:'%Y-%m-%d %a'
-  logsw = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(green)%s%C(reset)' --date=format:'%Y-%m-%d %a'
+  logsw = log --pretty=format:'%C(yellow)%h%C(reset) %C(red)%ad%C(reset) %C(blue)%<(8,trunc)%ae %C(green)%s%C(reset)' --date=format:'%Y-%m-%d %a'
   lol = log --oneline --graph --decorate --branches --all
   tree = log --graph --branches --decorate --pretty=oneline --all
   logd = log --format=format:'%C(yellow)commit %H%C(reset)%ncommit date: %cd\nauthor date: %ad%n%n%w(80,4,4)%s%n' --date=local
@@ -112,7 +112,6 @@
   log-details = log --format=fuller --stat
   logds = log --format=fuller --stat
   grog = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
-  shortlog-counts = shortlog -sne
   user-counts = shortlog -sne
   authors-remote = for-each-ref --sort=authordate --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)%(align:25,left)%(color:yellow) %(authorname)%(end)%(color:reset)%(refname:strip=3)' refs/remotes
   # commit message
