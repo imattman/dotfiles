@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+
+from datetime import datetime as dt
+from pathlib import Path
+from pprint import pprint
+import argparse
+import datetime
+import os
+import re
+import subprocess
+import sys
+
+
+
+def fail(err_msg):
+    print(err_msg, file=sys.stderr)
+    sys.exit(1)
+
+
+def read_input():
+    if len(sys.argv) > 1:
+        with open(sys.argv[1]) as fin:
+            lines = fin.readlines()
+    else:
+        lines = sys.stdin.readlines()
+
+    return lines
+
+
+def get_commit_dates(count=20):
+    git_log = subprocess.run(['git', 'log', '-n', str(count), "--format=%h %aI %s"],
+                             check=True, capture_output=True, encoding='utf-8')
+
+    git_log = git_log.stdout.strip()
+    commit_date = {}
+    for line in git_log.splitlines():
+        (hash, tstamp, subject) = line.split(" ", 2)
+        commit_date[hash] = dt.fromisoformat(tstamp)
+
+    return commit_date
+
+
+def filter_lines(lines, commits, fixup='git-rebase-fixup'):
+# example git rebase todo format
+    """
+pick 8e357d8 WIP: start of reorg of jn-tools
+pick 58bdd95 added 'jn-edit' to install.sh manifest
+pick 875ccdf updated jn wrapper script to basic functionality
+    """
+    for line in lines:
+        line = line.strip()
+        if not line or re.match(r'^\s*#', line):
+            print(line)
+            continue
+        (cmd, hash, msg) = line.split(r" ", 2)
+        cdate = commits[hash]
+        dt_formatted = f"{cdate.strftime('%a')} {cdate.isoformat()}"
+        #dt_formatted = cdate.strftime("%a %Y-%m-%d %I:%M:%S %p")
+        print(line)
+        print(f"#    {hash}        {dt_formatted}")
+        print(f"#exec {fixup} '{cdate.isoformat()}'")
+        print()
+    pass
+
+
+def main():
+    lines = read_input()
+    commits = get_commit_dates()
+    filter_lines(lines, commits)
+
+
+if __name__ == "__main__":
+    main()
