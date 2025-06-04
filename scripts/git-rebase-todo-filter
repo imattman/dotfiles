@@ -40,7 +40,7 @@ def get_commit_dates(count=20):
     return commit_date
 
 
-def filter_lines(lines, commits, fixup='git-rebase-fixup'):
+def filter_lines(lines, commits, fixup='git-date-fix'):
 # example git rebase todo format
     """
 pick 8e357d8 WIP: start of reorg of jn-tools
