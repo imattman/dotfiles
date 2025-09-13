@@ -73,6 +73,21 @@ function timestamp_isosec() {
   fi
 }
 
+function epochmillis() {
+  local format='+%s%3N'
+
+  if [[ -n "$1" ]]; then
+    $DATE_CMD -d "$1" "$format"
+  else
+    $DATE_CMD "$format"
+  fi
+}
+
+function epochmillis2date() {
+  local secs=$(echo "($1 + 500) / 1000" | bc)
+  $DATE_CMD -d "@${secs}"
+}
+
 cd_fzf() {
   local root="${1:-$PWD}"
   local depth="${2:-4}"
