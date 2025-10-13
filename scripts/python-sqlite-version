@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import sqlite3
+
+def version_info():
+    print(f"SQLite Version: {sqlite3.sqlite_version}")
+    print(f"SQLite Version Info: {sqlite3.sqlite_version_info}")
+    #print(f"DB-API Version: {sqlite3.version}")
+
+
+def sqlite_options():
+    conn = sqlite3.connect(":memory:")
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA compile_options;")
+    compile_options = cursor.fetchall()
+    conn.close()
+
+    print("SQLite Compile-Time Options:")
+    for option in compile_options:
+        print(option[0])
+
+
+def main():
+    version_info()
+    print()
+#    sqlite_options()
+
+
+if __name__ == '__main__':
+    main()
+
