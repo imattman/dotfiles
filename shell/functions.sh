@@ -581,6 +581,38 @@ check_cpu_virtualization_enabled() {
 }
 
 
+# set active JDK (MacOS)
+jdk() {
+  case "$1" in
+    '-h' | '--help' | 'help')
+        echo "Usage: jdk [version]"
+        echo " Omit <version> to list what is currently installed."
+        echo
+        echo "Note: this is function assumes a MacOS environment."
+        return 1
+      ;;
+  esac
+
+  if [[ "$PLATFORM" != "darwin" ]]; then
+    echo "Only MacOS currently supported"
+    return 1
+  fi
+
+  local version="$1"
+
+  if [[ -z "$version" ]]; then
+    /usr/libexec/java_home -V
+  else
+    export JAVA_HOME="$(/usr/libexec/java_home -v $version)"
+  fi
+
+  echo
+  echo "JAVA_HOME: $JAVA_HOME"
+  echo
+  java -version
+}
+
+
 # colorize output of 'go test'
 # shamelessly stolen from Jon Calhoun
 go_test() {
