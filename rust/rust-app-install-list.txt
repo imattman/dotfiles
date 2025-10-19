@@ -4,8 +4,8 @@ starship
 # command runner (modern 'make')
 just
 
-# terminal markdown slideshow tool
-presenterm
+# CLI TOTP generator
+totp
 
 # simple HTTP server
 simple-http-server
@@ -24,4 +24,7 @@ difftastic
 
 # Taskwarrior TUI front end
 taskwarrior-tui
+
+# terminal markdown slideshow tool
+presenterm
 

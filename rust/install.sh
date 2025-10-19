@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 #
-# Install Rust build tools
-
-#!/usr/bin/env bash
+# Install Rust tools & utilities
 
 # fail early
 set -eou pipefail
@@ -12,10 +10,14 @@ if [[ -n "${DEBUG:=}" ]]; then
 fi
 
 THIS_SCRIPT="${0##*/}"
-BASE_DIR="$(cd "${0%/*}" && pwd)"
+THIS_DIR="$(cd "${0%/*}" && pwd)"
 
 RUSTUP_URL="https://sh.rustup.rs"
 
+APP_FILE="${1:-rust-app-install-list.txt}"
+APP_FILE="$THIS_DIR/$APP_FILE"
+
+CMD_PREFIX=''
 
 precheck() {
   local fail=''
@@ -48,6 +50,18 @@ install_rustup() {
     | sh -s -- --no-modify-path -y
 }
 
+install_from_file() {
+  local pkg_file="$1"
+
+  echo "Processing entries from $pkg_file"
+
+  sed -e 's/\s*#.*//' -e '/^\s*$/d' < "$pkg_file" | \
+  while read -r pkg; do
+    echo $CMD_PREFIX cargo install $pkg
+    $CMD_PREFIX cargo install $pkg
+    echo
+  done
+}
 
 install() {
   precheck
@@ -59,15 +73,15 @@ install() {
     echo
     install_rustup
   else
-    echo "'cargo' binary found in path.  To update:"
-    echo
-    echo "  rustup update"
+    echo "'cargo' binary found in path."
   fi
+
+  install_from_file "$1"
 }
 
 
 if [[ $# -eq 0 ]]; then
-  install
+  install "$APP_FILE"
 else
   "$@"
 fi
