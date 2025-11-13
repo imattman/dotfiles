@@ -28,6 +28,9 @@ mvn verify
 # To list project dependencies
 mvn dependency:tree
 
+# To list dependencies filtering output to certain libraries
+mvn dependency:tree -Dincludes=<groupId>:<artifactId>,<groupId>:<artifactId>,...
+
 
 # To display general help
 mvn help:help
