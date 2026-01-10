@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# fail early
-set -eou pipefail
+# catch variable typos
+set -u
 
 if [[ -n "${DEBUG:=}" ]]; then
   set -x

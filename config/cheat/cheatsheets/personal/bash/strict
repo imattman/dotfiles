@@ -1,0 +1,22 @@
+---
+syntax: bash
+tags:
+- bash
+---
+
+# BASH "strict mode" (not recommended)
+set -eou pipefail
+
+# error on unset variables (recommended)
+set -u
+
+# treat as error non-zero exit of any command 
+set -e
+
+# treat as error non-zero exit of command within pipeline
+set -o pipefail
+
+# Testing unset variables can be done during development via commandline
+bash -u script.sh
+
+
