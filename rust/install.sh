@@ -11,6 +11,8 @@ fi
 
 THIS_SCRIPT="${0##*/}"
 THIS_DIR="$(cd "${0%/*}" && pwd)"
+PLATFORM="$(uname -s)"
+PLATFORM="${PLATFORM,,}"
 
 RUSTUP_URL="https://sh.rustup.rs"
 
@@ -23,18 +25,31 @@ precheck() {
   local fail=''
 
   if [[ -z "${CARGO_HOME:-}" ]]; then
-    echo "\$CARGO_HOME not set!"
+    echo "CARGO_HOME not set!"
     fail=true
   fi
 
   if [[ -z "${RUSTUP_HOME:-}" ]]; then
-    echo "\$RUSTUP_HOME not set!"
-    fail=true 
+    echo "RUSTUP_HOME not set!"
+    fail=true
   fi
 
-  if [[ -n "$fail" ]]; then
+  if [[ ! "$(command -v rustup)" ]] ; then
+    echo "Cannot find 'rustup' in PATH!"
+    fail=true
+  fi
+
+  if [[ "$PLATFORM" == 'darwin' ]]; then
+    if [[ ! "$(command -v rustup-init)" ]] ; then
+      echo "Cannot find 'rustup-init' in PATH!"
+      fail=true
+    fi
+  fi
+
+
+  if [[ "$fail" == true ]]; then
     echo
-    echo "Verify shell environment is properly configured"
+    echo "Verify environment is properly configured"
     exit 1
   fi
 }
@@ -45,12 +60,12 @@ install_rustup() {
   # - most defaults
   # - do not modify PATH (assumed aleady in .dotfiles)
   # - skip confirmation prompt
-  curl --proto '=https' --tlsv1.2 -sSf \
-    "$RUSTUP_URL" \
+  curl --proto '=https' --tlsv1.2 -sSf "$RUSTUP_URL" \
     | sh -s -- --no-modify-path -y
 }
 
-install_from_file() {
+
+install_pkgs() {
   local pkg_file="$1"
 
   echo "Processing entries from $pkg_file"
@@ -68,15 +83,13 @@ install() {
 
   # Check for cargo binary
   if [[ ! "$(command -v cargo)" ]] ; then
-    echo "'cargo' binary not found in path"
-    echo "Installing via 'rustup' ..."
-    echo
-    install_rustup
+    rustup-init -y --no-modify-path
+    rustup toolchain install stable
   else
     echo "'cargo' binary found in path."
   fi
 
-  install_from_file "$1"
+  install_pkgs "$1"
 }
 
 
