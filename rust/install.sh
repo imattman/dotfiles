@@ -11,8 +11,7 @@ fi
 
 THIS_SCRIPT="${0##*/}"
 THIS_DIR="$(cd "${0%/*}" && pwd)"
-PLATFORM="$(uname -s)"
-PLATFORM="${PLATFORM,,}"
+PLATFORM="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
 RUSTUP_URL="https://sh.rustup.rs"
 
