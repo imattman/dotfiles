@@ -265,6 +265,69 @@ nnoremap <Leader>b <cmd>Buffers<CR>
 "  let g:rg_derive_root='true'
 "endif
 
+" common emojis
+iabbrev :shrug: ¯\_(ツ)_/¯
+iabbrev &shrug; ¯\_(ツ)_/¯
+
+iabbrev :smile: 😄
+iabbrev :smile: 😄
+iabbrev :smiley: 😃
+iabbrev :slight_smile: 🙂
+iabbrev :grin: 😁
+iabbrev :grinning: 😀
+iabbrev :wink: 😉
+iabbrev :laughing: 😆
+iabbrev :rofl: 🤣
+iabbrev :cry: 😢
+
+iabbrev :thumbsup: 👍
+iabbrev :thumbs_up: 👍
+iabbrev :thumbsdown: 👎
+iabbrev :thumbs_down: 👎
+iabbrev :wave: 👋
+
+iabbrev :neutral_face: 😐
+iabbrev :neutral: 😐
+iabbrev :frowning_face: ☹️ 
+iabbrev :frown: ☹️ 
+iabbrev :slightly_frowning_face: 🙁
+iabbrev :tired_face: 😫
+iabbrev :tired: 😫
+iabbrev :raised_eyebrow: 🤨
+iabbrev :roll_eyes: 🙄
+iabbrev :eye_roll: 🙄
+iabbrev :open_mouth: 😮
+iabbrev :thinking: 🤔
+iabbrev :upside_down_face: 🙃
+
+iabbrev :stuck_out_tongue: 😛
+iabbrev :stuck_out_tongue_closed_eyes: 😝
+iabbrev :stuck_out_tongue_winking_eye: 😜
+iabbrev :blush: 😊
+iabbrev :zany_face: 🤪
+iabbrev :drooling_face: 🤤
+iabbrev :nerd_face: 🤓
+iabbrev :pleading_face: 🥺
+iabbrev :partying_face: 🥳
+iabbrev :zipper_mouth_face: 🤐
+iabbrev :angry: 😠
+iabbrev :rage: 😡
+iabbrev :cursing_face: 🤬
+
+iabbrev :coffee: ☕
+iabbrev :sun: ☀️
+iabbrev :sunshine: ☀️
+iabbrev :umbrella: ☔
+iabbrev :rain: 🌧️
+
+iabbrev :books: 📚
+iabbrev :notebook: 📓
+iabbrev :pen: ✒️
+iabbrev :pencil: ✏️ 
+
+iabbrev :linux: 🐧
+iabbrev :penguin: 🐧
+iabbrev :rust: 🦀
 
 
 " ------------------------------------------------------------
