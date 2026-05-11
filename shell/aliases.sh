@@ -41,6 +41,10 @@ alias dbkbr='dbk_branch'
 alias dbkf='dbk_fzf_list'
 alias dbks='dbk_fzf_search'
 
+# email shortcuts
+alias social=social_email
+alias sbux=social_email
+
 # linux conveniences
 # pretty print mounted drives
 alias mounts="mount | awk '{ printf \"%s\t%s\n\",\$1,\$3; }' | grep -E '^/dev/' | sort | column -t"

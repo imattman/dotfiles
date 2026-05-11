@@ -612,6 +612,14 @@ jdk() {
   java -version
 }
 
+social_email() {
+  if [[ -z "$SOCIAL_EMAIL" ]]; then
+    echo "SOCIAL_EMAIL not set"
+    return 1
+  fi
+
+  echo -n "$SOCIAL_EMAIL" | $XCLIP
+}
 
 # colorize output of 'go test'
 # shamelessly stolen from Jon Calhoun
