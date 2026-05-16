@@ -1,0 +1,10 @@
+font-family = Hack Nerd Font Mono
+font-size = 14
+
+#font-family = Inconsolata Nerd Font Mono
+#font-size = 16
+
+theme = Tomorrow Night Bright
+#theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+
+
